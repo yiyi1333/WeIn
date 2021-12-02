@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--    数据源-->
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://rm-bp10ju74719fp6g4emo.mysql.rds.aliyuncs.com:3306/wein?serverTimezone=GMT%2B8&amp;useSSL=false"/>
+        <property name="username" value="yqx"/>
+        <property name="password" value="yqx@zyxbtbt22ysj"/>
+    </bean>
+    <!--    装配SqlSessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>
+    <!--配置sqlSession-->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <!--只能通过构造器注入sqlSessionFactory,因为没有set方法-->
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
+    <bean id="enterpriseAgencyImpl" class="cn.edu.zjut.dao.EnterpriseAgencyImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="enterpriseAgencyService" class="cn.edu.zjut.service.EnterpriseAgencyService">
+        <property name="enterpriseAgencyImpl" ref="enterpriseAgencyImpl"/>
+    </bean>
+
+    <bean id="enterpriseAgencyAction" class="cn.edu.zjut.action.EnterpriseAgencyAction" scope="prototype">
+        <property name="enterpriseAgencyService" ref="enterpriseAgencyService" />
+    </bean>
+
+</beans>
