@@ -32,4 +32,14 @@
         <property name="enterpriseAgencyService" ref="enterpriseAgencyService" />
     </bean>
 
+    <bean id="advertisementImpl" class="cn.edu.zjut.dao.AdvertisementImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+    <bean id="advertisementService" class="cn.edu.zjut.service.AdvertisementService">
+        <property name="advertisementdao" ref="advertisementImpl"/>
+    </bean>
+
+    <bean id="advertisemnetAction" class="cn.edu.zjut.action.AdvertisementAction">
+        <property name="advertisementService" ref="advertisementService"/>
+    </bean>
 </beans>
