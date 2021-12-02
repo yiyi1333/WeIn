@@ -17,13 +17,16 @@ public class EnterpriseAgencyService {
         this.enterpriseAgencyImpl = enterpriseAgencyImpl;
     }
 
-    public boolean login(EnterpriseAgency enterpriseAgency) {
+
+    public EnterpriseAgency login(EnterpriseAgency enterpriseAgency) {
+        System.out.println("execute --login()-- method.");
+
         List<EnterpriseAgency> agencyList = enterpriseAgencyImpl.getAllEnterpriseAgency();
         for (EnterpriseAgency agency : agencyList) {
             if (agency.getEnterpriseAgencyAccount().equals(enterpriseAgency.getEnterpriseAgencyAccount()) && agency.getEnterpriseAgencyPassword().equals(enterpriseAgency.getEnterpriseAgencyPassword())) {
-                return true;
+                return agency;
             }
         }
-        return false;
+        return null;
     }
 }

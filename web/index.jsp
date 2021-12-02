@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: hydrogen_zyx
-  Date: 2021/12/1
-  Time: 19:49
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -36,10 +29,10 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element">
-                        <img alt="image" class="rounded-circle" src="img/profile_small.jpg" />
+                        <img alt="image" class="rounded-circle" src="img/profile_small.jpg"/>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="block m-t-xs font-bold">xxx</span>
-                            <span class="text-muted text-xs block">管理员 <b class="caret"></b></span>
+                            <span class="block m-t-xs font-bold">${sessionScope.name}</span>
+                            <span class="text-muted text-xs block">${sessionScope.type}<b class="caret"></b></span>
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li><a class="dropdown-item" href="profile.html">个人信息</a></li>
@@ -54,7 +47,8 @@
                     </div>
                 </li>
                 <li class="active">
-                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
+                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span
+                            class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li class="active"><a href="index.html">主页示例 v.1</a></li>
                         <li><a href="dashboard_2.html">主页示例 v.2</a></li>
@@ -67,7 +61,8 @@
                     <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">图表</span><span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">图表</span><span
+                            class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="graph_flot.html">Flot Charts</a></li>
                         <li><a href="graph_morris.html">Morris.js Charts</a></li>
@@ -80,7 +75,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">邮件 </span><span class="label label-warning float-right">16/24</span></a>
+                    <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">邮件 </span><span
+                            class="label label-warning float-right">16/24</span></a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="mailbox.html">收件箱</a></li>
                         <li><a href="mail_detail.html">邮件内容</a></li>
@@ -89,13 +85,14 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="metrics.html"><i class="fa fa-pie-chart"></i> <span class="nav-label">指标</span>  </a>
+                    <a href="metrics.html"><i class="fa fa-pie-chart"></i> <span class="nav-label">指标</span> </a>
                 </li>
                 <li>
                     <a href="widgets.html"><i class="fa fa-flask"></i> <span class="nav-label">窗口小部件</span></a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">表单</span><span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">表单</span><span
+                            class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="form_basic.html">基本表单</a></li>
                         <li><a href="form_advanced.html">高级表单</a></li>
@@ -107,7 +104,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">应用</span>  <span class="float-right label label-primary">特别</span></a>
+                    <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">应用</span> <span
+                            class="float-right label label-primary">特别</span></a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="contacts.html">名片</a></li>
                         <li><a href="profile.html">会员</a></li>
@@ -132,7 +130,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">页面</span><span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">页面</span><span
+                            class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="search_results.html">搜索</a></li>
                         <li><a href="lockscreen.html">锁屏</a></li>
@@ -147,7 +146,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-globe"></i> <span class="nav-label">组件</span><span class="label label-info float-right">新</span></a>
+                    <a href="#"><i class="fa fa-globe"></i> <span class="nav-label">组件</span><span
+                            class="label label-info float-right">新</span></a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="toastr_notifications.html">toastr 通知</a></li>
                         <li><a href="nestable_list.html">拖动排序</a></li>
@@ -180,7 +180,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">UI 元素</span><span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">UI 元素</span><span
+                            class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="typography.html">排版</a></li>
                         <li><a href="icons.html">图标</a></li>
@@ -200,7 +201,8 @@
                     <a href="grid_options.html"><i class="fa fa-laptop"></i> <span class="nav-label">栅格</span></a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-table"></i> <span class="nav-label">表格</span><span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-table"></i> <span class="nav-label">表格</span><span
+                            class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="table_basic.html">静态表格</a></li>
                         <li><a href="table_data_tables.html">数据表格</a></li>
@@ -209,7 +211,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-shopping-cart"></i> <span class="nav-label">商城</span><span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-shopping-cart"></i> <span class="nav-label">商城</span><span
+                            class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="ecommerce_products_grid.html">产品图表</a></li>
                         <li><a href="ecommerce_product_list.html">产品列表</a></li>
@@ -221,7 +224,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label">相册</span><span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label">相册</span><span
+                            class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="basic_gallery.html">基本图库</a></li>
                         <li><a href="slick_carousel.html">图片切换</a></li>
@@ -230,7 +234,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">菜单 </span><span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">菜单 </span><span
+                            class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li>
                             <a href="#" id="damian">三级菜单 <span class="fa arrow"></span></a>
@@ -257,10 +262,12 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="css_animation.html"><i class="fa fa-magic"></i> <span class="nav-label">CSS 动画 </span><span class="label label-info float-right">62</span></a>
+                    <a href="css_animation.html"><i class="fa fa-magic"></i> <span class="nav-label">CSS 动画 </span><span
+                            class="label label-info float-right">62</span></a>
                 </li>
                 <li class="landing_link">
-                    <a target="_blank" href="landing.html"><i class="fa fa-star"></i> <span class="nav-label">着陆页</span> <span class="label label-warning float-right">新</span></a>
+                    <a target="_blank" href="landing.html"><i class="fa fa-star"></i> <span class="nav-label">着陆页</span>
+                        <span class="label label-warning float-right">新</span></a>
                 </li>
                 <li class="special_link">
                     <a href="package.html"><i class="fa fa-database"></i> <span class="nav-label">组件</span></a>
@@ -274,10 +281,12 @@
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
-                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                    </a>
                     <form role="search" class="navbar-form-custom" action="search_results.html">
                         <div class="form-group">
-                            <input type="text" placeholder="请输入搜索内容" class="form-control" name="top-search" id="top-search">
+                            <input type="text" placeholder="请输入搜索内容" class="form-control" name="top-search"
+                                   id="top-search">
                         </div>
                     </form>
                 </div>
@@ -287,7 +296,7 @@
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                            <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
+                            <i class="fa fa-envelope"></i> <span class="label label-warning">16</span>
                         </a>
                         <ul class="dropdown-menu dropdown-messages dropdown-menu-right">
                             <li>
@@ -340,7 +349,7 @@
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                            <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
+                            <i class="fa fa-bell"></i> <span class="label label-primary">8</span>
                         </a>
                         <ul class="dropdown-menu dropdown-alerts">
                             <li>
@@ -516,12 +525,12 @@
                                         <div class="float-right text-right">
 
                                             <span class="bar_dashboard">5,3,9,6,5,9,7,3,5,2,4,7,3,2,7,9,6,4,5,7,3,2,1,0,9,5,6,8,3,2,1</span>
-                                            <br />
+                                            <br/>
                                             <small class="font-bold">$ 20 054.43</small>
                                         </div>
                                         <h4>
                                             游戏数据报告!
-                                            <br />
+                                            <br/>
                                             <small class="m-r"><a href="graph_flot.html"> 查看所有数据! </a> </small>
                                         </h4>
                                     </div>
@@ -553,30 +562,36 @@
                                 <div class="ibox-content no-padding">
                                     <ul class="list-group">
                                         <li class="list-group-item">
-                                            <p><a class="text-info" href="#">@皇帝</a> 人生就像考古一样，总是要不断地探索和寻觅，才会有意外的惊喜出现！ </p>
+                                            <p><a class="text-info" href="#">@皇帝</a> 人生就像考古一样，总是要不断地探索和寻觅，才会有意外的惊喜出现！
+                                            </p>
                                             <small class="block text-muted"><i class="fa fa-clock-o"></i> 1 分钟</small>
                                         </li>
                                         <li class="list-group-item">
-                                            <p><a class="text-info" href="#">@太后</a> 人生就像考古一样，总是要不断地探索和寻觅，才会有意外的惊喜出现！ </p>
+                                            <p><a class="text-info" href="#">@太后</a> 人生就像考古一样，总是要不断地探索和寻觅，才会有意外的惊喜出现！
+                                            </p>
                                             <div class="text-center m">
                                                 <span id="sparkline8"></span>
                                             </div>
                                             <small class="block text-muted"><i class="fa fa-clock-o"></i> 2 小时</small>
                                         </li>
                                         <li class="list-group-item">
-                                            <p><a class="text-info" href="#">@皇后</a> 人生就像考古一样，总是要不断地探索和寻觅，才会有意外的惊喜出现！ </p>
+                                            <p><a class="text-info" href="#">@皇后</a> 人生就像考古一样，总是要不断地探索和寻觅，才会有意外的惊喜出现！
+                                            </p>
                                             <small class="block text-muted"><i class="fa fa-clock-o"></i> 2 分钟</small>
                                         </li>
                                         <li class="list-group-item ">
-                                            <p><a class="text-info" href="#">@太师</a> 人生就像考古一样，总是要不断地探索和寻觅，才会有意外的惊喜出现！ </p>
+                                            <p><a class="text-info" href="#">@太师</a> 人生就像考古一样，总是要不断地探索和寻觅，才会有意外的惊喜出现！
+                                            </p>
                                             <small class="block text-muted"><i class="fa fa-clock-o"></i> 1 小时</small>
                                         </li>
                                         <li class="list-group-item">
-                                            <p><a class="text-info" href="#">@宫女</a> 人生就像考古一样，总是要不断地探索和寻觅，才会有意外的惊喜出现！ </p>
+                                            <p><a class="text-info" href="#">@宫女</a> 人生就像考古一样，总是要不断地探索和寻觅，才会有意外的惊喜出现！
+                                            </p>
                                             <small class="block text-muted"><i class="fa fa-clock-o"></i> 1 分钟</small>
                                         </li>
                                         <li class="list-group-item">
-                                            <p><a class="text-info" href="#">@太监</a> 人生就像考古一样，总是要不断地探索和寻觅，才会有意外的惊喜出现！ </p>
+                                            <p><a class="text-info" href="#">@太监</a> 人生就像考古一样，总是要不断地探索和寻觅，才会有意外的惊喜出现！
+                                            </p>
                                             <small class="block text-muted"><i class="fa fa-clock-o"></i> 2 分钟</small>
                                         </li>
                                     </ul>
@@ -637,8 +652,10 @@
                                                     <strong>小王</strong> 查看了 <strong>晚上睡觉有必要把路由器关掉么？</strong><br>
                                                     <small class="text-muted">2017.12.12 12:00</small>
                                                     <div class="actions">
-                                                        <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> 赞 </a>
-                                                        <a class="btn btn-xs btn-white"><i class="fa fa-heart"></i> 喜欢</a>
+                                                        <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i>
+                                                            赞 </a>
+                                                        <a class="btn btn-xs btn-white"><i class="fa fa-heart"></i>
+                                                            喜欢</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -654,7 +671,8 @@
                                                         人生就好像你搭乘一辆火车，沿途有不同的景色，不同的站台，和不同的人上车，也会过了这个景点到下一个景点，到下一个站台，不同的人上下车，那些都是过客，重要的是自己的旅程。
                                                     </div>
                                                     <div class="float-right">
-                                                        <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> 赞 </a>
+                                                        <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i>
+                                                            赞 </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -680,7 +698,9 @@
                                             </div>
                                         </div>
 
-                                        <button class="btn btn-primary btn-block m-t"><i class="fa fa-arrow-down"></i> 加载更多</button>
+                                        <button class="btn btn-primary btn-block m-t"><i class="fa fa-arrow-down"></i>
+                                            加载更多
+                                        </button>
 
                                     </div>
 
@@ -723,7 +743,7 @@
                                             <div class="col-4 date">
                                                 <i class="fa fa-briefcase"></i>
                                                 6:00 am
-                                                <br />
+                                                <br/>
                                                 <small class="text-navy">2小时前</small>
                                             </div>
                                             <div class="col content no-top-border">
@@ -731,7 +751,8 @@
 
                                                 <p>人生如一本书，应该多一些精彩的细节，少一些乏味的字眼。</p>
 
-                                                <p><span data-diameter="40" class="updating-chart">5,3,9,6,5,9,7,3,5,2,5,3,9,6,5,9,4,7,3,2,9,8,7,4,5,1,2,9,5,4,7,2,7,7,3,5,2</span></p>
+                                                <p><span data-diameter="40" class="updating-chart">5,3,9,6,5,9,7,3,5,2,5,3,9,6,5,9,4,7,3,2,9,8,7,4,5,1,2,9,5,4,7,2,7,7,3,5,2</span>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -740,7 +761,7 @@
                                             <div class="col-4 date">
                                                 <i class="fa fa-file"></i>
                                                 7:00 am
-                                                <br />
+                                                <br/>
                                                 <small class="text-navy">3小时前</small>
                                             </div>
                                             <div class="col content">
@@ -754,7 +775,7 @@
                                             <div class="col-4 date">
                                                 <i class="fa fa-coffee"></i>
                                                 8:00 am
-                                                <br />
+                                                <br/>
                                             </div>
                                             <div class="col content">
                                                 <p class="m-b-xs"><strong>与小王聊天</strong></p>
@@ -769,7 +790,7 @@
                                             <div class="col-4 date">
                                                 <i class="fa fa-phone"></i>
                                                 11:00 am
-                                                <br />
+                                                <br/>
                                                 <small class="text-navy">21小时前</small>
                                             </div>
                                             <div class="col content">
@@ -785,7 +806,7 @@
                                             <div class="col-4 date">
                                                 <i class="fa fa-user-md"></i>
                                                 09:00 pm
-                                                <br />
+                                                <br/>
                                                 <small>21小时前</small>
                                             </div>
                                             <div class="col content">
@@ -801,7 +822,7 @@
                                             <div class="col-4 date">
                                                 <i class="fa fa-comments"></i>
                                                 12:50
-                                                <br />
+                                                <br/>
                                                 <small class="text-navy">48小时前</small>
                                             </div>
                                             <div class="col content">
@@ -941,7 +962,7 @@
                 <div id="tab-1" class="tab-pane active">
 
                     <div class="sidebar-title">
-                        <h3> <i class="fa fa-comments-o"></i> 最新记录</h3>
+                        <h3><i class="fa fa-comments-o"></i> 最新记录</h3>
                         <small><i class="fa fa-tim"></i> 你有10条新消息。</small>
                     </div>
 
@@ -1068,7 +1089,7 @@
                 <div id="tab-2" class="tab-pane">
 
                     <div class="sidebar-title">
-                        <h3> <i class="fa fa-cube"></i> 最新项目</h3>
+                        <h3><i class="fa fa-cube"></i> 最新项目</h3>
                         <small><i class="fa fa-tim"></i> 你有14个项目。 10没有完成</small>
                     </div>
 
@@ -1192,7 +1213,8 @@
                             </span>
                         <div class="switch">
                             <div class="onoffswitch">
-                                <input type="checkbox" name="collapsemenu" checked class="onoffswitch-checkbox" id="example2">
+                                <input type="checkbox" name="collapsemenu" checked class="onoffswitch-checkbox"
+                                       id="example2">
                                 <label class="onoffswitch-label" for="example2">
                                     <span class="onoffswitch-inner"></span>
                                     <span class="onoffswitch-switch"></span>
@@ -1234,7 +1256,8 @@
                             </span>
                         <div class="switch">
                             <div class="onoffswitch">
-                                <input type="checkbox" checked name="collapsemenu" class="onoffswitch-checkbox" id="example5">
+                                <input type="checkbox" checked name="collapsemenu" class="onoffswitch-checkbox"
+                                       id="example5">
                                 <label class="onoffswitch-label" for="example5">
                                     <span class="onoffswitch-inner"></span>
                                     <span class="onoffswitch-switch"></span>
@@ -1248,7 +1271,8 @@
                             </span>
                         <div class="switch">
                             <div class="onoffswitch">
-                                <input type="checkbox" checked name="collapsemenu" class="onoffswitch-checkbox" id="example6">
+                                <input type="checkbox" checked name="collapsemenu" class="onoffswitch-checkbox"
+                                       id="example6">
                                 <label class="onoffswitch-label" for="example6">
                                     <span class="onoffswitch-inner"></span>
                                     <span class="onoffswitch-switch"></span>
@@ -1334,7 +1358,7 @@
                 showMethod: 'slideDown',
                 timeOut: 4000
             };
-            toastr.success('xxx管理者', '欢迎您xxx');
+            toastr.success('${sessionScope.name}${sessionScope.type}', '欢迎您');
 
         }, 1300);
 
@@ -1374,8 +1398,7 @@
                     color: '#d5d5d5'
                 },
                 colors: ["#1ab394", "#1C84C6"],
-                xaxis: {
-                },
+                xaxis: {},
                 yaxis: {
                     ticks: 4
                 },
@@ -1401,7 +1424,7 @@
 
 
         var ctx4 = document.getElementById("doughnutChart").getContext("2d");
-        new Chart(ctx4, { type: 'doughnut', data: doughnutData, options: doughnutOptions });
+        new Chart(ctx4, {type: 'doughnut', data: doughnutData, options: doughnutOptions});
 
         var doughnutData = {
             labels: ["App", "Software", "Laptop"],
@@ -1421,16 +1444,21 @@
 
 
         var ctx4 = document.getElementById("doughnutChart2").getContext("2d");
-        new Chart(ctx4, { type: 'doughnut', data: doughnutData, options: doughnutOptions });
+        new Chart(ctx4, {type: 'doughnut', data: doughnutData, options: doughnutOptions});
 
     });
 </script>
 <script>
     (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
             (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date(); a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
     })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-4625583-2', 'webapplayers.com');
@@ -1651,7 +1679,7 @@
                 localStorage.setItem("fixedsidebar", 'on');
             }
         } else {
-            $('.sidebar-collapse').slimscroll({ destroy: true });
+            $('.sidebar-collapse').slimscroll({destroy: true});
             $('.sidebar-collapse').attr('style', '');
             $("body").removeClass('fixed-sidebar');
 

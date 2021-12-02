@@ -20,5 +20,6 @@
     </environments>
     <mappers>
         <mapper resource="cn/edu/zjut/dao/EnterpriseAgencyMapper.xml"/>
+        <mapper resource="cn/edu/zjut/dao/ShopManagerMapper.xml"/>
     </mappers>
 </configuration>

@@ -10,16 +10,19 @@
         <property name="username" value="yqx"/>
         <property name="password" value="yqx@zyxbtbt22ysj"/>
     </bean>
+
     <!--    装配SqlSessionFactory-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
     </bean>
+
     <!--配置sqlSession-->
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
         <!--只能通过构造器注入sqlSessionFactory,因为没有set方法-->
         <constructor-arg index="0" ref="sqlSessionFactory"/>
     </bean>
+
     <bean id="enterpriseAgencyImpl" class="cn.edu.zjut.dao.EnterpriseAgencyImpl">
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
@@ -28,8 +31,22 @@
         <property name="enterpriseAgencyImpl" ref="enterpriseAgencyImpl"/>
     </bean>
 
-    <bean id="enterpriseAgencyAction" class="cn.edu.zjut.action.EnterpriseAgencyAction" scope="prototype">
+    <bean id="enterpriseAgencyAction" class="cn.edu.zjut.action.UserAction" scope="prototype">
         <property name="enterpriseAgencyService" ref="enterpriseAgencyService" />
     </bean>
+
+    <bean id="shopManagerImpl" class="cn.edu.zjut.dao.ShopManagerImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="shopManagerService" class="cn.edu.zjut.service.ShopManagerService">
+        <property name="shopManagerImpl" ref="shopManagerImpl"/>
+    </bean>
+
+    <bean id="shopManagerAction" class="cn.edu.zjut.action.UserAction" scope="prototype">
+        <property name="shopManagerService" ref="shopManagerService" />
+    </bean>
+
+
 
 </beans>
