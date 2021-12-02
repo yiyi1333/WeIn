@@ -13,13 +13,13 @@
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
                 <property name="url"
                           value="jdbc:mysql://rm-bp10ju74719fp6g4emo.mysql.rds.aliyuncs.com:3306/wein?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8"/>
-                <property name="username" value="yqx"/>
-                <property name="password" value="yqx@zyxbtbt22ysj"/>
+                <property name="username" value="yiyi1333"/>
+                <property name="password" value="zzy@15712651279"/>
             </dataSource>
         </environment>
     </environments>
     <mappers>
         <mapper resource="cn/edu/zjut/dao/EnterpriseAgencyMapper.xml"/>
-        <mapper resource="cn/edu/zjut/dao/ShopManagerMapper.xml"/>
+        <mapper resource="cn/edu/zjut/dao/AdvertisementMapper.xml"/>
     </mappers>
 </configuration>
