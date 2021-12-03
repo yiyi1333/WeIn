@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.edu.zjut.dao.EnterpriseAgencyMapper">
+<mapper namespace="cn.edu.zjut.dao.PlatformAdministratorMapper">
 
-    <resultMap id="EnterpriseAgencyResultMap" type="cn.edu.zjut.po.EnterpriseAgency">
-        <result property="enterpriseAgencyId" column="enterpriseAgencyId"/>
-        <result property="enterpriseAgencyAccount" column="enterpriseAgencyAccount"/>
-        <result property="enterpriseAgencyPassword" column="enterpriseAgencyPassword"/>
-        <result property="enterpriseAgencyRight" column="enterpriseAgencyRight"/>
-        <result property="enterpriseAgencyName" column="enterpriseAgencyName"/>
+    <resultMap id="PlatformAdministratorResultMap" type="cn.edu.zjut.po.PlatformAdministrator">
+        <result property="adminId" column="adminId"/>
+        <result property="adminAccount" column="adminAccount"/>
+        <result property="adminPassword" column="adminPassword"/>
+        <result property="adminName" column="adminName"/>
         <result property="idCardNumber" column="idCardNumber"/>
-        <result property="enterpriseId" column="enterpriseId"/>
     </resultMap>
 
-    <select id="getAllEnterpriseAgency" resultMap="EnterpriseAgencyResultMap">
-        select * from WeIn.enterpriseagency;
+    <select id="getAllPlatformAdministrator" resultMap="PlatformAdministratorResultMap">
+        select * from WeIn.platformadministrator;
     </select>
 </mapper>

@@ -1,9 +1,11 @@
 package cn.edu.zjut.action;
 
 import cn.edu.zjut.po.EnterpriseAgency;
+import cn.edu.zjut.po.PlatformAdministrator;
 import cn.edu.zjut.po.ShopManager;
 import cn.edu.zjut.po.User;
 import cn.edu.zjut.service.EnterpriseAgencyService;
+import cn.edu.zjut.service.PlatformAdministratorService;
 import cn.edu.zjut.service.ShopManagerService;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -13,11 +15,20 @@ public class UserAction implements SessionAware {
     private User user;
     private EnterpriseAgencyService enterpriseAgencyService;
     private ShopManagerService shopManagerService;
+    private PlatformAdministratorService platformAdministratorService;
     private Map<String, Object> session;
 
     @Override
     public void setSession(Map<String, Object> session) {
         this.session = session;
+    }
+
+    public PlatformAdministratorService getPlatformAdministratorService() {
+        return platformAdministratorService;
+    }
+
+    public void setPlatformAdministratorService(PlatformAdministratorService platformAdministratorService) {
+        this.platformAdministratorService = platformAdministratorService;
     }
 
     public Map<String, Object> getSession() {
@@ -73,7 +84,16 @@ public class UserAction implements SessionAware {
                 return "success";
             }
         } else if (user.getAuthority() == 2) {
-
+            PlatformAdministrator platformAdministrator = new PlatformAdministrator();
+            platformAdministrator.setAdminAccount(user.getAccount());
+            platformAdministrator.setAdminPassword(user.getPassword());
+            platformAdministrator = platformAdministratorService.login(platformAdministrator);
+            if (platformAdministrator != null) {
+                session.put("type", "平台运营人员");
+                session.put("name", platformAdministrator.getAdminName());
+                session.put("platformAdministrator", platformAdministrator);
+                return "success";
+            }
         }
         return "failed";
     }

@@ -6,9 +6,9 @@
 
 <struts>
     <package name="strutsBean" extends="struts-default,json-default" namespace="/">
-        <action name="enterpriseAgencyLogin" class="cn.edu.zjut.action.EnterpriseAgencyAction" method="login">
-            <result name="enterpriseAgencyLoginSuccess">/index.jsp</result>
-            <result name="enterpriseAgencyLoginFailed">/login.jsp</result>
+        <action name="login" class="cn.edu.zjut.action.UserAction" method="login">
+            <result name="success">/index.jsp</result>
+            <result name="failed">/login.jsp</result>
         </action>
         <action name="advertisement" class="cn.edu.zjut.action.AdvertisementAction" method="getAdvertisementList">
             <result name="success" type="json">

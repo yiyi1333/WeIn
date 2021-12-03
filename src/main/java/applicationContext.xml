@@ -28,8 +28,28 @@
         <property name="enterpriseAgencyImpl" ref="enterpriseAgencyImpl"/>
     </bean>
 
-    <bean id="enterpriseAgencyAction" class="cn.edu.zjut.action.EnterpriseAgencyAction" scope="prototype">
+
+    <bean id="shopManagerImpl" class="cn.edu.zjut.dao.ShopManagerImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="shopManagerService" class="cn.edu.zjut.service.ShopManagerService">
+        <property name="shopManagerImpl" ref="shopManagerImpl"/>
+    </bean>
+
+
+    <bean id="platformAdministratorImpl" class="cn.edu.zjut.dao.PlatformAdministratorImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="platformAdministratorService" class="cn.edu.zjut.service.PlatformAdministratorService">
+        <property name="platformAdministratorImpl" ref="platformAdministratorImpl"/>
+    </bean>
+
+    <bean id="userAction" class="cn.edu.zjut.action.UserAction" scope="prototype">
         <property name="enterpriseAgencyService" ref="enterpriseAgencyService" />
+        <property name="platformAdministratorService" ref="platformAdministratorService" />
+        <property name="shopManagerService" ref="shopManagerService" />
     </bean>
 
     <bean id="advertisementImpl" class="cn.edu.zjut.dao.AdvertisementImpl">
