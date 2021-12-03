@@ -15,4 +15,10 @@
     <select id="getAllShopManager" resultMap="ShopManagerResultMap">
         select * from WeIn.shopmanager;
     </select>
+
+    <!--shopManagerId自增-->
+    <insert id="addShopManager" parameterType="cn.edu.zjut.po.ShopManager" useGeneratedKeys="true" keyProperty="shopManagerId">
+        insert into shopManager(shopManagerId, shopManagerAccount, shopManagerPassword, shopManagerName, idCardNumber)
+        values (#{shopManagerId}, #{shopManagerAccount}, #{shopManagerPassword}, #{shopManagerName}, #{idCardNumber})
+    </insert>
 </mapper>

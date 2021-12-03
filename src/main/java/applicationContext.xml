@@ -10,9 +10,9 @@
         <!--        <property name="username" value="yqx"/>-->
         <!--        <property name="password" value="yqx@zyxbtbt22ysj"/>-->
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://rm-bp10ju74719fp6g4emo.mysql.rds.aliyuncs.com:3306/wein?serverTimezone=GMT%2B8&amp;useSSL=false"/>
-        <property name="username" value="yqx"/>
-        <property name="password" value="yqx@zyxbtbt22ysj"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/wein?serverTimezone=GMT%2B8&amp;useSSL=false"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123456"/>
     </bean>
     <!--    装配SqlSessionFactory-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -82,4 +82,14 @@
     <bean id="goodsAction" class="cn.edu.zjut.action.GoodsAction" scope="prototype">
         <property name="goodsService" ref="goodsService"/>
     </bean>
+
+    <bean id="registerShopmanagerAndEnterpriseagencyService" class="cn.edu.zjut.service.RegisterShopmanagerAndEnterpriseagencyService" scope="prototype">
+        <property name="enterpriseAgencyimpl" ref="enterpriseAgencyImpl"/>
+        <property name="shopManagerimpl" ref="shopManagerImpl"/>
+    </bean>
+
+    <bean id="registerShopmanagerAndEnterpriseagencyAction" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" scope="prototype">
+        <property name="registerShopmanagerAndEnterpriseagencyService" ref="registerShopmanagerAndEnterpriseagencyService"></property>
+    </bean>
+
 </beans>

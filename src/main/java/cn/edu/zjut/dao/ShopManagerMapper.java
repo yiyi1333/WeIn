@@ -5,4 +5,5 @@ import java.util.List;
 
 public interface ShopManagerMapper {
     public List<ShopManager> getAllShopManager();
+    public void addShopManager(ShopManager shopManager);
 }

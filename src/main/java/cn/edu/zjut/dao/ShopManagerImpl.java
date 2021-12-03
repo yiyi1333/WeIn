@@ -22,4 +22,9 @@ public class ShopManagerImpl implements ShopManagerMapper {
         System.out.println("execute --getAllShopManager()-- method.");
         return sqlSession.getMapper(ShopManagerMapper.class).getAllShopManager();
     }
+
+    public void addShopManager(ShopManager shopManager) {
+        System.out.println("execute --registerShopmanager()-- method.");
+        sqlSession.getMapper(ShopManagerMapper.class).addShopManager(shopManager);
+    }
 }
