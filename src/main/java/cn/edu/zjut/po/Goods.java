@@ -28,6 +28,10 @@ public class Goods implements Serializable {
         this.shop = shop;
     }
 
+    public void setShopId(int shopId) {
+        this.shopId = shopId;
+    }
+
     public int getGoodsId() {
         return goodsId;
     }

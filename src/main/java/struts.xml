@@ -23,5 +23,15 @@
                 <param name="root">goodslist</param>
             </result>
         </action>
+        <action name="updateGoods" class="cn.edu.zjut.action.GoodsAction" method="updateGoods">
+            <result name="success">
+                /changeGoods.jsp
+            </result>
+        </action>
+        <action name="displayGoodsEditor" class="cn.edu.zjut.action.GoodsAction" method="getGoodsById">
+            <result name="success">
+                /changeGoods.jsp
+            </result>
+        </action>
     </package>
 </struts>

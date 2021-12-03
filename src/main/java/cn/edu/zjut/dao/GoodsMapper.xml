@@ -24,12 +24,13 @@
     <select id="searchGoodsByKeyWord" resultMap="GoodsMap" parameterType="java.lang.String">
         select goods.*, shop.*, enterprise.*
         from goods, shop, enterprise
-        where goods.shopId = shop.shopId and shop.enterpriseId = enterprise.enterpriseId and (goods.tags like '%${keyword}%' or goods.goodsName like '%${keyword}%');
+        where goods.shopId = shop.shopId and shop.enterpriseId = enterprise.enterpriseId and (goods.tags like
+        '%${keyword}%' or goods.goodsName like '%${keyword}%');
     </select>
     <resultMap id="GoodsResultMap" type="cn.edu.zjut.po.Goods">
         <result property="goodsId" column="goodsId"/>
         <result property="goodsName" column="goodsName"/>
-        <result property="goodprice" column="goodprice"/>
+        <result property="goodsPrice" column="goodPrice"/>
         <result property="goodsDetails" column="goodsDetails"/>
         <result property="goodsStock" column="goodsStock"/>
         <result property="shopId" column="shopId"/>
@@ -39,5 +40,20 @@
 
     <select id="getAllGoods" resultMap="GoodsResultMap">
         select * from WeIn.goods;
+    </select>
+
+    <update id="updateGoods" parameterType="cn.edu.zjut.po.Goods">
+        update WeIn.goods
+        set goodsName = #{goodsName},
+        set goodPrice = #{goodsPrice},
+        set goodsDetails = #{goodsDetails},
+        set goodsStock = #{goodsStock},
+        set tags = #{tags},
+        set goodsImage = #{goodsImage}
+        where shopId = #{shopId};
+    </update>
+
+    <select id="getGoodsById" resultMap="GoodsResultMap" parameterType="int">
+        select * from WeIn.goods where goodsId = #{goodsId};
     </select>
 </mapper>

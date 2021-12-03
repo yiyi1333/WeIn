@@ -15,6 +15,16 @@ public class GoodsAction implements SessionAware {
     private GoodsService goodsService;
     private String keyword;
     private List goodslist;
+    private Goods goods;
+
+    public void setGoods(Goods goods) {
+        this.goods = goods;
+    }
+
+    public Goods getGoods() {
+        return goods;
+    }
+
     public GoodsService getGoodsService() {
         return goodsService;
     }
@@ -49,7 +59,7 @@ public class GoodsAction implements SessionAware {
         this.goodslist = goodslist;
     }
 
-    public String search(){
+    public String search() {
         goodslist = goodsService.searchGoodsByTagsAndName(keyword);
         return "success";
     }
@@ -68,5 +78,17 @@ public class GoodsAction implements SessionAware {
         }
         session.put("goodsList", goodsList);
         return "displayShopGoodsSuccess";
+    }
+
+    public String updateGoods() {
+        goodsService.updateGoods(goods);
+        return "displayShopGoodsSuccess";
+    }
+
+
+    public String getGoodsById() {
+        goodsService.getGoodsById(goods.getGoodsId());
+        session.put("goods", goods);
+        return "success";
     }
 }

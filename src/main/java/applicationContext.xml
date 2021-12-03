@@ -10,9 +10,9 @@
         <!--        <property name="username" value="yqx"/>-->
         <!--        <property name="password" value="yqx@zyxbtbt22ysj"/>-->
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://rm-bp10ju74719fp6g4emo.mysql.rds.aliyuncs.com:3306/wein?serverTimezone=GMT%2B8&amp;useSSL=false"/>
-        <property name="username" value="yqx"/>
-        <property name="password" value="yqx@zyxbtbt22ysj"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/wein?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="20011122"/>
     </bean>
     <!--    装配SqlSessionFactory-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

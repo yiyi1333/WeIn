@@ -191,7 +191,7 @@
                 <ul class="nav nav-second-level collapse">
                     <li><a href="ecommerce_products_grid.html">产品图表</a></li>
                     <li><a href="ecommerce_product_list.html">产品列表</a></li>
-                    <li><a href="ecommerce_product.html">产品编辑</a></li>
+                    <li><a href="changeGoods.jsp">产品编辑</a></li>
                     <li><a href="ecommerce_product_detail.html">产品详情</a></li>
                     <li><a href="ecommerce-cart.html">购物车</a></li>
                     <li><a href="ecommerce-orders.html">订购页</a></li>
