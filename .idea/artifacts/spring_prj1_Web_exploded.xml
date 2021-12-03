@@ -1,10 +1,11 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="WeIn:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/WeIn_war_exploded</output-path>
+  <artifact type="exploded-war" name="spring-prj1:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/spring_prj1_Web_exploded</output-path>
     <root id="root">
+      <element id="javaee-facet-resources" facet="spring-prj1/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="WeIn" />
+          <element id="module-output" name="spring-prj1" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.27" />
@@ -39,7 +40,6 @@
           <element id="library" level="project" name="Maven: org.apache.struts:struts2-json-plugin:2.3.37" />
         </element>
       </element>
-      <element id="javaee-facet-resources" facet="WeIn/web/Web" />
     </root>
   </artifact>
 </component>

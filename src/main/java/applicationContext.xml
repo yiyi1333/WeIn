@@ -71,7 +71,7 @@
         <property name="goodsDao" ref="goodsImpl"/>
     </bean>
 
-    <bean id="goodsAction" class="cn.edu.zjut.action.GoodsAction">
+    <bean id="goodsAction" class="cn.edu.zjut.action.GoodsAction" scope="prototype">
         <property name="goodsService" ref="goodsService"/>
     </bean>
 </beans>
