@@ -28,7 +28,7 @@
         <property name="enterpriseAgencyImpl" ref="enterpriseAgencyImpl"/>
     </bean>
 
-    <bean id="enterpriseAgencyAction" class="cn.edu.zjut.action.EnterpriseAgencyAction" scope="prototype">
+    <bean id="enterpriseAgencyAction" class="cn.edu.zjut.action.UserAction" scope="prototype">
         <property name="enterpriseAgencyService" ref="enterpriseAgencyService" />
     </bean>
 
