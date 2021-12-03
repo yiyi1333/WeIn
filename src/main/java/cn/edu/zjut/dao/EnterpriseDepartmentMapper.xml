@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zjut.dao.EnterpriseDepartmentMapper">
+
+    <resultMap id="EnterpriseUserResultMap" type="cn.edu.zjut.po.EnterpriseUser">
+        <result property="enterpriseDepartmentName" column="enterpriseDepartmentName"/>
+        <result property="enterpriseDepartmentId" column="enterpriseDepartmentId"/>
+        <result property="name" column="name"/>
+        <result property="consumerId" column="consumerId"/>
+    </resultMap>
+
+    <select id="getAllEnterpriseUser" resultMap="EnterpriseUserResultMap">
+        select enterpriseDepartmentName,enterpriseDepartmentId,name,consumerId from WeIn.consumer,WeIn.enterprisedepartment where enterpriseDepartmentNumber=enterpriseDepartmentId;
+    </select>
+
+</mapper>
