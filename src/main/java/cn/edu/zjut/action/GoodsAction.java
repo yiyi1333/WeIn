@@ -13,7 +13,8 @@ import java.util.Map;
 public class GoodsAction implements SessionAware {
     private Map<String, Object> session;
     private GoodsService goodsService;
-
+    private String keyword;
+    private List goodslist;
     public GoodsService getGoodsService() {
         return goodsService;
     }
@@ -22,6 +23,7 @@ public class GoodsAction implements SessionAware {
         this.goodsService = goodsService;
     }
 
+
     @Override
     public void setSession(Map<String, Object> session) {
         this.session = session;
@@ -29,6 +31,27 @@ public class GoodsAction implements SessionAware {
 
     public Map<String, Object> getSession() {
         return session;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
+    public List getGoodslist() {
+        return goodslist;
+    }
+
+    public void setGoodslist(List goodslist) {
+        this.goodslist = goodslist;
+    }
+
+    public String search(){
+        goodslist = goodsService.searchGoodsByTagsAndName(keyword);
+        return "success";
     }
 
     public String displayShopGoods() {

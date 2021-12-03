@@ -1,11 +1,12 @@
 package cn.edu.zjut.dao;
 
 import cn.edu.zjut.po.Goods;
+import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import java.util.List;
 
-public class GoodsImpl implements GoodsMapper {
+public class GoodsImpl implements GoodsMapper{
     private SqlSessionTemplate sqlSession;
 
     public SqlSessionTemplate getSqlSession() {
@@ -20,5 +21,9 @@ public class GoodsImpl implements GoodsMapper {
     public List<Goods> getAllGoods() {
         System.out.println("execute --getAllGoods()-- method.");
         return sqlSession.getMapper(GoodsMapper.class).getAllGoods();
+    @Override
+    public List searchGoodsByKeyWord(@Param("keyword") String keyword) {
+        System.out.println("execute--getGoodslist--dao");
+        return sqlSession.getMapper(GoodsMapper.class).searchGoodsByKeyWord(keyword);
     }
 }

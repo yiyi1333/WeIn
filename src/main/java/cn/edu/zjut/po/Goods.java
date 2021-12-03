@@ -3,7 +3,7 @@ package cn.edu.zjut.po;
 import java.io.Serializable;
 
 public class Goods implements Serializable {
-    private int goodsID;
+    private int goodsId;
     private String goodsName;
     private double goodsPrice;
     private String goodsDetails;
@@ -15,8 +15,8 @@ public class Goods implements Serializable {
     public Goods() {
     }
 
-    public Goods(int goodsID, String goodsName, double goodsPrice, String goodsDetails, int goodsStock, String tags, String goodsImage, Shop shop) {
-        this.goodsID = goodsID;
+    public Goods(int goodsId, String goodsName, double goodsPrice, String goodsDetails, int goodsStock, String tags, String goodsImage, Shop shop) {
+        this.goodsId = goodsId;
         this.goodsName = goodsName;
         this.goodsPrice = goodsPrice;
         this.goodsDetails = goodsDetails;
@@ -26,12 +26,12 @@ public class Goods implements Serializable {
         this.shop = shop;
     }
 
-    public int getGoodsID() {
-        return goodsID;
+    public int getGoodsId() {
+        return goodsId;
     }
 
-    public void setGoodsID(int goodsID) {
-        this.goodsID = goodsID;
+    public void setGoodsId(int goodsId) {
+        this.goodsId = goodsId;
     }
 
     public String getGoodsName() {

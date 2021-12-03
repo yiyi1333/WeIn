@@ -10,10 +10,9 @@
         <!--        <property name="username" value="yqx"/>-->
         <!--        <property name="password" value="yqx@zyxbtbt22ysj"/>-->
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="url"
-                  value="jdbc:mysql://localhost:3306/wein?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8"/>
-        <property name="username" value="root"/>
-        <property name="password" value="20011122"/>
+        <property name="url" value="jdbc:mysql://rm-bp10ju74719fp6g4emo.mysql.rds.aliyuncs.com:3306/wein?serverTimezone=GMT%2B8&amp;useSSL=false"/>
+        <property name="username" value="yqx"/>
+        <property name="password" value="yqx@zyxbtbt22ysj"/>
     </bean>
     <!--    装配SqlSessionFactory-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -30,6 +29,7 @@
     <bean id="enterpriseAgencyImpl" class="cn.edu.zjut.dao.EnterpriseAgencyImpl">
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
+
     <bean id="enterpriseAgencyService" class="cn.edu.zjut.service.EnterpriseAgencyService">
         <property name="enterpriseAgencyImpl" ref="enterpriseAgencyImpl"/>
     </bean>
@@ -38,6 +38,7 @@
     <bean id="shopManagerImpl" class="cn.edu.zjut.dao.ShopManagerImpl">
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
+
     <bean id="shopManagerService" class="cn.edu.zjut.service.ShopManagerService">
         <property name="shopManagerImpl" ref="shopManagerImpl"/>
     </bean>
@@ -46,15 +47,16 @@
     <bean id="platformAdministratorImpl" class="cn.edu.zjut.dao.PlatformAdministratorImpl">
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
+
     <bean id="platformAdministratorService" class="cn.edu.zjut.service.PlatformAdministratorService">
         <property name="platformAdministratorImpl" ref="platformAdministratorImpl"/>
     </bean>
 
 
     <bean id="userAction" class="cn.edu.zjut.action.UserAction" scope="prototype">
-        <property name="enterpriseAgencyService" ref="enterpriseAgencyService"/>
-        <property name="platformAdministratorService" ref="platformAdministratorService"/>
-        <property name="shopManagerService" ref="shopManagerService"/>
+        <property name="enterpriseAgencyService" ref="enterpriseAgencyService" />
+        <property name="platformAdministratorService" ref="platformAdministratorService" />
+        <property name="shopManagerService" ref="shopManagerService" />
     </bean>
 
 
@@ -64,6 +66,7 @@
     <bean id="advertisementService" class="cn.edu.zjut.service.AdvertisementService">
         <property name="advertisementdao" ref="advertisementImpl"/>
     </bean>
+
     <bean id="advertisemnetAction" class="cn.edu.zjut.action.AdvertisementAction">
         <property name="advertisementService" ref="advertisementService"/>
     </bean>
@@ -71,9 +74,11 @@
     <bean id="goodsImpl" class="cn.edu.zjut.dao.GoodsImpl">
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
+
     <bean id="goodsService" class="cn.edu.zjut.service.GoodsService">
-        <property name="goodsImpl" ref="goodsImpl"/>
+        <property name="goodsDao" ref="goodsImpl"/>
     </bean>
+
     <bean id="goodsAction" class="cn.edu.zjut.action.GoodsAction" scope="prototype">
         <property name="goodsService" ref="goodsService"/>
     </bean>
