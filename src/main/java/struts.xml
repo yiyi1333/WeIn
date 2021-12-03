@@ -18,5 +18,10 @@
         <action name="displayShopGoods" class="cn.edu.zjut.action.GoodsAction" method="displayShopGoods">
             <result name="displayShopGoodsSuccess">/productList.jsp</result>
         </action>
+        <action name="search" class="cn.edu.zjut.action.GoodsAction" method="search">
+            <result name="success" type="json">
+                <param name="root">goodslist</param>
+            </result>
+        </action>
     </package>
 </struts>

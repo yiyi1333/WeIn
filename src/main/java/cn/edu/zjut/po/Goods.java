@@ -3,35 +3,37 @@ package cn.edu.zjut.po;
 import java.io.Serializable;
 
 public class Goods implements Serializable {
-    private int goodsID;
+    private int goodsId;
     private String goodsName;
     private double goodsPrice;
     private String goodsDetails;
     private int goodsStock;
     private String tags;
     private String goodsImage;
+    private int shopId;
     private Shop shop;
 
     public Goods() {
     }
 
-    public Goods(int goodsID, String goodsName, double goodsPrice, String goodsDetails, int goodsStock, String tags, String goodsImage, Shop shop) {
-        this.goodsID = goodsID;
+    public Goods(int goodsId, String goodsName, double goodsPrice, String goodsDetails, int goodsStock, String tags, String goodsImage, int shopId, Shop shop) {
+        this.goodsId = goodsId;
         this.goodsName = goodsName;
         this.goodsPrice = goodsPrice;
         this.goodsDetails = goodsDetails;
         this.goodsStock = goodsStock;
         this.tags = tags;
         this.goodsImage = goodsImage;
+        this.shopId = shopId;
         this.shop = shop;
     }
 
-    public int getGoodsID() {
-        return goodsID;
+    public int getGoodsId() {
+        return goodsId;
     }
 
-    public void setGoodsID(int goodsID) {
-        this.goodsID = goodsID;
+    public void setGoodsId(int goodsId) {
+        this.goodsId = goodsId;
     }
 
     public String getGoodsName() {
@@ -88,5 +90,9 @@ public class Goods implements Serializable {
 
     public void setShop(Shop shop) {
         this.shop = shop;
+    }
+
+    public int getShopId() {
+        return shopId;
     }
 }
