@@ -68,7 +68,7 @@
                             </div>
                             <div class="product-desc">
                                 <span class="product-price">
-                                    ¥<%=String.format("%.2f", goodsList.get(j).getGoodprice())%>
+                                    ¥<%=String.format("%.2f", goodsList.get(j).getGoodsPrice())%>
                                 </span>
                                 <small class="text-muted"><%=goodsList.get(j).getTags()%>
                                 </small>

@@ -23,5 +23,9 @@
                 <param name="root">goodslist</param>
             </result>
         </action>
+
+        <action name="displayShopOrders" class="cn.edu.zjut.action.OrdersAction" method="displayShopOrders">
+            <result name="displayShopOrdersSuccess">/ordersList.jsp</result>
+        </action>
     </package>
 </struts>
