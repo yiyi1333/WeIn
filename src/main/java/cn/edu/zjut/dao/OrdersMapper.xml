@@ -44,6 +44,12 @@
     <select id="getAllOrders" resultMap="OrdersResultMap">
         select orders.*,goods.*, shop.*, enterprise.*
         from orders, goods, shop, enterprise
-        where orders.goodsId=goods.goodsId and goods.shopId = shop.shopId and shop.enterpriseId = enterprise.enterpriseId
+        where orders.goodsId=goods.goodsId and goods.shopId = shop.shopId and shop.enterpriseId = enterprise.enterpriseId;
+    </select>
+
+    <select id="selectOrdersById" resultMap="OrdersResultMap" parameterType="java.lang.String">
+        select orders.*
+        from orders
+        where orderId=%${orderId}%;
     </select>
 </mapper>

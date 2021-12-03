@@ -36,6 +36,9 @@
                 <a href="./displayShopGoods"><i class="fa fa-diamond"></i> <span class="nav-label">店铺商品</span></a>
             </li>
             <li>
+                <a href="./displayShopOrders"><i class="fa fa-diamond"></i> <span class="nav-label">店铺订单</span></a>
+            </li>
+            <li>
                 <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">图表</span><span
                         class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">

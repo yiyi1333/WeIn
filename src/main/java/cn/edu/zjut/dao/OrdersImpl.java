@@ -23,4 +23,10 @@ public class OrdersImpl implements OrdersMapper{
         System.out.println("execute --getAllOrders()-- method.");
         return sqlSession.getMapper(OrdersMapper.class).getAllOrders();
     }
+
+    @Override
+    public Orders selectOrdersById(String orderId) {
+        System.out.println("execute--selectOrdersById--dao");
+        return sqlSession.getMapper(OrdersMapper.class).selectOrdersById(orderId);
+    }
 }
