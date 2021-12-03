@@ -67,7 +67,7 @@ public class UserAction implements SessionAware {
             shopManager.setShopManagerPassword(user.getPassword());
             shopManager = shopManagerService.login(shopManager);
             if (shopManager != null) {
-                session.put("type", "店铺管理员");
+                session.put("type", "shopManager");
                 session.put("name", shopManager.getShopManagerName());
                 session.put("shopManager", shopManager);
                 return "success";
@@ -78,7 +78,7 @@ public class UserAction implements SessionAware {
             enterpriseAgency.setEnterpriseAgencyPassword(user.getPassword());
             enterpriseAgency = enterpriseAgencyService.login(enterpriseAgency);
             if (enterpriseAgency != null) {
-                session.put("type", "企业用户");
+                session.put("type", "enterpriseAgency");
                 session.put("name", enterpriseAgency.getEnterpriseAgencyName());
                 session.put("enterpriseAgency", enterpriseAgency);
                 return "success";
@@ -89,7 +89,7 @@ public class UserAction implements SessionAware {
             platformAdministrator.setAdminPassword(user.getPassword());
             platformAdministrator = platformAdministratorService.login(platformAdministrator);
             if (platformAdministrator != null) {
-                session.put("type", "平台运营人员");
+                session.put("type", "platformAdministrator");
                 session.put("name", platformAdministrator.getAdminName());
                 session.put("platformAdministrator", platformAdministrator);
                 return "success";
