@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zjut.dao.GoodsMapper">
+
+    <resultMap id="GoodsMap" type="cn.edu.zjut.po.Goods">
+        <id property="goodsID" column="goodsID"/>
+        <result property="goodsName" column="goodsName"/>
+        <result property="goodsPrice" column="goodsPrice"/>
+        <result property="goodsDetails" column="goodsDetails"/>
+        <result property="goodsStock" column="goodsStock"/>
+        <result property="tags" column="tags"/>
+        <result property="goodsImage" column="goodsImage"/>
+        <association property="shop" javaType="cn.edu.zjut.po.Shop">
+            <id property="shopId" column="shopId"/>
+            <result property="shopName" column="shopName"/>
+            <result property="shopDescription" column="shopDescription"/>
+            <association property="enterprise" javaType="cn.edu.zjut.po.Enterprise">
+                <id property="enterpriseId" column="enterpriseId"/>
+                <result property="enterpriseName" column="enterpriseName"/>
+            </association>
+        </association>
+    </resultMap>
+    <select id="getGoodsByKeyWord" resultMap="GoodsMap" parameterType="String">
+        select goods.*, shop.*, enterprise.*
+        from goods, shop, enterprise
+        where goods.shopId = shop.shopId and shop.enterpriseId = enterprise.enterpriseId and (goods.tags like '%#{keyword}%' or goods.goodsName like '%#{keyword}%');
+    </select>
+</mapper>

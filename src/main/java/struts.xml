@@ -15,5 +15,10 @@
                 <param name="root">advertisementlist</param>
             </result>
         </action>
+        <action name="search" class="cn.edu.zjut.action.GoodsAction" method="search">
+            <result name="success" type="json">
+                <param name="root">goodslist</param>
+            </result>
+        </action>
     </package>
 </struts>

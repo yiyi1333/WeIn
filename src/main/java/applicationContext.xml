@@ -62,4 +62,16 @@
     <bean id="advertisemnetAction" class="cn.edu.zjut.action.AdvertisementAction">
         <property name="advertisementService" ref="advertisementService"/>
     </bean>
+
+    <bean id="goodsImpl" class="cn.edu.zjut.dao.GoodsImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="goodsService" class="cn.edu.zjut.service.GoodsService">
+        <property name="goodsDao" ref="goodsImpl"/>
+    </bean>
+
+    <bean id="goodsAction" class="cn.edu.zjut.action.GoodsAction">
+        <property name="goodsService" ref="goodsService"/>
+    </bean>
 </beans>
