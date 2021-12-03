@@ -28,7 +28,6 @@
         <property name="enterpriseAgencyImpl" ref="enterpriseAgencyImpl"/>
     </bean>
 
-
     <bean id="shopManagerImpl" class="cn.edu.zjut.dao.ShopManagerImpl">
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
@@ -61,5 +60,29 @@
 
     <bean id="advertisemnetAction" class="cn.edu.zjut.action.AdvertisementAction">
         <property name="advertisementService" ref="advertisementService"/>
+    </bean>
+
+    <bean id="consumerImpl" class="cn.edu.zjut.dao.ConsumerImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="consumerService" class="cn.edu.zjut.service.ConsumerService">
+        <property name="consumerdao" ref="consumerImpl"/>
+    </bean>
+
+    <bean id="consumerAction" class="cn.edu.zjut.action.ConsumerAction">
+        <property name="consumerService" ref="consumerService"/>
+    </bean>
+
+    <bean id="enterpriseDepartmentImpl" class="cn.edu.zjut.dao.EnterpriseDepartmentImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="enterpriseUserService" class="cn.edu.zjut.service.EnterpriseDepartmentService">
+        <property name="enterpriseDepartmentdao" ref="enterpriseDepartmentImpl"/>
+    </bean>
+
+    <bean id="enterpriseDepartmentAction" class="cn.edu.zjut.action.EnterpriseDepartmentAction">
+        <property name="enterpriseUserService" ref="enterpriseUserService"/>
     </bean>
 </beans>

@@ -23,5 +23,7 @@
         <mapper resource="cn/edu/zjut/dao/AdvertisementMapper.xml"/>
         <mapper resource="cn/edu/zjut/dao/PlatformAdministratorMapper.xml"/>
         <mapper resource="cn/edu/zjut/dao/ShopManagerMapper.xml"/>
+        <mapper resource="cn/edu/zjut/dao/ConsumerMapper.xml"/>
+        <mapper resource="cn/edu/zjut/dao/EnterpriseDepartmentMapper.xml"/>
     </mappers>
 </configuration>
