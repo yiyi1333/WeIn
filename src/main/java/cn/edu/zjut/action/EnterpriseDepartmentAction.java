@@ -1,5 +1,6 @@
 package cn.edu.zjut.action;
 
+import cn.edu.zjut.po.EnterpriseDepartment;
 import cn.edu.zjut.po.EnterpriseUser;
 import cn.edu.zjut.service.EnterpriseDepartmentService;
 import org.apache.struts2.interceptor.SessionAware;
@@ -10,6 +11,7 @@ import java.util.Map;
 
 public class EnterpriseDepartmentAction implements SessionAware{
     private EnterpriseDepartmentService enterpriseUserService;
+    private EnterpriseDepartment enterpriseDepartment;
     private EnterpriseUser enterpriseUser;
     private Map<String, Object> session;
 
@@ -19,6 +21,14 @@ public class EnterpriseDepartmentAction implements SessionAware{
 
     public void setEnterpriseUserService(EnterpriseDepartmentService enterpriseUserService) {
         this.enterpriseUserService = enterpriseUserService;
+    }
+
+    public EnterpriseDepartment getEnterpriseDepartment() {
+        return enterpriseDepartment;
+    }
+
+    public void setEnterpriseDepartment(EnterpriseDepartment enterpriseDepartment) {
+        this.enterpriseDepartment = enterpriseDepartment;
     }
 
     public void setEnterpriseUser(EnterpriseUser enterpriseUser) {
@@ -41,6 +51,17 @@ public class EnterpriseDepartmentAction implements SessionAware{
     public String getEnterpriseList() {
         List<EnterpriseUser> enterpriseUserlist = enterpriseUserService.getAllEnterpriseUser();
         session.put("enterpriseUserlist",enterpriseUserlist);
+        return "success";
+    }
+
+    public String addEnterpriseDepartment() {
+        enterpriseUserService.addEnterpriseDepartment(enterpriseDepartment);
+        return "success";
+    }
+
+    public String getAllEnterpriseDepartment() {
+        List<EnterpriseDepartment> enterpriseDepartmentlist = enterpriseUserService.getAllEnterpriseDepartment();
+        session.put("enterpriseDepartmentlist",enterpriseDepartmentlist);
         return "success";
     }
 }

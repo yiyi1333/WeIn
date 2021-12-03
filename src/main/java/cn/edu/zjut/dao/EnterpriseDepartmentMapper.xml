@@ -14,4 +14,19 @@
         select enterpriseDepartmentName,enterpriseDepartmentId,name,consumerId from WeIn.consumer,WeIn.enterprisedepartment where enterpriseDepartmentNumber=enterpriseDepartmentId;
     </select>
 
+    <resultMap id="EnterpriseDepartmentResultMap" type="cn.edu.zjut.po.EnterpriseDepartment">
+        <result property="enterpriseDepartmentName" column="enterpriseDepartmentName"/>
+        <result property="enterpriseDepartmentId" column="enterpriseDepartmentId"/>
+        <result property="enterpriseDepartmentpre" column="enterpriseDepartmentpre"/>
+        <result property="enterpriseId" column="enterpriseId"/>
+    </resultMap>
+
+    <select id="getAllEnterpriseDepartment" resultMap="EnterpriseDepartmentResultMap">
+        select * from WeIn.enterprisedepartment;
+    </select>
+
+    <insert id="addEnterpriseDepartment" parameterType="cn.edu.zjut.po.EnterpriseDepartment">
+        insert into WeIn.enterpriseDepartment(enterpriseDepartmentName,enterpriseDepartmentpre,enterpriseId) values(#{enterpriseDepartmentName},#{enterpriseDepartmentpre},#{enterpriseId});
+    </insert>
+
 </mapper>

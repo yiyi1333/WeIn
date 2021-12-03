@@ -1,5 +1,6 @@
 package cn.edu.zjut.dao;
 
+import cn.edu.zjut.po.EnterpriseDepartment;
 import cn.edu.zjut.po.EnterpriseUser;
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -20,5 +21,17 @@ public class EnterpriseDepartmentImpl implements EnterpriseDepartmentMapper{
     public List<EnterpriseUser> getAllEnterpriseUser() {
         System.out.println("execute--getEnterpriseUser--dao");
         return sqlSession.getMapper(EnterpriseDepartmentMapper.class).getAllEnterpriseUser();
+    }
+
+    @Override
+    public void addEnterpriseDepartment(EnterpriseDepartment enterpriseDepartment) {
+        System.out.println("execute--addEnterpriseDepartment--dao");
+        sqlSession.getMapper(EnterpriseDepartmentMapper.class).addEnterpriseDepartment(enterpriseDepartment);
+    }
+
+    @Override
+    public List<EnterpriseDepartment> getAllEnterpriseDepartment() {
+        System.out.println("execute--getAllEnterpriseDepartment--dao");
+        return sqlSession.getMapper(EnterpriseDepartmentMapper.class).getAllEnterpriseDepartment();
     }
 }
