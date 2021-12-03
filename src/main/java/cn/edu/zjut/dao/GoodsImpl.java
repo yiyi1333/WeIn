@@ -21,6 +21,8 @@ public class GoodsImpl implements GoodsMapper{
     public List<Goods> getAllGoods() {
         System.out.println("execute --getAllGoods()-- method.");
         return sqlSession.getMapper(GoodsMapper.class).getAllGoods();
+    }
+
     @Override
     public List searchGoodsByKeyWord(@Param("keyword") String keyword) {
         System.out.println("execute--getGoodslist--dao");

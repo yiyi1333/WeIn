@@ -10,12 +10,13 @@ public class Goods implements Serializable {
     private int goodsStock;
     private String tags;
     private String goodsImage;
+    private int shopId;
     private Shop shop;
 
     public Goods() {
     }
 
-    public Goods(int goodsId, String goodsName, double goodsPrice, String goodsDetails, int goodsStock, String tags, String goodsImage, Shop shop) {
+    public Goods(int goodsId, String goodsName, double goodsPrice, String goodsDetails, int goodsStock, String tags, String goodsImage, int shopId, Shop shop) {
         this.goodsId = goodsId;
         this.goodsName = goodsName;
         this.goodsPrice = goodsPrice;
@@ -23,6 +24,7 @@ public class Goods implements Serializable {
         this.goodsStock = goodsStock;
         this.tags = tags;
         this.goodsImage = goodsImage;
+        this.shopId = shopId;
         this.shop = shop;
     }
 
@@ -88,5 +90,9 @@ public class Goods implements Serializable {
 
     public void setShop(Shop shop) {
         this.shop = shop;
+    }
+
+    public int getShopId() {
+        return shopId;
     }
 }
