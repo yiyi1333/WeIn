@@ -94,4 +94,17 @@
     <bean id="ordersAction" class="cn.edu.zjut.action.OrdersAction" scope="prototype">
         <property name="ordersService" ref="ordersService"/>
     </bean>
+
+    <bean id="wareHouseAddressImpl" class="cn.edu.zjut.dao.WareHouseAddressImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="wareHouseAddressService" class="cn.edu.zjut.service.WareHouseAddressService">
+        <property name="wareHouseAddressDao" ref="wareHouseAddressImpl"/>
+    </bean>
+
+    <bean id="wareHouseAddressAction" class="cn.edu.zjut.action.WareHouseAddressAction" scope="prototype">
+        <property name="wareHouseAddressService" ref="wareHouseAddressService"/>
+    </bean>
+
 </beans>

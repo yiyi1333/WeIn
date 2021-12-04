@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zjut.dao.OrdersMapper">
+    <resultMap id="WareHouseAddressResultMap" type="cn.edu.zjut.po.WareHouseAddress">
+        <result property="warehousePhone" column="warehousePhone"/>
+        <result property="warehouseDetailedAddress" column="warehouseDetailedAddress"/>
+        <result property="warehouseName" column="warehouseName"/>
+        <result property="warehouseId" column="warehouseId"/>
+        <result property="deliveredAeraId" column="deliveredAeraId"/>
+        <association property="shop" javaType="cn.edu.zjut.po.Shop">
+            <result property="shopId" column="shop.shopId"/>
+            <result property="shopName" column="shopName"/>
+            <result property="shopDescription" column="shopDescription"/>
+            <association property="enterprise" javaType="cn.edu.zjut.po.Enterprise">
+                <result property="enterpriseId" column="enterprise.enterpriseId"/>
+                <result property="enterpriseName" column="enterpriseName"/>
+            </association>
+        </association>
+    </resultMap>
+
+    <select id="getAllWareHouseAddress" resultMap="WareHouseAddressResultMap">
+        select warehouseaddress.*, shop.*, enterprise.*
+        from warehouseaddress, shop, enterprise
+        where warehouseaddress.shopId = shop.shopId and shop.enterpriseId = enterprise.enterpriseId;
+    </select>
+
+</mapper>

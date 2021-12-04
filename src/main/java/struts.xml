@@ -27,5 +27,8 @@
         <action name="displayShopOrders" class="cn.edu.zjut.action.OrdersAction" method="displayShopOrders">
             <result name="displayShopOrdersSuccess">/ordersList.jsp</result>
         </action>
+        <action name="displayShopWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction" method="displayShopWareHouseAddress">
+            <result name="displayShopWareHouseAddressSuccess">/wareHouseAddressList.jsp</result>
+        </action>
     </package>
 </struts>
