@@ -29,9 +29,20 @@
             </result>
         </action>
         <action name="registerEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="registerEnterpriseagency">
-            <result name="success" type="json">
+<!--            <result name="success" type="json">-->
                 <param name="root">platformAdministraorIndex.jsp</param>
-            </result>
+<!--            </result>-->
+        </action>
+        <action name="displayShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="displayShopmanager">
+<!--            <result name="success" type="json">-->
+                <result name="success">/shopmanagerList.jsp</result>
+<!--            </result>-->
+        </action>
+        <action name="displayEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="displayenterpriseagency">
+            <!--            <result name="success" type="json">-->
+            <result name="success">/enterpriseagencyList.jsp</result>
+            <!--            </result>-->
         </action>
     </package>
+
 </struts>

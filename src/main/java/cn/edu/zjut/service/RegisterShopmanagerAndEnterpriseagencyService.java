@@ -3,7 +3,10 @@ package cn.edu.zjut.service;
 import cn.edu.zjut.dao.EnterpriseAgencyImpl;
 import cn.edu.zjut.dao.ShopManagerImpl;
 import cn.edu.zjut.po.EnterpriseAgency;
+import cn.edu.zjut.po.Goods;
 import cn.edu.zjut.po.ShopManager;
+
+import java.util.List;
 
 public class RegisterShopmanagerAndEnterpriseagencyService {
     ShopManagerImpl shopManagerimpl;
@@ -16,6 +19,15 @@ public class RegisterShopmanagerAndEnterpriseagencyService {
         enterpriseAgencyimpl.addEnterpriseAgency(enterpriseAgency);
     }
 
+    public List<ShopManager> displayShopmanager(){
+        System.out.println("execute --displayShopmanager()-- method.");
+        return shopManagerimpl.getAllShopManager();
+    }
+
+    public List<EnterpriseAgency> displayenterpriseagency(){
+        System.out.println("execute --displayenterpriseAgencr()-- method.");
+        return enterpriseAgencyimpl.getAllEnterpriseAgency();
+    }
     public EnterpriseAgencyImpl getEnterpriseAgencyimpl() {
         return enterpriseAgencyimpl;
     }

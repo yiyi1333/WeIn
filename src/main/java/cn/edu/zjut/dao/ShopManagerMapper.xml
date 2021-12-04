@@ -13,7 +13,7 @@
     </resultMap>
 
     <select id="getAllShopManager" resultMap="ShopManagerResultMap">
-        select * from WeIn.shopmanager;
+        select * from shopmanager;
     </select>
 
     <!--shopManagerId自增-->
