@@ -81,13 +81,17 @@ public class GoodsAction implements SessionAware {
     }
 
     public String updateGoods() {
+        if("".equals(goods.getGoodsDetails())) {
+            goods.setGoodsDetails(null);
+        }
         goodsService.updateGoods(goods);
-        return "displayShopGoodsSuccess";
+        goods = goodsService.getGoodsById(goods.getGoodsId());
+        session.put("goods", goods);
+        return "success";
     }
 
-
     public String getGoodsById() {
-        goodsService.getGoodsById(goods.getGoodsId());
+        goods = goodsService.getGoodsById(goods.getGoodsId());
         session.put("goods", goods);
         return "success";
     }

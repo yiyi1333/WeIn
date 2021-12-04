@@ -32,6 +32,12 @@ public class GoodsService {
     }
 
     public Goods getGoodsById(int goodsId) {
-        return goodsDao.getGoodsById(goodsId);
+        List<Goods> goodsList = goodsDao.getAllGoods();
+        for (Goods goods : goodsList) {
+            if (goods.getGoodsId() == goodsId) {
+                return goods;
+            }
+        }
+        return null;
     }
 }

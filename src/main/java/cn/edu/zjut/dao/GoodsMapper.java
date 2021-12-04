@@ -12,5 +12,4 @@ public interface GoodsMapper {
 
     public void updateGoods(Goods goods);
 
-    public Goods getGoodsById(int goodsId);
 }

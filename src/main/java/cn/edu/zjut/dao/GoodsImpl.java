@@ -34,9 +34,4 @@ public class GoodsImpl implements GoodsMapper {
         System.out.println("execute--updateGoods--dao");
         sqlSession.getMapper(GoodsMapper.class).updateGoods(goods);
     }
-
-    @Override
-    public Goods getGoodsById(int goodsId) {
-        return sqlSession.getMapper(GoodsMapper.class).getGoodsById(goodsId);
-    }
 }

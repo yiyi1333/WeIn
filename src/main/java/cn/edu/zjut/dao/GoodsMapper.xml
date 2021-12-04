@@ -44,16 +44,14 @@
 
     <update id="updateGoods" parameterType="cn.edu.zjut.po.Goods">
         update WeIn.goods
-        set goodsName = #{goodsName},
-        set goodPrice = #{goodsPrice},
-        set goodsDetails = #{goodsDetails},
         set goodsStock = #{goodsStock},
-        set tags = #{tags},
-        set goodsImage = #{goodsImage}
-        where shopId = #{shopId};
+        goodsName = #{goodsName},
+        goodPrice = #{goodsPrice},
+        goodsDetails = #{goodsDetails},
+        tags = #{tags},
+        goodsImage = #{goodsImage}
+        where goodsId = #{goodsId};
     </update>
 
-    <select id="getGoodsById" resultMap="GoodsResultMap" parameterType="int">
-        select * from WeIn.goods where goodsId = #{goodsId};
-    </select>
+
 </mapper>

@@ -25,7 +25,7 @@
         </action>
         <action name="updateGoods" class="cn.edu.zjut.action.GoodsAction" method="updateGoods">
             <result name="success">
-                /changeGoods.jsp
+                ./changeGoods.jsp
             </result>
         </action>
         <action name="displayGoodsEditor" class="cn.edu.zjut.action.GoodsAction" method="getGoodsById">
