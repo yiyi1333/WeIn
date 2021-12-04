@@ -58,19 +58,15 @@
                             <input type="text" id="wareHouseAddress_id" name="wareHouseAddress_id" value="" placeholder="WareHouseAddress ID" class="form-control">
                         </div>
                     </div>
+                    <div class="col-sm-2">
+                        <br><br>
+                        <button type="button" class="btn btn-w-m btn-primary">查询</button>
+                    </div>
+                    <div class="col-sm-2">
+                        <br><br>
+                        <button type="button" class="btn btn-w-m btn-success">新增</button>
+                    </div>
                 </div>
-<%--                <div class="row">--%>
-<%--                    <div class="col-sm-4">--%>
-<%--                        <div class="form-group">--%>
-<%--                            <label class="col-form-label" for="date_added">下单日期</label>--%>
-<%--                            <div class="input-group date">--%>
-<%--                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="date_added" type="text" class="form-control" value="03/04/2014">--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-
-<%--                </div>--%>
-
             </div>
 
             <div class="row">
@@ -92,7 +88,7 @@
                                 </thead>
                                 <tbody>
                                 <%
-                                    List<WareHouseAddress> wareHouseAddressList = (List<WareHouseAddress>) session.getAttribute("wareHouseAddressList");
+                                    List<WareHouseAddress> wareHouseAddressList = (List<WareHouseAddress>)session.getAttribute("wareHouseAddressList");
                                     for (int i = 0; i < wareHouseAddressList.size(); i++) {
                                 %>
                                 <tr>

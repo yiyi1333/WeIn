@@ -87,6 +87,10 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-2">
+                        <br><br>
+                        <button type="button" class="btn btn-w-m btn-primary">查询</button>
+                    </div>
 
                 </div>
 

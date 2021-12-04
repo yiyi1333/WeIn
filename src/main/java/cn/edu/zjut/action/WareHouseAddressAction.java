@@ -50,11 +50,13 @@ public class WareHouseAddressAction implements SessionAware {
         }
         List<WareHouseAddress> ans = wareHouseAddressService.getAllWareHouseAddress();
         List<WareHouseAddress> wareHouseAddressList = new ArrayList<>();
+        System.out.println(ans.size());
         for (WareHouseAddress wareHouseAddress : ans) {
             if (wareHouseAddress.getShopId() == shopManager.getShopId()) {
                 wareHouseAddressList.add(wareHouseAddress);
             }
         }
+        System.out.println(wareHouseAddressList.size());
         session.put("wareHouseAddressList", wareHouseAddressList);
         return "displayShopWareHouseAddressSuccess";
     }

@@ -42,6 +42,15 @@
                 <a href="./displayShopWareHouseAddress"><i class="fa fa-envelope"></i> <span class="nav-label">发货地址</span></a>
             </li>
             <li>
+                <a href="addConsumer.jsp"><i class="fa fa-envelope"></i> <span class="nav-label">新增企业用户</span></a>
+            </li>
+            <li>
+                <a href="addEnterpriseDepartment.jsp"><i class="fa fa-envelope"></i> <span class="nav-label">新增部门</span></a>
+            </li>
+            <li>
+                <a href="showenterpriseuser.action"><i class="fa fa-envelope"></i> <span class="nav-label">展示企业人员</span></a>
+            </li>
+            <li>
                 <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">图表</span><span
                         class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
