@@ -82,4 +82,28 @@
     <bean id="goodsAction" class="cn.edu.zjut.action.GoodsAction" scope="prototype">
         <property name="goodsService" ref="goodsService"/>
     </bean>
+
+    <bean id="consumerImpl" class="cn.edu.zjut.dao.ConsumerImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="consumerService" class="cn.edu.zjut.service.ConsumerService">
+        <property name="consumerdao" ref="consumerImpl"/>
+    </bean>
+
+    <bean id="consumerAction" class="cn.edu.zjut.action.ConsumerAction">
+        <property name="consumerService" ref="consumerService"/>
+    </bean>
+
+    <bean id="enterpriseDepartmentImpl" class="cn.edu.zjut.dao.EnterpriseDepartmentImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="enterpriseUserService" class="cn.edu.zjut.service.EnterpriseDepartmentService">
+        <property name="enterpriseDepartmentdao" ref="enterpriseDepartmentImpl"/>
+    </bean>
+
+    <bean id="enterpriseDepartmentAction" class="cn.edu.zjut.action.EnterpriseDepartmentAction">
+        <property name="enterpriseUserService" ref="enterpriseUserService"/>
+    </bean>
 </beans>

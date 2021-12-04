@@ -28,5 +28,14 @@
                 <param name="root">good</param>
             </result>
         </action>
+        <action name="addconsumer" class="cn.edu.zjut.action.ConsumerAction" method="addConsumer">
+            <result name="success">/addConsumer.jsp</result>
+        </action>
+        <action name="showenterpriseuser" class="cn.edu.zjut.action.EnterpriseDepartmentAction" method="getEnterpriseList">
+            <result name="success">/showEnterpriseDepartmentUser.jsp</result>
+        </action>
+        <action name="addenterpriseDepartment" class="cn.edu.zjut.action.EnterpriseDepartmentAction" method="addEnterpriseDepartment">
+            <result name="success">/addEnterpriseDepartment.jsp</result>
+        </action>
     </package>
 </struts>

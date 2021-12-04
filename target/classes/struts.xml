@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="strutsBean" extends="struts-default,json-default" namespace="/">
+        <action name="login" class="cn.edu.zjut.action.UserAction" method="login">
+            <result name="success">/index.jsp</result>
+            <result name="failed">/login.jsp</result>
+        </action>
+        <action name="advertisement" class="cn.edu.zjut.action.AdvertisementAction" method="getAdvertisementList">
+            <result name="success" type="json">
+                <param name="root">advertisementlist</param>
+            </result>
+        </action>
+        <action name="addconsumer" class="cn.edu.zjut.action.ConsumerAction" method="addConsumer">
+            <result name="success">/addConsumer.jsp</result>
+        </action>
+        <action name="showenterpriseuser" class="cn.edu.zjut.action.EnterpriseDepartmentAction" method="getEnterpriseList">
+            <result name="success">/showEnterpriseDepartmentUser.jsp</result>
+        </action>
+        <action name="addenterpriseDepartment" class="cn.edu.zjut.action.EnterpriseDepartmentAction" method="addEnterpriseDepartment">
+            <result name="success">/addEnterpriseDepartment.jsp</result>
+        </action>
+    </package>
+</struts>
