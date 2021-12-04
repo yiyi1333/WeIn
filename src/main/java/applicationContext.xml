@@ -10,9 +10,9 @@
         <!--        <property name="username" value="yqx"/>-->
         <!--        <property name="password" value="yqx@zyxbtbt22ysj"/>-->
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/wein?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8"/>
-        <property name="username" value="root"/>
-        <property name="password" value="20011122"/>
+        <property name="url" value="jdbc:mysql://rm-bp10ju74719fp6g4emo.mysql.rds.aliyuncs.com:3306/wein?serverTimezone=GMT%2B8&amp;useSSL=false&amp;allowPublicKeyRetrieval=true"/>
+        <property name="username" value="yiyi1333"/>
+        <property name="password" value="zzy@15712651279"/>
     </bean>
     <!--    装配SqlSessionFactory-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -81,29 +81,5 @@
 
     <bean id="goodsAction" class="cn.edu.zjut.action.GoodsAction" scope="prototype">
         <property name="goodsService" ref="goodsService"/>
-    </bean>
-
-    <bean id="consumerImpl" class="cn.edu.zjut.dao.ConsumerImpl">
-        <property name="sqlSession" ref="sqlSession"/>
-    </bean>
-
-    <bean id="consumerService" class="cn.edu.zjut.service.ConsumerService">
-        <property name="consumerdao" ref="consumerImpl"/>
-    </bean>
-
-    <bean id="consumerAction" class="cn.edu.zjut.action.ConsumerAction">
-        <property name="consumerService" ref="consumerService"/>
-    </bean>
-
-    <bean id="enterpriseDepartmentImpl" class="cn.edu.zjut.dao.EnterpriseDepartmentImpl">
-        <property name="sqlSession" ref="sqlSession"/>
-    </bean>
-
-    <bean id="enterpriseUserService" class="cn.edu.zjut.service.EnterpriseDepartmentService">
-        <property name="enterpriseDepartmentdao" ref="enterpriseDepartmentImpl"/>
-    </bean>
-
-    <bean id="enterpriseDepartmentAction" class="cn.edu.zjut.action.EnterpriseDepartmentAction">
-        <property name="enterpriseUserService" ref="enterpriseUserService"/>
     </bean>
 </beans>

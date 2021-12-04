@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zjut.dao.OrdersMapper">
+    <resultMap id="OrdersResultMap" type="cn.edu.zjut.po.Orders">
+        <result property="orderId" column="goodsId"/>
+        <result property="orderStatus" column="orderStatus"/>
+        <result property="orderPaymentMethod" column="orderPaymentMethod"/>
+        <result property="orderTime" column="orderTime"/>
+        <result property="consumerId" column="consumerId"/>
+        <result property="logisticsSingle" column="logisticsSingle"/>
+        <result property="goodsnumber" column="goodsnumber"/>
+        <result property="actualAmountPaid" column="actualAmountPaid"/>
+        <result property="goodTotalPrices" column="goodTotalPrices"/>
+        <result property="discountAmount" column="discountAmount"/>
+        <result property="deliveredPhone" column="deliveredPhone"/>
+        <result property="deliveredAeraId" column="warehouseAeraId"/>
+        <result property="deliveredName" column="deliveredName"/>
+        <result property="deliveredDetailedAddress" column="deliveredDetailedAddress"/>
+        <result property="warehouseDetailedAddress" column="warehouseDetailedAddress"/>
+        <result property="warehouseAeraId" column="warehouseAeraId"/>
+        <result property="warehousePhone" column="warehousePhone"/>
+        <result property="warehouseName" column="warehouseName"/>
+        <result property="goodsId" column="goods.goodsId"/>
+    </resultMap>
+
+    <select id="getAllOrders" resultMap="OrdersResultMap">
+       select * from orders;
+    </select>
+
+    <select id="selectOrdersById" resultMap="OrdersResultMap" parameterType="java.lang.String">
+        select orders.*
+        from orders
+        where orderId=%${orderId}%;
+    </select>
+</mapper>

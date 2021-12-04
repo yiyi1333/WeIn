@@ -29,6 +29,8 @@
         <mapper resource="cn/edu/zjut/dao/PlatformAdministratorMapper.xml"/>
         <mapper resource="cn/edu/zjut/dao/ShopManagerMapper.xml"/>
         <mapper resource="cn/edu/zjut/dao/GoodsMapper.xml"/>
+        <mapper resource="cn/edu/zjut/dao/OrdersMapper.xml"/>
+        <mapper resource="cn/edu/zjut/dao/WareHouseAddressMapper.xml"/>
         <mapper resource="cn/edu/zjut/dao/ConsumerMapper.xml"/>
         <mapper resource="cn/edu/zjut/dao/EnterpriseDepartmentMapper.xml"/>
     </mappers>
