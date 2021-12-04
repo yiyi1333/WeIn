@@ -56,10 +56,6 @@ public class Goods implements Serializable {
         this.goodsPrice = goodsPrice;
     }
 
-    public void setShopId(int shopId) {
-        this.shopId = shopId;
-    }
-
     public String getGoodsDetails() {
         return goodsDetails;
     }
