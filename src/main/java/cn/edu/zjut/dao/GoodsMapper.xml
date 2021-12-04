@@ -11,6 +11,7 @@
         <result property="goodsStock" column="goodsStock"/>
         <result property="tags" column="tags"/>
         <result property="goodsImage" column="goodsImage"/>
+        <result property="shopId" column="goods.shopId"/>
         <association property="shop" javaType="cn.edu.zjut.po.Shop">
             <result property="shopId" column="shop.shopId"/>
             <result property="shopName" column="shopName"/>
@@ -29,7 +30,7 @@
     <resultMap id="GoodsResultMap" type="cn.edu.zjut.po.Goods">
         <result property="goodsId" column="goodsId"/>
         <result property="goodsName" column="goodsName"/>
-        <result property="goodprice" column="goodprice"/>
+        <result property="goodsPrice" column="goodPrice"/>
         <result property="goodsDetails" column="goodsDetails"/>
         <result property="goodsStock" column="goodsStock"/>
         <result property="shopId" column="shopId"/>
@@ -39,5 +40,11 @@
 
     <select id="getAllGoods" resultMap="GoodsResultMap">
         select * from WeIn.goods;
+    </select>
+
+    <select id="getGoodById" resultMap="GoodsMap" parameterType="java.lang.Integer">
+        select goods.*, shop.*, enterprise.*
+        from goods, shop, enterprise
+        where goods.shopId = shop.shopId and shop.enterpriseId = enterprise.enterpriseId and goods.goodsId=#{goodid};
     </select>
 </mapper>

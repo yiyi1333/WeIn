@@ -28,4 +28,10 @@ public class GoodsImpl implements GoodsMapper{
         System.out.println("execute--getGoodslist--dao");
         return sqlSession.getMapper(GoodsMapper.class).searchGoodsByKeyWord(keyword);
     }
+
+    @Override
+    public Goods getGoodById(Integer goodid) {
+        System.out.println("execute--getGood--dao");
+        return sqlSession.getMapper(GoodsMapper.class).getGoodById(goodid);
+    }
 }

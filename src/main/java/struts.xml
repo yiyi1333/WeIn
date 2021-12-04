@@ -23,5 +23,10 @@
                 <param name="root">goodslist</param>
             </result>
         </action>
+        <action name="displayGoodsDetail" class="cn.edu.zjut.action.GoodsAction" method="displayGoodsDetail">
+            <result name="success" type="json">
+                <param name="root">good</param>
+            </result>
+        </action>
     </package>
 </struts>

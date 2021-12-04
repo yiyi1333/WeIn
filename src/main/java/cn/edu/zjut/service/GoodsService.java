@@ -24,4 +24,7 @@ public class GoodsService {
         System.out.println("execute --getAllGoods()-- method.");
         return goodsDao.getAllGoods();
     }
+    public Goods getGoodById(Integer goodid){
+        return goodsDao.getGoodById(goodid);
+    }
 }
