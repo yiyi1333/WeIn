@@ -92,7 +92,7 @@ public class GoodsAction implements SessionAware {
         List<Goods> ans = goodsService.getAllGoods();
         List<Goods> goodsList = new ArrayList<>();
         for (Goods goods : ans) {
-            if (goods.getShopId() == shopManager.getShopId()) {
+            if (goods.getShop().getShopId()== shopManager.getShopId()) {
                 goodsList.add(goods);
             }
         }

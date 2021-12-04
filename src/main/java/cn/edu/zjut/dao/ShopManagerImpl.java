@@ -9,7 +9,6 @@ public class ShopManagerImpl implements ShopManagerMapper {
     private SqlSessionTemplate sqlSession;
 
     public SqlSessionTemplate getSqlSession() {
-
         return sqlSession;
     }
 
@@ -17,9 +16,14 @@ public class ShopManagerImpl implements ShopManagerMapper {
         this.sqlSession = sqlSession;
     }
 
-    @Override
+
     public List<ShopManager> getAllShopManager() {
         System.out.println("execute --getAllShopManager()-- method.");
         return sqlSession.getMapper(ShopManagerMapper.class).getAllShopManager();
+    }
+
+    public void addShopManager(ShopManager shopManager) {
+        System.out.println("execute --registerShopmanager()-- method.");
+        sqlSession.getMapper(ShopManagerMapper.class).addShopManager(shopManager);
     }
 }

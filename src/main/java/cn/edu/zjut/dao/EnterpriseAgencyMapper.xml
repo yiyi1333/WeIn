@@ -14,6 +14,11 @@
     </resultMap>
 
     <select id="getAllEnterpriseAgency" resultMap="EnterpriseAgencyResultMap">
-        select * from WeIn.enterpriseagency;
+        select * from enterpriseagency;
     </select>
+    <!--enterpriseAgencyId自增-->
+    <insert id="addEnterpriseAgency" parameterType="cn.edu.zjut.po.EnterpriseAgency" useGeneratedKeys="true" keyProperty="enterpriseAgencyId">
+        insert into enterpriseagency(enterpriseAgencyAccount, enterpriseAgencyPassword, enterpriseAgencyRight, enterpriseAgencyName, idCardNumber, enterpriseId)
+        values (#{enterpriseAgencyAccount}, #{enterpriseAgencyPassword}, #{enterpriseAgencyRight}, #{enterpriseAgencyName}, #{idCardNumber}, #{enterpriseId})
+    </insert>
 </mapper>

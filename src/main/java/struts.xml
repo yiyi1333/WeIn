@@ -54,5 +54,26 @@
         <action name="displayShopWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction" method="displayShopWareHouseAddress">
             <result name="displayShopWareHouseAddressSuccess">/wareHouseAddressList.jsp</result>
         </action>
+        <action name="registerShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="registerShopmanager">
+            <result name="success" type="json">
+                <param name="root">platformAdministraorIndex.jsp</param>
+            </result>
+        </action>
+        <action name="registerEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="registerEnterpriseagency">
+<!--            <result name="success" type="json">-->
+                <param name="root">platformAdministraorIndex.jsp</param>
+<!--            </result>-->
+        </action>
+        <action name="displayShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="displayShopmanager">
+<!--            <result name="success" type="json">-->
+                <result name="success">/shopmanagerList.jsp</result>
+<!--            </result>-->
+        </action>
+        <action name="displayEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="displayenterpriseagency">
+            <!--            <result name="success" type="json">-->
+            <result name="success">/enterpriseagencyList.jsp</result>
+            <!--            </result>-->
+        </action>
     </package>
+
 </struts>

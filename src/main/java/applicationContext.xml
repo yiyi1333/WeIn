@@ -78,4 +78,14 @@
     <bean id="goodsAction" class="cn.edu.zjut.action.GoodsAction" scope="prototype">
         <property name="goodsService" ref="goodsService"/>
     </bean>
+
+    <bean id="registerShopmanagerAndEnterpriseagencyService" class="cn.edu.zjut.service.RegisterShopmanagerAndEnterpriseagencyService" scope="prototype">
+        <property name="enterpriseAgencyimpl" ref="enterpriseAgencyImpl"/>
+        <property name="shopManagerimpl" ref="shopManagerImpl"/>
+    </bean>
+
+    <bean id="registerShopmanagerAndEnterpriseagencyAction" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" scope="prototype">
+        <property name="registerShopmanagerAndEnterpriseagencyService" ref="registerShopmanagerAndEnterpriseagencyService"></property>
+    </bean>
+
 </beans>
