@@ -97,4 +97,5 @@ public class UserAction implements SessionAware {
         }
         return "failed";
     }
+
 }

@@ -18,6 +18,16 @@ public class GoodsAction implements SessionAware {
     private String goodsId;
     private Goods good;
 
+    private Goods goods;
+
+    public void setGoods(Goods goods) {
+        this.goods = goods;
+    }
+
+    public Goods getGoods() {
+        return goods;
+    }
+
     public GoodsService getGoodsService() {
         return goodsService;
     }
@@ -94,6 +104,22 @@ public class GoodsAction implements SessionAware {
         //将String类型的GoodsId转换为Int;
         int goodid = Integer.parseInt(goodsId);
         good = goodsService.getGoodById(goodid);
+        return "success";
+    }
+
+    public String updateGoods() {
+        if("".equals(goods.getGoodsDetails())) {
+            goods.setGoodsDetails(null);
+        }
+        goodsService.updateGoods(goods);
+        goods = goodsService.getGoodsById(goods.getGoodsId());
+        session.put("goods", goods);
+        return "success";
+    }
+
+    public String getGoodsById() {
+        goods = goodsService.getGoodsById(goods.getGoodsId());
+        session.put("goods", goods);
         return "success";
     }
 }

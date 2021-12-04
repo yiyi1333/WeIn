@@ -25,7 +25,8 @@
     <select id="searchGoodsByKeyWord" resultMap="GoodsMap" parameterType="java.lang.String">
         select goods.*, shop.*, enterprise.*
         from goods, shop, enterprise
-        where goods.shopId = shop.shopId and shop.enterpriseId = enterprise.enterpriseId and (goods.tags like '%${keyword}%' or goods.goodsName like '%${keyword}%');
+        where goods.shopId = shop.shopId and shop.enterpriseId = enterprise.enterpriseId and (goods.tags like
+        '%${keyword}%' or goods.goodsName like '%${keyword}%');
     </select>
     <resultMap id="GoodsResultMap" type="cn.edu.zjut.po.Goods">
         <result property="goodsId" column="goodsId"/>
@@ -47,4 +48,17 @@
         from goods, shop, enterprise
         where goods.shopId = shop.shopId and shop.enterpriseId = enterprise.enterpriseId and goods.goodsId=#{goodid};
     </select>
+
+    <update id="updateGoods" parameterType="cn.edu.zjut.po.Goods">
+        update WeIn.goods
+        set goodsStock = #{goodsStock},
+        goodsName = #{goodsName},
+        goodPrice = #{goodsPrice},
+        goodsDetails = #{goodsDetails},
+        tags = #{tags},
+        goodsImage = #{goodsImage}
+        where goodsId = #{goodsId};
+    </update>
+
+
 </mapper>

@@ -8,6 +8,7 @@ import java.util.List;
 
 public class GoodsService {
     private GoodsMapper goodsDao;
+
     public GoodsMapper getGoodsDao() {
         return goodsDao;
     }
@@ -20,11 +21,26 @@ public class GoodsService {
         List goodlist = goodsDao.searchGoodsByKeyWord(keyword);
         return goodlist;
     }
+
     public List<Goods> getAllGoods() {
         System.out.println("execute --getAllGoods()-- method.");
         return goodsDao.getAllGoods();
     }
     public Goods getGoodById(Integer goodid){
         return goodsDao.getGoodById(goodid);
+    }
+
+    public void updateGoods(Goods goods) {
+        goodsDao.updateGoods(goods);
+    }
+
+    public Goods getGoodsById(int goodsId) {
+        List<Goods> goodsList = goodsDao.getAllGoods();
+        for (Goods goods : goodsList) {
+            if (goods.getGoodsId() == goodsId) {
+                return goods;
+            }
+        }
+        return null;
     }
 }

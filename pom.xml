@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>spring-prj1</artifactId>
+    <artifactId>WeIn</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
         <!--目的是把src/main/java目录中的xml文件包含到输出结果中，也就是输出到classes目录中-->

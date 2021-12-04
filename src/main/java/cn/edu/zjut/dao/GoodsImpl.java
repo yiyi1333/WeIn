@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import java.util.List;
 
-public class GoodsImpl implements GoodsMapper{
+public class GoodsImpl implements GoodsMapper {
     private SqlSessionTemplate sqlSession;
 
     public SqlSessionTemplate getSqlSession() {
@@ -33,5 +33,11 @@ public class GoodsImpl implements GoodsMapper{
     public Goods getGoodById(Integer goodid) {
         System.out.println("execute--getGood--dao");
         return sqlSession.getMapper(GoodsMapper.class).getGoodById(goodid);
+    }
+
+    @Override
+    public void updateGoods(Goods goods) {
+        System.out.println("execute--updateGoods--dao");
+        sqlSession.getMapper(GoodsMapper.class).updateGoods(goods);
     }
 }

@@ -68,18 +68,22 @@
                             </div>
                             <div class="product-desc">
                                 <span class="product-price">
-                                    ¥<%=String.format("%.2f", goodsList.get(j).getGoodprice())%>
+                                    ¥<%=String.format("%.2f", goodsList.get(j).getGoodsPrice())%>
                                 </span>
                                 <small class="text-muted"><%=goodsList.get(j).getTags()%>
                                 </small>
                                 <a href="#" class="product-name"><%=goodsList.get(j).getGoodsName()%>
                                 </a>
                                 <div class="small m-t-xs">
-                                    <%=goodsList.get(j).getGoodsDetails() == null ? "暂无" : goodsList.get(j).getGoodsDetails()%>>
+                                    <%=goodsList.get(j).getGoodsDetails() == null ? "暂无" : goodsList.get(j).getGoodsDetails()%>
+                                    >
                                 </div>
                                 <div class="m-t text-righ">
-                                    <a href="#" class="btn btn-xs btn-outline btn-primary">编辑<i
-                                            class="fa fa-long-arrow-right"></i> </a>
+                                    <form action="displayGoodsEditor.action">
+                                        <input type="hidden" name="goods.goodsId"
+                                               value=<%=goodsList.get(j).getGoodsId()%>>
+                                        <input type="submit" class="btn btn-xs btn-outline btn-primary" value="编辑">
+                                    </form>
                                 </div>
                             </div>
                         </div>
