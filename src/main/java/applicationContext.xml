@@ -88,4 +88,52 @@
         <property name="registerShopmanagerAndEnterpriseagencyService" ref="registerShopmanagerAndEnterpriseagencyService"></property>
     </bean>
 
+    <bean id="ordersImpl" class="cn.edu.zjut.dao.OrdersImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="ordersService" class="cn.edu.zjut.service.OrdersService">
+        <property name="ordersDao" ref="ordersImpl"/>
+    </bean>
+
+    <bean id="ordersAction" class="cn.edu.zjut.action.OrdersAction" scope="prototype">
+        <property name="ordersService" ref="ordersService"/>
+    </bean>
+
+    <bean id="wareHouseAddressImpl" class="cn.edu.zjut.dao.WareHouseAddressImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="wareHouseAddressService" class="cn.edu.zjut.service.WareHouseAddressService">
+        <property name="wareHouseAddressDao" ref="wareHouseAddressImpl"/>
+    </bean>
+
+    <bean id="wareHouseAddressAction" class="cn.edu.zjut.action.WareHouseAddressAction" scope="prototype">
+        <property name="wareHouseAddressService" ref="wareHouseAddressService"/>
+    </bean>
+
+    <bean id="consumerImpl" class="cn.edu.zjut.dao.ConsumerImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="consumerService" class="cn.edu.zjut.service.ConsumerService">
+        <property name="consumerdao" ref="consumerImpl"/>
+    </bean>
+
+    <bean id="consumerAction" class="cn.edu.zjut.action.ConsumerAction">
+        <property name="consumerService" ref="consumerService"/>
+    </bean>
+
+    <bean id="enterpriseDepartmentImpl" class="cn.edu.zjut.dao.EnterpriseDepartmentImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="enterpriseUserService" class="cn.edu.zjut.service.EnterpriseDepartmentService">
+        <property name="enterpriseDepartmentdao" ref="enterpriseDepartmentImpl"/>
+    </bean>
+
+    <bean id="enterpriseDepartmentAction" class="cn.edu.zjut.action.EnterpriseDepartmentAction">
+        <property name="enterpriseUserService" ref="enterpriseUserService"/>
+    </bean>
+
 </beans>
