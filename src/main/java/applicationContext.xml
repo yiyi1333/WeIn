@@ -3,6 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+<!--    数据库配置-->
     <!--    数据源-->
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
@@ -21,7 +22,7 @@
         <constructor-arg index="0" ref="sqlSessionFactory"/>
     </bean>
 
-
+<!--张宇翔配置区-->
     <bean id="enterpriseAgencyImpl" class="cn.edu.zjut.dao.EnterpriseAgencyImpl">
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
@@ -30,35 +31,18 @@
         <property name="enterpriseAgencyImpl" ref="enterpriseAgencyImpl"/>
     </bean>
 
-
-    <bean id="shopManagerImpl" class="cn.edu.zjut.dao.ShopManagerImpl">
-        <property name="sqlSession" ref="sqlSession"/>
-    </bean>
-
-    <bean id="shopManagerService" class="cn.edu.zjut.service.ShopManagerService">
-        <property name="shopManagerImpl" ref="shopManagerImpl"/>
-    </bean>
-
-
-    <bean id="platformAdministratorImpl" class="cn.edu.zjut.dao.PlatformAdministratorImpl">
-        <property name="sqlSession" ref="sqlSession"/>
-    </bean>
-
-    <bean id="platformAdministratorService" class="cn.edu.zjut.service.PlatformAdministratorService">
-        <property name="platformAdministratorImpl" ref="platformAdministratorImpl"/>
-    </bean>
-
-
     <bean id="userAction" class="cn.edu.zjut.action.UserAction" scope="prototype">
         <property name="enterpriseAgencyService" ref="enterpriseAgencyService" />
         <property name="platformAdministratorService" ref="platformAdministratorService" />
         <property name="shopManagerService" ref="shopManagerService" />
     </bean>
 
-
+<!--郑展逸配置区-->
+<!--    广告-->
     <bean id="advertisementImpl" class="cn.edu.zjut.dao.AdvertisementImpl">
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
+
     <bean id="advertisementService" class="cn.edu.zjut.service.AdvertisementService">
         <property name="advertisementdao" ref="advertisementImpl"/>
     </bean>
@@ -66,7 +50,7 @@
     <bean id="advertisemnetAction" class="cn.edu.zjut.action.AdvertisementAction">
         <property name="advertisementService" ref="advertisementService"/>
     </bean>
-
+<!--    商品-->
     <bean id="goodsImpl" class="cn.edu.zjut.dao.GoodsImpl">
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
@@ -78,6 +62,22 @@
     <bean id="goodsAction" class="cn.edu.zjut.action.GoodsAction" scope="prototype">
         <property name="goodsService" ref="goodsService"/>
     </bean>
+<!--余秋霞配置区-->
+    <bean id="shopManagerImpl" class="cn.edu.zjut.dao.ShopManagerImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="shopManagerService" class="cn.edu.zjut.service.ShopManagerService">
+        <property name="shopManagerImpl" ref="shopManagerImpl"/>
+    </bean>
+
+    <bean id="platformAdministratorImpl" class="cn.edu.zjut.dao.PlatformAdministratorImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="platformAdministratorService" class="cn.edu.zjut.service.PlatformAdministratorService">
+        <property name="platformAdministratorImpl" ref="platformAdministratorImpl"/>
+    </bean>
 
     <bean id="registerShopmanagerAndEnterpriseagencyService" class="cn.edu.zjut.service.RegisterShopmanagerAndEnterpriseagencyService" scope="prototype">
         <property name="enterpriseAgencyimpl" ref="enterpriseAgencyImpl"/>
@@ -87,31 +87,7 @@
     <bean id="registerShopmanagerAndEnterpriseagencyAction" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" scope="prototype">
         <property name="registerShopmanagerAndEnterpriseagencyService" ref="registerShopmanagerAndEnterpriseagencyService"></property>
     </bean>
-
-    <bean id="ordersImpl" class="cn.edu.zjut.dao.OrdersImpl">
-        <property name="sqlSession" ref="sqlSession"/>
-    </bean>
-
-    <bean id="ordersService" class="cn.edu.zjut.service.OrdersService">
-        <property name="ordersDao" ref="ordersImpl"/>
-    </bean>
-
-    <bean id="ordersAction" class="cn.edu.zjut.action.OrdersAction" scope="prototype">
-        <property name="ordersService" ref="ordersService"/>
-    </bean>
-
-    <bean id="wareHouseAddressImpl" class="cn.edu.zjut.dao.WareHouseAddressImpl">
-        <property name="sqlSession" ref="sqlSession"/>
-    </bean>
-
-    <bean id="wareHouseAddressService" class="cn.edu.zjut.service.WareHouseAddressService">
-        <property name="wareHouseAddressDao" ref="wareHouseAddressImpl"/>
-    </bean>
-
-    <bean id="wareHouseAddressAction" class="cn.edu.zjut.action.WareHouseAddressAction" scope="prototype">
-        <property name="wareHouseAddressService" ref="wareHouseAddressService"/>
-    </bean>
-
+<!--王怡欣配置区-->
     <bean id="consumerImpl" class="cn.edu.zjut.dao.ConsumerImpl">
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
@@ -135,5 +111,28 @@
     <bean id="enterpriseDepartmentAction" class="cn.edu.zjut.action.EnterpriseDepartmentAction">
         <property name="enterpriseUserService" ref="enterpriseUserService"/>
     </bean>
+<!--王淑媚配置区-->
+    <bean id="ordersImpl" class="cn.edu.zjut.dao.OrdersImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
 
+    <bean id="ordersService" class="cn.edu.zjut.service.OrdersService">
+        <property name="ordersDao" ref="ordersImpl"/>
+    </bean>
+
+    <bean id="ordersAction" class="cn.edu.zjut.action.OrdersAction" scope="prototype">
+        <property name="ordersService" ref="ordersService"/>
+    </bean>
+
+    <bean id="wareHouseAddressImpl" class="cn.edu.zjut.dao.WareHouseAddressImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="wareHouseAddressService" class="cn.edu.zjut.service.WareHouseAddressService">
+        <property name="wareHouseAddressDao" ref="wareHouseAddressImpl"/>
+    </bean>
+
+    <bean id="wareHouseAddressAction" class="cn.edu.zjut.action.WareHouseAddressAction" scope="prototype">
+        <property name="wareHouseAddressService" ref="wareHouseAddressService"/>
+    </bean>
 </beans>

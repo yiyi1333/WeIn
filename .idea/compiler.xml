@@ -7,10 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="WeIn" />
+        <module name="spring-prj1" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="spring-prj1" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>

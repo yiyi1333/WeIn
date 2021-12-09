@@ -59,6 +59,4 @@
         goodsImage = #{goodsImage}
         where goodsId = #{goodsId};
     </update>
-
-
 </mapper>
