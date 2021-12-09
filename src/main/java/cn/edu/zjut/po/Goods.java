@@ -6,6 +6,7 @@ public class Goods implements Serializable {
     private int goodsId;
     private String goodsName;
     private double goodsPrice;
+    private double goodsRealPrice;
     private String goodsDetails;
     private int goodsStock;
     private String tags;
@@ -13,19 +14,12 @@ public class Goods implements Serializable {
     private int shopId;
     private Shop shop;
 
-    public Goods() {
+    public double getGoodsRealPrice() {
+        return goodsRealPrice;
     }
 
-    public Goods(int goodsId, String goodsName, double goodsPrice, String goodsDetails, int goodsStock, String tags, String goodsImage, int shopId, Shop shop) {
-        this.goodsId = goodsId;
-        this.goodsName = goodsName;
-        this.goodsPrice = goodsPrice;
-        this.goodsDetails = goodsDetails;
-        this.goodsStock = goodsStock;
-        this.tags = tags;
-        this.goodsImage = goodsImage;
-        this.shopId = shopId;
-        this.shop = shop;
+    public void setGoodsRealPrice(double goodsRealPrice) {
+        this.goodsRealPrice = goodsRealPrice;
     }
 
     public void setShopId(int shopId) {

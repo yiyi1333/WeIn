@@ -20,7 +20,11 @@
                 <param name="root">good</param>
             </result>
         </action>
-
+        <action name="getCart" class="cn.edu.zjut.action.CartAction" method="getCart">
+            <result name="success" type="json">
+                <param name="root">cartList</param>
+            </result>
+        </action>
 
         <!--        张宇翔配置区-->
         <action name="login" class="cn.edu.zjut.action.UserAction" method="login">

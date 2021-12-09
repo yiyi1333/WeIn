@@ -62,6 +62,18 @@
     <bean id="goodsAction" class="cn.edu.zjut.action.GoodsAction" scope="prototype">
         <property name="goodsService" ref="goodsService"/>
     </bean>
+
+    <bean id="cartDao" class="cn.edu.zjut.dao.CartImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="cartService" class="cn.edu.zjut.service.CartService">
+        <property name="cartDao" ref="cartDao"/>
+    </bean>
+
+    <bean id="cartAction" class="cn.edu.zjut.action.CartAction">
+        <property name="cartService" ref="cartService"/>
+    </bean>
 <!--余秋霞配置区-->
     <bean id="shopManagerImpl" class="cn.edu.zjut.dao.ShopManagerImpl">
         <property name="sqlSession" ref="sqlSession"/>

@@ -33,5 +33,6 @@
         <mapper resource="cn/edu/zjut/dao/WareHouseAddressMapper.xml"/>
         <mapper resource="cn/edu/zjut/dao/ConsumerMapper.xml"/>
         <mapper resource="cn/edu/zjut/dao/EnterpriseDepartmentMapper.xml"/>
+        <mapper resource="cn/edu/zjut/dao/CartMapper.xml"/>
     </mappers>
 </configuration>
