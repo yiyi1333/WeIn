@@ -1,11 +1,12 @@
 package cn.edu.zjut.po;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cart implements Serializable {
     private Shop shop;
-    private List<CartGoods> goodsList;
+    private ArrayList<CartGoods> goodsList;
 
     public Shop getShop() {
         return shop;
@@ -15,11 +16,11 @@ public class Cart implements Serializable {
         this.shop = shop;
     }
 
-    public List getGoodsList() {
+    public ArrayList<CartGoods> getGoodsList() {
         return goodsList;
     }
 
-    public void setGoodsList(List goodsList) {
+    public void setGoodsList(ArrayList<CartGoods> goodsList) {
         this.goodsList = goodsList;
     }
 }
