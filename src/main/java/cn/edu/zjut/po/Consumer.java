@@ -9,7 +9,7 @@ public class Consumer implements Serializable {
     private String phoneNumber;
     private String password;
     private String email;
-    private int enterpriseDepartmentNumber;
+    private Integer enterpriseDepartmentNumber;
     @Override
     public String toString() {
         return "Consumer{" +
@@ -23,6 +23,14 @@ public class Consumer implements Serializable {
                 '}';
     }
 
+    public Integer getEnterpriseDepartmentNumber() {
+        return enterpriseDepartmentNumber;
+    }
+
+    public void setEnterpriseDepartmentNumber(Integer enterpriseDepartmentNumber) {
+        this.enterpriseDepartmentNumber = enterpriseDepartmentNumber;
+    }
+
     public String getName() {
         return name;
     }
@@ -33,10 +41,6 @@ public class Consumer implements Serializable {
 
     public int getConsumerId() {
         return consumerId;
-    }
-
-    public int getEnterpriseDepartmentNumber() {
-        return enterpriseDepartmentNumber;
     }
 
     public String getIdCardNumber() {
@@ -57,10 +61,6 @@ public class Consumer implements Serializable {
 
     public void setConsumerId(int consumerId) {
         this.consumerId = consumerId;
-    }
-
-    public void setEnterpriseDepartmentNumber(int enterpriseDepartmentNumber) {
-        this.enterpriseDepartmentNumber = enterpriseDepartmentNumber;
     }
 
     public void setIdCardNumber(String idCardNumber) {

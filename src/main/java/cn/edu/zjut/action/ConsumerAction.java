@@ -1,6 +1,7 @@
 package cn.edu.zjut.action;
 
 import cn.edu.zjut.po.Consumer;
+import cn.edu.zjut.po.EnterpriseConsumer;
 import cn.edu.zjut.service.ConsumerService;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -11,6 +12,24 @@ public class ConsumerAction implements SessionAware{
     private ConsumerService consumerService;
     private Map<String, Object> session;
     private Consumer consumer;
+    private EnterpriseConsumer enterpriseConsumer;
+    private String phoneNumber;
+
+    public EnterpriseConsumer getEnterpriseConsumer() {
+        return enterpriseConsumer;
+    }
+
+    public void setEnterpriseConsumer(EnterpriseConsumer enterpriseConsumer) {
+        this.enterpriseConsumer = enterpriseConsumer;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     public ConsumerService getConsumerService() {
         return consumerService;
@@ -45,6 +64,11 @@ public class ConsumerAction implements SessionAware{
 
     public String addConsumer(){
         consumerService.addConsumer(consumer);
+        return "success";
+    }
+
+    public String login(){
+        enterpriseConsumer = consumerService.loginAndRegister(phoneNumber);
         return "success";
     }
 }

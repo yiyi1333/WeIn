@@ -11,8 +11,17 @@ public class Goods implements Serializable {
     private int goodsStock;
     private String tags;
     private String goodsImage;
+    private double goodsWeight;
     private int shopId;
     private Shop shop;
+
+    public double getGoodsWeight() {
+        return goodsWeight;
+    }
+
+    public void setGoodsWeight(double goodsWeight) {
+        this.goodsWeight = goodsWeight;
+    }
 
     public double getGoodsRealPrice() {
         return goodsRealPrice;

@@ -26,6 +26,12 @@
             </result>
         </action>
 
+        <action name="consumerLoginAndRegister" class="cn.edu.zjut.action.ConsumerAction" method="login">
+            <result name="success" type="json">
+                <param name="root">enterpriseConsumer</param>
+            </result>
+        </action>
+
         <!--        张宇翔配置区-->
         <action name="login" class="cn.edu.zjut.action.UserAction" method="login">
             <result name="success">/index.jsp</result>
