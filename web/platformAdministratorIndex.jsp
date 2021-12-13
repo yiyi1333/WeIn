@@ -488,6 +488,7 @@
                         <h2>注册企业</h2>
 
                         <div class="ibox-content">
+
                             <s:form action="registerEnterpriseagency" method="post">
                                 <div class="form-group  row"><label class="col-sm-2 col-form-label">账号</label>
                                     <div class="col-sm-10">

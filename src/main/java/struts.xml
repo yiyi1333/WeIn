@@ -64,6 +64,7 @@
             <result name="success">/enterpriseagencyList.jsp</result>
             <!--            </result>-->
         </action>
+
         <!--        王怡欣配置区-->
         <!--        王淑媚配置区-->
         <action name="addconsumer" class="cn.edu.zjut.action.ConsumerAction" method="addConsumer">
