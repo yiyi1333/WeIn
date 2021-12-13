@@ -49,10 +49,10 @@
             <result name="displayShopWareHouseAddressSuccess">/wareHouseAddressList.jsp</result>
         </action>
         <action name="registerShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="registerShopmanager">
-            <result name="success">/platformAdministraorIndex.jsp</result>
+            <result name="success">/platformAdministratorIndex.jsp</result>
         </action>
         <action name="registerEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="registerEnterpriseagency">
-            <result name="success">/platformAdministraorIndex.jsp</result>
+            <result name="success">/platformAdministratorIndex.jsp</result>
         </action>
         <action name="displayShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="displayShopmanager">
             <!--            <result name="success" type="json">-->
