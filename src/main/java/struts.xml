@@ -32,6 +32,12 @@
             </result>
         </action>
 
+        <action name="decode" class="cn.edu.zjut.action.DecodeAction" method="Decode">
+            <result name="success" type="json">
+                <param name="root">decodeResult</param>
+            </result>
+        </action>
+
         <!--        张宇翔配置区-->
         <action name="login" class="cn.edu.zjut.action.UserAction" method="login">
             <result name="success">/index.jsp</result>

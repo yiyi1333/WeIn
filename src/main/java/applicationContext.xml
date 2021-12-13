@@ -50,6 +50,12 @@
     <bean id="advertisemnetAction" class="cn.edu.zjut.action.AdvertisementAction">
         <property name="advertisementService" ref="advertisementService"/>
     </bean>
+
+    <bean id="wechatDecryptDataService" class="cn.edu.zjut.service.WechatDecryptDataService"/>
+
+    <bean id="decodeAction" class="cn.edu.zjut.action.DecodeAction">
+        <property name="wechatDecryptDataService" ref="wechatDecryptDataService"/>
+    </bean>
 <!--    商品-->
     <bean id="goodsImpl" class="cn.edu.zjut.dao.GoodsImpl">
         <property name="sqlSession" ref="sqlSession"/>
