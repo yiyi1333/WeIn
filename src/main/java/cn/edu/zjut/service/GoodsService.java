@@ -17,6 +17,8 @@ public class GoodsService {
         this.goodsDao = goodsDao;
     }
 
+
+
     public List searchGoodsByTagsAndName(String keyword) {
         List goodlist = goodsDao.searchGoodsByKeyWord(keyword);
         return goodlist;
@@ -43,4 +45,9 @@ public class GoodsService {
         }
         return null;
     }
+
+    public void addGoods(Goods goods) {
+        goodsDao.addGoods(goods);
+    }
+
 }

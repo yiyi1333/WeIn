@@ -11,6 +11,7 @@
         <result property="goodsStock" column="goodsStock"/>
         <result property="tags" column="tags"/>
         <result property="goodsImage" column="goodsImage"/>
+        <result property="isGrouding" column="isGrouding"/>
         <result property="shopId" column="goods.shopId"/>
         <association property="shop" javaType="cn.edu.zjut.po.Shop">
             <result property="shopId" column="shop.shopId"/>
@@ -28,6 +29,8 @@
         where goods.shopId = shop.shopId and shop.enterpriseId = enterprise.enterpriseId and (goods.tags like
         '%${keyword}%' or goods.goodsName like '%${keyword}%');
     </select>
+
+
     <resultMap id="GoodsResultMap" type="cn.edu.zjut.po.Goods">
         <result property="goodsId" column="goodsId"/>
         <result property="goodsName" column="goodsName"/>
@@ -36,6 +39,7 @@
         <result property="goodsStock" column="goodsStock"/>
         <result property="shopId" column="shopId"/>
         <result property="tags" column="tags"/>
+        <result property="goodsImage" column="goodsImage"/>
         <result property="goodsImage" column="goodsImage"/>
     </resultMap>
 
@@ -59,4 +63,8 @@
         goodsImage = #{goodsImage}
         where goodsId = #{goodsId};
     </update>
+
+    <insert id="addGoods" parameterType="cn.edu.zjut.po.Goods">
+        insert into WeIn.Goods(goodsName,goodprice,goodsDetails,goodsStock,shopId,tags,goodsImage,isGrouding) values(#{goodsName},#{goodsPrice},#{goodsDetails},#{goodsStock},#{shopId},#{tags},#{goodsImage},#{isGrouding});
+    </insert>
 </mapper>

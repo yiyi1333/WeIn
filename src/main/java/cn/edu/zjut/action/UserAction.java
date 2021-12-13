@@ -70,7 +70,7 @@ public class UserAction implements SessionAware {
                 session.put("type", "shopManager");
                 session.put("name", shopManager.getShopManagerName());
                 session.put("shopManager", shopManager);
-                return "success";
+                return "shopSuccess";
             }
         } else if (user.getAuthority() == 1) {
             EnterpriseAgency enterpriseAgency = new EnterpriseAgency();

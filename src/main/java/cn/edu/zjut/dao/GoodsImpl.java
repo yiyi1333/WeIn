@@ -40,4 +40,10 @@ public class GoodsImpl implements GoodsMapper {
         System.out.println("execute--updateGoods--dao");
         sqlSession.getMapper(GoodsMapper.class).updateGoods(goods);
     }
+
+    @Override
+    public void addGoods(Goods goods) {
+        System.out.println("execute--addGoods--dao");
+        sqlSession.getMapper(GoodsMapper.class).addGoods(goods);
+    }
 }

@@ -24,35 +24,36 @@
 
         <!--        张宇翔配置区-->
         <action name="login" class="cn.edu.zjut.action.UserAction" method="login">
-            <result name="success">/index.jsp</result>
             <result name="failed">/login.jsp</result>
+
+<!--            王怡欣，王淑媚配置区-->
+            <result name="shopSuccess">/shopIndex.jsp</result>
         </action>
 
+
+        <!--      王怡欣，王淑媚配置区-->
         <action name="displayShopGoods" class="cn.edu.zjut.action.GoodsAction" method="displayShopGoods">
             <result name="displayShopGoodsSuccess">/productList.jsp</result>
         </action>
         <action name="updateGoods" class="cn.edu.zjut.action.GoodsAction" method="updateGoods">
-            <result name="success">
-                ./changeGoods.jsp
-            </result>
+            <result name="success">/changeGoods.jsp</result>
         </action>
         <action name="displayGoodsEditor" class="cn.edu.zjut.action.GoodsAction" method="getGoodsById">
-            <result name="success">
-                /changeGoods.jsp
-            </result>
+            <result name="success">/changeGoods.jsp</result>
         </action>
+        <action name="addGoods" class="cn.edu.zjut.action.GoodsAction" method="addGoods">
+            <result name="addSuccess">/addProduct.jsp</result>
+        </action>
+
+
+
+
         <!--        余秋霞配置区-->
-        <action name="displayShopOrders" class="cn.edu.zjut.action.OrdersAction" method="displayShopOrders">
-            <result name="displayShopOrdersSuccess">/ordersList.jsp</result>
-        </action>
-        <action name="displayShopWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction" method="displayShopWareHouseAddress">
-            <result name="displayShopWareHouseAddressSuccess">/wareHouseAddressList.jsp</result>
-        </action>
         <action name="registerShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="registerShopmanager">
-            <result name="success">/platformAdministraorIndex.jsp</result>
+            <result name="success">/platformAdministratorIndex.jsp</result>
         </action>
         <action name="registerEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="registerEnterpriseagency">
-            <result name="success">/platformAdministraorIndex.jsp</result>
+            <result name="success">/platformAdministratorIndex.jsp</result>
         </action>
         <action name="displayShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="displayShopmanager">
             <!--            <result name="success" type="json">-->
@@ -64,8 +65,8 @@
             <result name="success">/enterpriseagencyList.jsp</result>
             <!--            </result>-->
         </action>
+
         <!--        王怡欣配置区-->
-        <!--        王淑媚配置区-->
         <action name="addconsumer" class="cn.edu.zjut.action.ConsumerAction" method="addConsumer">
             <result name="success">/addConsumer.jsp</result>
         </action>
@@ -75,6 +76,8 @@
         <action name="addenterpriseDepartment" class="cn.edu.zjut.action.EnterpriseDepartmentAction" method="addEnterpriseDepartment">
             <result name="success">/addEnterpriseDepartment.jsp</result>
         </action>
+
+        <!--        王淑媚配置区-->
         <action name="displayShopOrders" class="cn.edu.zjut.action.OrdersAction" method="displayShopOrders">
             <result name="displayShopOrdersSuccess">/ordersList.jsp</result>
         </action>

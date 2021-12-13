@@ -6,11 +6,12 @@ import cn.edu.zjut.po.User;
 import cn.edu.zjut.service.GoodsService;
 import org.apache.struts2.interceptor.SessionAware;
 
+import javax.servlet.RequestDispatcher;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class GoodsAction implements SessionAware {
+public class GoodsAction implements SessionAware{
     private Map<String, Object> session;
     private GoodsService goodsService;
     private String keyword;
@@ -92,7 +93,7 @@ public class GoodsAction implements SessionAware {
         List<Goods> ans = goodsService.getAllGoods();
         List<Goods> goodsList = new ArrayList<>();
         for (Goods goods : ans) {
-            if (goods.getShop().getShopId()== shopManager.getShopId()) {
+            if (goods.getShopId()== shopManager.getShopId()) {
                 goodsList.add(goods);
             }
         }
@@ -121,5 +122,15 @@ public class GoodsAction implements SessionAware {
         goods = goodsService.getGoodsById(goods.getGoodsId());
         session.put("goods", goods);
         return "success";
+    }
+
+    public String addGoods(){
+        if("".equals(goods.getGoodsDetails())) {
+            goods.setGoodsDetails(null);
+        }
+        ShopManager shopManager = (ShopManager) session.get("shopManager");
+        goods.setShopId(shopManager.getShopId());
+        goodsService.addGoods(goods);
+        return "addSuccess";
     }
 }
