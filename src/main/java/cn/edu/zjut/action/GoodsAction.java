@@ -78,7 +78,7 @@ public class GoodsAction implements SessionAware {
         this.good = good;
     }
 
-    public String search(){
+    public String search() {
         System.out.println(keyword);
         goodslist = goodsService.searchGoodsByTagsAndName(keyword);
         return "success";
@@ -92,7 +92,7 @@ public class GoodsAction implements SessionAware {
         List<Goods> ans = goodsService.getAllGoods();
         List<Goods> goodsList = new ArrayList<>();
         for (Goods goods : ans) {
-            if (goods.getShop().getShopId()== shopManager.getShopId()) {
+            if (goods.getShopId() == shopManager.getShopId()) {
                 goodsList.add(goods);
             }
         }
@@ -100,7 +100,7 @@ public class GoodsAction implements SessionAware {
         return "displayShopGoodsSuccess";
     }
 
-    public String displayGoodsDetail(){
+    public String displayGoodsDetail() {
         //将String类型的GoodsId转换为Int;
         int goodid = Integer.parseInt(goodsId);
         good = goodsService.getGoodById(goodid);
@@ -108,7 +108,7 @@ public class GoodsAction implements SessionAware {
     }
 
     public String updateGoods() {
-        if("".equals(goods.getGoodsDetails())) {
+        if ("".equals(goods.getGoodsDetails())) {
             goods.setGoodsDetails(null);
         }
         goodsService.updateGoods(goods);
