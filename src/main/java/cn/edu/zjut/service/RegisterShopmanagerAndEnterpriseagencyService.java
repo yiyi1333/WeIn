@@ -58,5 +58,9 @@ public class RegisterShopmanagerAndEnterpriseagencyService {
     public void setEnterpriseDepartmentimpl(EnterpriseDepartmentImpl enterpriseDepartmentimpl) {
         this.enterpriseDepartmentimpl = enterpriseDepartmentimpl;
     }
+
+    public void deleteEnterpriseagency(int id) {
+        enterpriseAgencyimpl.deleteEnterpriseagency(id);
+    }
 }
 

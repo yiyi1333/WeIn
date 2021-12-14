@@ -21,4 +21,11 @@
         insert into enterpriseagency(enterpriseAgencyAccount, enterpriseAgencyPassword, enterpriseAgencyRight, enterpriseAgencyName, idCardNumber, enterpriseId)
         values (#{enterpriseAgencyAccount}, #{enterpriseAgencyPassword}, #{enterpriseAgencyRight}, #{enterpriseAgencyName}, #{idCardNumber}, #{enterpriseId})
     </insert>
+
+    <!-- 通过id 删除也用户 -->
+    <delete id="deleteEnterpriseagency">
+        delete from enterpriseagency where enterpriseagencyid = #{id}
+    </delete>
+
+
 </mapper>

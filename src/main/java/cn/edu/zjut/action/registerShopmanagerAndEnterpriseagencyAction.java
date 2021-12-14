@@ -105,4 +105,10 @@ public class registerShopmanagerAndEnterpriseagencyAction {
         enterpriseDapartmenList = registerShopmanagerAndEnterpriseagencyService.queryEnterpriseStructure(enterpriseDepartment.getEnterpriseId());
         return "success";
     }
+
+    //删除企业
+    public String deleteEnterpriseagency() {
+        registerShopmanagerAndEnterpriseagencyService.deleteEnterpriseagency(enterpriseDepartment.getEnterpriseId());
+        return "success";
+    }
 }

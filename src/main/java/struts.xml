@@ -45,28 +45,38 @@
         <action name="displayShopOrders" class="cn.edu.zjut.action.OrdersAction" method="displayShopOrders">
             <result name="displayShopOrdersSuccess">/ordersList.jsp</result>
         </action>
-        <action name="displayShopWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction" method="displayShopWareHouseAddress">
+        <action name="displayShopWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction"
+                method="displayShopWareHouseAddress">
             <result name="displayShopWareHouseAddressSuccess">/wareHouseAddressList.jsp</result>
         </action>
-        <action name="registerShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="registerShopmanager">
+        <action name="registerShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
+                method="registerShopmanager">
             <result name="success">/registerShopmanager.jsp</result>
         </action>
-        <action name="registerEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="registerEnterpriseagency">
+        <action name="registerEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
+                method="registerEnterpriseagency">
             <result name="success">/registerEnterpriseagency.jsp</result>
         </action>
-        <action name="displayShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="displayShopmanager">
+        <action name="displayShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
+                method="displayShopmanager">
             <!--            <result name="success" type="json">-->
             <result name="success">/shopmanagerList.jsp</result>
             <!--            </result>-->
         </action>
-        <action name="displayEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="displayenterpriseagency">
+        <action name="displayEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
+                method="displayenterpriseagency">
             <!--            <result name="success" type="json">-->
             <result name="success">/enterpriseagencyList.jsp</result>
             <!--            </result>-->
         </action>
-<!--        展示企业结构-->
-        <action name="queryEnterpriseStructure" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="queryEnterpriseStructure">
+        <!--        展示企业结构-->
+        <action name="queryEnterpriseStructure" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
+                method="queryEnterpriseStructure">
             <result name="success">/queryEnterpriseStructure.jsp</result>
+        </action>
+        <action name="deleteEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
+                method="deleteEnterpriseagency">
+            <result name="success">/deleteEnterpriseagency.jsp</result>
         </action>
 
         <!--        王怡欣配置区-->
@@ -74,16 +84,19 @@
         <action name="addconsumer" class="cn.edu.zjut.action.ConsumerAction" method="addConsumer">
             <result name="success">/addConsumer.jsp</result>
         </action>
-        <action name="showenterpriseuser" class="cn.edu.zjut.action.EnterpriseDepartmentAction" method="getEnterpriseList">
+        <action name="showenterpriseuser" class="cn.edu.zjut.action.EnterpriseDepartmentAction"
+                method="getEnterpriseList">
             <result name="success">/showEnterpriseDepartmentUser.jsp</result>
         </action>
-        <action name="addenterpriseDepartment" class="cn.edu.zjut.action.EnterpriseDepartmentAction" method="addEnterpriseDepartment">
+        <action name="addenterpriseDepartment" class="cn.edu.zjut.action.EnterpriseDepartmentAction"
+                method="addEnterpriseDepartment">
             <result name="success">/addEnterpriseDepartment.jsp</result>
         </action>
         <action name="displayShopOrders" class="cn.edu.zjut.action.OrdersAction" method="displayShopOrders">
             <result name="displayShopOrdersSuccess">/ordersList.jsp</result>
         </action>
-        <action name="displayShopWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction" method="displayShopWareHouseAddress">
+        <action name="displayShopWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction"
+                method="displayShopWareHouseAddress">
             <result name="displayShopWareHouseAddressSuccess">/wareHouseAddressList.jsp</result>
         </action>
     </package>

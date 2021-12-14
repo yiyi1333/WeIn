@@ -32,7 +32,7 @@
                     <li><a href="registerEnterpriseagency.jsp">注册企业用户</a></li>
                     <li><a href="./displayEnterpriseagency">查询企业用户信息</a></li>
                     <li><a href="queryEnterpriseStructure.jsp">查询企业结构</a></li>
-                    <li><a href="deleteEnterpriseagency.jsp">删除企业</a></li>
+                    <li><a href="deleteEnterpriseagency.jsp">删除企业用户</a></li>
                 </ul>
             </li>
 
