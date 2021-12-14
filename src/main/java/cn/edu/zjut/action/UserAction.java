@@ -92,7 +92,7 @@ public class UserAction implements SessionAware {
                 session.put("type", "platformAdministrator");
                 session.put("name", platformAdministrator.getAdminName());
                 session.put("platformAdministrator", platformAdministrator);
-                return "success";
+                return "platformAdministratorsuccess";
             }
         }
         return "failed";
