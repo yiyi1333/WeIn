@@ -1,8 +1,10 @@
 package cn.edu.zjut.service;
 
 import cn.edu.zjut.dao.EnterpriseAgencyImpl;
+import cn.edu.zjut.dao.EnterpriseDepartmentImpl;
 import cn.edu.zjut.dao.ShopManagerImpl;
 import cn.edu.zjut.po.EnterpriseAgency;
+import cn.edu.zjut.po.EnterpriseDepartment;
 import cn.edu.zjut.po.Goods;
 import cn.edu.zjut.po.ShopManager;
 
@@ -11,6 +13,7 @@ import java.util.List;
 public class RegisterShopmanagerAndEnterpriseagencyService {
     ShopManagerImpl shopManagerimpl;
     EnterpriseAgencyImpl enterpriseAgencyimpl;
+    EnterpriseDepartmentImpl enterpriseDepartmentimpl;
     public void registerShopmanager(ShopManager shopManager) {
         shopManagerimpl.addShopManager(shopManager);
     }
@@ -42,6 +45,18 @@ public class RegisterShopmanagerAndEnterpriseagencyService {
 
     public void setEnterpriseAgencyimpl(EnterpriseAgencyImpl enterpriseAgencyimpl) {
         this.enterpriseAgencyimpl = enterpriseAgencyimpl;
+    }
+
+    public List<EnterpriseDepartment> queryEnterpriseStructure(int id) {
+        return enterpriseDepartmentimpl.getEnterpriseDepartmentById(id);
+    }
+
+    public EnterpriseDepartmentImpl getEnterpriseDepartmentimpl() {
+        return enterpriseDepartmentimpl;
+    }
+
+    public void setEnterpriseDepartmentimpl(EnterpriseDepartmentImpl enterpriseDepartmentimpl) {
+        this.enterpriseDepartmentimpl = enterpriseDepartmentimpl;
     }
 }
 

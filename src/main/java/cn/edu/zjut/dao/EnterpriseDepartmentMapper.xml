@@ -29,4 +29,8 @@
         insert into WeIn.enterpriseDepartment(enterpriseDepartmentName,enterpriseDepartmentpre,enterpriseId) values(#{enterpriseDepartmentName},#{enterpriseDepartmentpre},#{enterpriseId});
     </insert>
 
+    <select id="getEnterpriseDepartmentById" resultType="cn.edu.zjut.po.EnterpriseDepartment" parameterType="int">
+        select * from WeIn.enterprisedepartment where enterpriseId=#{id}
+    </select>
+
 </mapper>

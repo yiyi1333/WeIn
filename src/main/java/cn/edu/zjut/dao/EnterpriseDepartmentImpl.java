@@ -34,4 +34,10 @@ public class EnterpriseDepartmentImpl implements EnterpriseDepartmentMapper{
         System.out.println("execute--getAllEnterpriseDepartment--dao");
         return sqlSession.getMapper(EnterpriseDepartmentMapper.class).getAllEnterpriseDepartment();
     }
+
+    @Override
+    public List<EnterpriseDepartment> getEnterpriseDepartmentById(int id) {
+        System.out.println("execute--getEnterpriseDepartmentById--dao");
+        return sqlSession.getMapper(EnterpriseDepartmentMapper.class).getEnterpriseDepartmentById(id);
+    }
 }

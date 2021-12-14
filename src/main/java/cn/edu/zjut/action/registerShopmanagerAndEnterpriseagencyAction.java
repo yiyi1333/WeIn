@@ -1,6 +1,7 @@
 package cn.edu.zjut.action;
 
 import cn.edu.zjut.po.EnterpriseAgency;
+import cn.edu.zjut.po.EnterpriseDepartment;
 import cn.edu.zjut.po.Goods;
 import cn.edu.zjut.po.ShopManager;
 import cn.edu.zjut.service.RegisterShopmanagerAndEnterpriseagencyService;
@@ -12,8 +13,27 @@ public class registerShopmanagerAndEnterpriseagencyAction {
     private RegisterShopmanagerAndEnterpriseagencyService registerShopmanagerAndEnterpriseagencyService = null;
     private ShopManager shopManager;
     private EnterpriseAgency enterpriseAgency;
+    private EnterpriseDepartment enterpriseDepartment;
     private List shopManagerList;
     private List enterpriseagencyList;
+    private List enterpriseDapartmenList;
+
+    public EnterpriseDepartment getEnterpriseDepartment() {
+        return enterpriseDepartment;
+    }
+
+
+    public void setEnterpriseDepartment(EnterpriseDepartment enterpriseDepartment) {
+        this.enterpriseDepartment = enterpriseDepartment;
+    }
+
+    public List getEnterpriseDapartmenList() {
+        return enterpriseDapartmenList;
+    }
+
+    public void setEnterpriseDapartmenList(List enterpriseDapartmenList) {
+        this.enterpriseDapartmenList = enterpriseDapartmenList;
+    }
 
     public List getShopManagerList() {
         return shopManagerList;
@@ -80,4 +100,9 @@ public class registerShopmanagerAndEnterpriseagencyAction {
     }
 
 
+    //查询企业结构
+    public String queryEnterpriseStructure() {
+        enterpriseDapartmenList = registerShopmanagerAndEnterpriseagencyService.queryEnterpriseStructure(enterpriseDepartment.getEnterpriseId());
+        return "success";
+    }
 }

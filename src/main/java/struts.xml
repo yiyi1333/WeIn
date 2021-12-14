@@ -49,10 +49,10 @@
             <result name="displayShopWareHouseAddressSuccess">/wareHouseAddressList.jsp</result>
         </action>
         <action name="registerShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="registerShopmanager">
-            <result name="success">/platformAdministratorIndex.jsp</result>
+            <result name="success">/registerShopmanager.jsp</result>
         </action>
         <action name="registerEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="registerEnterpriseagency">
-            <result name="success">/platformAdministratorIndex.jsp</result>
+            <result name="success">/registerEnterpriseagency.jsp</result>
         </action>
         <action name="displayShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="displayShopmanager">
             <!--            <result name="success" type="json">-->
@@ -63,6 +63,10 @@
             <!--            <result name="success" type="json">-->
             <result name="success">/enterpriseagencyList.jsp</result>
             <!--            </result>-->
+        </action>
+<!--        展示企业结构-->
+        <action name="queryEnterpriseStructure" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="queryEnterpriseStructure">
+            <result name="success">/queryEnterpriseStructure.jsp</result>
         </action>
 
         <!--        王怡欣配置区-->
