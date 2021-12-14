@@ -11,6 +11,8 @@ public class Consumer implements Serializable {
     private String email;
     private String avatarUrl;
     private Integer enterpriseDepartmentNumber;
+    private String nickName;
+    private Integer certification;
 
     @Override
     public String toString() {
@@ -23,7 +25,25 @@ public class Consumer implements Serializable {
                 ", email='" + email + '\'' +
                 ", avatarUrl='" + avatarUrl + '\'' +
                 ", enterpriseDepartmentNumber=" + enterpriseDepartmentNumber +
+                ", nickName='" + nickName + '\'' +
+                ", certification=" + certification +
                 '}';
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public Integer getCertification() {
+        return certification;
+    }
+
+    public void setCertification(Integer certification) {
+        this.certification = certification;
     }
 
     public String getAvatarUrl() {
@@ -92,7 +112,7 @@ public class Consumer implements Serializable {
 
     public Consumer(){}
 
-    public Consumer(int consumerId, String idCardNumber, String name, String phoneNumber, String password, String email, String avatarUrl, Integer enterpriseDepartmentNumber) {
+    public Consumer(int consumerId, String idCardNumber, String name, String phoneNumber, String password, String email, String avatarUrl, Integer enterpriseDepartmentNumber, String nickName, Integer certification) {
         this.consumerId = consumerId;
         this.idCardNumber = idCardNumber;
         this.name = name;
@@ -101,5 +121,7 @@ public class Consumer implements Serializable {
         this.email = email;
         this.avatarUrl = avatarUrl;
         this.enterpriseDepartmentNumber = enterpriseDepartmentNumber;
+        this.nickName = nickName;
+        this.certification = certification;
     }
 }

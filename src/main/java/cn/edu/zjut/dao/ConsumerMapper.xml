@@ -12,6 +12,8 @@
         <result property="email" column="email"/>
         <result property="avatarUrl" column="avatarUrl"/>
         <result property="enterpriseDepartmentNumber" column="enterpriseDepartmentNumber"/>
+        <result property="nickName" column="nickName"/>
+        <result property="certification" column="certification"/>
     </resultMap>
     
     <resultMap id="EnterpriseConsumer" type="cn.edu.zjut.po.EnterpriseConsumer">
@@ -24,6 +26,8 @@
             <result property="email" column="email"/>
             <result property="avatarUrl" column="avatarUrl"/>
             <result property="enterpriseDepartmentNumber" column="enterpriseDepartmentNumber"/>
+            <result property="nickName" column="nickName"/>
+            <result property="certification" column="certification"/>
         </association>
         <association property="enterpriseDepartment" javaType="cn.edu.zjut.po.EnterpriseDepartment">
             <result property="enterpriseDepartmentName" column="enterpriseDepartmentName"/>
