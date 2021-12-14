@@ -9,7 +9,9 @@ public class Consumer implements Serializable {
     private String phoneNumber;
     private String password;
     private String email;
+    private String avatarUrl;
     private Integer enterpriseDepartmentNumber;
+
     @Override
     public String toString() {
         return "Consumer{" +
@@ -19,8 +21,17 @@ public class Consumer implements Serializable {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
+                ", avatarUrl='" + avatarUrl + '\'' +
                 ", enterpriseDepartmentNumber=" + enterpriseDepartmentNumber +
                 '}';
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 
     public Integer getEnterpriseDepartmentNumber() {
@@ -80,13 +91,15 @@ public class Consumer implements Serializable {
     }
 
     public Consumer(){}
-    public Consumer(int consumerId,String idCardNumber, String name, String phoneNumber, String password,String email, int enterpriseDepartmentNumber){
+
+    public Consumer(int consumerId, String idCardNumber, String name, String phoneNumber, String password, String email, String avatarUrl, Integer enterpriseDepartmentNumber) {
         this.consumerId = consumerId;
         this.idCardNumber = idCardNumber;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.password = password;
         this.email = email;
+        this.avatarUrl = avatarUrl;
         this.enterpriseDepartmentNumber = enterpriseDepartmentNumber;
     }
 }

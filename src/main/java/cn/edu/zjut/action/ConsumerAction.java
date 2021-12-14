@@ -68,6 +68,7 @@ public class ConsumerAction implements SessionAware{
     }
 
     public String login(){
+        System.out.println("PhoneNumber：" + phoneNumber );
         enterpriseConsumer = consumerService.loginAndRegister(phoneNumber);
         return "success";
     }

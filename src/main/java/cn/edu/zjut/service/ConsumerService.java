@@ -41,7 +41,6 @@ public class ConsumerService {
                 //普通用户
                 enterpriseConsumer = new EnterpriseConsumer();
                 enterpriseConsumer.setConsumer(user);
-                return enterpriseConsumer;
             }
         }
         else{
@@ -52,7 +51,7 @@ public class ConsumerService {
             consumerdao.addConsumer(newuser);
             //将该用户数据返回
             enterpriseConsumer = new EnterpriseConsumer();
-            enterpriseConsumer.setConsumer(newuser);
+            enterpriseConsumer.setConsumer(consumerdao.searchUser(phoneNumber));
         }
         return enterpriseConsumer;
     }

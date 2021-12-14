@@ -10,6 +10,7 @@
         <result property="phoneNumber" column="phoneNumber"/>
         <result property="password" column="password"/>
         <result property="email" column="email"/>
+        <result property="avatarUrl" column="avatarUrl"/>
         <result property="enterpriseDepartmentNumber" column="enterpriseDepartmentNumber"/>
     </resultMap>
     
@@ -21,6 +22,7 @@
             <result property="phoneNumber" column="phoneNumber"/>
             <result property="password" column="password"/>
             <result property="email" column="email"/>
+            <result property="avatarUrl" column="avatarUrl"/>
             <result property="enterpriseDepartmentNumber" column="enterpriseDepartmentNumber"/>
         </association>
         <association property="enterpriseDepartment" javaType="cn.edu.zjut.po.EnterpriseDepartment">
