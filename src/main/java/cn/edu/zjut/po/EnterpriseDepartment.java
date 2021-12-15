@@ -55,4 +55,5 @@ public class EnterpriseDepartment implements Serializable {
         this.enterpriseDepartmentpre = enterpriseDepartmentpre;
         this.enterpriseId = enterpriseId;
     }
+
 }

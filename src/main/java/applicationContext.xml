@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
 
-<!--    数据库配置-->
+    <!--    数据库配置-->
     <!--    数据源-->
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
         <property name="url"
-                  value="jdbc:mysql://localhost:3306/wein?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8"/>
-        <property name="username" value="root"/>
-        <property name="password" value="20011122"/>
+                  value="jdbc:mysql://rm-bp10ju74719fp6g4emo.mysql.rds.aliyuncs.com:3306/wein?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8"/>
+        <property name="username" value="yiyi1333"/>
+        <property name="password" value="zzy@15712651279"/>
+        <!--        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>-->
+        <!--        <property name="url"-->
+        <!--                  value="jdbc:mysql://localhost:3306/wein?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8"/>-->
+        <!--        <property name="username" value="root"/>-->
+        <!--        <property name="password" value="20011122"/>-->
     </bean>
     <!--    装配SqlSessionFactory-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -23,7 +28,19 @@
         <constructor-arg index="0" ref="sqlSessionFactory"/>
     </bean>
 
-<!--张宇翔配置区-->
+    <!--张宇翔配置区-->
+
+<!--    <aop:aspectj-autoproxy proxy-target-class="true"/>-->
+<!--    <bean id="securityHandler" class="cn.edu.zjut.aspect.SecurityHandler"/>-->
+<!--    &lt;!&ndash; 配置文件的方式 &ndash;&gt;-->
+<!--    <aop:config>-->
+<!--        <aop:aspect id="security" ref="securityHandler">-->
+<!--            <aop:pointcut id="modify"-->
+<!--                          expression="execution(* cn.edu.zjut.service.EnterpriseDepartmentService.*(..))"/>-->
+<!--            <aop:before method="checkSecurity" pointcut-ref="modify"/>-->
+<!--        </aop:aspect>-->
+<!--    </aop:config>-->
+
     <bean id="enterpriseAgencyImpl" class="cn.edu.zjut.dao.EnterpriseAgencyImpl">
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
@@ -33,13 +50,30 @@
     </bean>
 
     <bean id="userAction" class="cn.edu.zjut.action.UserAction" scope="prototype">
-        <property name="enterpriseAgencyService" ref="enterpriseAgencyService" />
-        <property name="platformAdministratorService" ref="platformAdministratorService" />
-        <property name="shopManagerService" ref="shopManagerService" />
+        <property name="enterpriseAgencyService" ref="enterpriseAgencyService"/>
+        <property name="platformAdministratorService" ref="platformAdministratorService"/>
+        <property name="shopManagerService" ref="shopManagerService"/>
     </bean>
 
-<!--郑展逸配置区-->
-<!--    广告-->
+    <bean id="enterpriseAgencyAction" class="cn.edu.zjut.action.EnterpriseAgencyAction" scope="prototype">
+        <property name="enterpriseAgencyService" ref="enterpriseAgencyService"/>
+    </bean>
+
+    <bean id="enterpriseDepartmentImpl" class="cn.edu.zjut.dao.EnterpriseDepartmentImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="enterpriseDepartmentService" class="cn.edu.zjut.service.EnterpriseDepartmentService">
+        <property name="enterpriseDepartmentMapper" ref="enterpriseDepartmentImpl"/>
+        <property name="enterpriseImpl" ref="enterpriseImpl"/>
+    </bean>
+
+    <bean id="enterpriseDepartmentAction" class="cn.edu.zjut.action.EnterpriseDepartmentAction" scope="prototype">
+        <property name="enterpriseDepartmentService" ref="enterpriseDepartmentService"/>
+    </bean>
+
+    <!--郑展逸配置区-->
+    <!--    广告-->
     <bean id="advertisementImpl" class="cn.edu.zjut.dao.AdvertisementImpl">
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
@@ -51,7 +85,7 @@
     <bean id="advertisemnetAction" class="cn.edu.zjut.action.AdvertisementAction">
         <property name="advertisementService" ref="advertisementService"/>
     </bean>
-<!--    商品-->
+    <!--    商品-->
     <bean id="goodsImpl" class="cn.edu.zjut.dao.GoodsImpl">
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
@@ -63,7 +97,15 @@
     <bean id="goodsAction" class="cn.edu.zjut.action.GoodsAction" scope="prototype">
         <property name="goodsService" ref="goodsService"/>
     </bean>
-<!--余秋霞配置区-->
+
+    <bean id="enterpriseImpl" class="cn.edu.zjut.dao.EnterpriseImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="enterpriseService" class="cn.edu.zjut.service.EnterpriseService">
+        <property name="enterpriseImpl" ref="enterpriseImpl"/>
+    </bean>
+    <!--余秋霞配置区-->
     <bean id="shopManagerImpl" class="cn.edu.zjut.dao.ShopManagerImpl">
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
@@ -80,15 +122,18 @@
         <property name="platformAdministratorImpl" ref="platformAdministratorImpl"/>
     </bean>
 
-    <bean id="registerShopmanagerAndEnterpriseagencyService" class="cn.edu.zjut.service.RegisterShopmanagerAndEnterpriseagencyService" scope="prototype">
+    <bean id="registerShopmanagerAndEnterpriseagencyService"
+          class="cn.edu.zjut.service.RegisterShopmanagerAndEnterpriseagencyService" scope="prototype">
         <property name="enterpriseAgencyimpl" ref="enterpriseAgencyImpl"/>
         <property name="shopManagerimpl" ref="shopManagerImpl"/>
     </bean>
 
-    <bean id="registerShopmanagerAndEnterpriseagencyAction" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" scope="prototype">
-        <property name="registerShopmanagerAndEnterpriseagencyService" ref="registerShopmanagerAndEnterpriseagencyService"></property>
+    <bean id="registerShopmanagerAndEnterpriseagencyAction"
+          class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" scope="prototype">
+        <property name="registerShopmanagerAndEnterpriseagencyService"
+                  ref="registerShopmanagerAndEnterpriseagencyService"/>
     </bean>
-<!--王怡欣配置区-->
+    <!--王怡欣配置区-->
     <bean id="consumerImpl" class="cn.edu.zjut.dao.ConsumerImpl">
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
@@ -101,18 +146,7 @@
         <property name="consumerService" ref="consumerService"/>
     </bean>
 
-    <bean id="enterpriseDepartmentImpl" class="cn.edu.zjut.dao.EnterpriseDepartmentImpl">
-        <property name="sqlSession" ref="sqlSession"/>
-    </bean>
-
-    <bean id="enterpriseUserService" class="cn.edu.zjut.service.EnterpriseDepartmentService">
-        <property name="enterpriseDepartmentdao" ref="enterpriseDepartmentImpl"/>
-    </bean>
-
-    <bean id="enterpriseDepartmentAction" class="cn.edu.zjut.action.EnterpriseDepartmentAction">
-        <property name="enterpriseUserService" ref="enterpriseUserService"/>
-    </bean>
-<!--王淑媚配置区-->
+    <!--王淑媚配置区-->
     <bean id="ordersImpl" class="cn.edu.zjut.dao.OrdersImpl">
         <property name="sqlSession" ref="sqlSession"/>
     </bean>

@@ -1,33 +1,83 @@
 package cn.edu.zjut.service;
 
 import cn.edu.zjut.dao.EnterpriseDepartmentMapper;
-import cn.edu.zjut.po.EnterpriseDepartment;
-import cn.edu.zjut.po.EnterpriseUser;
+import cn.edu.zjut.dao.EnterpriseImpl;
+import cn.edu.zjut.po.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EnterpriseDepartmentService {
-    private EnterpriseDepartmentMapper enterpriseDepartmentdao;
+    private EnterpriseDepartmentMapper enterpriseDepartmentMapper;
+    private EnterpriseImpl enterpriseImpl;
 
-    public EnterpriseDepartmentMapper getEnterpriseDepartmentdao() {
-        return enterpriseDepartmentdao;
+    public EnterpriseDepartmentMapper getEnterpriseDepartmentMapper() {
+        return enterpriseDepartmentMapper;
     }
 
-    public void setEnterpriseDepartmentdao(EnterpriseDepartmentMapper enterpriseDepartmentdao) {
-        this.enterpriseDepartmentdao = enterpriseDepartmentdao;
+    public void setEnterpriseDepartmentMapper(EnterpriseDepartmentMapper enterpriseDepartmentMapper) {
+        this.enterpriseDepartmentMapper = enterpriseDepartmentMapper;
     }
 
-    public List<EnterpriseUser> getAllEnterpriseUser(){
-        List<EnterpriseUser> enterpriseDepartmentlist = enterpriseDepartmentdao.getAllEnterpriseUser();
-        return enterpriseDepartmentlist;
+    public List<EnterpriseUser> getAllEnterpriseUser() {
+        return enterpriseDepartmentMapper.getAllEnterpriseUser();
     }
 
-    public void addEnterpriseDepartment(EnterpriseDepartment enterpriseDepartment){
-        enterpriseDepartmentdao.addEnterpriseDepartment(enterpriseDepartment);
+    public void addEnterpriseDepartment(EnterpriseDepartment enterpriseDepartment) {
+        enterpriseDepartmentMapper.addEnterpriseDepartment(enterpriseDepartment);
     }
 
-    public List<EnterpriseDepartment> getAllEnterpriseDepartment(){
-        List<EnterpriseDepartment> enterpriseDepartmentlists = enterpriseDepartmentdao.getAllEnterpriseDepartment();
-        return enterpriseDepartmentlists;
+    public List<EnterpriseDepartment> getAllEnterpriseDepartment() {
+        return enterpriseDepartmentMapper.getAllEnterpriseDepartment();
+    }
+
+    public List<EnterpriseDepartmentDisplay> getAllEnterpriseDepartmentDisplay(int id) {
+        return enterpriseDepartmentMapper.getAllEnterpriseDepartmentDisplay(id);
+    }
+
+    public List<EnterpriseDepartment> displayAddEnterpriseDepartment(EnterpriseAgency enterpriseAgency) {
+
+        List<EnterpriseDepartment> tmp = enterpriseDepartmentMapper.getAllEnterpriseDepartment();
+        List<EnterpriseDepartment> departments = new ArrayList<>();
+        for (EnterpriseDepartment enterpriseDepartment : tmp) {
+            if (enterpriseDepartment.getEnterpriseId() == enterpriseAgency.getEnterpriseId()) {
+                departments.add(enterpriseDepartment);
+            }
+        }
+        return departments;
+    }
+
+    public EnterpriseImpl getEnterpriseImpl() {
+        return enterpriseImpl;
+    }
+
+    public void setEnterpriseImpl(EnterpriseImpl enterpriseImpl) {
+        this.enterpriseImpl = enterpriseImpl;
+    }
+
+    public EnterpriseDepartment getEnterpriseDepartmentById(int id) {
+        return enterpriseDepartmentMapper.getEnterpriseDepartmentById(id);
+    }
+
+    public Enterprise getEnterpriseById(int id) {
+        return enterpriseImpl.getEnterpriseById(id);
+    }
+
+    public boolean deleteDepartment(int id) {
+        List<EnterpriseDepartment> departments = enterpriseDepartmentMapper.getSubDepartment(id);
+        if (departments.size() != 0) {
+            return false;
+        }
+        enterpriseDepartmentMapper.deleteDepartment(id);
+        return true;
+    }
+
+    public String updateUserDepartment(int id, int departmentId) {
+        enterpriseDepartmentMapper.updateUserDepartment(id, departmentId);
+        return "success";
+    }
+
+    public void deleteConsumer(int id) {
+        enterpriseDepartmentMapper.deleteConsumer(id);
     }
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zjut.dao.EnterpriseMapper">
+    <resultMap id="EnterpriseResultMap" type="cn.edu.zjut.po.Enterprise">
+        <result property="name" column="name"/>
+        <result property="enterpriseId" column="enterpriseId"/>
+    </resultMap>
+
+    <select id="getEnterpriseById" resultMap="EnterpriseResultMap">
+        select * from WeIn.enterprise where enterpriseId = #{0}
+    </select>
+</mapper>

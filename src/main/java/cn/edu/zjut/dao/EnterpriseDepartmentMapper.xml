@@ -10,10 +10,6 @@
         <result property="consumerId" column="consumerId"/>
     </resultMap>
 
-    <select id="getAllEnterpriseUser" resultMap="EnterpriseUserResultMap">
-        select enterpriseDepartmentName,enterpriseDepartmentId,name,consumerId from WeIn.consumer,WeIn.enterprisedepartment where enterpriseDepartmentNumber=enterpriseDepartmentId;
-    </select>
-
     <resultMap id="EnterpriseDepartmentResultMap" type="cn.edu.zjut.po.EnterpriseDepartment">
         <result property="enterpriseDepartmentName" column="enterpriseDepartmentName"/>
         <result property="enterpriseDepartmentId" column="enterpriseDepartmentId"/>
@@ -21,12 +17,59 @@
         <result property="enterpriseId" column="enterpriseId"/>
     </resultMap>
 
+    <resultMap id="EnterpriseDepartmentDisplayResultMap" type="cn.edu.zjut.po.EnterpriseDepartmentDisplay">
+        <result property="enterpriseDepartmentName" column="enterpriseDepartmentName"/>
+        <result property="enterpriseDepartmentId" column="enterpriseDepartmentId"/>
+        <result property="faDepartment" column="faDepartment"/>
+        <result property="enterpriseId" column="enterpriseId"/>
+    </resultMap>
+
+
+    <select id="getAllEnterpriseUser" resultMap="EnterpriseUserResultMap">
+        select enterpriseDepartmentName,enterpriseDepartmentId,name,consumerId from
+        WeIn.consumer,WeIn.enterprisedepartment where enterpriseDepartmentNumber=enterpriseDepartmentId;
+    </select>
+
+    <update id="updateUserDepartment">
+        update WeIn.consumer set enterpriseDepartmentNumber = #{departmentId} where consumerId = #{id}
+    </update>
+
+    <delete id="deleteConsumer">
+        delete
+        from consumer
+        where consumerId = #{0}
+    </delete>
+
     <select id="getAllEnterpriseDepartment" resultMap="EnterpriseDepartmentResultMap">
         select * from WeIn.enterprisedepartment;
     </select>
 
     <insert id="addEnterpriseDepartment" parameterType="cn.edu.zjut.po.EnterpriseDepartment">
-        insert into WeIn.enterpriseDepartment(enterpriseDepartmentName,enterpriseDepartmentpre,enterpriseId) values(#{enterpriseDepartmentName},#{enterpriseDepartmentpre},#{enterpriseId});
+        insert into WeIn.enterpriseDepartment(enterpriseDepartmentName,enterpriseDepartmentpre,enterpriseId)
+        values(#{enterpriseDepartmentName},#{enterpriseDepartmentpre},#{enterpriseId});
     </insert>
+
+    <select id="getEnterpriseDepartmentById" resultMap="EnterpriseDepartmentResultMap">
+        select * from WeIn.enterprisedepartment where enterprisedepartmentid = #{0}
+    </select>
+
+
+    <select id="getAllEnterpriseDepartmentDisplay" resultMap="EnterpriseDepartmentDisplayResultMap">
+        select A.enterpriseDepartmentName, A.enterpriseDepartmentId, B.enterpriseDepartmentName faDepartment,
+        A.enterpriseId
+        from enterprisedepartment A,
+        enterprisedepartment B
+        where A.enterpriseDepartmentpre = B.enterpriseDepartmentId and A.enterpriseid = #{0};
+    </select>
+
+    <delete id="deleteDepartment">
+        delete from WeIn.enterprisedepartment where enterpriseDepartmentId = #{0}
+    </delete>
+
+    <select id="getSubDepartment" resultMap="EnterpriseDepartmentResultMap">
+        select *
+        from enterprisedepartment
+        where enterpriseDepartmentpre = #{0};
+    </select>
 
 </mapper>

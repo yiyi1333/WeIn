@@ -41,44 +41,85 @@
                 /changeGoods.jsp
             </result>
         </action>
+
+        <action name="addEnterpriseAgency" class="cn.edu.zjut.action.ConsumerAction" method="addEnterpriseAgency">
+            <result name="success">/addConsumer.jsp</result>
+        </action>
+
+        <action name="addenterpriseDepartment" class="cn.edu.zjut.action.EnterpriseDepartmentAction"
+                method="addEnterpriseDepartment">
+            <result name="success" type="chain">displayAddEnterpriseDepartment</result>
+            <result name="failed">/500.jsp</result>
+            <exception-mapping exception="java.nio.file.AccessDeniedException" result="error"/>
+            <result name="error">/500.jsp</result>
+        </action>
+
+        <action name="displayAllDepartment" class="cn.edu.zjut.action.EnterpriseDepartmentAction"
+                method="displayAllDepartment">
+            <result name="success">/displayAllDepartment.jsp</result>
+            <exception-mapping exception="java.nio.file.AccessDeniedException" result="error"/>
+            <result name="error">/500.jsp</result>
+        </action>
+
+        <action name="deleteDepartment" class="cn.edu.zjut.action.EnterpriseDepartmentAction" method="deleteDepartment">
+            <result name="success" type="chain">displayAllDepartment</result>
+            <result name="failed">/500.jsp</result>
+        </action>
+
+        <action name="displayAddEnterpriseDepartment" class="cn.edu.zjut.action.EnterpriseDepartmentAction"
+                method="displayAddEnterpriseDepartment">
+            <result name="success">/addEnterpriseDepartment.jsp</result>
+        </action>
+
+
+        <action name="showenterpriseuser" class="cn.edu.zjut.action.EnterpriseDepartmentAction"
+                method="getEnterpriseList">
+            <result name="success">/showEnterpriseDepartmentUser.jsp</result>
+        </action>
+
+        <action name="updateUserDepartment" class="cn.edu.zjut.action.EnterpriseDepartmentAction"
+                method="updateUserDepartment">
+            <result name="success" type="chain">showenterpriseuser</result>
+        </action>
+
+        <action name="deleteConsumer" class="cn.edu.zjut.action.EnterpriseDepartmentAction" method="deleteConsumer">
+            <result name="success" type="chain">showenterpriseuser</result>
+        </action>
         <!--        余秋霞配置区-->
         <action name="displayShopOrders" class="cn.edu.zjut.action.OrdersAction" method="displayShopOrders">
             <result name="displayShopOrdersSuccess">/ordersList.jsp</result>
         </action>
-        <action name="displayShopWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction" method="displayShopWareHouseAddress">
+        <action name="displayShopWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction"
+                method="displayShopWareHouseAddress">
             <result name="displayShopWareHouseAddressSuccess">/wareHouseAddressList.jsp</result>
         </action>
-        <action name="registerShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="registerShopmanager">
+        <action name="registerShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
+                method="registerShopmanager">
             <result name="success">/platformAdministraorIndex.jsp</result>
         </action>
-        <action name="registerEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="registerEnterpriseagency">
+        <action name="registerEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
+                method="registerEnterpriseagency">
             <result name="success">/platformAdministraorIndex.jsp</result>
         </action>
-        <action name="displayShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="displayShopmanager">
+        <action name="displayShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
+                method="displayShopmanager">
             <!--            <result name="success" type="json">-->
             <result name="success">/shopmanagerList.jsp</result>
             <!--            </result>-->
         </action>
-        <action name="displayEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="displayenterpriseagency">
+        <action name="displayEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
+                method="displayenterpriseagency">
             <!--            <result name="success" type="json">-->
             <result name="success">/enterpriseagencyList.jsp</result>
             <!--            </result>-->
         </action>
         <!--        王怡欣配置区-->
         <!--        王淑媚配置区-->
-        <action name="addconsumer" class="cn.edu.zjut.action.ConsumerAction" method="addConsumer">
-            <result name="success">/addConsumer.jsp</result>
-        </action>
-        <action name="showenterpriseuser" class="cn.edu.zjut.action.EnterpriseDepartmentAction" method="getEnterpriseList">
-            <result name="success">/showEnterpriseDepartmentUser.jsp</result>
-        </action>
-        <action name="addenterpriseDepartment" class="cn.edu.zjut.action.EnterpriseDepartmentAction" method="addEnterpriseDepartment">
-            <result name="success">/addEnterpriseDepartment.jsp</result>
-        </action>
         <action name="displayShopOrders" class="cn.edu.zjut.action.OrdersAction" method="displayShopOrders">
             <result name="displayShopOrdersSuccess">/ordersList.jsp</result>
         </action>
-        <action name="displayShopWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction" method="displayShopWareHouseAddress">
+        <action name="displayShopWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction"
+                method="displayShopWareHouseAddress">
             <result name="displayShopWareHouseAddressSuccess">/wareHouseAddressList.jsp</result>
         </action>
     </package>

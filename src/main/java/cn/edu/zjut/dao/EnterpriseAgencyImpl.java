@@ -22,6 +22,7 @@ public class EnterpriseAgencyImpl implements EnterpriseAgencyMapper {
         return sqlSession.getMapper(EnterpriseAgencyMapper.class).getAllEnterpriseAgency();
     }
 
+    @Override
     public void addEnterpriseAgency(EnterpriseAgency enterpriseAgency) {
         System.out.println("execute --registerEnterpriseagency()-- method.");
         sqlSession.getMapper(EnterpriseAgencyMapper.class).addEnterpriseAgency(enterpriseAgency);

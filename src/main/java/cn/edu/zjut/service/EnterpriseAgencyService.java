@@ -5,6 +5,7 @@ import cn.edu.zjut.dao.EnterpriseAgencyMapper;
 import cn.edu.zjut.po.EnterpriseAgency;
 
 import java.util.List;
+import java.util.Objects;
 
 public class EnterpriseAgencyService {
     private EnterpriseAgencyImpl enterpriseAgencyImpl;
@@ -23,10 +24,25 @@ public class EnterpriseAgencyService {
 
         List<EnterpriseAgency> agencyList = enterpriseAgencyImpl.getAllEnterpriseAgency();
         for (EnterpriseAgency agency : agencyList) {
-            if (agency.getEnterpriseAgencyAccount().equals(enterpriseAgency.getEnterpriseAgencyAccount()) && agency.getEnterpriseAgencyPassword().equals(enterpriseAgency.getEnterpriseAgencyPassword())) {
+            if (Objects.equals(agency.getEnterpriseAgencyAccount(), enterpriseAgency.getEnterpriseAgencyAccount()) && Objects.equals(agency.getEnterpriseAgencyPassword(), enterpriseAgency.getEnterpriseAgencyPassword())) {
                 return agency;
             }
         }
         return null;
+    }
+
+    public void addEnterpriseAgency(EnterpriseAgency enterpriseAgency) {
+        List<EnterpriseAgency> agencyList = enterpriseAgencyImpl.getAllEnterpriseAgency();
+        boolean ok = false;
+        for (EnterpriseAgency agency : agencyList) {
+            if (Objects.equals(agency.getEnterpriseAgencyAccount(), enterpriseAgency.getEnterpriseAgencyAccount())) {
+                ok = true;
+                break;
+            }
+        }
+        if (!ok) {
+            return;
+        }
+        enterpriseAgencyImpl.addEnterpriseAgency(enterpriseAgency);
     }
 }

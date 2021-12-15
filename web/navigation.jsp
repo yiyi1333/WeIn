@@ -21,34 +21,29 @@
                     IN+
                 </div>
             </li>
-            <li class="active">
-                <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span
-                        class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li class="active"><a href="index.html">主页示例 v.1</a></li>
-                    <li><a href="dashboard_2.html">主页示例 v.2</a></li>
-                    <li><a href="dashboard_3.html">主页示例 v.3</a></li>
-                    <li><a href="dashboard_4_1.html">主页示例 v.4</a></li>
-                    <li><a href="dashboard_5.html">主页示例 v.5 </a></li>
-                </ul>
+            <li>
+                <a href="index.jsp"><i class="fa fa-diamond"></i> <span class="nav-label">主页</span></a>
             </li>
             <li>
-                <a href="./displayShopGoods"><i class="fa fa-diamond"></i> <span class="nav-label">店铺商品</span></a>
+                <a href="displayShopGoods.action"><i class="fa fa-diamond"></i> <span class="nav-label">店铺商品</span></a>
             </li>
             <li>
-                <a href="./displayShopOrders"><i class="fa fa-diamond"></i> <span class="nav-label">店铺订单</span></a>
+                <a href="displayShopOrders.action"><i class="fa fa-diamond"></i> <span class="nav-label">店铺订单</span></a>
             </li>
             <li>
-                <a href="./displayShopWareHouseAddress"><i class="fa fa-envelope"></i> <span class="nav-label">发货地址</span></a>
+                <a href="displayShopWareHouseAddress.action"><i class="fa fa-envelope"></i> <span class="nav-label">发货地址</span></a>
             </li>
             <li>
                 <a href="addConsumer.jsp"><i class="fa fa-envelope"></i> <span class="nav-label">新增企业用户</span></a>
             </li>
             <li>
-                <a href="addEnterpriseDepartment.jsp"><i class="fa fa-envelope"></i> <span class="nav-label">新增部门</span></a>
+                <a href="displayAddEnterpriseDepartment.action"><i class="fa fa-envelope"></i> <span class="nav-label">新增部门</span></a>
             </li>
             <li>
                 <a href="showenterpriseuser.action"><i class="fa fa-envelope"></i> <span class="nav-label">展示企业人员</span></a>
+            </li>
+            <li>
+                <a href="displayAllDepartment.action"><i class="fa fa-envelope"></i> <span class="nav-label">所有企业部门</span></a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">图表</span><span

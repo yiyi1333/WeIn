@@ -17,11 +17,13 @@ public class ShopManagerImpl implements ShopManagerMapper {
     }
 
 
+    @Override
     public List<ShopManager> getAllShopManager() {
         System.out.println("execute --getAllShopManager()-- method.");
         return sqlSession.getMapper(ShopManagerMapper.class).getAllShopManager();
     }
 
+    @Override
     public void addShopManager(ShopManager shopManager) {
         System.out.println("execute --registerShopmanager()-- method.");
         sqlSession.getMapper(ShopManagerMapper.class).addShopManager(shopManager);

@@ -21,4 +21,5 @@
         insert into WeIn.consumer(idCardNumber,name,phoneNumber,password,email,enterpriseDepartmentNumber) values(#{idCardNumber},#{name},#{phoneNumber},#{password},#{email},#{enterpriseDepartmentNumber});
     </insert>
 
+
 </mapper>

@@ -9,6 +9,23 @@
     </context-param>
 
     <filter>
+        <filter-name>EnterpriseFilter</filter-name>
+        <filter-class>cn.edu.zjut.filter.EnterpriseFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>EnterpriseFilter</filter-name>
+        <url-pattern>/addConsumer.jsp</url-pattern>
+        <url-pattern>/deleteConsumer.action</url-pattern>
+        <url-pattern>/updateUserDepartment.action</url-pattern>
+        <url-pattern>/showenterpriseuser.action</url-pattern>
+        <url-pattern>/deleteDepartment.action</url-pattern>
+        <url-pattern>/displayAllDepartment.action</url-pattern>
+        <url-pattern>/addenterpriseDepartment.action</url-pattern>
+        <url-pattern>/displayAddEnterpriseDepartment.action</url-pattern>
+    </filter-mapping>
+
+    <filter>
         <filter-name>struts2</filter-name>
         <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
     </filter>
@@ -16,9 +33,11 @@
         <filter-name>struts2</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
     <listener>
         <listener-class>
             org.springframework.web.context.ContextLoaderListener
         </listener-class>
     </listener>
+
 </web-app>
