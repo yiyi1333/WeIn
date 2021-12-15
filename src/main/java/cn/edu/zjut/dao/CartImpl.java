@@ -19,4 +19,19 @@ public class CartImpl implements CartMapper{
     public ArrayList getConsumerCart(int consumerId) {
         return sqlSession.getMapper(CartMapper.class).getConsumerCart(consumerId);
     }
+
+    @Override
+    public Integer getCartNum(int consumerId, int goodsId) {
+        return sqlSession.getMapper(CartMapper.class).getCartNum(consumerId, goodsId);
+    }
+
+    @Override
+    public Integer addOneToCart(int consumerId, int goodsId) {
+        return sqlSession.getMapper(CartMapper.class).addOneToCart(consumerId, goodsId);
+    }
+
+    @Override
+    public Integer insertCart(int consumerId, int goodsId) {
+        return sqlSession.getMapper(CartMapper.class).insertCart(consumerId, goodsId);
+    }
 }

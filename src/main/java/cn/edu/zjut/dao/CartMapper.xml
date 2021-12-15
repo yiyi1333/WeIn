@@ -27,4 +27,21 @@
         from goods, shop, cart
         where cart.goodsId = goods.goodsId and goods.shopId = shop.shopId and cart.consumerId = #{consumerId};
     </select>
+<!--查询某个购物车记录的数量-->
+    <select id="getCartNum" resultType="java.lang.Integer" parameterType="int">
+        select goodsNum
+        from cart
+        where consumerId = #{consumerID} and goodsId = #{goodsId};
+    </select>
+<!--    添加购物车记录-->
+    <insert id="insertCart" parameterType="int">
+        insert into cart
+        values (#{consumerID}, #{goodsId}, 1);
+    </insert>
+<!--    购物车数量加1-->
+    <update id="addOneToCart" parameterType="int">
+        update cart
+        set goodsNum = goodsNum + 1
+        where consumerId = #{consumerID} and goodsId = #{goodsId};
+    </update>
 </mapper>

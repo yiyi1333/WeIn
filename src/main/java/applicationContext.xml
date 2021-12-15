@@ -75,6 +75,7 @@
 
     <bean id="cartService" class="cn.edu.zjut.service.CartService">
         <property name="cartDao" ref="cartDao"/>
+        <property name="goodsDao" ref="goodsImpl"/>
     </bean>
 
     <bean id="cartAction" class="cn.edu.zjut.action.CartAction">
