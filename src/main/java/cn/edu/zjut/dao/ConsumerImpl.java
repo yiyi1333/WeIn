@@ -38,5 +38,10 @@ public class ConsumerImpl implements ConsumerMapper{
         return sqlSession.getMapper(ConsumerMapper.class).searchEnterpriseConsumer(phoneNumber);
     }
 
+    @Override
+    public void updateWxInfo(String phoneNumber, String nickName, String avatarUrl) {
+        sqlSession.getMapper(ConsumerMapper.class).updateWxInfo(phoneNumber, nickName, avatarUrl);
+    }
+
 
 }

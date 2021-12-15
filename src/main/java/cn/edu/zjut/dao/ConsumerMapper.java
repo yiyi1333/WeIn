@@ -13,4 +13,6 @@ public interface ConsumerMapper {
     public Consumer searchUser(@Param("phoneNumber") String phoneNumber);
     //按手机号查询某企业消费者
     public EnterpriseConsumer searchEnterpriseConsumer(@Param("phoneNumber") String phoneNumber);
+
+    public void updateWxInfo(@Param("phoneNumber")String phoneNumber, @Param("nickName") String nickName, @Param("avatarUrl") String avatarUrl);
 }

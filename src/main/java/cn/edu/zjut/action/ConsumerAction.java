@@ -14,6 +14,24 @@ public class ConsumerAction implements SessionAware{
     private Consumer consumer;
     private EnterpriseConsumer enterpriseConsumer;
     private String phoneNumber;
+    private String nickName;
+    private String avatarUrl;
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
 
     public EnterpriseConsumer getEnterpriseConsumer() {
         return enterpriseConsumer;
@@ -70,6 +88,11 @@ public class ConsumerAction implements SessionAware{
     public String login(){
         System.out.println("PhoneNumber：" + phoneNumber );
         enterpriseConsumer = consumerService.loginAndRegister(phoneNumber);
+        return "success";
+    }
+//    响应获取授权数据之后写入数据库
+    public String authorize(){
+        enterpriseConsumer = consumerService.updateAuthorizeInfo(nickName, avatarUrl, phoneNumber);
         return "success";
     }
 }

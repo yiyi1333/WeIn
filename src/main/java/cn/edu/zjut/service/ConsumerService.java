@@ -55,4 +55,11 @@ public class ConsumerService {
         }
         return enterpriseConsumer;
     }
+
+//    更新授权数据
+    public EnterpriseConsumer updateAuthorizeInfo(String nickName, String avatarUrl, String phoneName){
+        consumerdao.updateWxInfo(phoneName, nickName, avatarUrl);
+        EnterpriseConsumer enterpriseConsumer = consumerdao.searchEnterpriseConsumer(phoneName);
+        return enterpriseConsumer;
+    }
 }

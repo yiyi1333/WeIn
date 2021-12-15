@@ -62,4 +62,10 @@
         and enterprisedepartment.enterpriseId = enterprise.enterpriseId
         and consumer.phoneNumber = #{phoneNumber};
     </select>
+<!--    更新授权数据-->
+    <update id="updateWxInfo" parameterType="java.lang.String">
+        update consumer
+        set nickName = #{nickName}, avatarUrl = #{avatarUrl}
+        where phoneNumber = #{phoneNumber};
+    </update>
 </mapper>

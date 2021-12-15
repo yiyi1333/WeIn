@@ -29,4 +29,8 @@ public class CartAction {
         cartList = cartService.getConsumerCartById(4);
         return "success";
     }
+
+    public String addCart(){
+        return "success";
+    }
 }
