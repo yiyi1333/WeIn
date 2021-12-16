@@ -9,7 +9,11 @@ public class Consumer implements Serializable {
     private String phoneNumber;
     private String password;
     private String email;
-    private int enterpriseDepartmentNumber;
+    private String avatarUrl;
+    private Integer enterpriseDepartmentNumber;
+    private String nickName;
+    private Integer certification;
+
     @Override
     public String toString() {
         return "Consumer{" +
@@ -19,8 +23,43 @@ public class Consumer implements Serializable {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
+                ", avatarUrl='" + avatarUrl + '\'' +
                 ", enterpriseDepartmentNumber=" + enterpriseDepartmentNumber +
+                ", nickName='" + nickName + '\'' +
+                ", certification=" + certification +
                 '}';
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public Integer getCertification() {
+        return certification;
+    }
+
+    public void setCertification(Integer certification) {
+        this.certification = certification;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public Integer getEnterpriseDepartmentNumber() {
+        return enterpriseDepartmentNumber;
+    }
+
+    public void setEnterpriseDepartmentNumber(Integer enterpriseDepartmentNumber) {
+        this.enterpriseDepartmentNumber = enterpriseDepartmentNumber;
     }
 
     public String getName() {
@@ -33,10 +72,6 @@ public class Consumer implements Serializable {
 
     public int getConsumerId() {
         return consumerId;
-    }
-
-    public int getEnterpriseDepartmentNumber() {
-        return enterpriseDepartmentNumber;
     }
 
     public String getIdCardNumber() {
@@ -59,10 +94,6 @@ public class Consumer implements Serializable {
         this.consumerId = consumerId;
     }
 
-    public void setEnterpriseDepartmentNumber(int enterpriseDepartmentNumber) {
-        this.enterpriseDepartmentNumber = enterpriseDepartmentNumber;
-    }
-
     public void setIdCardNumber(String idCardNumber) {
         this.idCardNumber = idCardNumber;
     }
@@ -80,13 +111,17 @@ public class Consumer implements Serializable {
     }
 
     public Consumer(){}
-    public Consumer(int consumerId,String idCardNumber, String name, String phoneNumber, String password,String email, int enterpriseDepartmentNumber){
+
+    public Consumer(int consumerId, String idCardNumber, String name, String phoneNumber, String password, String email, String avatarUrl, Integer enterpriseDepartmentNumber, String nickName, Integer certification) {
         this.consumerId = consumerId;
         this.idCardNumber = idCardNumber;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.password = password;
         this.email = email;
+        this.avatarUrl = avatarUrl;
         this.enterpriseDepartmentNumber = enterpriseDepartmentNumber;
+        this.nickName = nickName;
+        this.certification = certification;
     }
 }

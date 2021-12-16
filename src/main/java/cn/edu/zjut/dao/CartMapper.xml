@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zjut.dao.CartMapper">
+    <resultMap id="CartMap" type="cn.edu.zjut.po.Cart">
+        <association property="shop" javaType="cn.edu.zjut.po.Shop">
+            <id property="shopId" column="shopId"/>
+            <result property="shopName" column="shopName"/>
+            <result property="shopDescription" column="shopDescription"/>
+        </association>
+        <collection property="goodsList" ofType="cn.edu.zjut.po.CartGoods">
+            <result property="goodsNum" column="goodsNum"/>
+            <association property="goods" javaType="cn.edu.zjut.po.Goods">
+                <id property="goodsId" column="goodsId"/>
+                <result property="goodsName" column="goodsName"/>
+                <result property="goodsPrice" column="goodPrice"/>
+                <result property="goodsDetails" column="goodsDetails"/>
+                <result property="goodsStock" column="goodsStock"/>
+                <result property="tags" column="tags"/>
+                <result property="goodsImage" column="goodsImage"/>
+                <result property="shopId" column="shopId"/>
+            </association>
+        </collection>
+    </resultMap>
+    <select id="getConsumerCart" parameterType="int" resultMap="CartMap">
+        select goods.*, cart.*, shop.*
+        from goods, shop, cart
+        where cart.goodsId = goods.goodsId and goods.shopId = shop.shopId and cart.consumerId = #{consumerId};
+    </select>
+<!--查询某个购物车记录的数量-->
+    <select id="getCartNum" resultType="java.lang.Integer" parameterType="int">
+        select goodsNum
+        from cart
+        where consumerId = #{consumerID} and goodsId = #{goodsId};
+    </select>
+<!--    添加购物车记录-->
+    <insert id="insertCart" parameterType="int">
+        insert into cart
+        values (#{consumerID}, #{goodsId}, 1);
+    </insert>
+<!--    购物车数量加1-->
+    <update id="addOneToCart" parameterType="int">
+        update cart
+        set goodsNum = goodsNum + 1
+        where consumerId = #{consumerID} and goodsId = #{goodsId};
+    </update>
+</mapper>

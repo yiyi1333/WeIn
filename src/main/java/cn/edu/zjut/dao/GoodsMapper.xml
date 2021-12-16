@@ -11,6 +11,7 @@
         <result property="goodsStock" column="goodsStock"/>
         <result property="tags" column="tags"/>
         <result property="goodsImage" column="goodsImage"/>
+        <result property="goodsWeight" column="goodsWeight"/>
         <result property="shopId" column="goods.shopId"/>
         <association property="shop" javaType="cn.edu.zjut.po.Shop">
             <result property="shopId" column="shop.shopId"/>
@@ -37,6 +38,7 @@
         <result property="shopId" column="shopId"/>
         <result property="tags" column="tags"/>
         <result property="goodsImage" column="goodsImage"/>
+        <result property="goodsWeight" column="goodsWeight"/>
     </resultMap>
 
     <select id="getAllGoods" resultMap="GoodsResultMap">

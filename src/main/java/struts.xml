@@ -20,7 +20,38 @@
                 <param name="root">good</param>
             </result>
         </action>
+        <action name="getCart" class="cn.edu.zjut.action.CartAction" method="getCart">
+            <result name="success" type="json">
+                <param name="root">cartList</param>
+            </result>
+        </action>
 
+        <action name="consumerLoginAndRegister" class="cn.edu.zjut.action.ConsumerAction" method="login">
+            <result name="success" type="json">
+                <param name="root">enterpriseConsumer</param>
+            </result>
+        </action>
+
+        <action name="decode" class="cn.edu.zjut.action.DecodeAction" method="Decode">
+            <result name="success" type="json">
+                <param name="root">decodeResult</param>
+            </result>
+        </action>
+        
+        <action name="authorize" class="cn.edu.zjut.action.ConsumerAction" method="authorize">
+            <result name="success" type="json">
+                <param name="root">enterpriseConsumer</param>
+            </result>
+        </action>
+
+        <action name="addCart" class="cn.edu.zjut.action.CartAction" method="addCart">
+            <result name="success" type="json">
+                <param name="root">cartList</param>
+            </result>
+            <result name="fail" type="json">
+                <param name="root">message</param>
+            </result>
+        </action>
 
         <!--        张宇翔配置区-->
         <action name="login" class="cn.edu.zjut.action.UserAction" method="login">

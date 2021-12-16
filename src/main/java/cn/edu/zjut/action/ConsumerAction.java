@@ -1,6 +1,7 @@
 package cn.edu.zjut.action;
 
 import cn.edu.zjut.po.Consumer;
+import cn.edu.zjut.po.EnterpriseConsumer;
 import cn.edu.zjut.service.ConsumerService;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -11,6 +12,42 @@ public class ConsumerAction implements SessionAware{
     private ConsumerService consumerService;
     private Map<String, Object> session;
     private Consumer consumer;
+    private EnterpriseConsumer enterpriseConsumer;
+    private String phoneNumber;
+    private String nickName;
+    private String avatarUrl;
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public EnterpriseConsumer getEnterpriseConsumer() {
+        return enterpriseConsumer;
+    }
+
+    public void setEnterpriseConsumer(EnterpriseConsumer enterpriseConsumer) {
+        this.enterpriseConsumer = enterpriseConsumer;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     public ConsumerService getConsumerService() {
         return consumerService;
@@ -45,6 +82,17 @@ public class ConsumerAction implements SessionAware{
 
     public String addConsumer(){
         consumerService.addConsumer(consumer);
+        return "success";
+    }
+
+    public String login(){
+        System.out.println("PhoneNumber：" + phoneNumber );
+        enterpriseConsumer = consumerService.loginAndRegister(phoneNumber);
+        return "success";
+    }
+//    响应获取授权数据之后写入数据库
+    public String authorize(){
+        enterpriseConsumer = consumerService.updateAuthorizeInfo(nickName, avatarUrl, phoneNumber);
         return "success";
     }
 }
