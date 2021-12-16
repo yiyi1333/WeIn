@@ -89,7 +89,24 @@
 
     <bean id="registerShopmanagerAndEnterpriseagencyAction"
           class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" scope="prototype">
-        <property name="registerShopmanagerAndEnterpriseagencyService" ref="registerShopmanagerAndEnterpriseagencyService"></property>
+        <property name="registerShopmanagerAndEnterpriseagencyService"
+                  ref="registerShopmanagerAndEnterpriseagencyService"></property>
+    </bean>
+
+    <!--电子合同接口-->
+    <bean id = "electronicContractsimpl" class="cn.edu.zjut.dao.ElectronicContractsImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <!--电子合同service-->
+    <bean id = "electronicContractsService" class="cn.edu.zjut.service.ElectronicContractsService" scope="prototype">
+        <property name="electronicContractsimpl" ref="electronicContractsimpl"/>
+     </bean>
+
+    <!--电子合同action-->
+    <bean id="enterpriseagencyAction"
+          class="cn.edu.zjut.action.ElectronicContractsAction" scope="prototype">
+        <property name="electronicContractsService" ref="electronicContractsService"></property>
     </bean>
 
     <!--王怡欣配置区-->
