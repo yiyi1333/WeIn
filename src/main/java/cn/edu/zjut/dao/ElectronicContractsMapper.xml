@@ -21,8 +21,13 @@
         select * from electroniccontracts
     </select>
 
-    <insert id="addElectronicContracts" parameterType="cn.edu.zjut.po.ElectronicContracts" useGeneratedKeys="true" keyProperty="electronicContractsId">
-        insert into electroniccontracts(state, enterpriseId,enterpriseAgencyId,starttime,endtime,goodsId,shopId,
+
+    <select id="queryElectronicContractsByEnterpriseId" resultMap="ElectronicContractsResultMap">
+        select * from electroniccontracts where enterpriseId = #{0};
+    </select>
+
+    <insert id="addElectronicContracts" useGeneratedKeys="true" keyProperty="id">
+        insert into electroniccontracts(efficiency, enterpriseId,enterpriseAgencyId,starttime,endtime,goodsId,shopId,
         enterpriseDepartmentId, discount)
         values (#{state} ,#{enterpriseId}
         ,#{enterpriseAgencyId}
@@ -30,4 +35,7 @@
         ,#{shopId} ,#{enterpriseDepartmentId} ,#{discount})
     </insert>
 
+    <update id="disableContracts">
+        update electroniccontracts set state = 2 where electronicContractsId = #{0};
+    </update>
 </mapper>

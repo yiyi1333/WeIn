@@ -164,8 +164,9 @@
             <result name="success">/deleteEnterpriseagency.jsp</result>
         </action>
         <!--查询已有合同-->
-        <action name="queryElectronicContracts" class="cn.edu.zjut.action.ElectronicContractsAction"
-                method="queryElectronicContracts">
+
+        <action name="queryElectronicContractsByEnterpriseId" class="cn.edu.zjut.action.ElectronicContractsAction"
+                method="queryElectronicContractsByEnterpriseId">
             <result name="success">/showallelectronicContracts.jsp</result>
         </action>
 

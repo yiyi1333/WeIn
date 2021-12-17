@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!--    数据库配置-->
     <!--    数据源-->
@@ -40,7 +40,19 @@
 
     <bean id="enterpriseDepartmentAction" class="cn.edu.zjut.action.EnterpriseDepartmentAction" scope="prototype">
         <property name="enterpriseDepartmentService" ref="enterpriseDepartmentService"/>
+        <property name="electronicContractsService" ref="electronicContractsService"/>
     </bean>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <constructor-arg index="0" ref="dataSource"/>
+    </bean>
+
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="deleteDepartment" propagation="REQUIRED"/>
+            <tx:method name="*" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
     <!--郑展逸配置区-->
     <!--    广告-->
     <bean id="advertisementImpl" class="cn.edu.zjut.dao.AdvertisementImpl">
@@ -129,8 +141,11 @@
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
     <!--电子合同service-->
-    <bean id="electronicContractsService" class="cn.edu.zjut.service.ElectronicContractsService" scope="prototype">
+    <bean id="electronicContractsService" class="cn.edu.zjut.service.ElectronicContractsService">
         <property name="electronicContractsimpl" ref="electronicContractsimpl"/>
+        <property name="enterpriseImpl" ref="enterpriseImpl"/>
+        <property name="goodsImpl" ref="goodsImpl"/>
+        <property name="enterpriseDepartmentImpl" ref="enterpriseDepartmentImpl"/>
     </bean>
 
     <!--电子合同action-->

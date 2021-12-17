@@ -3,6 +3,7 @@ package cn.edu.zjut.action;
 import cn.edu.zjut.po.ElectronicContracts;
 import cn.edu.zjut.po.EnterpriseDepartment;
 import cn.edu.zjut.service.ElectronicContractsService;
+import cn.edu.zjut.service.EnterpriseDepartmentService;
 import cn.edu.zjut.service.RegisterShopmanagerAndEnterpriseagencyService;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
@@ -22,9 +23,9 @@ public class ElectronicContractsAction implements SessionAware, ServletRequestAw
     private Map<String, Object> session;
     private HttpServletRequest httpServletRequest;
 
+    private String enterpriseId;
     //获得企业结构用
     private RegisterShopmanagerAndEnterpriseagencyService registerShopmanagerAndEnterpriseagencyService;
-
 
     @Override
     public void setSession(Map<String, Object> session) {
@@ -96,7 +97,6 @@ public class ElectronicContractsAction implements SessionAware, ServletRequestAw
         }
         return "success";
     }
-
     public ElectronicContracts getElectronicContracts() {
         return electronicContracts;
     }
@@ -148,6 +148,14 @@ public class ElectronicContractsAction implements SessionAware, ServletRequestAw
     @Override
     public void setServletRequest(HttpServletRequest httpServletRequest) {
         this.httpServletRequest = httpServletRequest;
+    }
+
+    // 企业管理员查看企业的所有合同
+    public String queryElectronicContractsByEnterpriseId() {
+        Integer id = (Integer) session.get("loginuserEnterpriseId");
+        List list = electronicContractsService.queryElectronicContractsByEnterpriseId(id);
+        session.put("contracts", list);
+        return "success";
     }
 }
 
