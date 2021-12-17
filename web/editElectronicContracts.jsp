@@ -6,9 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sx" uri="/struts-tags" %>
 <%@ page import="cn.edu.zjut.po.ShopManager" %>
 <%@ page import="java.util.List" %>
+<%@ page import="cn.edu.zjut.po.EnterpriseDepartment" %>
+<%@ page import="java.util.Iterator" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <html>
 <head>
 
@@ -192,74 +197,75 @@
                         </div>
                         <div class="ibox-content">
                             <div class="ibox-content">
-                                <div class="search-form">
-                                    <form action="getEnterpriseDepartmentById" method="post">
-                                        <s:hidden name="loginuserEnterpriseId" value="loginuserEnterpriseId"></s:hidden>
-                                        <div class="input-group">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-lg btn-primary" type="submit">
-                                                    选择企业的企业结构
-                                                </button>
-                                            </div>
-                                        </div>
 
-                                    </form>
-                                </div>
                                 <s:form action="editElectronicContracts" method="post">
 
-                                <div class="form-group  row"><label class="col-sm-2 col-form-label">合同开始时间</label>
-                                    <div class="col-sm-10"><input type="date" class="form-control"
-                                                                  name="electronicContracts.starttime"></div>
-                                </div>
-                                <div class="form-group  row"><label class="col-sm-2 col-form-label">合同结束时间</label>
-                                    <div class="col-sm-10"><input type="date" class="form-control"
-                                                                  name="electronicContracts.endtime"></div>
-                                </div>
-                                <div class="form-group  row"><label class="col-sm-2 col-form-label">合作商家编号</label>
-                                    <div class="col-sm-10"><input type="text" class="form-control"
-                                                                  name="electronicContracts.shopId"></div>
-                                </div>
-                                <div class="form-group  row"><label
-                                        class="col-sm-2 col-form-label">企业用户负责人编号（审核对象）</label>
-                                    <div class="col-sm-10"><input type="text" class="form-control"
-                                                                  name="electronicContracts.enterpriseAgencyId"></div>
-                                </div>
-                                <div class="form-group  row"><label class="col-sm-2 col-form-label">商品ID</label>
-                                    <div class="col-sm-10"><input type="text" class="form-control"
-                                                                  name="electronicContracts.goodsId"></div>
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover dataTables-example">
-                                        <thead>
-                                        <tr>
-                                            <th>部门编号</th>
-                                            <th>部门名称</th>
-                                            <th>折扣</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <s:iterator value="electronicContractsList">
+                                    <div class="form-group  row"><label class="col-sm-2 col-form-label">开始时间</label>
+                                        <div class="col-sm-10"><input type="date" class="form-control"
+                                                                      name="electronicContracts.starttime"></div>
+                                    </div>
+                                    <div class="form-group  row"><label class="col-sm-2 col-form-label">结束时间</label>
+                                        <div class="col-sm-10"><input type="date" class="form-control"
+                                                                      name="electronicContracts.endtime"></div>
+                                    </div>
+
+                                    <div class="form-group  row"><label class="col-sm-2 col-form-label">合作商家编号</label>
+                                        <div class="col-sm-10"><input type="text" class="form-control"
+                                                                      name="electronicContracts.shopId"></div>
+                                    </div>
+                                    <div class="form-group  row"><label
+                                            class="col-sm-2 col-form-label">企业用户负责人编号（审核对象）</label>
+                                        <div class="col-sm-10"><input type="text" class="form-control"
+                                                                      name="electronicContracts.enterpriseAgencyId">
+                                        </div>
+                                    </div>
+                                    <div class="form-group  row"><label class="col-sm-2 col-form-label">商品ID</label>
+                                        <div class="col-sm-10"><input type="text" class="form-control"
+                                                                      name="electronicContracts.goodsId"></div>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover dataTables-example">
+                                            <thead>
                                             <tr>
-                                                <td><s:property value="enterpriseDepartmentId"/></td>
-                                                <td><s:property value="enterpriseDepartmentName"/></td>
-                                                <td><input type="text" class="form-control"
-                                                           name="discount"></td>
+                                                <th>部门编号</th>
+                                                <th>部门名称</th>
+                                                <th>折扣</th>
                                             </tr>
-                                        </s:iterator>
+                                            </thead>
 
-                                        </tbody>
-                                        <tfoot>
+                                            <tbody>
 
-                                        </tfoot>
-                                    </table>
+                                            <%
+                                                List<EnterpriseDepartment> enterpriseDepartmentList = (List<EnterpriseDepartment>) session.getAttribute("electronicContractsList");
+                                                for (EnterpriseDepartment enterpriseDepartment : enterpriseDepartmentList) {
+                                            %>
+                                            <tr>
+                                                <td><%=enterpriseDepartment.getEnterpriseDepartmentId()%>
+                                                </td>
+                                                <td><%=enterpriseDepartment.getEnterpriseDepartmentName()%>
+                                                </td>
+
+                                                <td><input type="text" class="form-control" name="discountthis<%=enterpriseDepartment.getEnterpriseDepartmentId()%>"></td>
+                                                <%
+                                                     }
+                                                %>
+                                            </tr>
+
+                                            </tbody>
+                                            <tfoot>
+
+                                            </tfoot>
+                                        </table>
+
+
+                                    </div>
                                     <div class="form-group row">
                                         <div class="col-sm-4 col-sm-offset-2">
                                             <button class="btn btn-white btn-sm" type="submit">取消</button>
                                             <button class="btn btn-primary btn-sm" type="submit">保存更改</button>
                                         </div>
                                     </div>
-                                    </s:form>
-                                </div>
+                                </s:form>
                             </div>
                         </div>
                     </div>

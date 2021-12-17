@@ -116,6 +116,7 @@
           class="cn.edu.zjut.service.RegisterShopmanagerAndEnterpriseagencyService" scope="prototype">
         <property name="enterpriseAgencyimpl" ref="enterpriseAgencyImpl"/>
         <property name="shopManagerimpl" ref="shopManagerImpl"/>
+        <property name="enterpriseDepartmentimpl" ref="enterpriseDepartmentImpl"></property>
     </bean>
 
     <bean id="registerShopmanagerAndEnterpriseagencyAction"

@@ -14,19 +14,20 @@
         <result property="goodsId" column="goodsId"/>
         <result property="enterpriseDepartmentId" column="enterpriseDepartmentId"/>
         <result property="discount" column="discount"/>
-        <result property="isEfficiency" column="isEfficiency"/>
+        <result property="state" column="state"/>
     </resultMap>
 
     <select id="queryElectronicContracts" resultMap="ElectronicContractsResultMap">
         select * from electroniccontracts
     </select>
 
-    <insert id="addElectronicContracts" useGeneratedKeys="true" keyProperty="id">
-        insert into electroniccontracts(efficiency, enterpriseId,enterpriseAgencyId,starttime,endtime,goodsId,shopId,
+    <insert id="addElectronicContracts" parameterType="cn.edu.zjut.po.ElectronicContracts" useGeneratedKeys="true" keyProperty="electronicContractsId">
+        insert into electroniccontracts(state, enterpriseId,enterpriseAgencyId,starttime,endtime,goodsId,shopId,
         enterpriseDepartmentId, discount)
-        values (electronicContracts.efficiency ,electronicContracts.enterpriseId ,electronicContracts.enterpriseAgencyId
-        ,electronicContracts.starttime ,electronicContracts.endtime ,electronicContracts.goodsId
-        ,electronicContracts.shopId ,electronicContracts.enterpriseDepartmentId ,electronicContracts.discount
+        values (#{state} ,#{enterpriseId}
+        ,#{enterpriseAgencyId}
+        ,#{starttime} ,#{endtime} ,#{goodsId}
+        ,#{shopId} ,#{enterpriseDepartmentId} ,#{discount})
     </insert>
 
 </mapper>

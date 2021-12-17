@@ -1,22 +1,30 @@
 package cn.edu.zjut.action;
 
-import cn.edu.zjut.po.*;
+import cn.edu.zjut.po.ElectronicContracts;
+import cn.edu.zjut.po.EnterpriseDepartment;
 import cn.edu.zjut.service.ElectronicContractsService;
-import cn.edu.zjut.service.EnterpriseDepartmentService;
 import cn.edu.zjut.service.RegisterShopmanagerAndEnterpriseagencyService;
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class ElectronicContractsAction implements SessionAware {
+public class ElectronicContractsAction implements SessionAware, ServletRequestAware {
     private ElectronicContractsService electronicContractsService;
     private ElectronicContracts electronicContracts;
+    private EnterpriseDepartment enterpriseDepartment;
+    private List enterpriseDepartmentList;//起草时展示用
     private List electronicContractsList;
     private Map<String, Object> session;
+    private HttpServletRequest httpServletRequest;
+
     //获得企业结构用
     private RegisterShopmanagerAndEnterpriseagencyService registerShopmanagerAndEnterpriseagencyService;
+
 
     @Override
     public void setSession(Map<String, Object> session) {
@@ -33,28 +41,62 @@ public class ElectronicContractsAction implements SessionAware {
         return "success";
     }
 
-    //编辑合同--获得企业结构
+    //编辑合同--选择企业结构
     public String getEnterpriseDepartmentById() {
-        electronicContractsList = registerShopmanagerAndEnterpriseagencyService.queryEnterpriseStructure((Integer) session.get("loginuserEnterpriseId"));
+        List enterpriseDepartmentList;//选择企业放入合同用
+        enterpriseDepartmentList = registerShopmanagerAndEnterpriseagencyService.queryEnterpriseStructure((Integer) session.get("loginuserEnterpriseId"));
+        session.put("enterpriseDepartmentList", enterpriseDepartmentList);
+        return "success";
+    }
+
+    //获得编辑的企业结构
+    public String chooseDepartmentToElectronicContracts() {
+        String key = "haveEnterpriseId";
+        key += String.valueOf(enterpriseDepartment.getEnterpriseDepartmentId());
+        session.put(key, enterpriseDepartment.getEnterpriseDepartmentId());
+        if (session.get("electronicContractsList") == null) {//第一次
+            session.put("electronicContractsList", new ArrayList<EnterpriseDepartment>());
+        }
+        List<EnterpriseDepartment> electronicContractsList = (List<EnterpriseDepartment>) session.get("electronicContractsList");
+        electronicContractsList.add(enterpriseDepartment);
+//        //折扣信息放入session
+//        session.put("dicountList", new ArrayList<Double>());
         return "success";
     }
 
     //企业管理员起草合同
     public String editElectronicContracts() {
-        Iterator<ElectronicContracts> electronicContractsIterator = electronicContractsList.iterator();
-        while (electronicContractsIterator.hasNext()) {
-            ElectronicContracts electronicContracts1 = electronicContractsIterator.next();
-            electronicContracts1.setEfficiency(false);
+
+
+        //对于展示的企业结构
+        List<EnterpriseDepartment> EnterpriseDepartmentList = (List<EnterpriseDepartment>) session.get("electronicContractsList");
+
+
+        Iterator<EnterpriseDepartment> enterpriseDepartmentIterator = EnterpriseDepartmentList.iterator();
+//        //对于展示的折扣
+//        List<Double> dicountList = (List<Double>) session.get("dicountList");
+//        Iterator<Double> doubleIterator = dicountList.iterator();
+
+        while (enterpriseDepartmentIterator.hasNext()) {
+            EnterpriseDepartment enterpriseDepartment = enterpriseDepartmentIterator.next();
+//            Double discountnow = doubleIterator.next();
+            ElectronicContracts electronicContracts1 = new ElectronicContracts();
+            electronicContracts1.setEnterpriseDepartmentId(enterpriseDepartment.getEnterpriseDepartmentId());
+            electronicContracts1.setState(0);
             electronicContracts1.setEnterpriseId((Integer) session.get("loginuserEnterpriseId"));
             electronicContracts1.setEnterpriseAgencyId(electronicContracts.getEnterpriseAgencyId());
             electronicContracts1.setStarttime(electronicContracts.getStarttime());
             electronicContracts1.setEndtime(electronicContracts.getEndtime());
             electronicContracts1.setGoodsId(electronicContracts.getGoodsId());
             electronicContracts1.setShopId(electronicContracts.getShopId());
+            String discount = httpServletRequest.getParameter("discountthis" + enterpriseDepartment.getEnterpriseDepartmentId());
+            double dc = Double.parseDouble(discount);
+            electronicContracts1.setDiscount(dc);
             electronicContractsService.addElectronicContracts(electronicContracts1);
         }
         return "success";
     }
+
     public ElectronicContracts getElectronicContracts() {
         return electronicContracts;
     }
@@ -85,6 +127,27 @@ public class ElectronicContractsAction implements SessionAware {
 
     public RegisterShopmanagerAndEnterpriseagencyService getRegisterShopmanagerAndEnterpriseagencyService() {
         return registerShopmanagerAndEnterpriseagencyService;
+    }
+
+    public EnterpriseDepartment getEnterpriseDepartment() {
+        return enterpriseDepartment;
+    }
+
+    public void setEnterpriseDepartment(EnterpriseDepartment enterpriseDepartment) {
+        this.enterpriseDepartment = enterpriseDepartment;
+    }
+
+    public List getEnterpriseDepartmentList() {
+        return enterpriseDepartmentList;
+    }
+
+    public void setEnterpriseDepartmentList(List enterpriseDepartmentList) {
+        this.enterpriseDepartmentList = enterpriseDepartmentList;
+    }
+
+    @Override
+    public void setServletRequest(HttpServletRequest httpServletRequest) {
+        this.httpServletRequest = httpServletRequest;
     }
 }
 

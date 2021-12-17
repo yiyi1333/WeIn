@@ -1,6 +1,7 @@
 package cn.edu.zjut.po;
 
-import java.sql.Time;
+import java.util.Date;
+
 
 public class ElectronicContracts {
     private int electronicContractsId;
@@ -8,19 +9,20 @@ public class ElectronicContracts {
     private int enterpriseId;
     private int shopmanagerId;
     private int shopId;
-    private Time starttime;
-    private Time endtime;
+    private Date starttime;
+    private Date endtime;
     private int goodsId;
     private int enterpriseDepartmentId;
     private double discount;
-    private boolean isEfficiency;
 
-    public boolean isEfficiency() {
-        return isEfficiency;
+    private int state;
+
+    public void setState(int state) {
+        this.state = state;
     }
 
-    public void setEfficiency(boolean efficiency) {
-        isEfficiency = efficiency;
+    public int getState() {
+        return state;
     }
 
     public int getElectronicContractsId() {
@@ -39,8 +41,20 @@ public class ElectronicContracts {
         return enterpriseDepartmentId;
     }
 
-    public void setStarttime(Time starttime) {
+    public void setEndtime(Date endtime) {
+        this.endtime = endtime;
+    }
+
+    public void setStarttime(Date starttime) {
         this.starttime = starttime;
+    }
+
+    public Date getEndtime() {
+        return endtime;
+    }
+
+    public Date getStarttime() {
+        return starttime;
     }
 
     public int getEnterpriseId() {
@@ -59,13 +73,6 @@ public class ElectronicContracts {
         return shopmanagerId;
     }
 
-    public Time getEndtime() {
-        return endtime;
-    }
-
-    public Time getStarttime() {
-        return starttime;
-    }
 
     public void setDiscount(double discount) {
         this.discount = discount;
@@ -75,9 +82,6 @@ public class ElectronicContracts {
         return shopId;
     }
 
-    public void setEndtime(Time endtime) {
-        this.endtime = endtime;
-    }
 
     public void setEnterpriseDepartmentId(int enterpriseDepartmentId) {
         this.enterpriseDepartmentId = enterpriseDepartmentId;

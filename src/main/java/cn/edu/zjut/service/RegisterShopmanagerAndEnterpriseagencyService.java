@@ -13,7 +13,7 @@ import java.util.List;
 public class RegisterShopmanagerAndEnterpriseagencyService {
     ShopManagerImpl shopManagerimpl;
     EnterpriseAgencyImpl enterpriseAgencyimpl;
-    EnterpriseDepartmentImpl enterpriseDepartmentimpl;
+    EnterpriseDepartmentImpl enterpriseDepartmentimpl ;
     public void registerShopmanager(ShopManager shopManager) {
         shopManagerimpl.addShopManager(shopManager);
     }

@@ -1,6 +1,7 @@
 package cn.edu.zjut.service;
 
 import cn.edu.zjut.dao.ElectronicContractsImpl;
+import cn.edu.zjut.dao.EnterpriseDepartmentImpl;
 import cn.edu.zjut.po.ElectronicContracts;
 
 import java.util.List;
