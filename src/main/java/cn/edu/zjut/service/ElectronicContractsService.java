@@ -70,4 +70,18 @@ public class ElectronicContractsService {
             }
         }
     }
+
+    public List showVerifyElectronicContracts(int agencyid) {
+        List<ElectronicContracts> contracts = electronicContractsimpl.queryElectronicContractsByEnterpriseAgencyId(agencyid);
+        return contracts;
+    }
+
+    public void changeStateElectronicContracts(int agencyid) {
+        electronicContractsimpl.changeStateElectronicContracts(agencyid);
+    }
+
+    public List showShopElectronicContracts(int shopid) {
+        List<ElectronicContracts> contracts = electronicContractsimpl.queryElectronicContractsByShopId(shopid);
+        return contracts;
+    }
 }

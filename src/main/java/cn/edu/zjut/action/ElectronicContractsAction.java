@@ -3,7 +3,6 @@ package cn.edu.zjut.action;
 import cn.edu.zjut.po.ElectronicContracts;
 import cn.edu.zjut.po.EnterpriseDepartment;
 import cn.edu.zjut.service.ElectronicContractsService;
-import cn.edu.zjut.service.EnterpriseDepartmentService;
 import cn.edu.zjut.service.RegisterShopmanagerAndEnterpriseagencyService;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
@@ -67,8 +66,6 @@ public class ElectronicContractsAction implements SessionAware, ServletRequestAw
 
     //企业管理员起草合同
     public String editElectronicContracts() {
-
-
         //对于展示的企业结构
         List<EnterpriseDepartment> EnterpriseDepartmentList = (List<EnterpriseDepartment>) session.get("electronicContractsList");
         Iterator<EnterpriseDepartment> enterpriseDepartmentIterator = EnterpriseDepartmentList.iterator();
@@ -93,6 +90,28 @@ public class ElectronicContractsAction implements SessionAware, ServletRequestAw
             electronicContracts1.setDiscount(dc);
             electronicContractsService.addElectronicContracts(electronicContracts1);
         }
+        return "success";
+    }
+
+    //展示要审核的合同条目
+    public String showVerifyElectronicContracts() {
+        electronicContractsList = electronicContractsService.showVerifyElectronicContracts((Integer) session.get("loginuserEnterpriseAgencyId"));
+        session.put("verifyContracts", electronicContractsList);
+        return "success";
+    }
+
+    //提交审核通过
+    public String verifyElectronicContracts() {
+        electronicContractsService.changeStateElectronicContracts((Integer) session.get("loginuserEnterpriseAgencyId"));
+        session.remove("verifyContracts");
+        return "success";
+    }
+
+
+    //商家接收合同
+    public String showShopElectronicContracts() {
+        electronicContractsList = electronicContractsService.showShopElectronicContracts((Integer) session.get("loginusershopId"));
+        session.put("shopContracts", electronicContractsList);
         return "success";
     }
     public ElectronicContracts getElectronicContracts() {
@@ -155,6 +174,8 @@ public class ElectronicContractsAction implements SessionAware, ServletRequestAw
         session.put("contracts", list);
         return "success";
     }
+
+
 }
 
 

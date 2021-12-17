@@ -70,6 +70,8 @@ public class UserAction implements SessionAware {
                 session.put("type", "shopManager");
                 session.put("name", shopManager.getShopManagerName());
                 session.put("shopManager", shopManager);
+                //存一下商家的编号
+                session.put("loginusershopId", shopManager.getShopId());
                 return "success";
             }
         } else if (user.getAuthority() == 1) {
@@ -84,6 +86,8 @@ public class UserAction implements SessionAware {
                 session.put("enterpriseAgency", enterpriseAgency);
                 //存一下企业管理员的企业号
                 session.put("loginuserEnterpriseId", enterpriseAgency.getEnterpriseId());
+                //存一下企业管理员的编号
+                session.put("loginuserEnterpriseAgencyId", enterpriseAgency.getEnterpriseAgencyId());
                 //有权限审核则主页显示审核
                 if(right == 1) {
                     return "rightsuccess";
@@ -101,6 +105,7 @@ public class UserAction implements SessionAware {
                 session.put("type", "platformAdministrator");
                 session.put("name", platformAdministrator.getAdminName());
                 session.put("platformAdministrator", platformAdministrator);
+
                 return "platformAdministratorsuccess";
             }
         }

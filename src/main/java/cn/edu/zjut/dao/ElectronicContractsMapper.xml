@@ -38,4 +38,16 @@
     <update id="disableContracts">
         update electroniccontracts set state = 2 where electronicContractsId = #{0};
     </update>
+
+    <select id="queryElectronicContractsByEnterpriseAgencyId" resultMap="ElectronicContractsResultMap">
+        select * from electroniccontracts where enterpriseAgencyId = #{0} and state = 0;
+    </select>
+
+    <update id="changeStateElectronicContracts">
+        update electroniccontracts set state = 1 where enterpriseAgencyId = #{0} and state = 0;
+    </update>
+
+    <select id="queryElectronicContractsByShopId" resultMap="ElectronicContractsResultMap" >
+        select * from electroniccontracts where shopId = #{0} and state = 1;
+    </select>
 </mapper>

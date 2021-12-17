@@ -9,4 +9,7 @@ public interface ElectronicContractsMapper {
     public void addElectronicContracts(ElectronicContracts electronicContracts);
     public List queryElectronicContractsByEnterpriseId(int id);
     public void disableContracts(int id);
+    public List queryElectronicContractsByEnterpriseAgencyId(int agencyid);
+    public void changeStateElectronicContracts(int agencyid);
+    public List queryElectronicContractsByShopId(int shopid);
 }

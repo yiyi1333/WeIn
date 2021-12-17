@@ -1,11 +1,12 @@
-<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: rainbow
   Date: 2021/12/18
-  Time: 0:43
+  Time: 2:37
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Collections" %>
 <%@ page import="cn.edu.zjut.po.ElectronicContracts" %>
@@ -101,10 +102,10 @@
                                     </tr>
                                     </thead>
                                     <%
-                                        if((List<ElectronicContracts>) session.getAttribute("verifyContracts") == null) {
+                                        if((List<ElectronicContracts>) session.getAttribute("shopContracts") == null) {
                                             session.putValue("verifyContracts", new ArrayList<ElectronicContracts>());
                                         }
-                                        List<ElectronicContracts> list = (List<ElectronicContracts>) session.getAttribute("verifyContracts");
+                                        List<ElectronicContracts> list = (List<ElectronicContracts>) session.getAttribute("shopContracts");
                                     %>
                                     <tbody>
                                     <%

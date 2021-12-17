@@ -58,7 +58,9 @@
             <result name="success">/index.jsp</result>
             <!--            平台运营人员的主页-->
             <result name="platformAdministratorsuccess">/registerShopmanager.jsp</result>
-            <result name="rightsuccess">/verifyElectronicContracts.jsp</result>
+            <!--            <result name="rightsuccess">/verifyElectronicContracts.jsp</result>-->
+            <result name="rightsuccess" type="chain">showVerifyElectronicContracts</result>
+
             <result name="failed">/login.jsp</result>
         </action>
 
@@ -188,6 +190,21 @@
                 method="chooseDepartmentToElectronicContracts">
             <result name="success">/chooseEditElectronicContracts.jsp</result>
         </action>
+        <!--具有审核资格的企业管理员接受审核-->
+        <action name="showVerifyElectronicContracts" class="cn.edu.zjut.action.ElectronicContractsAction" method="showVerifyElectronicContracts">
+            <result name="success">/verifyElectronicContracts.jsp</result>
+        </action>
+
+        <!--具有审核资格的企业管理员接受审核-->
+        <action name="verifyElectronicContracts" class="cn.edu.zjut.action.ElectronicContractsAction" method="verifyElectronicContracts">
+            <result name="success">/verifyElectronicContracts.jsp</result>
+        </action>
+
+        <!--商家接收合同-->
+        <action name="showShopElectronicContracts" class="cn.edu.zjut.action.ElectronicContractsAction" method="showShopElectronicContracts">
+            <result name="success">/showShopElectronicContracts.jsp</result>
+        </action>
+
 
         <!--        王怡欣配置区-->
         <!--        王淑媚配置区-->
