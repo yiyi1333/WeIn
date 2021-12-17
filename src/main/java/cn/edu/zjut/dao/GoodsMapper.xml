@@ -11,6 +11,7 @@
         <result property="goodsStock" column="goodsStock"/>
         <result property="tags" column="tags"/>
         <result property="goodsImage" column="goodsImage"/>
+        <result property="isGrouding" column="isGrouding"/>
         <result property="shopId" column="goods.shopId"/>
         <association property="shop" javaType="cn.edu.zjut.po.Shop">
             <result property="shopId" column="shop.shopId"/>
@@ -28,6 +29,8 @@
         where goods.shopId = shop.shopId and shop.enterpriseId = enterprise.enterpriseId and (goods.tags like
         '%${keyword}%' or goods.goodsName like '%${keyword}%');
     </select>
+
+
     <resultMap id="GoodsResultMap" type="cn.edu.zjut.po.Goods">
         <result property="goodsId" column="goodsId"/>
         <result property="goodsName" column="goodsName"/>
@@ -37,6 +40,7 @@
         <result property="shopId" column="shopId"/>
         <result property="tags" column="tags"/>
         <result property="goodsImage" column="goodsImage"/>
+        <result property="warehouseId" column="warehouseId"/>
     </resultMap>
 
     <select id="getAllGoods" resultMap="GoodsResultMap">
@@ -56,7 +60,30 @@
         goodPrice = #{goodsPrice},
         goodsDetails = #{goodsDetails},
         tags = #{tags},
-        goodsImage = #{goodsImage}
+        goodsImage = #{goodsImage},
+        isGrouding = #{isGrouding}
         where goodsId = #{goodsId};
     </update>
+
+    <insert id="addGoods" parameterType="cn.edu.zjut.po.Goods">
+        insert into WeIn.Goods(goodsName,goodprice,goodsDetails,goodsStock,shopId,tags,goodsImage,isGrouding,warehouseId) values(#{goodsName},#{goodsPrice},#{goodsDetails},#{goodsStock},#{shopId},#{tags},#{goodsImage},#{isGrouding},#{warehouseId});
+    </insert>
+
+    <select id="selectGoods" resultMap="GoodsResultMap" parameterType="cn.edu.zjut.po.Goods">
+        select * from WeIn.goods
+        <where>
+            <if test="goodsName != null and goodsName !=''"> and goodsName like #{goodsName}</if>
+            <if test="isGrouding != null and isGrouding !=''"> and isGrouding=#{isGrouding}</if>
+            <if test="tags != null and tags !=''"> and tags like #{tags}</if>
+        </where>
+    </select>
+
+    <delete id="deleteGoods" parameterType="java.lang.Integer">
+        delete from WeIn.goods where goodsId=#{goodid};
+    </delete>
+
+    <select id="selectGoodsByWarehouseId" resultMap="GoodsResultMap" parameterType="java.lang.Integer">
+        select * from WeIn.goods
+        where warehouseId=#{warehouseId};
+    </select>
 </mapper>

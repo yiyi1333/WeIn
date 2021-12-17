@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>xxx | 电子商务网格</title>
+    <title>发货地址所存商品</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -32,16 +32,16 @@
         <jsp:include page="shopTopSidebar.jsp"/>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>店铺商品管理</h2>
+                <h2>发货地址管理</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href="shopIndex.jsp">主页</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a>管理商品</a>
+                        <a>管理发货地址</a>
                     </li>
                     <li class="breadcrumb-item active">
-                        <strong>查看商品</strong>
+                        <strong>查看发货地址所存商品</strong>
                     </li>
                 </ol>
             </div>
@@ -51,46 +51,6 @@
         </div>
 
         <div class="wrapper wrapper-content animated fadeInRight">
-            <div class="ibox-content m-b-sm border-bottom">
-                <form action="displayGoods">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="col-form-label" for="name">商品名称</label>
-                                <input type="text" id="name" name="goods.goodsName" value="" placeholder="请输入商品名称" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label class="col-form-label" for="status">状态</label>
-                                <select name="goods.isGrouding" id="status" class="form-control">
-                                    <option value="" selected>全部</option>
-                                    <option value="1">上架</option>
-                                    <option value="0">下架</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label class="col-form-label" for="status">类别</label>
-                                <select name="goods.tags" id="type" class="form-control">
-                                    <option value="" selected>全部</option>
-                                    <option value="电脑">电脑</option>
-                                    <option value="电视">电视</option>
-                                    <option value="手表">手表</option>
-                                    <option value="手机">手机</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="form-group">
-                                <input class="btn btn-primary" type="submit" value="查询" style="margin-top: 20%;margin-left: 20%">
-                            </div>
-                        </div>
-                    </div>
-                </form>
-
-            </div>
             <%
                 List<Goods> goodsList = (List<Goods>) session.getAttribute("goodsList");
                 for (int i = 0; i < (goodsList.size() + 3) / 4; i++) {

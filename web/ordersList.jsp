@@ -33,9 +33,9 @@
 <body>
 
 <div id="wrapper">
-    <jsp:include page="navigation.jsp"/>
+    <jsp:include page="shopNavigation.jsp"/>
     <div id="page-wrapper" class="gray-bg">
-        <jsp:include page="topSidebar.jsp"/>
+        <jsp:include page="shopTopSidebar.jsp"/>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
                 <h2>订单管理</h2>
@@ -58,42 +58,48 @@
 
 
             <div class="ibox-content m-b-sm border-bottom">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="col-form-label" for="order_id">订单编号</label>
-                            <input type="text" id="order_id" name="order_id" value="" placeholder="Order ID" class="form-control">
+                <form action="selectOrders.action">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label" for="orderId">订单编号</label>
+                                <input type="text" id="orderId" name="orders.orderId" value="" placeholder="请输入..." class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="col-form-label" for="status">订单状态</label>
-                            <input type="text" id="status" name="status" value="" placeholder="Status" class="form-control">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label" for="orderStatus">订单状态</label>
+                                <select id="orderStatus" name="orders.orderStatus"  class="form-control">
+                                    <option>待发货</option>
+                                    <option>已发货</option>
+                                    <option>已收货</option>
+                                    <option>已完成</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="col-form-label" for="customer">顾客</label>
-                            <input type="text" id="customer" name="customer" value="" placeholder="Customer" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="col-form-label" for="date_added">下单日期</label>
-                            <div class="input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="date_added" type="text" class="form-control" value="03/04/2014">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label" for="consumerId">顾客Id</label>
+                                <input type="text" id="consumerId" name="orders.consumerId" value="" placeholder="Customer" class="form-control">
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-2">
-                        <br><br>
-                        <button type="button" class="btn btn-w-m btn-primary">查询</button>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label" for="date_added">下单日期</label>
+                                <div class="input-group date">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="date_added" type="text" class="form-control" value="03/04/2014">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <br><br>
+                            <button type="submit" class="btn btn-w-m btn-primary">查询</button>
+                        </div>
+
                     </div>
-
-                </div>
-
+                </form>
             </div>
 
             <div class="row">

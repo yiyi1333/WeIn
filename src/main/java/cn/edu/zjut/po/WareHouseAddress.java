@@ -1,25 +1,58 @@
 package cn.edu.zjut.po;
 
-public class WareHouseAddress {
+import java.io.Serializable;
+
+public class WareHouseAddress implements Serializable {
     private String warehousePhone; //发货人手机号
-    private int deliveredAeraId; //区县编号
     private int warehouseId; //发货地址编号
     private String warehouseDetailedAddress; //详细地址
     private String warehouseName;//发货人姓名
     private int shopId;//店铺商家
+    private String province;//省份
+    private String city;//市
+    private String district;//区县
+
+    @Override
+    public String toString() {
+        return "WareHouseAddress{" +
+                "warehouseId=" + warehouseId +
+                ", warehouseDetailedAddress='" + warehouseDetailedAddress + '\'' +
+                ", warehouseName='" + warehouseName + '\'' +
+                ", shopId='" + shopId + '\'' +
+                ", warehousePhone='" + warehousePhone + '\'' +
+                ", province='" + province + '\'' +
+                ", district='" + district + '\'' +
+                ", city=" + city +
+                '}';
+    }
+
 
     public WareHouseAddress(){
 
     }
 
-    public WareHouseAddress(String warehouseName,String warehousePhone,String warehouseDetailedAddress,int deliveredAeraId,int warehouseId,int shopId)
+    public WareHouseAddress(String warehouseName,String warehousePhone,String warehouseDetailedAddress,String province,String city,String district,int warehouseId,int shopId)
     {
-        this.deliveredAeraId=deliveredAeraId;
+        this.province=province;
+        this.city=city;
+        this.district=district;
         this.shopId=shopId;
         this.warehouseName=warehouseName;
         this.warehouseDetailedAddress=warehouseDetailedAddress;
         this.warehouseId=warehouseId;
         this.warehousePhone=warehousePhone;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public String getProvince() {
+        return province;
     }
 
     public String getWarehousePhone() {
@@ -36,10 +69,6 @@ public class WareHouseAddress {
 
     public int getShopId() {
         return shopId;
-    }
-
-    public int getDeliveredAeraId() {
-        return deliveredAeraId;
     }
 
     public int getWarehouseId() {
@@ -62,11 +91,19 @@ public class WareHouseAddress {
         this.shopId = shopId;
     }
 
-    public void setDeliveredAeraId(int deliveredAeraId) {
-        this.deliveredAeraId = deliveredAeraId;
-    }
-
     public void setWarehouseId(int warehouseId) {
         this.warehouseId = warehouseId;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
     }
 }

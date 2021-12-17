@@ -7,12 +7,56 @@
         <result property="warehouseDetailedAddress" column="warehouseDetailedAddress"/>
         <result property="warehouseName" column="warehouseName"/>
         <result property="warehouseId" column="warehouseId"/>
-        <result property="deliveredAeraId" column="deliveredAeraId"/>
         <result property="shopId" column="shopId"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
+        <result property="district" column="district"/>
     </resultMap>
 
     <select id="getAllWareHouseAddress" resultMap="WareHouseAddressResultMap">
         select * from warehouseaddress
     </select>
 
+    <insert id="addWareHouseAddress" parameterType="cn.edu.zjut.po.WareHouseAddress">
+        insert into WeIn.wareHouseAddress(warehousePhone,warehouseDetailedAddress,warehouseName,shopId,province,city,district) values(#{warehousePhone},#{warehouseDetailedAddress},#{warehouseName},#{shopId},#{province},#{city},#{district});
+    </insert>
+
+    <select id="selectWareHouseAddress" resultMap="WareHouseAddressResultMap" parameterType="cn.edu.zjut.po.WareHouseAddress">
+        select * from warehouseaddress
+        <where>
+            <if test="warehouseName != null  and warehouseName != ''"> and warehouseName like concat('%', #{warehouseName}, '%')</if>
+            <if test="warehouseId != null  and warehouseId != ''"> and warehouseId = #{warehouseId}</if>
+            <if test="province != null and province != ''"> and province = #{province}</if>
+            <if test="city !=null and city != ''"> and city = #{city}</if>
+            <if test="district !=null and district != ''"> and district = #{district}</if>
+            <if test="shopId != null  and shopId != ''"> and shopId = #{shopId}</if>
+        </where>
+    </select>
+
+    <select id="selectWareHouseAddressById" resultMap="WareHouseAddressResultMap" parameterType="java.lang.Integer">
+        select * from warehouseaddress
+        where warehouseId=#{warehouseId}
+    </select>
+
+    <delete id="deleteWareHouseAddressById" parameterType="java.lang.Integer">
+        delete from warehouseaddress where warehouseId = #{warehouseId}
+    </delete>
+
+    <update id="updateWareHouseAddress" parameterType="cn.edu.zjut.po.WareHouseAddress">
+        update WeIn.warehouseaddress
+        set warehousePhone = #{warehousePhone},
+        warehouseDetailedAddress = #{warehouseDetailedAddress},
+        warehouseName = #{warehouseName},
+        province = #{province},
+        city = #{city},
+        district = #{district}
+        where warehouseId = #{warehouseId};
+    </update>
+
+    <delete id="deleteWareHouseAddressByIds" parameterType="String">
+        delete from warehouseaddress where warehouseId in
+        <foreach item="warehouseId" collection="array" open="" separator="," close="">
+            #{warehouseId}
+        </foreach>
+    </delete>
 </mapper>

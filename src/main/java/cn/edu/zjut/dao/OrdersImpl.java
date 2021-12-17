@@ -25,8 +25,14 @@ public class OrdersImpl implements OrdersMapper{
     }
 
     @Override
-    public Orders selectOrdersById(String orderId) {
+    public Orders selectOrdersById(Integer orderId) {
         System.out.println("execute--selectOrdersById--dao");
         return sqlSession.getMapper(OrdersMapper.class).selectOrdersById(orderId);
+    }
+
+    @Override
+    public List<Orders> selectOrders(Orders orders) {
+        System.out.println("execute--selectOrders--dao");
+        return sqlSession.getMapper(OrdersMapper.class).selectOrders(orders);
     }
 }

@@ -40,4 +40,28 @@ public class GoodsImpl implements GoodsMapper {
         System.out.println("execute--updateGoods--dao");
         sqlSession.getMapper(GoodsMapper.class).updateGoods(goods);
     }
+
+    @Override
+    public void addGoods(Goods goods) {
+        System.out.println("execute--addGoods--dao");
+        sqlSession.getMapper(GoodsMapper.class).addGoods(goods);
+    }
+
+    @Override
+    public List<Goods> selectGoods(Goods goods) {
+        System.out.println("execute --selectGoods()-- method.");
+        return sqlSession.getMapper(GoodsMapper.class).selectGoods(goods);
+    }
+
+    @Override
+    public void deleteGoods(Integer goodid) {
+        System.out.println("execute --deleteGoods()-- method.");
+        sqlSession.getMapper(GoodsMapper.class).deleteGoods(goodid);
+    }
+
+    @Override
+    public List<Goods> selectGoodsByWarehouseId(Integer warehouseId) {
+        System.out.println("execute--selectGoodsByWarehouseId--dao");
+        return sqlSession.getMapper(GoodsMapper.class).selectGoodsByWarehouseId(warehouseId);
+    }
 }
