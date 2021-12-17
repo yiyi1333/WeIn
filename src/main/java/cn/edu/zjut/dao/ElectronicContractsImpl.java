@@ -21,4 +21,9 @@ public class ElectronicContractsImpl {
         this.sqlSession = sqlSession;
     }
 
+    public void addElectronicContracts(ElectronicContracts electronicContracts) {
+        System.out.println("execute --addElectronicContracts()-- method.");
+        sqlSession.getMapper(ElectronicContractsMapper.class).addElectronicContracts(electronicContracts);
+    }
+
 }

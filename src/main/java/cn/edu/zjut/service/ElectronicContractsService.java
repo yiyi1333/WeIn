@@ -1,6 +1,7 @@
 package cn.edu.zjut.service;
 
 import cn.edu.zjut.dao.ElectronicContractsImpl;
+import cn.edu.zjut.po.ElectronicContracts;
 
 import java.util.List;
 
@@ -17,5 +18,9 @@ public class ElectronicContractsService {
 
     public List queryElectronicContracts() {
         return electronicContractsimpl.queryElectronicContracts();
+    }
+
+    public void  addElectronicContracts(ElectronicContracts electronicContracts) {
+        electronicContractsimpl.addElectronicContracts(electronicContracts);
     }
 }

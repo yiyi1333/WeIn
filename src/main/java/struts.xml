@@ -81,10 +81,21 @@
             <result name="success">/deleteEnterpriseagency.jsp</result>
         </action>
         <!--查询已有合同-->
+
         <action name="queryElectronicContracts" class="cn.edu.zjut.action.ElectronicContractsAction"
                 method="queryElectronicContracts">
             <result name="success">/showallelectronicContracts.jsp</result>
         </action>
+
+        <!--编辑合同_查询本企业结构-->
+        <action name="getEnterpriseDepartmentById" class="cn.edu.zjut.action.ElectronicContractsAction"
+                method="getEnterpriseDepartmentById">
+            <result name="success">/editElectronicContracts.jsp</result>
+        </action>
+        <action name="editElectronicContracts" class="cn.edu.zjut.action.ElectronicContractsAction" method="editElectronicContracts">
+            <result name="success">/editElectronicContracts.jsp</result>
+        </action>
+
 
         <!--        王怡欣配置区-->
         <!--        王淑媚配置区-->

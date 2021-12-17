@@ -51,6 +51,13 @@
                 <a href="showenterpriseuser.action"><i class="fa fa-envelope"></i> <span class="nav-label">展示企业人员</span></a>
             </li>
             <li>
+            <li>
+                <a href="./queryElectronicContracts"><i class="fa fa-envelope"></i> <span class="nav-label">展示已有电子合同</span></a>
+            </li>
+            <li>
+                <a href="editElectronicContracts.jsp"><i class="fa fa-envelope"></i> <span class="nav-label">编辑电子合同</span></a>
+            </li>
+            <li>
                 <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">图表</span><span
                         class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">

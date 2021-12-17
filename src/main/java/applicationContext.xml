@@ -107,6 +107,8 @@
     <bean id="enterpriseagencyAction"
           class="cn.edu.zjut.action.ElectronicContractsAction" scope="prototype">
         <property name="electronicContractsService" ref="electronicContractsService"></property>
+        <!--先查询到本企业结构-->
+        <property name="registerShopmanagerAndEnterpriseagencyService" ref="registerShopmanagerAndEnterpriseagencyService"/>
     </bean>
 
     <!--王怡欣配置区-->

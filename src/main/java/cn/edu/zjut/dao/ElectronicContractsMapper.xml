@@ -18,7 +18,15 @@
     </resultMap>
 
     <select id="queryElectronicContracts" resultMap="ElectronicContractsResultMap">
-        select * from  electroniccontracts
+        select * from electroniccontracts
     </select>
+
+    <insert id="addElectronicContracts" useGeneratedKeys="true" keyProperty="id">
+        insert into electroniccontracts(efficiency, enterpriseId,enterpriseAgencyId,starttime,endtime,goodsId,shopId,
+        enterpriseDepartmentId, discount)
+        values (electronicContracts.efficiency ,electronicContracts.enterpriseId ,electronicContracts.enterpriseAgencyId
+        ,electronicContracts.starttime ,electronicContracts.endtime ,electronicContracts.goodsId
+        ,electronicContracts.shopId ,electronicContracts.enterpriseDepartmentId ,electronicContracts.discount
+    </insert>
 
 </mapper>

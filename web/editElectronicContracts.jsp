@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: rainbow
+  Date: 2021/12/16
+  Time: 22:38
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page import="cn.edu.zjut.po.ShopManager" %>
 <%@ page import="java.util.List" %>
@@ -149,13 +156,13 @@
         </div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>电子合同</h2>
+                <h2>企业人员</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href="showenterpriseuser.action">主页</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a>管理合同</a>
+                        <a>管理企业人员</a>
                     </li>
                     <li class="breadcrumb-item active">
                         <strong>企业人员</strong>
@@ -172,8 +179,7 @@
                     <div class="ibox ">
                         <div class="ibox-title">
 
-
-                            <h5>合同查询</h5>
+                            <h5>编辑电子合同</h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
@@ -185,108 +191,136 @@
                             </div>
                         </div>
                         <div class="ibox-content">
+                            <div class="ibox-content">
+                                <div class="search-form">
+                                    <form action="getEnterpriseDepartmentById" method="post">
+                                        <s:hidden name="loginuserEnterpriseId" value="loginuserEnterpriseId"></s:hidden>
+                                        <div class="input-group">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-lg btn-primary" type="submit">
+                                                    选择企业的企业结构
+                                                </button>
+                                            </div>
+                                        </div>
 
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover dataTables-example">
-                                    <thead>
-                                    <tr>
-                                        <td>合同编号</td>
-                                        <td>合作企业</td>
-                                        <td>合作企业用户负责人</td>
-                                        <td>合作商家</td>
-                                        <td>合作商家拥护负责人</td>
-                                        <td>开始时间</td>
-                                        <td>结束时间</td>
-                                        <td>商品编号</td>
-                                        <td>企业结构编号</td>
-                                        <td>折扣</td>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <s:iterator value="electronicContractsList">
+                                    </form>
+                                </div>
+                                <s:form action="editElectronicContracts" method="post">
+
+                                <div class="form-group  row"><label class="col-sm-2 col-form-label">合同开始时间</label>
+                                    <div class="col-sm-10"><input type="date" class="form-control"
+                                                                  name="electronicContracts.starttime"></div>
+                                </div>
+                                <div class="form-group  row"><label class="col-sm-2 col-form-label">合同结束时间</label>
+                                    <div class="col-sm-10"><input type="date" class="form-control"
+                                                                  name="electronicContracts.endtime"></div>
+                                </div>
+                                <div class="form-group  row"><label class="col-sm-2 col-form-label">合作商家编号</label>
+                                    <div class="col-sm-10"><input type="text" class="form-control"
+                                                                  name="electronicContracts.shopId"></div>
+                                </div>
+                                <div class="form-group  row"><label
+                                        class="col-sm-2 col-form-label">企业用户负责人编号（审核对象）</label>
+                                    <div class="col-sm-10"><input type="text" class="form-control"
+                                                                  name="electronicContracts.enterpriseAgencyId"></div>
+                                </div>
+                                <div class="form-group  row"><label class="col-sm-2 col-form-label">商品ID</label>
+                                    <div class="col-sm-10"><input type="text" class="form-control"
+                                                                  name="electronicContracts.goodsId"></div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover dataTables-example">
+                                        <thead>
                                         <tr>
-                                            <td><s:property value="electronicContractsId"/></td>
-                                            <td><s:property value="enterpriseId"/></td>
-                                            <td><s:property value="enterpriseAgencyId"/></td>
-                                            <td><s:property value="shopId"/></td>
-                                            <td><s:property value="shopmanagerId"/></td>
-                                            <td><s:property value="starttiem"/></td>
-                                            <td><s:property value="endtieme"/></td>
-                                            <td><s:property value="goodsId"/></td>
-                                            <td><s:property value="enterpriseDepartmentId"/></td>
-                                            <input type="text" class="form-control"
-                                                   name=""/>
+                                            <th>部门编号</th>
+                                            <th>部门名称</th>
+                                            <th>折扣</th>
                                         </tr>
-                                    </s:iterator>
+                                        </thead>
+                                        <tbody>
+                                        <s:iterator value="electronicContractsList">
+                                            <tr>
+                                                <td><s:property value="enterpriseDepartmentId"/></td>
+                                                <td><s:property value="enterpriseDepartmentName"/></td>
+                                                <td><input type="text" class="form-control"
+                                                           name="discount"></td>
+                                            </tr>
+                                        </s:iterator>
 
-                                    </tbody>
-                                    <tfoot>
+                                        </tbody>
+                                        <tfoot>
 
-                                    </tfoot>
-                                </table>
+                                        </tfoot>
+                                    </table>
+                                    <div class="form-group row">
+                                        <div class="col-sm-4 col-sm-offset-2">
+                                            <button class="btn btn-white btn-sm" type="submit">取消</button>
+                                            <button class="btn btn-primary btn-sm" type="submit">保存更改</button>
+                                        </div>
+                                    </div>
+                                    </s:form>
+                                </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="footer">
-            <div class="float-right">
-                <strong>2.9.2 inspinia</strong>
-            </div>
-            <div>
-                <strong>Copyright</strong> xxx &copy; 2020
-            </div>
-        </div>
+                <div class="footer">
+                    <div class="float-right">
+                        <strong>2.9.2 inspinia</strong>
+                    </div>
+                    <div>
+                        <strong>Copyright</strong> xxx &copy; 2020
+                    </div>
+                </div>
 
+            </div>
+        </div>
     </div>
-</div>
 
-<!-- Mainly scripts -->
-<script src="js/jquery-3.1.1.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- Mainly scripts -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-<script src="js/plugins/dataTables/datatables.min.js"></script>
-<script src="js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
+    <script src="js/plugins/dataTables/datatables.min.js"></script>
+    <script src="js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
 
-<!-- Custom and plugin javascript -->
-<script src="js/inspinia.js"></script>
-<script src="js/plugins/pace/pace.min.js"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
 
-<!-- Page-Level Scripts -->
-<script>
-    $(document).ready(function () {
-        $('.dataTables-example').DataTable({
-            pageLength: 25,
-            responsive: true,
-            dom: '<"html5buttons"B>lTfgitp',
-            buttons: [
-                {extend: 'copy'},
-                {extend: 'csv'},
-                {extend: 'excel', title: 'ExampleFile'},
-                {extend: 'pdf', title: 'ExampleFile'},
+    <!-- Page-Level Scripts -->
+    <script>
+        $(document).ready(function () {
+            $('.dataTables-example').DataTable({
+                pageLength: 25,
+                responsive: true,
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    {extend: 'copy'},
+                    {extend: 'csv'},
+                    {extend: 'excel', title: 'ExampleFile'},
+                    {extend: 'pdf', title: 'ExampleFile'},
 
-                {
-                    extend: 'print',
-                    customize: function (win) {
-                        $(win.document.body).addClass('white-bg');
-                        $(win.document.body).css('font-size', '10px');
+                    {
+                        extend: 'print',
+                        customize: function (win) {
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
 
-                        $(win.document.body).find('table')
-                            .addClass('compact')
-                            .css('font-size', 'inherit');
+                            $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                        }
                     }
-                }
-            ]
+                ]
+
+            });
 
         });
 
-    });
-
-</script>
+    </script>
 </body>
 </html>
