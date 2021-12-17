@@ -29,11 +29,6 @@
     </resultMap>
 
 
-    <select id="getAllEnterpriseUser" resultMap="EnterpriseUserResultMap">
-        select enterpriseDepartmentName,enterpriseDepartmentId,name,consumerId from
-        WeIn.consumer,WeIn.enterprisedepartment where enterpriseDepartmentNumber=enterpriseDepartmentId;
-    </select>
-
     <update id="updateUserDepartment">
         update WeIn.consumer set enterpriseDepartmentNumber = #{departmentId} where consumerId = #{id}
     </update>
@@ -53,7 +48,7 @@
         values(#{enterpriseDepartmentName},#{enterpriseDepartmentpre},#{enterpriseId});
     </insert>
 
-    <select id="getEnterpriseDepartmentById" resultType="cn.edu.zjut.po.EnterpriseDepartment" parameterType="int">
+    <select id="getEnterpriseDepartmentByEnterpriseId" resultType="cn.edu.zjut.po.EnterpriseDepartment" parameterType="int">
         select * from WeIn.enterprisedepartment where enterpriseId=#{id}
     </select>
 

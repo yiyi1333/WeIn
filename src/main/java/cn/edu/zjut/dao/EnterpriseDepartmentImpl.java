@@ -1,6 +1,7 @@
 package cn.edu.zjut.dao;
 
 import cn.edu.zjut.po.EnterpriseDepartment;
+import cn.edu.zjut.po.EnterpriseDepartmentDisplay;
 import cn.edu.zjut.po.EnterpriseUser;
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -73,8 +74,8 @@ public class EnterpriseDepartmentImpl implements EnterpriseDepartmentMapper{
 
 
     @Override
-    public List<EnterpriseDepartment> getEnterpriseDepartmentById(int id) {
+    public List<EnterpriseDepartment> getEnterpriseDepartmentByEnterpriseId(int id) {
         System.out.println("execute--getEnterpriseDepartmentById--dao");
-        return sqlSession.getMapper(EnterpriseDepartmentMapper.class).getEnterpriseDepartmentById(id);
+        return sqlSession.getMapper(EnterpriseDepartmentMapper.class).getEnterpriseDepartmentByEnterpriseId(id);
     }
 }

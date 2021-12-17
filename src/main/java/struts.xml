@@ -56,7 +56,7 @@
         <!--        张宇翔配置区-->
         <action name="login" class="cn.edu.zjut.action.UserAction" method="login">
             <result name="success">/index.jsp</result>
-<!--            平台运营人员的主页-->
+            <!--            平台运营人员的主页-->
             <result name="platformAdministratorsuccess">/registerShopmanager.jsp</result>
             <result name="failed">/login.jsp</result>
         </action>
@@ -129,6 +129,7 @@
         <action name="registerShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
                 method="registerShopmanager">
             <result name="success">/registerShopmanager.jsp</result>
+        </action>
         <action name="registerShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
                 method="registerShopmanager">
             <result name="success">/platformAdministraorIndex.jsp</result>
@@ -136,6 +137,7 @@
         <action name="registerEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
                 method="registerEnterpriseagency">
             <result name="success">/registerEnterpriseagency.jsp</result>
+        </action>
         <action name="registerEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
                 method="registerEnterpriseagency">
             <result name="success">/platformAdministraorIndex.jsp</result>
@@ -173,7 +175,8 @@
                 method="getEnterpriseDepartmentById">
             <result name="success">/editElectronicContracts.jsp</result>
         </action>
-        <action name="editElectronicContracts" class="cn.edu.zjut.action.ElectronicContractsAction" method="editElectronicContracts">
+        <action name="editElectronicContracts" class="cn.edu.zjut.action.ElectronicContractsAction"
+                method="editElectronicContracts">
             <result name="success">/editElectronicContracts.jsp</result>
         </action>
 

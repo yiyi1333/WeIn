@@ -48,7 +48,7 @@ public class RegisterShopmanagerAndEnterpriseagencyService {
     }
 
     public List<EnterpriseDepartment> queryEnterpriseStructure(int id) {
-        return enterpriseDepartmentimpl.getEnterpriseDepartmentById(id);
+        return enterpriseDepartmentimpl.getEnterpriseDepartmentByEnterpriseId(id);
     }
 
     public EnterpriseDepartmentImpl getEnterpriseDepartmentimpl() {
