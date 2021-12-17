@@ -81,6 +81,8 @@ public class UserAction implements SessionAware {
                 session.put("type", "enterpriseAgency");
                 session.put("name", enterpriseAgency.getEnterpriseAgencyName());
                 session.put("enterpriseAgency", enterpriseAgency);
+                //存一下企业管理员的企业号
+                session.put("loginuserEnterpriseId", enterpriseAgency.getEnterpriseId());
                 return "success";
             }
         } else if (user.getAuthority() == 2) {
@@ -92,7 +94,7 @@ public class UserAction implements SessionAware {
                 session.put("type", "platformAdministrator");
                 session.put("name", platformAdministrator.getAdminName());
                 session.put("platformAdministrator", platformAdministrator);
-                return "success";
+                return "platformAdministratorsuccess";
             }
         }
         return "failed";

@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: rainbow
+  Date: 2021/12/16
+  Time: 22:38
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page import="cn.edu.zjut.po.ShopManager" %>
 <%@ page import="java.util.List" %>
@@ -19,10 +26,8 @@
     <link href="css/style.css" rel="stylesheet">
 
 </head>
-
 <body>
 <div id="wrapper">
-
 
     <jsp:include page="platformAdministratorNavigation.jsp"/>
 
@@ -173,120 +178,149 @@
                 <div class="col-lg-12">
                     <div class="ibox ">
                         <div class="ibox-title">
-                            <h5>店铺商家查询</h5>
+
+                            <h5>编辑电子合同</h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
                                 </a>
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="fa fa-wrench"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li><a href="#" class="dropdown-item">选项 1</a>
-                                    </li>
-                                    <li><a href="#" class="dropdown-item">选项 2</a>
-                                    </li>
-                                </ul>
+
                                 <a class="close-link">
                                     <i class="fa fa-times"></i>
                                 </a>
                             </div>
                         </div>
                         <div class="ibox-content">
+                            <div class="ibox-content">
+                                <div class="search-form">
+                                    <form action="getEnterpriseDepartmentById" method="post">
+                                        <s:hidden name="loginuserEnterpriseId" value="loginuserEnterpriseId"></s:hidden>
+                                        <div class="input-group">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-lg btn-primary" type="submit">
+                                                    选择企业的企业结构
+                                                </button>
+                                            </div>
+                                        </div>
 
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover dataTables-example">
-                                    <thead>
-                                    <tr>
-                                        <td>注册店铺商家编号</td>
-                                        <td>账号</td>
-                                        <td>密码</td>
-                                        <td>名字</td>
-                                        <td>所属店铺</td>
-                                        <td>身份证号</td>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <s:iterator value="shopManagerList">
+                                    </form>
+                                </div>
+                                <s:form action="editElectronicContracts" method="post">
+
+                                <div class="form-group  row"><label class="col-sm-2 col-form-label">合同开始时间</label>
+                                    <div class="col-sm-10"><input type="date" class="form-control"
+                                                                  name="electronicContracts.starttime"></div>
+                                </div>
+                                <div class="form-group  row"><label class="col-sm-2 col-form-label">合同结束时间</label>
+                                    <div class="col-sm-10"><input type="date" class="form-control"
+                                                                  name="electronicContracts.endtime"></div>
+                                </div>
+                                <div class="form-group  row"><label class="col-sm-2 col-form-label">合作商家编号</label>
+                                    <div class="col-sm-10"><input type="text" class="form-control"
+                                                                  name="electronicContracts.shopId"></div>
+                                </div>
+                                <div class="form-group  row"><label
+                                        class="col-sm-2 col-form-label">企业用户负责人编号（审核对象）</label>
+                                    <div class="col-sm-10"><input type="text" class="form-control"
+                                                                  name="electronicContracts.enterpriseAgencyId"></div>
+                                </div>
+                                <div class="form-group  row"><label class="col-sm-2 col-form-label">商品ID</label>
+                                    <div class="col-sm-10"><input type="text" class="form-control"
+                                                                  name="electronicContracts.goodsId"></div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover dataTables-example">
+                                        <thead>
                                         <tr>
-                                            <td><s:property value="shopId"/></td>
-                                            <td><s:property value="shopManagerId"/></td>
-                                            <td><s:property value="shopManagerAccount"/></td>
-                                            <td><s:property value="shopManagerPassword"/></td>
-                                            <td><s:property value="shopManagerName"/></td>
-                                            <td><s:property value="idCardNumber"/></td>
+                                            <th>部门编号</th>
+                                            <th>部门名称</th>
+                                            <th>折扣</th>
                                         </tr>
-                                    </s:iterator>
+                                        </thead>
+                                        <tbody>
+                                        <s:iterator value="electronicContractsList">
+                                            <tr>
+                                                <td><s:property value="enterpriseDepartmentId"/></td>
+                                                <td><s:property value="enterpriseDepartmentName"/></td>
+                                                <td><input type="text" class="form-control"
+                                                           name="discount"></td>
+                                            </tr>
+                                        </s:iterator>
 
-                                    </tbody>
-                                    <tfoot>
+                                        </tbody>
+                                        <tfoot>
 
-                                    </tfoot>
-                                </table>
+                                        </tfoot>
+                                    </table>
+                                    <div class="form-group row">
+                                        <div class="col-sm-4 col-sm-offset-2">
+                                            <button class="btn btn-white btn-sm" type="submit">取消</button>
+                                            <button class="btn btn-primary btn-sm" type="submit">保存更改</button>
+                                        </div>
+                                    </div>
+                                    </s:form>
+                                </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="footer">
-            <div class="float-right">
-                <strong>2.9.2 inspinia</strong>
-            </div>
-            <div>
-                <strong>Copyright</strong> xxx &copy; 2020
-            </div>
-        </div>
+                <div class="footer">
+                    <div class="float-right">
+                        <strong>2.9.2 inspinia</strong>
+                    </div>
+                    <div>
+                        <strong>Copyright</strong> xxx &copy; 2020
+                    </div>
+                </div>
 
+            </div>
+        </div>
     </div>
-</div>
-<!-- Mainly scripts -->
-<script src="js/jquery-3.1.1.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-<script src="js/plugins/dataTables/datatables.min.js"></script>
-<script src="js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
+    <!-- Mainly scripts -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-<!-- Custom and plugin javascript -->
-<script src="js/inspinia.js"></script>
-<script src="js/plugins/pace/pace.min.js"></script>
+    <script src="js/plugins/dataTables/datatables.min.js"></script>
+    <script src="js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
 
-<!-- Page-Level Scripts -->
-<script>
-    $(document).ready(function () {
-        $('.dataTables-example').DataTable({
-            pageLength: 25,
-            responsive: true,
-            dom: '<"html5buttons"B>lTfgitp',
-            buttons: [
-                {extend: 'copy'},
-                {extend: 'csv'},
-                {extend: 'excel', title: 'ExampleFile'},
-                {extend: 'pdf', title: 'ExampleFile'},
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
 
-                {
-                    extend: 'print',
-                    customize: function (win) {
-                        $(win.document.body).addClass('white-bg');
-                        $(win.document.body).css('font-size', '10px');
+    <!-- Page-Level Scripts -->
+    <script>
+        $(document).ready(function () {
+            $('.dataTables-example').DataTable({
+                pageLength: 25,
+                responsive: true,
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    {extend: 'copy'},
+                    {extend: 'csv'},
+                    {extend: 'excel', title: 'ExampleFile'},
+                    {extend: 'pdf', title: 'ExampleFile'},
 
-                        $(win.document.body).find('table')
-                            .addClass('compact')
-                            .css('font-size', 'inherit');
+                    {
+                        extend: 'print',
+                        customize: function (win) {
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                        }
                     }
-                }
-            ]
+                ]
+
+            });
 
         });
 
-    });
-
-</script>
+    </script>
 </body>
 </html>
-
-

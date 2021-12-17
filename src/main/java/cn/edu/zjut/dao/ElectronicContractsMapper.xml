@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zjut.dao.ElectronicContractsMapper">
+
+    <resultMap id="ElectronicContractsResultMap" type="cn.edu.zjut.po.ElectronicContracts">
+        <result property="electronicContractsId" column="electronicContractsId"/>
+        <result property="enterpriseAgencyId" column="enterpriseAgencyId"/>
+        <result property="enterpriseId" column="enterpriseId"/>
+        <result property="shopmanagerId" column="shopmanagerId"/>
+        <result property="shopId" column="shopId"/>
+        <result property="starttime" column="starttime"/>
+        <result property="endtime" column="endtime"/>
+        <result property="goodsId" column="goodsId"/>
+        <result property="enterpriseDepartmentId" column="enterpriseDepartmentId"/>
+        <result property="discount" column="discount"/>
+        <result property="isEfficiency" column="isEfficiency"/>
+    </resultMap>
+
+    <select id="queryElectronicContracts" resultMap="ElectronicContractsResultMap">
+        select * from electroniccontracts
+    </select>
+
+    <insert id="addElectronicContracts" useGeneratedKeys="true" keyProperty="id">
+        insert into electroniccontracts(efficiency, enterpriseId,enterpriseAgencyId,starttime,endtime,goodsId,shopId,
+        enterpriseDepartmentId, discount)
+        values (electronicContracts.efficiency ,electronicContracts.enterpriseId ,electronicContracts.enterpriseAgencyId
+        ,electronicContracts.starttime ,electronicContracts.endtime ,electronicContracts.goodsId
+        ,electronicContracts.shopId ,electronicContracts.enterpriseDepartmentId ,electronicContracts.discount
+    </insert>
+
+</mapper>

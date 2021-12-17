@@ -19,10 +19,8 @@
     <link href="css/style.css" rel="stylesheet">
 
 </head>
-
 <body>
 <div id="wrapper">
-
 
     <jsp:include page="platformAdministratorNavigation.jsp"/>
 
@@ -151,13 +149,13 @@
         </div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>企业人员</h2>
+                <h2>电子合同</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href="showenterpriseuser.action">主页</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a>管理企业人员</a>
+                        <a>管理合同</a>
                     </li>
                     <li class="breadcrumb-item active">
                         <strong>企业人员</strong>
@@ -173,20 +171,14 @@
                 <div class="col-lg-12">
                     <div class="ibox ">
                         <div class="ibox-title">
-                            <h5>店铺商家查询</h5>
+
+
+                            <h5>合同查询</h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
                                 </a>
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="fa fa-wrench"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li><a href="#" class="dropdown-item">选项 1</a>
-                                    </li>
-                                    <li><a href="#" class="dropdown-item">选项 2</a>
-                                    </li>
-                                </ul>
+
                                 <a class="close-link">
                                     <i class="fa fa-times"></i>
                                 </a>
@@ -198,23 +190,32 @@
                                 <table class="table table-striped table-bordered table-hover dataTables-example">
                                     <thead>
                                     <tr>
-                                        <td>注册店铺商家编号</td>
-                                        <td>账号</td>
-                                        <td>密码</td>
-                                        <td>名字</td>
-                                        <td>所属店铺</td>
-                                        <td>身份证号</td>
+                                        <td>合同编号</td>
+                                        <td>合作企业</td>
+                                        <td>合作企业用户负责人</td>
+                                        <td>合作商家</td>
+                                        <td>合作商家拥护负责人</td>
+                                        <td>开始时间</td>
+                                        <td>结束时间</td>
+                                        <td>商品编号</td>
+                                        <td>企业结构编号</td>
+                                        <td>折扣</td>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <s:iterator value="shopManagerList">
+                                    <s:iterator value="electronicContractsList">
                                         <tr>
+                                            <td><s:property value="electronicContractsId"/></td>
+                                            <td><s:property value="enterpriseId"/></td>
+                                            <td><s:property value="enterpriseAgencyId"/></td>
                                             <td><s:property value="shopId"/></td>
-                                            <td><s:property value="shopManagerId"/></td>
-                                            <td><s:property value="shopManagerAccount"/></td>
-                                            <td><s:property value="shopManagerPassword"/></td>
-                                            <td><s:property value="shopManagerName"/></td>
-                                            <td><s:property value="idCardNumber"/></td>
+                                            <td><s:property value="shopmanagerId"/></td>
+                                            <td><s:property value="starttiem"/></td>
+                                            <td><s:property value="endtieme"/></td>
+                                            <td><s:property value="goodsId"/></td>
+                                            <td><s:property value="enterpriseDepartmentId"/></td>
+                                            <input type="text" class="form-control"
+                                                   name=""/>
                                         </tr>
                                     </s:iterator>
 
@@ -241,6 +242,7 @@
 
     </div>
 </div>
+
 <!-- Mainly scripts -->
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/popper.min.js"></script>
@@ -288,5 +290,3 @@
 </script>
 </body>
 </html>
-
-

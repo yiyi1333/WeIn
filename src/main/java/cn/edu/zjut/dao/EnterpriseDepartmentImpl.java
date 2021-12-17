@@ -1,13 +1,12 @@
 package cn.edu.zjut.dao;
 
 import cn.edu.zjut.po.EnterpriseDepartment;
-import cn.edu.zjut.po.EnterpriseDepartmentDisplay;
 import cn.edu.zjut.po.EnterpriseUser;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import java.util.List;
 
-public class EnterpriseDepartmentImpl implements EnterpriseDepartmentMapper {
+public class EnterpriseDepartmentImpl implements EnterpriseDepartmentMapper{
     private SqlSessionTemplate sqlSession;
 
     public SqlSessionTemplate getSqlSession() {
@@ -72,4 +71,10 @@ public class EnterpriseDepartmentImpl implements EnterpriseDepartmentMapper {
         sqlSession.getMapper(EnterpriseDepartmentMapper.class).deleteConsumer(id);
     }
 
+
+    @Override
+    public List<EnterpriseDepartment> getEnterpriseDepartmentById(int id) {
+        System.out.println("execute--getEnterpriseDepartmentById--dao");
+        return sqlSession.getMapper(EnterpriseDepartmentMapper.class).getEnterpriseDepartmentById(id);
+    }
 }

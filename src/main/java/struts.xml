@@ -37,7 +37,7 @@
                 <param name="root">decodeResult</param>
             </result>
         </action>
-        
+
         <action name="authorize" class="cn.edu.zjut.action.ConsumerAction" method="authorize">
             <result name="success" type="json">
                 <param name="root">enterpriseConsumer</param>
@@ -56,6 +56,8 @@
         <!--        张宇翔配置区-->
         <action name="login" class="cn.edu.zjut.action.UserAction" method="login">
             <result name="success">/index.jsp</result>
+<!--            平台运营人员的主页-->
+            <result name="platformAdministratorsuccess">/registerShopmanager.jsp</result>
             <result name="failed">/login.jsp</result>
         </action>
 
@@ -126,8 +128,14 @@
         </action>
         <action name="registerShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
                 method="registerShopmanager">
+            <result name="success">/registerShopmanager.jsp</result>
+        <action name="registerShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
+                method="registerShopmanager">
             <result name="success">/platformAdministraorIndex.jsp</result>
         </action>
+        <action name="registerEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
+                method="registerEnterpriseagency">
+            <result name="success">/registerEnterpriseagency.jsp</result>
         <action name="registerEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
                 method="registerEnterpriseagency">
             <result name="success">/platformAdministraorIndex.jsp</result>
@@ -144,8 +152,45 @@
             <result name="success">/enterpriseagencyList.jsp</result>
             <!--            </result>-->
         </action>
+        <!--        展示企业结构-->
+        <action name="queryEnterpriseStructure" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
+                method="queryEnterpriseStructure">
+            <result name="success">/queryEnterpriseStructure.jsp</result>
+        </action>
+        <action name="deleteEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
+                method="deleteEnterpriseagency">
+            <result name="success">/deleteEnterpriseagency.jsp</result>
+        </action>
+        <!--查询已有合同-->
+
+        <action name="queryElectronicContracts" class="cn.edu.zjut.action.ElectronicContractsAction"
+                method="queryElectronicContracts">
+            <result name="success">/showallelectronicContracts.jsp</result>
+        </action>
+
+        <!--编辑合同_查询本企业结构-->
+        <action name="getEnterpriseDepartmentById" class="cn.edu.zjut.action.ElectronicContractsAction"
+                method="getEnterpriseDepartmentById">
+            <result name="success">/editElectronicContracts.jsp</result>
+        </action>
+        <action name="editElectronicContracts" class="cn.edu.zjut.action.ElectronicContractsAction" method="editElectronicContracts">
+            <result name="success">/editElectronicContracts.jsp</result>
+        </action>
+
+
         <!--        王怡欣配置区-->
         <!--        王淑媚配置区-->
+        <action name="addconsumer" class="cn.edu.zjut.action.ConsumerAction" method="addConsumer">
+            <result name="success">/addConsumer.jsp</result>
+        </action>
+        <action name="showenterpriseuser" class="cn.edu.zjut.action.EnterpriseDepartmentAction"
+                method="getEnterpriseList">
+            <result name="success">/showEnterpriseDepartmentUser.jsp</result>
+        </action>
+        <action name="addenterpriseDepartment" class="cn.edu.zjut.action.EnterpriseDepartmentAction"
+                method="addEnterpriseDepartment">
+            <result name="success">/addEnterpriseDepartment.jsp</result>
+        </action>
         <action name="displayShopOrders" class="cn.edu.zjut.action.OrdersAction" method="displayShopOrders">
             <result name="displayShopOrdersSuccess">/ordersList.jsp</result>
         </action>

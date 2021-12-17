@@ -25,6 +25,7 @@
 <!--        <url-pattern>/displayAddEnterpriseDepartment.action</url-pattern>-->
 <!--    </filter-mapping>-->
 
+
     <filter>
         <filter-name>struts2</filter-name>
         <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
@@ -33,11 +34,9 @@
         <filter-name>struts2</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
     <listener>
         <listener-class>
             org.springframework.web.context.ContextLoaderListener
         </listener-class>
     </listener>
-
 </web-app>

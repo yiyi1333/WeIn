@@ -10,6 +10,10 @@
         <result property="consumerId" column="consumerId"/>
     </resultMap>
 
+    <select id="getAllEnterpriseUser" resultMap="EnterpriseUserResultMap">
+        select enterpriseDepartmentName,enterpriseDepartmentId,name,consumerId from WeIn.consumer,WeIn.enterprisedepartment where enterpriseDepartmentNumber=enterpriseDepartmentId;
+    </select>
+
     <resultMap id="EnterpriseDepartmentResultMap" type="cn.edu.zjut.po.EnterpriseDepartment">
         <result property="enterpriseDepartmentName" column="enterpriseDepartmentName"/>
         <result property="enterpriseDepartmentId" column="enterpriseDepartmentId"/>
@@ -48,6 +52,10 @@
         insert into WeIn.enterpriseDepartment(enterpriseDepartmentName,enterpriseDepartmentpre,enterpriseId)
         values(#{enterpriseDepartmentName},#{enterpriseDepartmentpre},#{enterpriseId});
     </insert>
+
+    <select id="getEnterpriseDepartmentById" resultType="cn.edu.zjut.po.EnterpriseDepartment" parameterType="int">
+        select * from WeIn.enterprisedepartment where enterpriseId=#{id}
+    </select>
 
     <select id="getEnterpriseDepartmentById" resultMap="EnterpriseDepartmentResultMap">
         select * from WeIn.enterprisedepartment where enterprisedepartmentid = #{0}
