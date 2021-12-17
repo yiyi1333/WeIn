@@ -25,6 +25,7 @@ public class EnterpriseDepartmentAction extends ActionSupport implements Session
     private Map<String, Object> session;
     private String deleteDepartmentId;
 
+
     public String getDeleteDepartmentId() {
         return deleteDepartmentId;
     }
