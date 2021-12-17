@@ -6,12 +6,14 @@
     <resultMap id="GoodsMap" type="cn.edu.zjut.po.Goods">
         <result property="goodsId" column="goodsId"/>
         <result property="goodsName" column="goodsName"/>
-        <result property="goodsPrice" column="goodPrice"/>
+        <result property="goodsPrice" column="goodprice"/>
         <result property="goodsDetails" column="goodsDetails"/>
         <result property="goodsStock" column="goodsStock"/>
         <result property="tags" column="tags"/>
         <result property="goodsImage" column="goodsImage"/>
         <result property="isGrouding" column="isGrouding"/>
+        <result property="warehouseId" column="warehouseId"/>
+        <result property="goodsWeight" column="goodsWeight"/>
         <result property="shopId" column="goods.shopId"/>
         <association property="shop" javaType="cn.edu.zjut.po.Shop">
             <result property="shopId" column="shop.shopId"/>
@@ -40,7 +42,9 @@
         <result property="shopId" column="shopId"/>
         <result property="tags" column="tags"/>
         <result property="goodsImage" column="goodsImage"/>
-        <result property="goodsImage" column="goodsImage"/>
+        <result property="isGrouding" column="isGrouding"/>
+        <result property="goodsWeight" column="goodsWeight"/>
+        <result property="warehouseId" column="warehouseId"/>
     </resultMap>
 
     <select id="getAllGoods" resultMap="GoodsResultMap">
@@ -60,11 +64,32 @@
         goodPrice = #{goodsPrice},
         goodsDetails = #{goodsDetails},
         tags = #{tags},
-        goodsImage = #{goodsImage}
+        goodsImage = #{goodsImage},
+        isGrouding = #{isGrouding},
+        isGrouding = #{isGrouding},
+        goodsWeight = #{goodsWeight}
         where goodsId = #{goodsId};
     </update>
 
     <insert id="addGoods" parameterType="cn.edu.zjut.po.Goods">
-        insert into WeIn.Goods(goodsName,goodprice,goodsDetails,goodsStock,shopId,tags,goodsImage,isGrouding) values(#{goodsName},#{goodsPrice},#{goodsDetails},#{goodsStock},#{shopId},#{tags},#{goodsImage},#{isGrouding});
+        insert into WeIn.Goods(goodsName,goodprice,goodsDetails,goodsStock,shopId,tags,goodsImage,isGrouding,goodsWeight,warehouseId) values(#{goodsName},#{goodsPrice},#{goodsDetails},#{goodsStock},#{shopId},#{tags},#{goodsImage},#{isGrouding},#{goodsWeight},#{warehouseId});
     </insert>
+
+    <select id="selectGoods" resultMap="GoodsResultMap" parameterType="cn.edu.zjut.po.Goods">
+        select * from WeIn.goods
+        <where>
+            <if test="goodsName != null and goodsName !=''"> and goodsName like #{goodsName}</if>
+            <if test="isGrouding != null and isGrouding !=''"> and isGrouding=#{isGrouding}</if>
+            <if test="tags != null and tags !=''"> and tags like #{tags}</if>
+        </where>
+    </select>
+
+    <delete id="deleteGoods" parameterType="java.lang.Integer">
+        delete from WeIn.goods where goodsId=#{goodid};
+    </delete>
+
+    <select id="selectGoodsByWarehouseId" resultMap="GoodsResultMap" parameterType="java.lang.Integer">
+        select * from WeIn.goods
+        where warehouseId=#{warehouseId};
+    </select>
 </mapper>

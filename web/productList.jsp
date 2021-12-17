@@ -35,13 +35,13 @@
                 <h2>店铺商品管理</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="index.html">主页</a>
+                        <a href="shopIndex.jsp">主页</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a>电子商务</a>
+                        <a>管理商品</a>
                     </li>
                     <li class="breadcrumb-item active">
-                        <strong>网格布局</strong>
+                        <strong>查看商品</strong>
                     </li>
                 </ol>
             </div>
@@ -51,6 +51,46 @@
         </div>
 
         <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="ibox-content m-b-sm border-bottom">
+                <form action="displayGoods">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label" for="name">商品名称</label>
+                                <input type="text" id="name" name="goods.goodsName" value="" placeholder="请输入商品名称" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label" for="status">状态</label>
+                                <select name="goods.isGrouding" id="status" class="form-control">
+                                    <option value="" selected>全部</option>
+                                    <option value="1">上架</option>
+                                    <option value="0">下架</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label" for="status">类别</label>
+                                <select name="goods.tags" id="type" class="form-control">
+                                    <option value="" selected>全部</option>
+                                    <option value="电脑">电脑</option>
+                                    <option value="电视">电视</option>
+                                    <option value="手表">手表</option>
+                                    <option value="手机">手机</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <input class="btn btn-primary" type="submit" value="查询" style="margin-top: 20%;margin-left: 20%">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
             <%
                 List<Goods> goodsList = (List<Goods>) session.getAttribute("goodsList");
                 for (int i = 0; i < (goodsList.size() + 3) / 4; i++) {
@@ -77,12 +117,34 @@
                                     <%=goodsList.get(j).getGoodsDetails() == null ? "暂无" : goodsList.get(j).getGoodsDetails()%>
                                     >
                                 </div>
-                                <div class="m-t text-righ">
-                                    <form action="displayGoodsEditor.action">
-                                        <input type="hidden" name="goods.goodsId"
-                                               value=<%=goodsList.get(j).getGoodsId()%>>
-                                        <input type="submit" class="btn btn-xs btn-outline btn-primary" value="编辑">
-                                    </form>
+                                <div class="m-t text-righ row">
+                                    <div class="col-sm-2">
+                                        <form action="displayGoodsEditor.action">
+                                            <input type="hidden" name="goods.goodsId"
+                                                   value=<%=goodsList.get(j).getGoodsId()%>>
+                                            <input type="submit" class="btn btn-xs btn-outline btn-primary" value="编辑">
+                                        </form>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <form>
+                                            <input type="hidden" name="goods.goodsId"
+                                                   value=<%=goodsList.get(j).getGoodsId()%>>
+                                            <%
+                                                if(goodsList.get(j).getIsGrouding()==1){
+                                            %>
+                                            <input type="submit" class="btn btn-xs btn-outline btn-primary" value="上架">
+                                            <%}else{%>
+                                            <input type="submit" class="btn btn-xs btn-outline btn-primary" value="下架">
+                                            <%}%>
+                                        </form>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <form action="displaydeleteGoods.action">
+                                            <input type="hidden" name="goods.goodsId"
+                                                   value=<%=goodsList.get(j).getGoodsId()%>>
+                                            <input type="submit" class="btn btn-xs btn-outline btn-primary" value="删除">
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>

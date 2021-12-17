@@ -25,7 +25,7 @@
             <li>
                 <a href="#"><i class="fa fa-shopping-cart"></i> <span class="nav-label">商品管理</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                    <li><a href="addProduct.jsp"><i class="fa fa-plus-square"></i>添加商品</a></li>
+                    <li><a href="./displayAddress"><i class="fa fa-plus-square"></i>添加商品</a></li>
                     <li><a href="./displayShopGoods"><i class="fa fa-bars"></i>查看商品信息</a></li>
                 </ul>
             </li>
@@ -33,7 +33,7 @@
                 <a href="#"><i class="fa fa-sign-out"></i> <span class="nav-label">发货地址管理</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li><a href="addWareHouseAddress.jsp"><i class="fa fa-plus-square"></i>增加发货地址</a></li>
-                    <li><a href="wareHouseAddressList.jsp"><i class="fa fa-bars"></i>查看发货地址</a></li>
+                    <li><a href="./displayShopWareHouseAddress.action"><i class="fa fa-bars"></i>查看发货地址</a></li>
                 </ul>
             </li>
             <li>

@@ -25,7 +25,6 @@ public class GoodsService {
     }
 
     public List<Goods> getAllGoods() {
-        System.out.println("execute --getAllGoods()-- method.");
         return goodsDao.getAllGoods();
     }
     public Goods getGoodById(Integer goodid){
@@ -50,4 +49,15 @@ public class GoodsService {
         goodsDao.addGoods(goods);
     }
 
+    public List<Goods> selectGoods(Goods goods){
+        return goodsDao.selectGoods(goods);
+    }
+
+    public void deleteGoods(Integer goodid){
+        goodsDao.deleteGoods(goodid);
+    }
+
+    public List<Goods> selectGoodsByWarehouseId(Integer warehouseId){
+        return goodsDao.selectGoodsByWarehouseId(warehouseId);
+    }
 }

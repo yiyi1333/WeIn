@@ -16,4 +16,10 @@ public interface GoodsMapper {
     public void updateGoods(Goods goods);
     // 添加商品
     public void addGoods(Goods goods);
+    // 根据各类要求查看商品
+    public List<Goods> selectGoods(Goods goods);
+    // 删除商品
+    public void deleteGoods(@Param("goodid") Integer goodid);
+    //根据发货id查找商品
+    public List<Goods> selectGoodsByWarehouseId(@Param("warehouseId") Integer warehouseId);
 }

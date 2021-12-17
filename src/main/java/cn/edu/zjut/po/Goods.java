@@ -13,11 +13,29 @@ public class Goods implements Serializable {
     private int shopId;
     private Shop shop;
     private int isGrouding;
+    private int warehouseId;
+    private double goodsWeight;
+
+    public double getGoodsWeight() {
+        return goodsWeight;
+    }
+
+    public void setGoodsWeight(double goodsWeight) {
+        this.goodsWeight = goodsWeight;
+    }
+
+    public int getWarehouseId() {
+        return warehouseId;
+    }
+
+    public void setWarehouseId(int warehouseId) {
+        this.warehouseId = warehouseId;
+    }
 
     public Goods() {
     }
 
-    public Goods(int goodsId, String goodsName, double goodsPrice, String goodsDetails, int goodsStock, String tags, String goodsImage, int shopId, Shop shop, int isGrouding) {
+    public Goods(int goodsId, String goodsName, double goodsPrice, String goodsDetails, int goodsStock, String tags, String goodsImage, int shopId, Shop shop, int isGrouding, int warehouseId) {
         this.goodsId = goodsId;
         this.goodsName = goodsName;
         this.goodsPrice = goodsPrice;
@@ -28,6 +46,7 @@ public class Goods implements Serializable {
         this.shopId = shopId;
         this.shop = shop;
         this.isGrouding = isGrouding;
+        this.warehouseId = warehouseId;
     }
 
     public int getIsGrouding() { return isGrouding; }

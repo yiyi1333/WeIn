@@ -89,46 +89,76 @@
                         </div>
                         <div class="ibox-content">
                             <form action="addGoods.action" enctype="multipart/form-data">
-                                <div class="form-group  row"  id="goodsNameDiv"><label class="col-sm-1 col-form-label">商品名</label>
+                                <div class="form-group  row"  id="goodsNameDiv">
+                                    <label class="col-sm-1 col-form-label">商品名</label>
                                     <div class="col-sm-10"><input type="text" class="form-control" id="goodsName" name="goods.goodsName"></div>
                                     <div id="goodsNameResult" style="margin-left: 100px;"></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
-                                <div class="form-group  row" id="goodPriceDiv"><label class="col-sm-1 col-form-label">商品价格</label>
+                                <div class="form-group  row" id="goodPriceDiv">
+                                    <label class="col-sm-1 col-form-label">商品价格</label>
                                     <div class="col-sm-10"><input type="text" class="form-control" id="goodPrice" name="goods.goodPrice"></div>
                                     <div id="goodsPriceResult" style="margin-left: 100px;"></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
-                                <div class="form-group row"><label class="col-sm-1 col-form-label">商品类型</label>
-                                    <div class="col-sm-10"><select class="form-control m-b" id="tags" name="goods.tags">
-                                        <option value="电脑">电脑</option>
-                                        <option value="电视">电视</option>
-                                        <option value="手表">手表</option>
-                                        <option value="手机">手机</option>
-                                    </select>
+                                <div class="form-group row">
+                                    <label class="col-sm-1 col-form-label">商品类型</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control m-b" id="tags" name="goods.tags">
+                                            <option value="电脑">电脑</option>
+                                            <option value="电视">电视</option>
+                                            <option value="手表">手表</option>
+                                            <option value="手机">手机</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
-                                <div class="form-group row" id="goodsDetailsDiv"><label class="col-sm-1 col-form-label">详细信息</label>
+                                <div class="form-group row" id="goodsDetailsDiv">
+                                    <label class="col-sm-1 col-form-label">详细信息</label>
                                     <div class="col-sm-10"><input type="text" class="form-control" id="goodsDetails" name="goods.goodsDetails"></div>
                                     <div id="goodsDetailsResult" style="margin-left: 100px;"></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
-                                <div class="form-group  row" id="goodsStockDiv"><label class="col-sm-1 col-form-label">商品库存</label>
+                                <div class="form-group  row" id="goodWeightDiv">
+                                    <label class="col-sm-1 col-form-label">商品重量</label>
+                                    <div class="col-sm-10"><input type="text" class="form-control" id="goodWeight" name="goods.goodsWeight"></div>
+                                    <div id="goodsWeightResult" style="margin-left: 100px;"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group  row" id="goodsStockDiv">
+                                    <label class="col-sm-1 col-form-label">商品库存</label>
                                     <div class="col-sm-10"><input type="text" class="form-control" id="goodsStock" name="goods.goodsStock"></div>
                                     <div id="goodsStockResult" style="margin-left: 100px;"></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
-                                <div class="form-group row"><label class="col-sm-1 col-form-label">商品状态</label>
-                                    <div class="col-sm-10"><select class="form-control m-b" id="type" name="goods.isGrouding">
-                                        <option value="1">上架</option>
-                                        <option value="0">下架</option>
-                                    </select>
+                                <div class="form-group row">
+                                    <label class="col-sm-1 col-form-label">商品状态</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control m-b" id="type" name="goods.isGrouding">
+                                            <option value="1">上架</option>
+                                            <option value="0">下架</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row">
+                                    <label class="col-sm-1 col-form-label">发货地址</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control m-b" id="warehouseId" name="goods.warehouseId">
+                                            <%
+                                                List<WareHouseAddress> wareHouseAddressList = (List<WareHouseAddress>) session.getAttribute("wareHouseAddressList");
+                                                for(WareHouseAddress wareHouseAddress : wareHouseAddressList){
+                                            %>
+                                            <option value="<%=wareHouseAddress.getWarehouseId()%>"><%=wareHouseAddress.getProvince()%><%=wareHouseAddress.getCity()%><%=wareHouseAddress.getDistrict()%><%=wareHouseAddress.getWarehouseDetailedAddress()%></option>
+                                            <%}%>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group  row" id="goodsImageDiv"><label class="col-sm-1 col-form-label">商品图片</label>
-                                    <div class="col-sm-10"><input type="text" class="form-control" id="goodsImage" name="goods.goodsImage"></div>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="goodsImage" name="goods.goodsImage">
+                                    </div>
                                     <div id="goodsImageResult" style="margin-left: 100px;"></div>
                                 </div>
 
@@ -238,28 +268,39 @@
 <script>
     $(function (){
         $('#goodsName').bind('input propertychange', function() {
-            if((20 - $(this).val().length) >=4 ){
+            if((40 - $(this).val().length) >=5 ){
                 document.getElementById("goodsNameDiv").className = "form-group row has-success";
-                $('#goodsNameResult').html('还剩 '+ (20 - $(this).val().length) + ' 字，请放心输入');
+                $('#goodsNameResult').html('还剩 '+ (40 - $(this).val().length) + ' 字，请放心输入');
             }
-            else if((20 - $(this).val().length) >= 0){
+            else if((40 - $(this).val().length) >= 0){
                 document.getElementById("goodsNameDiv").className = "form-group row has-warning";
-                $('#goodsNameResult').html('还剩 '+ (20 - $(this).val().length) + ' 字,请注意');
+                $('#goodsNameResult').html('还剩 '+ (40 - $(this).val().length) + ' 字,请注意');
             }
             else{
                 document.getElementById("goodsNameDiv").className = "form-group row has-error";
-                $('#goodsNameResult').html('您已超出 '+ ($(this).val().length - 20) + ' 字');
+                $('#goodsNameResult').html('您已超出 '+ ($(this).val().length - 40) + ' 字');
             }
         });
         $('#goodPrice').bind('input propertychange', function() {
             var r=/^[0-9]+(.[0-9]{1,2})?$/;
-            if(r.test($(this).val())){
+            if(r.test($(this).val()) && ($(this).val()>0)){
                 document.getElementById("goodPriceDiv").className = "form-group row has-success";
                 $('#goodsPriceResult').html('输入正确');
             }
             else{
                 document.getElementById("goodPriceDiv").className = "form-group row has-error";
                 $('#goodsPriceResult').html('请输入有0-2位小数的正实数');
+            }
+        });
+        $('#goodWeight').bind('input propertychange', function() {
+            var r=/^[0-9]+(.[0-9]{1,2})?$/;
+            if(r.test($(this).val()) && ($(this).val()>0)){
+                document.getElementById("goodWeightDiv").className = "form-group row has-success";
+                $('#goodsWeightResult').html('输入正确');
+            }
+            else{
+                document.getElementById("goodWeightDiv").className = "form-group row has-error";
+                $('#goodsWeightResult').html('请输入有0-2位小数的正实数');
             }
         });
         $('#goodsDetails').bind('input propertychange', function() {
