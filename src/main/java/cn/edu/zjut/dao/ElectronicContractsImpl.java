@@ -26,4 +26,11 @@ public class ElectronicContractsImpl {
         sqlSession.getMapper(ElectronicContractsMapper.class).addElectronicContracts(electronicContracts);
     }
 
+    public List queryElectronicContractsByEnterpriseId(int id) {
+        return sqlSession.getMapper(ElectronicContractsMapper.class).queryElectronicContractsByEnterpriseId(id);
+    }
+
+    public void disableContracts(int id) {
+        sqlSession.getMapper(ElectronicContractsMapper.class).disableContracts(id);
+    }
 }

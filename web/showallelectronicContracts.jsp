@@ -1,8 +1,11 @@
-<%@ taglib prefix="s" uri="/struts-tags" %>
-<%@ page import="cn.edu.zjut.po.ShopManager" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Collections" %>
+<%@ page import="cn.edu.zjut.po.ElectronicContracts" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<!DOCTYPE html>
 <html>
+
 <head>
 
     <meta charset="utf-8">
@@ -19,146 +22,27 @@
     <link href="css/style.css" rel="stylesheet">
 
 </head>
+
 <body>
+
 <div id="wrapper">
 
-    <jsp:include page="platformAdministratorNavigation.jsp"/>
+    <jsp:include page="navigation.jsp"/>
 
     <div id="page-wrapper" class="gray-bg">
-        <div class="row border-bottom">
-            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header">
-                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
-                    </a>
-                    <form role="search" class="navbar-form-custom" action="search_results.html">
-                        <div class="form-group">
-                            <input type="text" placeholder="请输入搜索内容" class="form-control" name="top-search"
-                                   id="top-search">
-                        </div>
-                    </form>
-                </div>
-                <ul class="nav navbar-top-links navbar-right">
-                    <li>
-                        <span class="m-r-sm text-muted welcome-message">欢迎来到xxx管理后台</span>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                            <i class="fa fa-envelope"></i> <span class="label label-warning">16</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-messages">
-                            <li>
-                                <div class="dropdown-messages-box">
-                                    <a class="dropdown-item float-left" href="profile.html">
-                                        <img alt="image" class="rounded-circle" src="img/a7.jpg">
-                                    </a>
-                                    <div class="media-body">
-                                        <small class="float-right">46 小时前</small>
-                                        <strong>小明</strong> 评论了 <strong>小红</strong>. <br>
-                                        <small class="text-muted">2017.10.06 7:58</small>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="dropdown-divider"></li>
-                            <li>
-                                <div class="dropdown-messages-box">
-                                    <a class="dropdown-item float-left" href="profile.html">
-                                        <img alt="image" class="rounded-circle" src="img/a4.jpg">
-                                    </a>
-                                    <div class="media-body ">
-                                        <small class="float-right text-navy">5 小时前</small>
-                                        <strong>小红</strong> 打电话给了 <strong>小黑</strong>. <br>
-                                        <small class="text-muted">2017.10.06 7:58</small>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="dropdown-divider"></li>
-                            <li>
-                                <div class="dropdown-messages-box">
-                                    <a class="dropdown-item float-left" href="profile.html">
-                                        <img alt="image" class="rounded-circle" src="img/profile.jpg">
-                                    </a>
-                                    <div class="media-body ">
-                                        <small class="float-right">23 小时前</small>
-                                        <strong>小黑</strong> 点赞了 <strong>小红</strong>. <br>
-                                        <small class="text-muted">2017.10.06 7:58</small>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="dropdown-divider"></li>
-                            <li>
-                                <div class="text-center link-block">
-                                    <a href="mailbox.html" class="dropdown-item">
-                                        <i class="fa fa-envelope"></i> <strong>阅读所有消息</strong>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                            <i class="fa fa-bell"></i> <span class="label label-primary">8</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-alerts">
-                            <li>
-                                <a href="mailbox.html" class="dropdown-item">
-                                    <div>
-                                        <i class="fa fa-envelope fa-fw"></i> 你有16条消息
-                                        <span class="float-right text-muted small">4 分钟前</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="dropdown-divider"></li>
-                            <li>
-                                <a href="profile.html" class="dropdown-item">
-                                    <div>
-                                        <i class="fa fa-twitter fa-fw"></i> 3 个新的关注者
-                                        <span class="float-right text-muted small">12 分钟前</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="dropdown-divider"></li>
-                            <li>
-                                <a href="grid_options.html" class="dropdown-item">
-                                    <div>
-                                        <i class="fa fa-upload fa-fw"></i> 重启服务器
-                                        <span class="float-right text-muted small">4 分钟前</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="dropdown-divider"></li>
-                            <li>
-                                <div class="text-center link-block">
-                                    <a href="notifications.html" class="dropdown-item">
-                                        <strong>查看所有信息</strong>
-                                        <i class="fa fa-angle-right"></i>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-
-
-                    <li>
-                        <a href="login.html">
-                            <i class="fa fa-sign-out"></i> 注销
-                        </a>
-                    </li>
-                </ul>
-
-            </nav>
-        </div>
+        <jsp:include page="topSidebar.jsp"/>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>电子合同</h2>
+                <h2>数据表格</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="showenterpriseuser.action">主页</a>
+                        <a href="index.html">主页</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a>管理合同</a>
+                        <a>表格</a>
                     </li>
                     <li class="breadcrumb-item active">
-                        <strong>企业人员</strong>
+                        <strong>数据表格</strong>
                     </li>
                 </ol>
             </div>
@@ -171,14 +55,20 @@
                 <div class="col-lg-12">
                     <div class="ibox ">
                         <div class="ibox-title">
-
-
-                            <h5>合同查询</h5>
+                            <h5>基本数据表示例与响应插件</h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
                                 </a>
-
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li><a href="#" class="dropdown-item">选项 1</a>
+                                    </li>
+                                    <li><a href="#" class="dropdown-item">选项 2</a>
+                                    </li>
+                                </ul>
                                 <a class="close-link">
                                     <i class="fa fa-times"></i>
                                 </a>
@@ -190,38 +80,65 @@
                                 <table class="table table-striped table-bordered table-hover dataTables-example">
                                     <thead>
                                     <tr>
-                                        <td>合同编号</td>
-                                        <td>合作企业</td>
-                                        <td>合作企业用户负责人</td>
-                                        <td>合作商家</td>
-                                        <td>合作商家拥护负责人</td>
-                                        <td>开始时间</td>
-                                        <td>结束时间</td>
-                                        <td>商品编号</td>
-                                        <td>企业结构编号</td>
-                                        <td>折扣</td>
+                                        <th>合同编号</th>
+                                        <th>企业方负责人编号</th>
+                                        <th>企业编号</th>
+                                        <th>商家编号</th>
+                                        <th>开始时间</th>
+                                        <th>结束时间</th>
+                                        <th>商品编号</th>
+                                        <th>企业部门编号</th>
+                                        <th>折扣</th>
+                                        <th>合同状态</th>
                                     </tr>
                                     </thead>
+                                    <%
+                                        List<ElectronicContracts> list = (List<ElectronicContracts>) session.getAttribute("contracts");
+                                    %>
                                     <tbody>
-                                    <s:iterator value="electronicContractsList">
-                                        <tr>
-                                            <td><s:property value="electronicContractsId"/></td>
-                                            <td><s:property value="enterpriseId"/></td>
-                                            <td><s:property value="enterpriseAgencyId"/></td>
-                                            <td><s:property value="shopId"/></td>
-                                            <td><s:property value="shopmanagerId"/></td>
-                                            <td><s:property value="starttiem"/></td>
-                                            <td><s:property value="endtieme"/></td>
-                                            <td><s:property value="goodsId"/></td>
-                                            <td><s:property value="enterpriseDepartmentId"/></td>
-                                            <input type="text" class="form-control"
-                                                   name=""/>
-                                        </tr>
-                                    </s:iterator>
+                                    <%
+                                        for (int i = 0; i < list.size(); i++) {
+                                    %>
 
+                                    <tr class="<%=(i%2==0?"gradeX":"gradeC")%>">
+                                        <td><%=list.get(i).getElectronicContractsId()%>
+                                        </td>
+                                        <td><%=list.get(i).getEnterpriseAgencyId()%>
+                                        </td>
+                                        <td><%=list.get(i).getEnterpriseId()%>
+                                        </td>
+                                        <td><%=list.get(i).getShopId()%>
+                                        </td>
+                                        <td><%=list.get(i).getStarttime()%>
+                                        </td>
+                                        <td><%=list.get(i).getEndtime()%>
+                                        </td>
+                                        <td><%=list.get(i).getGoodsId()%>
+                                        </td>
+                                        <td><%=list.get(i).getEnterpriseDepartmentId()%>
+                                        </td>
+                                        <td><%=list.get(i).getDiscount()%>
+                                        </td>
+                                        <td><%=(list.get(i).getState() == 0 ? "待审核" : (list.get(i).getState() == 1 ? "生效中" : "已失效"))%>
+                                        </td>
+                                    </tr>
+                                    <%
+                                        }
+                                    %>
                                     </tbody>
                                     <tfoot>
-
+                                    <tr>
+                                        <th>合同编号</th>
+                                        <th>企业方负责人编号</th>
+                                        <th>企业编号</th>
+                                        <th>商家编号</th>
+                                        <th>开始时间</th>
+                                        <th>结束时间</th>
+                                        <th>商品编号</th>
+                                        <th>企业部门编号</th>
+                                        <th>折扣</th>
+                                        <th>合同状态</th>
+                                    </tr>
                                     </tfoot>
                                 </table>
                             </div>
@@ -242,6 +159,7 @@
 
     </div>
 </div>
+
 
 <!-- Mainly scripts -->
 <script src="js/jquery-3.1.1.min.js"></script>
@@ -288,5 +206,7 @@
     });
 
 </script>
+
 </body>
+
 </html>

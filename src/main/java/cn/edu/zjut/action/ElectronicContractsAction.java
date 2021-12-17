@@ -1,8 +1,7 @@
 package cn.edu.zjut.action;
 
-import cn.edu.zjut.po.*;
+import cn.edu.zjut.po.ElectronicContracts;
 import cn.edu.zjut.service.ElectronicContractsService;
-import cn.edu.zjut.service.EnterpriseDepartmentService;
 import cn.edu.zjut.service.RegisterShopmanagerAndEnterpriseagencyService;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -15,6 +14,7 @@ public class ElectronicContractsAction implements SessionAware {
     private ElectronicContracts electronicContracts;
     private List electronicContractsList;
     private Map<String, Object> session;
+    private String enterpriseId;
     //获得企业结构用
     private RegisterShopmanagerAndEnterpriseagencyService registerShopmanagerAndEnterpriseagencyService;
 
@@ -44,7 +44,7 @@ public class ElectronicContractsAction implements SessionAware {
         Iterator<ElectronicContracts> electronicContractsIterator = electronicContractsList.iterator();
         while (electronicContractsIterator.hasNext()) {
             ElectronicContracts electronicContracts1 = electronicContractsIterator.next();
-            electronicContracts1.setEfficiency(false);
+            electronicContracts1.setState(0);
             electronicContracts1.setEnterpriseId((Integer) session.get("loginuserEnterpriseId"));
             electronicContracts1.setEnterpriseAgencyId(electronicContracts.getEnterpriseAgencyId());
             electronicContracts1.setStarttime(electronicContracts.getStarttime());
@@ -55,6 +55,7 @@ public class ElectronicContractsAction implements SessionAware {
         }
         return "success";
     }
+
     public ElectronicContracts getElectronicContracts() {
         return electronicContracts;
     }
@@ -85,6 +86,14 @@ public class ElectronicContractsAction implements SessionAware {
 
     public RegisterShopmanagerAndEnterpriseagencyService getRegisterShopmanagerAndEnterpriseagencyService() {
         return registerShopmanagerAndEnterpriseagencyService;
+    }
+
+    // 企业管理员查看企业的所有合同
+    public String queryElectronicContractsByEnterpriseId() {
+        Integer id = (Integer) session.get("loginuserEnterpriseId");
+        List list = electronicContractsService.queryElectronicContractsByEnterpriseId(id);
+        session.put("contracts", list);
+        return "success";
     }
 }
 

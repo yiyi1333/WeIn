@@ -4,6 +4,7 @@ import cn.edu.zjut.po.EnterpriseAgency;
 import cn.edu.zjut.po.EnterpriseDepartment;
 import cn.edu.zjut.po.EnterpriseDepartmentDisplay;
 import cn.edu.zjut.po.EnterpriseUser;
+import cn.edu.zjut.service.ElectronicContractsService;
 import cn.edu.zjut.service.EnterpriseDepartmentService;
 import cn.edu.zjut.service.EnterpriseService;
 import com.opensymphony.xwork2.ActionSupport;
@@ -21,10 +22,18 @@ public class EnterpriseDepartmentAction extends ActionSupport implements Session
     private EnterpriseDepartmentService enterpriseDepartmentService;
     private EnterpriseService enterpriseService;
     private EnterpriseDepartment enterpriseDepartment;
+    private ElectronicContractsService electronicContractsService;
     private EnterpriseUser enterpriseUser;
     private Map<String, Object> session;
     private String deleteDepartmentId;
 
+    public ElectronicContractsService getElectronicContractsService() {
+        return electronicContractsService;
+    }
+
+    public void setElectronicContractsService(ElectronicContractsService electronicContractsService) {
+        this.electronicContractsService = electronicContractsService;
+    }
 
     public String getDeleteDepartmentId() {
         return deleteDepartmentId;
@@ -126,9 +135,11 @@ public class EnterpriseDepartmentAction extends ActionSupport implements Session
         return enterpriseService;
     }
 
-    public String deleteDepartment() {
+    public String deleteDepartment() throws Exception {
         enterpriseDepartment = enterpriseDepartmentService.getEnterpriseDepartmentById(Integer.parseInt(deleteDepartmentId));
         if (enterpriseDepartmentService.deleteDepartment(enterpriseDepartment.getEnterpriseDepartmentId())) {
+            electronicContractsService.legitimacyCheck();
+//            throw new Exception();
             return "success";
         } else {
             this.addActionError("部门存在子部门，请先删除子部门！");
