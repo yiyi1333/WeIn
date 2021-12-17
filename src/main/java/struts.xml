@@ -58,6 +58,7 @@
             <result name="success">/index.jsp</result>
             <!--            平台运营人员的主页-->
             <result name="platformAdministratorsuccess">/registerShopmanager.jsp</result>
+            <result name="rightsuccess">/verifyElectronicContracts.jsp</result>
             <result name="failed">/login.jsp</result>
         </action>
 

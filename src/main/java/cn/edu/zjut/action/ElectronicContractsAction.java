@@ -71,8 +71,6 @@ public class ElectronicContractsAction implements SessionAware, ServletRequestAw
 
         //对于展示的企业结构
         List<EnterpriseDepartment> EnterpriseDepartmentList = (List<EnterpriseDepartment>) session.get("electronicContractsList");
-
-
         Iterator<EnterpriseDepartment> enterpriseDepartmentIterator = EnterpriseDepartmentList.iterator();
 //        //对于展示的折扣
 //        List<Double> dicountList = (List<Double>) session.get("dicountList");
