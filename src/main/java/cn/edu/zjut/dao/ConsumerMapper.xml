@@ -68,4 +68,12 @@
         set nickName = #{nickName}, avatarUrl = #{avatarUrl}
         where phoneNumber = #{phoneNumber};
     </update>
+<!--    用id检索企业用户-->
+    <select id="searchEnterpriseConsumerById" parameterType="java.lang.Integer" resultMap="EnterpriseConsumer">
+        select *
+        from consumer, enterprisedepartment, enterprise
+        where consumer.enterpriseDepartmentNumber = enterprisedepartment.enterpriseDepartmentId
+        and enterprisedepartment.enterpriseId = enterprise.enterpriseId
+        and consumer.consumerId = #{consumerId};
+    </select>
 </mapper>

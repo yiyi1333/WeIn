@@ -183,7 +183,8 @@
 
     <bean id="ordersService" class="cn.edu.zjut.service.OrdersService">
         <property name="ordersDao" ref="ordersImpl"/>
-    </bean>
+        <property name="goodsDao" ref="goodsImpl"/>
+     </bean>
 
     <bean id="ordersAction" class="cn.edu.zjut.action.OrdersAction" scope="prototype">
         <property name="ordersService" ref="ordersService"/>

@@ -53,6 +53,12 @@
             </result>
         </action>
 
+        <action name="createOrder" class="cn.edu.zjut.action.OrdersAction" method="createShopOrders">
+            <result name="success" type="json">
+                <param name="root">goodsList</param>
+            </result>
+        </action>
+
         <!--        张宇翔配置区-->
         <action name="login" class="cn.edu.zjut.action.UserAction" method="login">
             <result name="success">/index.jsp</result>
