@@ -71,15 +71,18 @@
 
 <!--            王怡欣，王淑媚配置区-->
             <result name="shopSuccess">/shopIndex.jsp</result>
+        </action>
 
         <action name="displayShopGoods" class="cn.edu.zjut.action.GoodsAction" method="displayShopGoods">
             <result name="displayShopGoodsSuccess">/productList.jsp</result>
         </action>
+
         <action name="updateGoods" class="cn.edu.zjut.action.GoodsAction" method="updateGoods">
             <result name="success">
                 ./changeGoods.jsp
             </result>
         </action>
+
         <action name="displayGoodsEditor" class="cn.edu.zjut.action.GoodsAction" method="getGoodsById">
             <result name="success">
                 /changeGoods.jsp
@@ -141,17 +144,9 @@
                 method="registerShopmanager">
             <result name="success">/registerShopmanager.jsp</result>
         </action>
-        <action name="registerShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
-                method="registerShopmanager">
-            <result name="success">/platformAdministraorIndex.jsp</result>
-        </action>
         <action name="registerEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
                 method="registerEnterpriseagency">
             <result name="success">/registerEnterpriseagency.jsp</result>
-        </action>
-        <action name="registerEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
-                method="registerEnterpriseagency">
-            <result name="success">/platformAdministraorIndex.jsp</result>
         </action>
         <action name="displayShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="displayShopmanager">
             <!--            <result name="success" type="json">-->
