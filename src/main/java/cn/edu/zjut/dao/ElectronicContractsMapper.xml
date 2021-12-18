@@ -21,19 +21,33 @@
         select * from electroniccontracts
     </select>
 
+
     <select id="queryElectronicContractsByEnterpriseId" resultMap="ElectronicContractsResultMap">
         select * from electroniccontracts where enterpriseId = #{0};
     </select>
 
-    <insert id="addElectronicContracts" useGeneratedKeys="true" keyProperty="id">
-        insert into electroniccontracts(efficiency, enterpriseId,enterpriseAgencyId,starttime,endtime,goodsId,shopId,
+    <insert id="addElectronicContracts" parameterType="cn.edu.zjut.po.ElectronicContracts" useGeneratedKeys="true" keyProperty="electronicContractsId">
+        insert into electroniccontracts(state, enterpriseId,enterpriseAgencyId,starttime,endtime,goodsId,shopId,
         enterpriseDepartmentId, discount)
-        values (electronicContracts.efficiency ,electronicContracts.enterpriseId ,electronicContracts.enterpriseAgencyId
-        ,electronicContracts.starttime ,electronicContracts.endtime ,electronicContracts.goodsId
-        ,electronicContracts.shopId ,electronicContracts.enterpriseDepartmentId ,electronicContracts.discount
+        values (#{state} ,#{enterpriseId}
+        ,#{enterpriseAgencyId}
+        ,#{starttime} ,#{endtime} ,#{goodsId}
+        ,#{shopId} ,#{enterpriseDepartmentId} ,#{discount})
     </insert>
 
     <update id="disableContracts">
         update electroniccontracts set state = 2 where electronicContractsId = #{0};
     </update>
+
+    <select id="queryElectronicContractsByEnterpriseAgencyId" resultMap="ElectronicContractsResultMap">
+        select * from electroniccontracts where enterpriseAgencyId = #{0} and state = 0;
+    </select>
+
+    <update id="changeStateElectronicContracts">
+        update electroniccontracts set state = 1 where enterpriseAgencyId = #{0} and state = 0;
+    </update>
+
+    <select id="queryElectronicContractsByShopId" resultMap="ElectronicContractsResultMap" >
+        select * from electroniccontracts where shopId = #{0} and state = 1;
+    </select>
 </mapper>

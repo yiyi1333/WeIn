@@ -6,14 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%@ taglib prefix="sx" uri="/struts-tags" %>
 <%@ page import="cn.edu.zjut.po.ShopManager" %>
 <%@ page import="java.util.List" %>
+<%@ page import="cn.edu.zjut.po.EnterpriseUser" %>
+<%@ page import="cn.edu.zjut.po.ElectronicContracts" %>
 <%@ page import="cn.edu.zjut.po.EnterpriseDepartment" %>
-<%@ page import="java.util.Iterator" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.sql.*" %>
-<%@ page import="java.text.SimpleDateFormat" %>
 <html>
 <head>
 
@@ -181,152 +179,157 @@
         <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="ibox ">
-                        <div class="ibox-title">
+                    <div class="ibox-title">
+                        <h5>编辑电子合同</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
 
-                            <h5>编辑电子合同</h5>
-                            <div class="ibox-tools">
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-
-                                <a class="close-link">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ibox-content">
-                            <div class="ibox-content">
-
-                                <s:form action="editElectronicContracts" method="post">
-
-                                    <div class="form-group  row"><label class="col-sm-2 col-form-label">开始时间</label>
-                                        <div class="col-sm-10"><input type="date" class="form-control"
-                                                                      name="electronicContracts.starttime"></div>
-                                    </div>
-                                    <div class="form-group  row"><label class="col-sm-2 col-form-label">结束时间</label>
-                                        <div class="col-sm-10"><input type="date" class="form-control"
-                                                                      name="electronicContracts.endtime"></div>
-                                    </div>
-
-                                    <div class="form-group  row"><label class="col-sm-2 col-form-label">合作商家编号</label>
-                                        <div class="col-sm-10"><input type="text" class="form-control"
-                                                                      name="electronicContracts.shopId"></div>
-                                    </div>
-                                    <div class="form-group  row"><label
-                                            class="col-sm-2 col-form-label">企业用户负责人编号（审核对象）</label>
-                                        <div class="col-sm-10"><input type="text" class="form-control"
-                                                                      name="electronicContracts.enterpriseAgencyId">
-                                        </div>
-                                    </div>
-                                    <div class="form-group  row"><label class="col-sm-2 col-form-label">商品ID</label>
-                                        <div class="col-sm-10"><input type="text" class="form-control"
-                                                                      name="electronicContracts.goodsId"></div>
-                                    </div>
-                                    <div class="table-responsive">
-                                        <table class="table table-striped table-bordered table-hover dataTables-example">
-                                            <thead>
-                                            <tr>
-                                                <th>部门编号</th>
-                                                <th>部门名称</th>
-                                                <th>折扣</th>
-                                            </tr>
-                                            </thead>
-
-                                            <tbody>
-
-                                            <%
-                                                List<EnterpriseDepartment> enterpriseDepartmentList = (List<EnterpriseDepartment>) session.getAttribute("electronicContractsList");
-                                                for (EnterpriseDepartment enterpriseDepartment : enterpriseDepartmentList) {
-                                            %>
-                                            <tr>
-                                                <td><%=enterpriseDepartment.getEnterpriseDepartmentId()%>
-                                                </td>
-                                                <td><%=enterpriseDepartment.getEnterpriseDepartmentName()%>
-                                                </td>
-
-                                                <td><input type="text" class="form-control" name="discountthis<%=enterpriseDepartment.getEnterpriseDepartmentId()%>"></td>
-                                                <%
-                                                     }
-                                                %>
-                                            </tr>
-
-                                            </tbody>
-                                            <tfoot>
-
-                                            </tfoot>
-                                        </table>
-
-
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-4 col-sm-offset-2">
-                                            <button class="btn btn-white btn-sm" type="submit">取消</button>
-                                            <button class="btn btn-primary btn-sm" type="submit">保存更改</button>
-                                        </div>
-                                    </div>
-                                </s:form>
-                            </div>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
                         </div>
                     </div>
-                </div>
-                <div class="footer">
-                    <div class="float-right">
-                        <strong>2.9.2 inspinia</strong>
-                    </div>
-                    <div>
-                        <strong>Copyright</strong> xxx &copy; 2020
-                    </div>
-                </div>
 
+                    <div class="ibox-content">
+                        <div class="search-form">
+                            <%--<s:hidden name="loginuserEnterpriseId" value="loginuserEnterpriseId"></s:hidden>--%>
+                            <div class="input-group">
+                            </div>
+
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover dataTables-example">
+                                <thead>
+                                <tr>
+                                    <th>部门编号</th>
+                                    <th>部门名称</th>
+                                    <th>部门是否写入合同内</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <%
+                                    List<EnterpriseDepartment> enterpriseDepartmentList = (List<EnterpriseDepartment>) session.getAttribute("enterpriseDepartmentList");
+                                    for (EnterpriseDepartment enterpriseDepartment : enterpriseDepartmentList) {
+                                %>
+                                <tr>
+                                    <td><%=enterpriseDepartment.getEnterpriseDepartmentId()%>
+                                    </td>
+                                    <td><%=enterpriseDepartment.getEnterpriseDepartmentName()%>
+                                    </td>
+                                    <% String key = "haveEnterpriseId";
+                                        key += String.valueOf(enterpriseDepartment.getEnterpriseDepartmentId());
+                                        if (session.getAttribute(key) == null) {
+                                    %>
+                                    <td>
+                                        <form action="chooseDepartmentToElectronicContracts.action"
+                                              style="display: inline" method="post">
+                                            <input type="hidden"
+                                                   value="<%=enterpriseDepartment.getEnterpriseDepartmentId()%>"
+                                                   name="enterpriseDepartment.enterpriseDepartmentId">
+                                            <input type="hidden"
+                                                   value="<%=enterpriseDepartment.getEnterpriseDepartmentName()%>"
+                                                   name="enterpriseDepartment.enterpriseDepartmentName">
+                                            <button type="submit"
+                                                    class="btn btn-primary btn-sm align-middle"
+                                                    data-toggle="tooltip"
+                                                    data-placement="top">选择
+                                            </button>
+
+                                        </form>
+
+                                    </td>
+                                    <%
+                                    } else {
+                                    %>
+                                    <td>已经选入
+                                    </td>
+                                    <%
+                                        }
+                                    %>
+                                </tr>
+                                <%}%>
+                                </tbody>
+
+                                </tbody>
+                                <tfoot>
+
+                                </tfoot>
+                            </table>
+
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group row">
+                            <a href="editElectronicContracts.jsp">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button class="btn btn-primary btn-sm" type="submit">开始编辑合同</button>
+                            </div>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
             </div>
+            <div class="footer">
+                <div class="float-right">
+                    <strong>2.9.2 inspinia</strong>
+                </div>
+                <div>
+                    <strong>Copyright</strong> xxx &copy; 2020
+                </div>
+            </div>
+
         </div>
     </div>
+</div>
 
-    <!-- Mainly scripts -->
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<!-- Mainly scripts -->
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-    <script src="js/plugins/dataTables/datatables.min.js"></script>
-    <script src="js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
+<script src="js/plugins/dataTables/datatables.min.js"></script>
+<script src="js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Custom and plugin javascript -->
-    <script src="js/inspinia.js"></script>
-    <script src="js/plugins/pace/pace.min.js"></script>
+<!-- Custom and plugin javascript -->
+<script src="js/inspinia.js"></script>
+<script src="js/plugins/pace/pace.min.js"></script>
 
-    <!-- Page-Level Scripts -->
-    <script>
-        $(document).ready(function () {
-            $('.dataTables-example').DataTable({
-                pageLength: 25,
-                responsive: true,
-                dom: '<"html5buttons"B>lTfgitp',
-                buttons: [
-                    {extend: 'copy'},
-                    {extend: 'csv'},
-                    {extend: 'excel', title: 'ExampleFile'},
-                    {extend: 'pdf', title: 'ExampleFile'},
+<!-- Page-Level Scripts -->
+<%--    <script>--%>
+<%--        $(document).ready(function () {--%>
+<%--            $('.dataTables-example').DataTable({--%>
+<%--                pageLength: 25,--%>
+<%--                responsive: true,--%>
+<%--                dom: '<"html5buttons"B>lTfgitp',--%>
+<%--                buttons: [--%>
+<%--                    {extend: 'copy'},--%>
+<%--                    {extend: 'csv'},--%>
+<%--                    {extend: 'excel', title: 'ExampleFile'},--%>
+<%--                    {extend: 'pdf', title: 'ExampleFile'},--%>
 
-                    {
-                        extend: 'print',
-                        customize: function (win) {
-                            $(win.document.body).addClass('white-bg');
-                            $(win.document.body).css('font-size', '10px');
+<%--                    {--%>
+<%--                        extend: 'print',--%>
+<%--                        customize: function (win) {--%>
+<%--                            $(win.document.body).addClass('white-bg');--%>
+<%--                            $(win.document.body).css('font-size', '10px');--%>
 
-                            $(win.document.body).find('table')
-                                .addClass('compact')
-                                .css('font-size', 'inherit');
-                        }
-                    }
-                ]
+<%--                            $(win.document.body).find('table')--%>
+<%--                                .addClass('compact')--%>
+<%--                                .css('font-size', 'inherit');--%>
+<%--                        }--%>
+<%--                    }--%>
+<%--                ]--%>
 
-            });
+<%--            });--%>
 
-        });
+<%--        });--%>
 
-    </script>
+<%--    </script>--%>
 </body>
 </html>

@@ -1,7 +1,7 @@
 package cn.edu.zjut.po;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.util.Date;
+
 
 public class ElectronicContracts {
     private int electronicContractsId;
@@ -14,6 +14,7 @@ public class ElectronicContracts {
     private int goodsId;
     private int enterpriseDepartmentId;
     private double discount;
+
     private int state;
 
     public void setState(int state) {
@@ -40,6 +41,21 @@ public class ElectronicContracts {
         return enterpriseDepartmentId;
     }
 
+    public void setEndtime(Date endtime) {
+        this.endtime = endtime;
+    }
+
+    public void setStarttime(Date starttime) {
+        this.starttime = starttime;
+    }
+
+    public Date getEndtime() {
+        return endtime;
+    }
+
+    public Date getStarttime() {
+        return starttime;
+    }
 
     public int getEnterpriseId() {
         return enterpriseId;
@@ -57,6 +73,7 @@ public class ElectronicContracts {
         return shopmanagerId;
     }
 
+
     public void setDiscount(double discount) {
         this.discount = discount;
     }
@@ -65,21 +82,6 @@ public class ElectronicContracts {
         return shopId;
     }
 
-    public Date getEndtime() {
-        return endtime;
-    }
-
-    public Date getStarttime() {
-        return starttime;
-    }
-
-    public void setEndtime(Date endtime) {
-        this.endtime = endtime;
-    }
-
-    public void setStarttime(Date starttime) {
-        this.starttime = starttime;
-    }
 
     public void setEnterpriseDepartmentId(int enterpriseDepartmentId) {
         this.enterpriseDepartmentId = enterpriseDepartmentId;
