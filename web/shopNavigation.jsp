@@ -40,6 +40,7 @@
                 <a href="#"><i class="fa fa-calculator"></i> <span class="nav-label">订单管理</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li><a href="ordersList.jsp"><i class="fa fa-plus-square"></i>查看订单</a></li>
+                    <li><a href="displayShopOrders.action"><i class="fa fa-plus-square"></i>查看订单</a></li>
                     <li><a href="ordersList.jsp"><i class="fa fa-check-square-o"></i>填写物流信息</a></li>
                 </ul>
             </li>

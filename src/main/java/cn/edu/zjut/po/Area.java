@@ -23,6 +23,10 @@ public class Area {
         this.parentId=parentId;
     }
 
+    public String toString() {
+        return "Area [areaId=" + areaId + ", parentId=" + parentId + ", areaName=" + areaName + "]";
+    }
+
     public int getAreaId() {
         return areaId;
     }

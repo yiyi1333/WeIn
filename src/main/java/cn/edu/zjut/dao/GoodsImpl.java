@@ -58,6 +58,7 @@ public class GoodsImpl implements GoodsMapper {
         System.out.println("execute --deleteGoods()-- method.");
         sqlSession.getMapper(GoodsMapper.class).deleteGoods(goodid);
     }
+
     @Override
     public List<Goods> selectGoodsByWarehouseId(Integer warehouseId) {
         System.out.println("execute--selectGoodsByWarehouseId--dao");

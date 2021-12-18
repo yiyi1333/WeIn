@@ -1,4 +1,5 @@
-<%@ page import="cn.edu.zjut.po.ShopManager" %><%--
+<%@ page import="cn.edu.zjut.po.ShopManager" %>
+<%@ page import="cn.edu.zjut.po.WareHouseAddress" %><%--
   Created by IntelliJ IDEA.
   User: HP
   Date: 2021/12/11
@@ -26,7 +27,7 @@
         <jsp:include page="shopTopSidebar.jsp"/>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>添加发货地址</h2>
+                <h2>修改发货地址</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href="shopIndex.jsp">主页</a>
@@ -35,7 +36,7 @@
                         <a>发货地址管理</a>
                     </li>
                     <li class="breadcrumb-item active">
-                        <strong>添加发货地址</strong>
+                        <strong>修改发货地址</strong>
                     </li>
                 </ol>
             </div>
@@ -47,7 +48,7 @@
                 <div class="col-lg-12">
                     <div class="ibox ">
                         <div class="ibox-title">
-                            <h5>发货地址详细信息填写<small>按照实际情况填写表格</small></h5>
+                            <h5>发货地址详细信息修改<small>按照实际情况填写表格</small></h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
@@ -67,14 +68,20 @@
                             </div>
                         </div>
                         <div class="ibox-content">
-                            <form action="addWareHouseAddress.action">
+                            <form action="updateWareHouseAddress.action">
+                                <%
+                                    WareHouseAddress wareHouseAddress=(WareHouseAddress) session.getAttribute("wareHouseAddress");
+                                %>
+                                <div class="form-group  row"><label class="col-sm-2 col-form-label">发货地址编号</label>
+                                    <div class="col-sm-10"><input type="text" class="form-control" name="wareHouseAddress.warehouseId" disabled="disabled" value="<%=wareHouseAddress.getWarehouseId()%>"></div>
+                                </div>
                                 <div class="form-group  row" id="warehouseNameDiv"><label class="col-sm-2 col-form-label">发货人姓名</label>
-                                    <div class="col-sm-10"><input type="text" class="form-control" id="warehouseName" required="required" name="wareHouseAddress.warehouseName"></div>
-                                    <div id="warehouseNameResult"style="position: relative;left: 180px;"></div>
+                                    <div class="col-sm-10"><input type="text" class="form-control" id="warehouseName" name="wareHouseAddress.warehouseName" value="<%=wareHouseAddress.getWarehouseName()%>"></div>
+                                    <div id="warehouseNameResult" style="position: relative;left: 180px;"></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group  row" id="warehousePhoneDiv"><label class="col-sm-2 col-form-label">电话号码</label>
-                                    <div class="col-sm-10"><input type="text" class="form-control"  id="warehousePhone" required="required" name="wareHouseAddress.warehousePhone"></div>
+                                    <div class="col-sm-10"><input type="text" class="form-control" id="warehousePhone" name="wareHouseAddress.warehousePhone" value="<%=wareHouseAddress.getWarehousePhone()%>"></div>
                                     <div id="warehousePhoneResult" style="position: relative;left: 180px;"></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
@@ -97,8 +104,8 @@
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group  row" id="warehouseDetailedAddressDiv"><label class="col-sm-2 col-form-label">详细地址</label>
-                                    <div class="col-sm-10"><input type="text" class="form-control" id="warehouseDetailedAddress"  name="wareHouseAddress.warehouseDetailedAddress"></div>
-                                    <div id="warehouseDetailedAddressResult" style="position: relative;left:180px;"></div>
+                                    <div class="col-sm-10"><input type="text" class="form-control" id="warehouseDetailedAddress" name="wareHouseAddress.warehouseDetailedAddress" value="<%=wareHouseAddress.getWarehouseDetailedAddress()%>"></div>
+                                    <div id="warehouseDetailedAddressResult" style="position: relative;left: 180px;"></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <%
@@ -140,7 +147,7 @@
 <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
 <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 <script  src="js/area.js"></script>
-<script language="javascript">new PCAS("wareHouseAddress.province","wareHouseAddress.city","wareHouseAddress.district","浙江省");</script>
+<script language="javascript">new PCAS("wareHouseAddress.province","wareHouseAddress.city","wareHouseAddress.district","<%=wareHouseAddress.getProvince()%>","<%=wareHouseAddress.getCity()%>","<%=wareHouseAddress.getDistrict()%>");</script>
 
 <!-- Custom and plugin javascript -->
 <script src="js/inspinia.js"></script>
@@ -194,18 +201,18 @@
         }
     });
     $('#warehouseDetailedAddress').bind('input propertychange', function() {
-    if((11 - $(this).val().length) >=4 ){
-        document.getElementById("warehouseDetailedAddressDiv").className = "form-group row has-success";
-        $('#warehouseDetailedAddressResult').html('还剩 '+ (20 - $(this).val().length) + ' 字，请放心输入');
-    }
-    else if((11 - $(this).val().length) >= 0){
-        document.getElementById("warehouseDetailedAddressDiv").className = "form-group row has-warning";
-        $('#warehouseDetailedAddressResult').html('还剩 '+ (20 - $(this).val().length) + ' 字,请注意');
-    }
-    else{
-        document.getElementById("warehouseDetailedAddressDiv").className = "form-group row has-error";
-        $('#warehouseDetailedAddressResult').html('您已超出 '+ ($(this).val().length - 20) + ' 字');
-    }
+        if((11 - $(this).val().length) >=4 ){
+            document.getElementById("warehouseDetailedAddressDiv").className = "form-group row has-success";
+            $('#warehouseDetailedAddressResult').html('还剩 '+ (20 - $(this).val().length) + ' 字，请放心输入');
+        }
+        else if((11 - $(this).val().length) >= 0){
+            document.getElementById("warehouseDetailedAddressDiv").className = "form-group row has-warning";
+            $('#warehouseDetailedAddressResult').html('还剩 '+ (20 - $(this).val().length) + ' 字,请注意');
+        }
+        else{
+            document.getElementById("warehouseDetailedAddressDiv").className = "form-group row has-error";
+            $('#warehouseDetailedAddressResult').html('您已超出 '+ ($(this).val().length - 20) + ' 字');
+        }
     });
 </script>
 </body>

@@ -28,9 +28,13 @@
        select * from orders;
     </select>
 
-    <select id="selectOrdersById" resultMap="OrdersResultMap" parameterType="java.lang.String">
+    <select id="selectOrdersById" resultMap="OrdersResultMap" parameterType="java.lang.Integer">
         select orders.*
         from orders
         where orderId=%${orderId}%;
+    </select>
+
+    <select id="selectOrders" resultMap="OrdersResultMap" parameterType="cn.edu.zjut.po.Orders">
+        select * from orders;
     </select>
 </mapper>

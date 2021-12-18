@@ -17,14 +17,13 @@ public class GoodsService {
         this.goodsDao = goodsDao;
     }
 
-
-
     public List searchGoodsByTagsAndName(String keyword) {
         List goodlist = goodsDao.searchGoodsByKeyWord(keyword);
         return goodlist;
     }
 
     public List<Goods> getAllGoods() {
+        System.out.println("execute --getAllGoods()-- method.");
         return goodsDao.getAllGoods();
     }
     public Goods getGoodById(Integer goodid){

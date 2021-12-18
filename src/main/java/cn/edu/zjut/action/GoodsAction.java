@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class GoodsAction implements SessionAware {
+public class GoodsAction implements SessionAware{
     private Map<String, Object> session;
     private GoodsService goodsService;
     private String keyword;

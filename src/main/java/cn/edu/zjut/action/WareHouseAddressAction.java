@@ -2,9 +2,11 @@ package cn.edu.zjut.action;
 
 
 import cn.edu.zjut.po.Area;
+import cn.edu.zjut.po.Goods;
 import cn.edu.zjut.po.ShopManager;
 
 import cn.edu.zjut.po.WareHouseAddress;
+import cn.edu.zjut.service.GoodsService;
 import cn.edu.zjut.service.WareHouseAddressService;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
@@ -18,12 +20,20 @@ import java.util.Map;
 
 public class WareHouseAddressAction implements SessionAware {
     private Map<String, Object> session;
-
     private WareHouseAddressService wareHouseAddressService;
     private List wareHouseAddresslist;
     private WareHouseAddress wareHouseAddress;
     private Integer warehouseId;
-    private String tag;
+    private String tag;//批量删除ID号集合
+    private GoodsService goodsService;
+
+    public GoodsService getGoodsService() {
+        return goodsService;
+    }
+
+    public void setGoodsService(GoodsService goodsService) {
+        this.goodsService = goodsService;
+    }
 
     public String getTag() {
         return tag;
@@ -169,6 +179,23 @@ public class WareHouseAddressAction implements SessionAware {
         }
         System.out.println(wareHouseAddressList.size());
         session.put("wareHouseAddressList", wareHouseAddressList);
+        return "success";
+    }
+
+    public String selectGoodsByWareHouseAddressId()
+    {
+        ShopManager shopManager = (ShopManager) session.get("shopManager");
+        if (shopManager == null) {
+            return "displayShopGoodsFailed";
+        }
+        List<Goods> ans = goodsService.selectGoodsByWarehouseId(warehouseId);
+        List<Goods> goodsList = new ArrayList<>();
+        for (Goods goods : ans) {
+            if (goods.getShopId()== shopManager.getShopId()) {
+                goodsList.add(goods);
+            }
+        }
+        session.put("goodsList", goodsList);
         return "success";
     }
 

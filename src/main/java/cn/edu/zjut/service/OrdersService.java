@@ -5,6 +5,8 @@ package cn.edu.zjut.service;
 import cn.edu.zjut.dao.ConsumerMapper;
 import cn.edu.zjut.dao.GoodsMapper;
 import cn.edu.zjut.dao.OrdersMapper;
+import cn.edu.zjut.po.Orders;
+import cn.edu.zjut.po.WareHouseAddress;
 import cn.edu.zjut.po.*;
 
 import java.util.List;
@@ -32,6 +34,16 @@ public class OrdersService {
     public List<Orders> getAllOrders() {
         System.out.println("execute --getAllOrders()-- method.");
         return ordersDao.getAllOrders();
+    }
+
+    public List<Orders> selectOrders(Orders orders){
+        System.out.println("execute --selectOrders()-- method.");
+        return ordersDao.selectOrders(orders);
+    }
+
+    public Orders selectOrderById(Integer orderId){
+        System.out.println("execute --selectOrdersById()-- method.");
+        return ordersDao.selectOrdersById(orderId);
     }
 
     public List<Order> createOrder(Integer customerId, List<GoodsIdAndNum> list){

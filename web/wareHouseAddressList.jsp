@@ -108,7 +108,7 @@
                                 <tr>
 
                                     <th></th>
-                                    <th>发货地址编号</th>
+                                    <th>编号</th>
                                     <th data-hide="phone">省</th>
                                     <th>市</th>
                                     <th>区县</th>
@@ -152,6 +152,7 @@
                                         <div class="btn-group">
                                             <a href="selectWareHouseAddressById?warehouseId=<%=wareHouseAddressList.get(i).getWarehouseId()%>"><button class="btn-white btn btn-xs">编辑</button></a>
                                             <a href="deleteWareHouseAddress?warehouseId=<%=wareHouseAddressList.get(i).getWarehouseId()%>"><button class="btn-white btn btn-xs">删除</button></a>
+                                            <a href="selectGoodsByWareHouseAddressId?warehouseId=<%=wareHouseAddressList.get(i).getWarehouseId()%>"><button class="btn-white btn btn-xs">查看所存商品</button></a>
                                         </div>
                                     </td>
                                 </tr>
