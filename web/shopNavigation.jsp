@@ -54,7 +54,7 @@
                 <a href="shopAdvertisement.jsp"><i class="fa fa-file-image-o"></i> <span class="nav-label">广告</span></a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-newspaper-o"></i> <span class="nav-label">合同</span></a>
+                <a href="showShopElectronicContracts.action"><i class="fa fa-newspaper-o"></i> <span class="nav-label">合同</span></a>
             </li>
         </ul>
 
