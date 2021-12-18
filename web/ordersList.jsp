@@ -33,9 +33,9 @@
 <body>
 
 <div id="wrapper">
-    <jsp:include page="navigation.jsp"/>
+    <jsp:include page="shopNavigation.jsp"/>
     <div id="page-wrapper" class="gray-bg">
-        <jsp:include page="topSidebar.jsp"/>
+        <jsp:include page="shopTopSidebar.jsp"/>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
                 <h2>订单管理</h2>

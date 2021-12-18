@@ -1,20 +1,53 @@
 package cn.edu.zjut.action;
 
 
+import cn.edu.zjut.po.Area;
 import cn.edu.zjut.po.ShopManager;
 
 import cn.edu.zjut.po.WareHouseAddress;
 import cn.edu.zjut.service.WareHouseAddressService;
+import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class WareHouseAddressAction implements SessionAware {
     private Map<String, Object> session;
+
     private WareHouseAddressService wareHouseAddressService;
     private List wareHouseAddresslist;
+    private WareHouseAddress wareHouseAddress;
+    private Integer warehouseId;
+    private String tag;
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public Integer getWarehouseId() {
+        return warehouseId;
+    }
+
+    public void setWarehouseId(Integer warehouseId) {
+        this.warehouseId = warehouseId;
+    }
+
+    public WareHouseAddress getWareHouseAddress() {
+        return wareHouseAddress;
+    }
+
+    public void setWareHouseAddress(WareHouseAddress wareHouseAddress) {
+        this.wareHouseAddress = wareHouseAddress;
+    }
 
     public List getWareHouseAddresslist() {
         return wareHouseAddresslist;
@@ -60,4 +93,83 @@ public class WareHouseAddressAction implements SessionAware {
         session.put("wareHouseAddressList", wareHouseAddressList);
         return "displayShopWareHouseAddressSuccess";
     }
+
+    public String addWareHouseAddress() {
+        ShopManager shopManager = (ShopManager) session.get("shopManager");
+        wareHouseAddress.setShopId(shopManager.getShopId());
+        wareHouseAddressService.addWareHouseAddress(wareHouseAddress);
+        return "success";
+    }
+
+    public String selectWareHouseAddress(){
+        ShopManager shopManager = (ShopManager) session.get("shopManager");
+        wareHouseAddress.setShopId(shopManager.getShopId());
+        System.out.println(wareHouseAddress.getProvince());
+        List<WareHouseAddress> wareHouseAddressList=wareHouseAddressService.selectWareHouseAddress(wareHouseAddress);
+        session.put("wareHouseAddressList", wareHouseAddressList);
+        return "success";
+    }
+
+    public String updateWareHouseAddress(){
+        WareHouseAddress obj=(WareHouseAddress) session.get("wareHouseAddress");
+        wareHouseAddress.setWarehouseId(obj.getWarehouseId());
+        wareHouseAddressService.updateWareHouseAddress(wareHouseAddress);
+        ShopManager shopManager = (ShopManager) session.get("shopManager");
+        List<WareHouseAddress> list = wareHouseAddressService.getAllWareHouseAddress();
+        List<WareHouseAddress> wareHouseAddressList = new ArrayList<>();
+        System.out.println(list.size());
+        for (WareHouseAddress wareHouseAddress : list) {
+            if (wareHouseAddress.getShopId() == shopManager.getShopId()) {
+                wareHouseAddressList.add(wareHouseAddress);
+            }
+        }
+        System.out.println(wareHouseAddressList.size());
+        session.put("wareHouseAddressList", wareHouseAddressList);
+        return "success";
+    }
+
+    public String deleteWareHouseAddress(){
+        ShopManager shopManager = (ShopManager) session.get("shopManager");
+        wareHouseAddressService.deleteWareHouseAddressById(warehouseId);
+        List<WareHouseAddress> list = wareHouseAddressService.getAllWareHouseAddress();
+        List<WareHouseAddress> wareHouseAddressList = new ArrayList<>();
+        System.out.println(list.size());
+        for (WareHouseAddress wareHouseAddress : list) {
+            if (wareHouseAddress.getShopId() == shopManager.getShopId()) {
+                wareHouseAddressList.add(wareHouseAddress);
+            }
+        }
+        System.out.println(wareHouseAddressList.size());
+        session.put("wareHouseAddressList", wareHouseAddressList);
+        return "success";
+    }
+
+    public String selectWareHouseAddressById(){
+        WareHouseAddress obj=wareHouseAddressService.selectWareHouseAddressById(warehouseId);
+        session.put("wareHouseAddress", obj);
+        return "success";
+    }
+
+    public String deleteWareHouseAddressByIds(){
+        ShopManager shopManager = (ShopManager) session.get("shopManager");
+        String[] strs = tag.split(",");
+        for (int i = 0; i < strs.length; i++) {
+            try {
+                wareHouseAddressService.deleteWareHouseAddressById(Integer.parseInt(strs[i]));
+            } catch (Exception e) {
+            }
+        }
+        List<WareHouseAddress> list = wareHouseAddressService.getAllWareHouseAddress();
+        List<WareHouseAddress> wareHouseAddressList = new ArrayList<>();
+        System.out.println(list.size());
+        for (WareHouseAddress wareHouseAddress : list) {
+            if (wareHouseAddress.getShopId() == shopManager.getShopId()) {
+                wareHouseAddressList.add(wareHouseAddress);
+            }
+        }
+        System.out.println(wareHouseAddressList.size());
+        session.put("wareHouseAddressList", wareHouseAddressList);
+        return "success";
+    }
+
 }

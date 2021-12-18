@@ -11,9 +11,11 @@ public class Goods implements Serializable {
     private int goodsStock;
     private String tags;
     private String goodsImage;
-    private double goodsWeight;
     private int shopId;
     private Shop shop;
+    private int isGrouding;
+    private int warehouseId;
+    private double goodsWeight;
 
     public double getGoodsWeight() {
         return goodsWeight;
@@ -23,6 +25,14 @@ public class Goods implements Serializable {
         this.goodsWeight = goodsWeight;
     }
 
+    public int getWarehouseId() {
+        return warehouseId;
+    }
+
+    public void setWarehouseId(int warehouseId) {
+        this.warehouseId = warehouseId;
+    }
+
     public double getGoodsRealPrice() {
         return goodsRealPrice;
     }
@@ -30,6 +40,27 @@ public class Goods implements Serializable {
     public void setGoodsRealPrice(double goodsRealPrice) {
         this.goodsRealPrice = goodsRealPrice;
     }
+
+    public Goods() {
+    }
+
+    public Goods(int goodsId, String goodsName, double goodsPrice, String goodsDetails, int goodsStock, String tags, String goodsImage, int shopId, Shop shop, int isGrouding, int warehouseId) {
+        this.goodsId = goodsId;
+        this.goodsName = goodsName;
+        this.goodsPrice = goodsPrice;
+        this.goodsDetails = goodsDetails;
+        this.goodsStock = goodsStock;
+        this.tags = tags;
+        this.goodsImage = goodsImage;
+        this.shopId = shopId;
+        this.shop = shop;
+        this.isGrouding = isGrouding;
+        this.warehouseId = warehouseId;
+    }
+
+    public int getIsGrouding() { return isGrouding; }
+
+    public void setIsGrouding(int isGrouding) { this.isGrouding = isGrouding; }
 
     public void setShopId(int shopId) {
         this.shopId = shopId;

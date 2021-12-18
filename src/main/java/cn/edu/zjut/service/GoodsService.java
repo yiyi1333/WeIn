@@ -17,13 +17,14 @@ public class GoodsService {
         this.goodsDao = goodsDao;
     }
 
+
+
     public List searchGoodsByTagsAndName(String keyword) {
         List goodlist = goodsDao.searchGoodsByKeyWord(keyword);
         return goodlist;
     }
 
     public List<Goods> getAllGoods() {
-        System.out.println("execute --getAllGoods()-- method.");
         return goodsDao.getAllGoods();
     }
     public Goods getGoodById(Integer goodid){
@@ -42,5 +43,21 @@ public class GoodsService {
             }
         }
         return null;
+    }
+
+    public void addGoods(Goods goods) {
+        goodsDao.addGoods(goods);
+    }
+
+    public List<Goods> selectGoods(Goods goods){
+        return goodsDao.selectGoods(goods);
+    }
+
+    public void deleteGoods(Integer goodid){
+        goodsDao.deleteGoods(goodid);
+    }
+
+    public List<Goods> selectGoodsByWarehouseId(Integer warehouseId){
+        return goodsDao.selectGoodsByWarehouseId(warehouseId);
     }
 }
