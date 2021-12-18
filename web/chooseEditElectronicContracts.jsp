@@ -27,12 +27,11 @@
 
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-
 </head>
 <body>
 <div id="wrapper">
 
-    <jsp:include page="platformAdministratorNavigation.jsp"/>
+    <jsp:include page="EnterpriseAgencyNavigation.jsp"/>
 
     <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">

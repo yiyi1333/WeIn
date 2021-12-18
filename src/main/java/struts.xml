@@ -62,6 +62,7 @@
         <!--        张宇翔配置区-->
         <action name="login" class="cn.edu.zjut.action.UserAction" method="login">
             <result name="success">/index.jsp</result>
+            <result name="enterpriseagencysuccess" type="chain">showenterpriseuser</result>
             <!--            平台运营人员的主页-->
             <result name="platformAdministratorsuccess">/registerShopmanager.jsp</result>
             <!--            <result name="rightsuccess">/verifyElectronicContracts.jsp</result>-->
