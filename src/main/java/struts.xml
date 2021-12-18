@@ -72,10 +72,6 @@
 <!--            王怡欣，王淑媚配置区-->
             <result name="shopSuccess">/shopIndex.jsp</result>
 
-            <!--            王怡欣，王淑媚配置区-->
-            <result name="shopSuccess">/shopIndex.jsp</result>
-        </action>
-
         <action name="displayShopGoods" class="cn.edu.zjut.action.GoodsAction" method="displayShopGoods">
             <result name="displayShopGoodsSuccess">/productList.jsp</result>
         </action>

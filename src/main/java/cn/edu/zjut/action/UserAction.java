@@ -72,7 +72,7 @@ public class UserAction implements SessionAware {
                 session.put("shopManager", shopManager);
                 //存一下商家的编号
                 session.put("loginusershopId", shopManager.getShopId());
-                return "success";
+                return "shopSuccess";
             }
         } else if (user.getAuthority() == 1) {
             EnterpriseAgency enterpriseAgency = new EnterpriseAgency();
