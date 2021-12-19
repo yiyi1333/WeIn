@@ -20,8 +20,25 @@ public class OrdersAction implements SessionAware {
     private Map<String, Object> session;
     private OrdersService ordersService;
     private List orderslist;
-    private String goodsList;
+    private String shops;
+    private String address;
     private String consumerId;
+
+    public String getShops() {
+        return shops;
+    }
+
+    public void setShops(String shops) {
+        this.shops = shops;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public String getConsumerId() {
         return consumerId;
@@ -31,13 +48,7 @@ public class OrdersAction implements SessionAware {
         this.consumerId = consumerId;
     }
 
-    public String getGoodsList() {
-        return goodsList;
-    }
 
-    public void setGoodsList(String goodsList) {
-        this.goodsList = goodsList;
-    }
     private Orders orders;
     private Integer orderId;
 
@@ -103,13 +114,15 @@ public class OrdersAction implements SessionAware {
     public String createShopOrders(){
         //数据预处理
         System.out.println(consumerId);
-        System.out.println(goodsList);
-        List<GoodsIdAndNum> list = new ArrayList<>();
-        JSONArray jsonArray = JSONArray.parseArray(goodsList);
-        for(int i = 0; i < jsonArray.size(); i++){
-            GoodsIdAndNum goodsIdAndNum = new GoodsIdAndNum(jsonArray.getJSONObject(i).getString("goodsId"), jsonArray.getJSONObject(i).getString("goodsNum"));
-            list.add(goodsIdAndNum);
-        }
+        System.out.println(shops);
+        System.out.println(address);
+//        System.out.println(goodsList);
+//        List<GoodsIdAndNum> list = new ArrayList<>();
+//        JSONArray jsonArray = JSONArray.parseArray(goodsList);
+//        for(int i = 0; i < jsonArray.size(); i++){
+//            GoodsIdAndNum goodsIdAndNum = new GoodsIdAndNum(jsonArray.getJSONObject(i).getString("goodsId"), jsonArray.getJSONObject(i).getString("goodsNum"));
+//            list.add(goodsIdAndNum);
+//        }
 
         return "success";
     }
