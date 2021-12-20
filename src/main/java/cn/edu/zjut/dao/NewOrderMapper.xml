@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zjut.dao.NewOrderMapper">
+    <insert id="addOrder" useGeneratedKeys="true" keyProperty="orderId" parameterType="cn.edu.zjut.po.NewOrder">
+        insert into wein.orders
+        values(
+        null,
+        #{actuaLAmountPaid},
+        #{orderStatus},
+        #{orderPaymentMethod},
+        #{consumerId},
+        #{orderTime},
+        #{shopId},
+        #{logisticsSingle},
+        #{goodTotalPrices},
+        #{discountAmount},
+        #{warehousePhone},
+        #{deliveredPhone},
+        #{warehouseDetailedAddress},
+        #{deliverProvince},
+        #{deliverCity},
+        #{deliverArea},
+        #{deliveredName},
+        #{deliveredDetailedAddress},
+        #{warehouseName},
+        #{warehouseProvince},
+        #{warehouseCity},
+        #{warehouseArea},
+        #{orderDate}
+        );
+    </insert>
+</mapper>

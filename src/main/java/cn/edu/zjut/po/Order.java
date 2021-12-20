@@ -18,13 +18,13 @@ public class Order {
     private String deliveredName; //收货人姓名
     private String deliveredPhone; //收货人手机号
     private String deliverProvince;//收货省份
-    private String  deliverCity;//收货地址市
+    private String deliverCity;//收货地址市
     private String deliverArea;//收货地址区
     private String deliverStreet;//收货地址街道
-    private String  warehouseProvince;//发货省
+    private String warehouseProvince;//发货省
     private String warehouseCity;//发货市
     private String warehouseArea;//发货地址区
-    private String  warehouseName; //发货人姓名
+    private String warehouseName; //发货人姓名
     private String warehousePhone; //发货人手机号
     private String warehouseDetailedAddress; //发货仓库详细地址
     private double actualAmountPaid;   //实际支付金额

@@ -17,6 +17,7 @@ public class Goods implements Serializable {
     private int warehouseId;
     private double goodsWeight;
 
+
     @Override
     public String toString() {
         return "Goods{" +

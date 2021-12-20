@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
-
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+    <aop:aspectj-autoproxy/>
     <!--    数据库配置-->
     <!--    数据源-->
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
@@ -46,6 +53,21 @@
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <constructor-arg index="0" ref="dataSource"/>
     </bean>
+
+    <bean id="logMapper" class="cn.edu.zjut.dao.LogImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+    <bean id="logService" class="cn.edu.zjut.service.LogService">
+        <property name="logMapper" ref="logMapper"/>
+    </bean>
+    <bean id="logAspect" class="cn.edu.zjut.aspect.LogAspect">
+        <property name="logService" ref="logService"/>
+    </bean>
+
+    <bean id="orderGoodImpl" class="cn.edu.zjut.dao.OrderGoodImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
 
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
@@ -130,7 +152,7 @@
           class="cn.edu.zjut.service.RegisterShopmanagerAndEnterpriseagencyService" scope="prototype">
         <property name="enterpriseAgencyimpl" ref="enterpriseAgencyImpl"/>
         <property name="shopManagerimpl" ref="shopManagerImpl"/>
-        <property name="enterpriseDepartmentimpl" ref="enterpriseDepartmentImpl"></property>
+        <property name="enterpriseDepartmentimpl" ref="enterpriseDepartmentImpl"/>
     </bean>
 
     <bean id="registerShopmanagerAndEnterpriseagencyAction"
@@ -184,10 +206,17 @@
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
 
+    <bean id="newOrderImpl" class="cn.edu.zjut.dao.NewOrderImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
     <bean id="ordersService" class="cn.edu.zjut.service.OrdersService">
         <property name="ordersDao" ref="ordersImpl"/>
         <property name="goodsDao" ref="goodsImpl"/>
-     </bean>
+        <property name="newOrderMapper" ref="newOrderImpl"/>
+        <property name="orderGoodMapper" ref="orderGoodImpl"/>
+        <property name="goodsService" ref="goodsService"/>
+        <property name="wareHouseAddressMapper" ref="wareHouseAddressImpl"/>
+    </bean>
 
     <bean id="ordersAction" class="cn.edu.zjut.action.OrdersAction" scope="prototype">
         <property name="ordersService" ref="ordersService"/>

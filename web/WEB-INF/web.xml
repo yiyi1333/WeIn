@@ -8,22 +8,26 @@
         <param-value>classpath:applicationContext.xml</param-value>
     </context-param>
 
-<!--    <filter>-->
-<!--        <filter-name>EnterpriseFilter</filter-name>-->
-<!--        <filter-class>cn.edu.zjut.filter.EnterpriseFilter</filter-class>-->
-<!--    </filter>-->
+    <filter>
+        <filter-name>EnterpriseFilter</filter-name>
+        <filter-class>cn.edu.zjut.filter.EnterpriseFilter</filter-class>
+    </filter>
 
-<!--    <filter-mapping>-->
-<!--        <filter-name>EnterpriseFilter</filter-name>-->
-<!--        <url-pattern>/addConsumer.jsp</url-pattern>-->
-<!--        <url-pattern>/deleteConsumer.action</url-pattern>-->
-<!--        <url-pattern>/updateUserDepartment.action</url-pattern>-->
-<!--        <url-pattern>/showenterpriseuser.action</url-pattern>-->
-<!--        <url-pattern>/deleteDepartment.action</url-pattern>-->
-<!--        <url-pattern>/displayAllDepartment.action</url-pattern>-->
-<!--        <url-pattern>/addenterpriseDepartment.action</url-pattern>-->
-<!--        <url-pattern>/displayAddEnterpriseDepartment.action</url-pattern>-->
-<!--    </filter-mapping>-->
+    <filter-mapping>
+        <filter-name>EnterpriseFilter</filter-name>
+        <url-pattern>/addConsumer.jsp</url-pattern>
+        <url-pattern>/deleteConsumer.action</url-pattern>
+        <url-pattern>/updateUserDepartment.action</url-pattern>
+        <url-pattern>/showenterpriseuser.action</url-pattern>
+        <url-pattern>/deleteDepartment.action</url-pattern>
+        <url-pattern>/displayAllDepartment.action</url-pattern>
+        <url-pattern>/addenterpriseDepartment.action</url-pattern>
+        <url-pattern>/displayAddEnterpriseDepartment.action</url-pattern>
+        <url-pattern>/addEnterpriseDepartment.jsp</url-pattern>
+        <url-pattern>/chooseEditElectronicContracts.jsp</url-pattern>
+        <url-pattern>/displayAllDepartment.jsp</url-pattern>
+        <url-pattern>/enterpriseagencyList.jsp</url-pattern>
+    </filter-mapping>
 
 
     <filter>
