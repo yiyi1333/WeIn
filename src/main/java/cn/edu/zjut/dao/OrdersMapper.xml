@@ -37,4 +37,33 @@
     <select id="selectOrders" resultMap="OrdersResultMap" parameterType="cn.edu.zjut.po.Orders">
         select * from orders;
     </select>
+
+    <insert id="addOrder" useGeneratedKeys="true" keyProperty="orderId" parameterType="cn.edu.zjut.po.Orders">
+        insert into wein.orders
+        values(
+        null,
+        #{actuaLAmountPaid},
+        #{orderStatus},
+        #{orderPaymentMethod},
+        #{consumerId},
+        #{orderTime},
+        #{shopId},
+        #{logisticsSingle},
+        #{goodTotalPrices},
+        #{discountAmount},
+        #{warehousePhone},
+        #{deliveredPhone},
+        #{warehouseDetailedAddress},
+        #{deliverProvince},
+        #{deliverCity},
+        #{deliverArea},
+        #{deliveredName},
+        #{deliveredDetailedAddress},
+        #{warehouseName},
+        #{warehouseProvince},
+        #{warehouseCity},
+        #{warehouseArea},
+        #{orderDate}
+        );
+    </insert>
 </mapper>

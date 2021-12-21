@@ -18,7 +18,7 @@ public class OrdersService {
     private GoodsMapper goodsDao;
     private ConsumerMapper consumerDao;
     private OrderGoodMapper orderGoodMapper;
-    private NewOrderMapper newOrderMapper;
+    private OrdersMapper ordersMapper;
     private WareHouseAddressMapper wareHouseAddressMapper;
     private GoodsService goodsService;
 
@@ -51,16 +51,17 @@ public class OrdersService {
         return consumerDao;
     }
 
-    public NewOrderMapper getNewOrderMapper() {
-        return newOrderMapper;
-    }
 
     public void setConsumerDao(ConsumerMapper consumerDao) {
         this.consumerDao = consumerDao;
     }
 
-    public void setNewOrderMapper(NewOrderMapper newOrderMapper) {
-        this.newOrderMapper = newOrderMapper;
+    public OrdersMapper getOrdersMapper() {
+        return ordersMapper;
+    }
+
+    public void setOrdersMapper(OrdersMapper ordersMapper) {
+        this.ordersMapper = ordersMapper;
     }
 
     public GoodsMapper getGoodsDao() {
@@ -94,6 +95,7 @@ public class OrdersService {
         return ordersDao.selectOrdersById(orderId);
     }
 
+    //判断库存是不是足够
     public boolean checkStock(List<Integer> goodList, List<Integer> numList, String address) {
         for (int i = 0; i < goodList.size(); i++) {
             Goods goods = goodsService.getGoodsById(goodList.get(i));
@@ -106,16 +108,14 @@ public class OrdersService {
     }
 
     public boolean createOrder(int customerId, List<Integer> goodList, List<Integer> numList, String address) {
-        //一个商品一个订单
-        //查询用户
-        //用于计算折扣价格
+        //传入的都是同一个订单的
         WareHouseAddress wareHouseAddress = wareHouseAddressMapper.selectWareHouseAddressById(goodsService.getGoodsById(goodList.get(0)).getWarehouseId());
-        NewOrder newOrder = new NewOrder();
-        newOrder.setOrderStatus("待发货");
-        newOrder.setConsumerId(Integer.toString(customerId));
-        newOrder.setShopId(goodsService.getGoodsById(goodList.get(0)).getShopId());
-        newOrder.setLogisticsSingle(null);
-        newOrder.setOrderPaymentMethod(null);
+        Orders orders = new Orders();
+        orders.setOrderStatus("待发货");
+        orders.setConsumerId(Integer.toString(customerId));
+        orders.setShopId(goodsService.getGoodsById(goodList.get(0)).getShopId());
+        orders.setLogisticsSingle(null);
+        orders.setOrderPaymentMethod(null);
         double totprice = 0;
         double actualprice = 0;
         for (int i = 0; i < goodList.size(); i++) {
@@ -127,40 +127,41 @@ public class OrdersService {
             actualprice += num * goods.getGoodsRealPrice();
             totprice += num * goods.getGoodsPrice();
         }
-        newOrder.setActuaLAmountPaid(actualprice);
-        newOrder.setGoodTotalPrices(totprice);
-        newOrder.setDiscountAmount(totprice - actualprice);
-        newOrder.setWarehousePhone(wareHouseAddress.getWarehousePhone());
-        newOrder.setWarehouseDetailedAddress(wareHouseAddress.getWarehouseDetailedAddress());
-        newOrder.setWarehouseName(wareHouseAddress.getWarehouseName());
-        newOrder.setWarehouseProvince(wareHouseAddress.getProvince());
-        newOrder.setWarehouseCity(wareHouseAddress.getCity());
-        newOrder.setWarehouseArea(wareHouseAddress.getDistrict());
+        orders.setActuaLAmountPaid(actualprice);
+        orders.setGoodTotalPrices(totprice);
+        orders.setDiscountAmount(totprice - actualprice);
+        orders.setWarehousePhone(wareHouseAddress.getWarehousePhone());
+        orders.setWarehouseDetailedAddress(wareHouseAddress.getWarehouseDetailedAddress());
+        orders.setWarehouseName(wareHouseAddress.getWarehouseName());
+        orders.setWarehouseProvince(wareHouseAddress.getProvince());
+        orders.setWarehouseCity(wareHouseAddress.getCity());
+        orders.setWarehouseArea(wareHouseAddress.getDistrict());
 
         JSONObject adrs = JSONObject.parseObject(address);
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
         System.out.println(dateFormat.format(date));
-        newOrder.setOrderDate(date);
+        orders.setOrderDate(date);
         Time time = new Time(0);
         time.setTime(date.getTime());
-        newOrder.setOrderTime(time);
-        newOrder.setDeliveredPhone(adrs.getString("telNumber"));
-        newOrder.setDeliverProvince(adrs.getString("provinceName"));
-        newOrder.setDeliverCity(adrs.getString("cityName"));
-        newOrder.setDeliveredName(adrs.getString("userName"));
-        newOrder.setDeliverArea(adrs.getString("countyName"));
-        newOrder.setDeliveredDetailedAddress("detailInfo");
+        orders.setOrderTime(time);
+        orders.setDeliveredPhone(adrs.getString("telNumber"));
+        orders.setDeliverProvince(adrs.getString("provinceName"));
+        orders.setDeliverCity(adrs.getString("cityName"));
+        orders.setDeliveredName(adrs.getString("userName"));
+        orders.setDeliverArea(adrs.getString("countyName"));
+        orders.setDeliveredDetailedAddress("detailInfo");
 
-        newOrderMapper.addOrder(newOrder);
+        ordersMapper.addOrder(orders);
 
+        //创建订单的时候就把库存减掉
         for (int i = 0; i < goodList.size(); i++) {
             Goods goods = goodsService.getGoodById(goodList.get(i), Integer.toString(customerId));
             goods.setGoodsStock(goods.getGoodsStock() - numList.get(i));
             goodsService.updateGoods(goods);
             OrderGood orderGood = new OrderGood();
             orderGood.setGoodId(goodList.get(i));
-            orderGood.setOrderId(newOrder.getOrderId());
+            orderGood.setOrderId(orders.getOrderId());
             orderGood.setNum(numList.get(i));
             orderGoodMapper.addOrderGood(orderGood);
         }

@@ -1,8 +1,6 @@
 package cn.edu.zjut.dao;
 
-import cn.edu.zjut.po.Goods;
 import cn.edu.zjut.po.Orders;
-import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import java.util.List;
@@ -34,5 +32,10 @@ public class OrdersImpl implements OrdersMapper{
     public List<Orders> selectOrders(Orders orders) {
         System.out.println("execute--selectOrders--dao");
         return sqlSession.getMapper(OrdersMapper.class).selectOrders(orders);
+    }
+
+    @Override
+    public Integer addOrder(Orders orders) {
+        return sqlSession.getMapper(OrdersMapper.class).addOrder(orders);
     }
 }

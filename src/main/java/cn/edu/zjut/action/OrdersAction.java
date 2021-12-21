@@ -117,6 +117,7 @@ public class OrdersAction implements SessionAware {
     }
 
     public String createShopOrders() {
+        //这是一些测试数据
 //        consumerId = "4";
 //        shops = """
 //                [
@@ -144,7 +145,7 @@ public class OrdersAction implements SessionAware {
 //                                    "tags": "电脑、办公",
 //                                    "warehouseId": 2
 //                                },
-//                                "goodsnum": 13,
+//                                "goodsnum": 4,
 //                                "checked": true
 //                            }
 //                        ]
@@ -215,9 +216,6 @@ public class OrdersAction implements SessionAware {
         System.out.println(consumerId);
         System.out.println(shops);
         System.out.println(address);
-//        ordersService.createOrder(Integer.parseInt(consumerId), shops, address);
-//        System.out.println(goodsList);
-//        List<GoodsIdAndNum> list = new ArrayList<>();
         JSONArray jsonArray = JSONArray.parseArray(shops);
 
         //检查库存
@@ -252,7 +250,7 @@ public class OrdersAction implements SessionAware {
             return "failed";
         }
 
-        //生成
+        //生成，相同地址的归类一起生成
         for (int i = 0; i < jsonArray.size(); i++) {
             System.out.println(jsonArray.getJSONObject(i).getString("shop"));
             JSONObject shopjson = JSONObject.parseObject(jsonArray.getJSONObject(i).getString("shop"));

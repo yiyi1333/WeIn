@@ -43,6 +43,5 @@
         <mapper resource="cn/edu/zjut/dao/CartMapper.xml"/>
         <mapper resource="cn/edu/zjut/dao/ElectronicContractsMapper.xml"/>
         <mapper resource="cn/edu/zjut/dao/OrderGoodMapper.xml"/>
-        <mapper resource="cn/edu/zjut/dao/NewOrderMapper.xml"/>
     </mappers>
 </configuration>

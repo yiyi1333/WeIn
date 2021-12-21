@@ -206,13 +206,10 @@
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
 
-    <bean id="newOrderImpl" class="cn.edu.zjut.dao.NewOrderImpl">
-        <property name="sqlSession" ref="sqlSession"/>
-    </bean>
     <bean id="ordersService" class="cn.edu.zjut.service.OrdersService">
         <property name="ordersDao" ref="ordersImpl"/>
         <property name="goodsDao" ref="goodsImpl"/>
-        <property name="newOrderMapper" ref="newOrderImpl"/>
+        <property name="ordersMapper" ref="ordersImpl"/>
         <property name="orderGoodMapper" ref="orderGoodImpl"/>
         <property name="goodsService" ref="goodsService"/>
         <property name="wareHouseAddressMapper" ref="wareHouseAddressImpl"/>

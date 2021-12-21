@@ -1,79 +1,52 @@
 package cn.edu.zjut.po;
 
 import java.sql.Time;
+import java.util.Date;
 
+/**
+ * @author hydrogen_zyx
+ */
 public class Orders {
-    private int orderId;
-    private String orderStatus; //订单状态
-    private String orderPaymentMethod; //支付方式
-    private Time orderTime; //下单时间
-    private String consumerId; //用户号
-    private int shopId; //店铺编号
-    private String logisticsSingle; //物流单号
-    private int goodsId; //商品号
-    private int goodsnumber; //数量
-    private String deliveredDetailedAddress; //收货地址详细地址
-    private String deliveredName; //收货人姓名
-    private String deliveredPhone; //收货人手机号
-    private int deliveredAeraId; //收货仓库区号
-    private int warehouseAeraId; //发货地址区号
-    private String  warehouseName; //发货人姓名
-    private String warehousePhone; //发货人手机号
-    private String warehouseDetailedAddress; //发货仓库详细地址
-    private double actualAmountPaid;   //实际支付金额
-    private double goodTotalPrices;  //商品总价
-    private double discountAmount;   //优惠金额
+    int orderId;    //
+    double actuaLAmountPaid;    //
+    String orderStatus; //
+    String orderPaymentMethod;  //
+    String consumerId;  //
+    Time orderTime; //
+    int shopId; //
+    String logisticsSingle; //
+    double goodTotalPrices; //
+    double discountAmount;  //
+    String warehousePhone;  //
+    String deliveredPhone;  //
+    String warehouseDetailedAddress;    //
+    String deliverProvince; //
+    String deliverCity; //
+    String deliverArea;
+    String deliveredName;   //
+    String deliveredDetailedAddress;
+    String warehouseName;   //
+    String warehouseProvince;   //
+    String warehouseCity;   //
+    String warehouseArea;   //
+    Date orderDate; //
 
-    public Orders(){
+    public Orders(){}
 
+    public Date getOrderDate() {
+        return orderDate;
     }
 
-    public Orders(int orderId, String orderStatus, String orderPaymentMethod, String consumerId, Time orderTime, int shopId, String logisticsSingle, int goodsId, String warehousePhone, int goodsnumber, String deliveredPhone, int deliveredAeraId, int warehouseAeraId, String warehouseDetailedAddress, String deliveredDetailedAddress, String deliveredName, String warehouseName, double actualAmountPaid, double goodTotalPrices, double discountAmount){
-        this.actualAmountPaid=actualAmountPaid;
-        this.consumerId=consumerId;
-        this.discountAmount=discountAmount;
-        this.deliveredAeraId=deliveredAeraId;
-        this.goodsId=goodsId;
-        this.deliveredName=deliveredName;
-        this.deliveredDetailedAddress=deliveredDetailedAddress;
-        this.deliveredPhone=deliveredPhone;
-        this.goodTotalPrices=goodTotalPrices;
-        this.goodsnumber=goodsnumber;
-        this.warehouseName=warehouseName;
-        this.warehouseAeraId=warehouseAeraId;
-        this.warehouseDetailedAddress=warehouseDetailedAddress;
-        this.warehousePhone=warehousePhone;
-        this.orderId=orderId;
-        this.orderStatus=orderStatus;
-        this.orderPaymentMethod=orderPaymentMethod;
-        this.consumerId=consumerId;
-        this.orderTime=orderTime;
-        this.shopId=shopId;
-        this.logisticsSingle=logisticsSingle;
-    }
-
-    public double getActualAmountPaid() {
-        return actualAmountPaid;
+    public double getActuaLAmountPaid() {
+        return actuaLAmountPaid;
     }
 
     public double getDiscountAmount() {
         return discountAmount;
     }
 
-    public int getDeliveredAeraId() {
-        return deliveredAeraId;
-    }
-
-    public int getGoodsId() {
-        return goodsId;
-    }
-
     public double getGoodTotalPrices() {
         return goodTotalPrices;
-    }
-
-    public int getGoodsnumber() {
-        return goodsnumber;
     }
 
     public int getOrderId() {
@@ -84,12 +57,16 @@ public class Orders {
         return shopId;
     }
 
-    public int getWarehouseAeraId() {
-        return warehouseAeraId;
-    }
-
     public String getConsumerId() {
         return consumerId;
+    }
+
+    public String getDeliverArea() {
+        return deliverArea;
+    }
+
+    public String getDeliverCity() {
+        return deliverCity;
     }
 
     public String getDeliveredDetailedAddress() {
@@ -104,6 +81,10 @@ public class Orders {
         return deliveredPhone;
     }
 
+    public String getDeliverProvince() {
+        return deliverProvince;
+    }
+
     public String getLogisticsSingle() {
         return logisticsSingle;
     }
@@ -114,6 +95,14 @@ public class Orders {
 
     public String getOrderStatus() {
         return orderStatus;
+    }
+
+    public String getWarehouseArea() {
+        return warehouseArea;
+    }
+
+    public String getWarehouseCity() {
+        return warehouseCity;
     }
 
     public String getWarehouseDetailedAddress() {
@@ -128,20 +117,28 @@ public class Orders {
         return warehousePhone;
     }
 
+    public String getWarehouseProvince() {
+        return warehouseProvince;
+    }
+
     public Time getOrderTime() {
         return orderTime;
     }
 
-    public void setActualAmountPaid(double actualAmountPaid) {
-        this.actualAmountPaid = actualAmountPaid;
+    public void setActuaLAmountPaid(double actuaLAmountPaid) {
+        this.actuaLAmountPaid = actuaLAmountPaid;
     }
 
     public void setConsumerId(String consumerId) {
         this.consumerId = consumerId;
     }
 
-    public void setDeliveredAeraId(int deliveredAeraId) {
-        this.deliveredAeraId = deliveredAeraId;
+    public void setDeliverArea(String deliverArea) {
+        this.deliverArea = deliverArea;
+    }
+
+    public void setDeliverCity(String deliverCity) {
+        this.deliverCity = deliverCity;
     }
 
     public void setDeliveredDetailedAddress(String deliveredDetailedAddress) {
@@ -156,24 +153,24 @@ public class Orders {
         this.deliveredPhone = deliveredPhone;
     }
 
+    public void setDeliverProvince(String deliverProvince) {
+        this.deliverProvince = deliverProvince;
+    }
+
     public void setDiscountAmount(double discountAmount) {
         this.discountAmount = discountAmount;
     }
 
-    public void setGoodsId(int goodsId) {
-        this.goodsId = goodsId;
-    }
-
-    public void setGoodsnumber(int goodsnumber) {
-        this.goodsnumber = goodsnumber;
+    public void setGoodTotalPrices(double goodTotalPrices) {
+        this.goodTotalPrices = goodTotalPrices;
     }
 
     public void setLogisticsSingle(String logisticsSingle) {
         this.logisticsSingle = logisticsSingle;
     }
 
-    public void setGoodTotalPrices(double goodTotalPrices) {
-        this.goodTotalPrices = goodTotalPrices;
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
     }
 
     public void setOrderId(int orderId) {
@@ -196,8 +193,12 @@ public class Orders {
         this.shopId = shopId;
     }
 
-    public void setWarehouseAeraId(int warehouseAeraId) {
-        this.warehouseAeraId = warehouseAeraId;
+    public void setWarehouseArea(String warehouseArea) {
+        this.warehouseArea = warehouseArea;
+    }
+
+    public void setWarehouseCity(String warehouseCity) {
+        this.warehouseCity = warehouseCity;
     }
 
     public void setWarehouseDetailedAddress(String warehouseDetailedAddress) {
@@ -210,5 +211,9 @@ public class Orders {
 
     public void setWarehousePhone(String warehousePhone) {
         this.warehousePhone = warehousePhone;
+    }
+
+    public void setWarehouseProvince(String warehouseProvince) {
+        this.warehouseProvince = warehouseProvince;
     }
 }

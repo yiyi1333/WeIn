@@ -9,4 +9,6 @@ public interface OrdersMapper {
     public List<Orders> getAllOrders();
     public Orders selectOrdersById(@Param("orderId") Integer orderId);
     public List<Orders> selectOrders(Orders orders);
+    public Integer addOrder(Orders orders);
+
 }
