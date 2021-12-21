@@ -212,26 +212,11 @@
         <action name="addconsumer" class="cn.edu.zjut.action.ConsumerAction" method="addConsumer">
             <result name="success">/addConsumer.jsp</result>
         </action>
-        <action name="showenterpriseuser" class="cn.edu.zjut.action.EnterpriseDepartmentAction" method="getEnterpriseList">
-            <result name="success">/showEnterpriseDepartmentUser.jsp</result>
-        </action>
-        <action name="addenterpriseDepartment" class="cn.edu.zjut.action.EnterpriseDepartmentAction" method="addEnterpriseDepartment">
-            <result name="success">/addEnterpriseDepartment.jsp</result>
-        </action>
-        <action name="displayShopGoods" class="cn.edu.zjut.action.GoodsAction" method="displayShopGoods">
-            <result name="displayShopGoodsSuccess">/productList.jsp</result>
-        </action>
         <action name="displayGoods" class="cn.edu.zjut.action.GoodsAction" method="selectGoods">
             <result name="displayShopGoodsSuccess">/productList.jsp</result>
         </action>
         <action name="displaydeleteGoods" class="cn.edu.zjut.action.GoodsAction" method="deleteGoods">
             <result name="success">/productList.jsp</result>
-        </action>
-        <action name="updateGoods" class="cn.edu.zjut.action.GoodsAction" method="updateGoods">
-            <result name="success">/changeGoods.jsp</result>
-        </action>
-        <action name="displayGoodsEditor" class="cn.edu.zjut.action.GoodsAction" method="getGoodsById">
-            <result name="success">/changeGoods.jsp</result>
         </action>
         <action name="addGoods" class="cn.edu.zjut.action.GoodsAction" method="addGoods">
             <result name="addSuccess">/addProduct.jsp</result>
@@ -242,12 +227,6 @@
 
 
         <!--        王淑媚配置区-->
-        <action name="displayShopOrders" class="cn.edu.zjut.action.OrdersAction" method="displayShopOrders">
-            <result name="displayShopOrdersSuccess">/ordersList.jsp</result>
-        </action>
-        <action name="displayShopWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction" method="displayShopWareHouseAddress">
-            <result name="displayShopWareHouseAddressSuccess">/wareHouseAddressList.jsp</result>
-        </action>
         <action name="addWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction" method="addWareHouseAddress">
             <result name="success">/addWareHouseAddress.jsp</result>
         </action>
