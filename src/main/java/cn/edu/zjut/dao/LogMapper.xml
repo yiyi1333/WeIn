@@ -2,17 +2,17 @@
 <!DOCTYPE mapper PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.zjut.dao.LogMapper">
-    <resultMap id="BaseResultMap" type="cn.edu.zjut.po.Log">
-        <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="ope_method" property="opeMethod" jdbcType="VARCHAR"/>
-        <result column="ope_desc" property="opeDesc" jdbcType="VARCHAR"/>
-        <result column="ope_date" property="opeDate" jdbcType="TIMESTAMP"/>
-        <result column="ope_ip" property="opeIp" jdbcType="VARCHAR"/>
-    </resultMap>
+    <!--    <resultMap id="BaseResultMap" type="cn.edu.zjut.po.Log">-->
+    <!--        <id column="id" property="id" jdbcType="INTEGER"/>-->
+    <!--        <result column="ope_method" property="opeMethod" jdbcType="VARCHAR"/>-->
+    <!--        <result column="ope_desc" property="opeDesc" jdbcType="VARCHAR"/>-->
+    <!--        <result column="ope_date" property="opeDate" jdbcType="TIMESTAMP"/>-->
+    <!--        <result column="ope_ip" property="opeIp" jdbcType="VARCHAR"/>-->
+    <!--    </resultMap>-->
     <insert id="insert" parameterType="cn.edu.zjut.po.Log">
         insert into log
-        values (#{id}, #{opeMethod}, #{opeDesc},
-                #{opeDate}, #{opeIp})
+        values (#{id}, #{opeMethod},
+        #{opeDate},#{time}, #{opeIp},#{name},#{type});
     </insert>
 
 </mapper>

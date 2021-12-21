@@ -2,6 +2,7 @@ package cn.edu.zjut.po;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.sql.Time;
 import java.util.Date;
 
 public class Log {
@@ -9,12 +10,40 @@ public class Log {
 
     private String opeMethod;
 
-    private String opeDesc;
-
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date opeDate;
 
     private String opeIp;
+
+    private String name;
+
+    private String type;
+
+    private Time time;
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public Integer getId() {
         return id;
@@ -32,13 +61,7 @@ public class Log {
         this.opeMethod = opeMethod == null ? null : opeMethod.trim();
     }
 
-    public String getOpeDesc() {
-        return opeDesc;
-    }
 
-    public void setOpeDesc(String opeDesc) {
-        this.opeDesc = opeDesc == null ? null : opeDesc.trim();
-    }
 
     public Date getOpeDate() {
         return opeDate;
@@ -58,7 +81,7 @@ public class Log {
 
     @Override
     public String toString() {
-        return "Log{" + "id=" + id + ", opeMethod='" + opeMethod + '\'' + ", opeDesc='" + opeDesc + '\'' + ", opeDate=" + opeDate + ", opeIp='" + opeIp + '\'' + '}';
+        return "Log{" + "id=" + id + ", opeMethod='" + opeMethod + '\'' + ", opeDesc='" + '\'' + ", opeDate=" + opeDate + ", opeIp='" + opeIp + '\'' + '}';
     }
 }
 

@@ -45,6 +45,8 @@
         select * from WeIn.consumer;
     </select>
 
+
+
     <insert id="addConsumer" parameterType="cn.edu.zjut.po.Consumer">
         insert into WeIn.consumer(idCardNumber,name,phoneNumber,password,email,enterpriseDepartmentNumber) values(#{idCardNumber},#{name},#{phoneNumber},#{password},#{email},#{enterpriseDepartmentNumber});
     </insert>

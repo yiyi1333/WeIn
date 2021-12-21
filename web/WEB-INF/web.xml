@@ -7,7 +7,11 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:applicationContext.xml</param-value>
     </context-param>
-
+    <listener>
+        <listener-class>
+            org.springframework.web.context.request.RequestContextListener
+        </listener-class>
+    </listener>
     <filter>
         <filter-name>EnterpriseFilter</filter-name>
         <filter-class>cn.edu.zjut.filter.EnterpriseFilter</filter-class>

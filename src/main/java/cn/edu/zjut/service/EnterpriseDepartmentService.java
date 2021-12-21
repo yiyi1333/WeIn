@@ -1,5 +1,6 @@
 package cn.edu.zjut.service;
 
+import cn.edu.zjut.annotation.MyLog;
 import cn.edu.zjut.dao.EnterpriseDepartmentMapper;
 import cn.edu.zjut.dao.EnterpriseImpl;
 import cn.edu.zjut.po.*;
@@ -23,6 +24,7 @@ public class EnterpriseDepartmentService {
         return enterpriseDepartmentMapper.getAllEnterpriseUser();
     }
 
+    @MyLog
     public void addEnterpriseDepartment(EnterpriseDepartment enterpriseDepartment) {
         enterpriseDepartmentMapper.addEnterpriseDepartment(enterpriseDepartment);
     }
@@ -55,6 +57,7 @@ public class EnterpriseDepartmentService {
         this.enterpriseImpl = enterpriseImpl;
     }
 
+
     public EnterpriseDepartment getEnterpriseDepartmentById(int id) {
         return enterpriseDepartmentMapper.getEnterpriseDepartmentById(id);
     }
@@ -63,6 +66,7 @@ public class EnterpriseDepartmentService {
         return enterpriseImpl.getEnterpriseById(id);
     }
 
+    @MyLog
     public boolean deleteDepartment(int id) {
         List<EnterpriseDepartment> departments = enterpriseDepartmentMapper.getSubDepartment(id);
         if (departments.size() != 0) {
@@ -72,11 +76,13 @@ public class EnterpriseDepartmentService {
         return true;
     }
 
+    @MyLog
     public String updateUserDepartment(int id, int departmentId) {
         enterpriseDepartmentMapper.updateUserDepartment(id, departmentId);
         return "success";
     }
 
+    @MyLog
     public void deleteConsumer(int id) {
         enterpriseDepartmentMapper.deleteConsumer(id);
     }

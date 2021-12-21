@@ -10,4 +10,6 @@ public interface EnterpriseAgencyMapper {
     public void addEnterpriseAgency(EnterpriseAgency enterpriseAgency);
 
     public void deleteEnterpriseagency(int id);
+
+    public EnterpriseAgency getEnterpriseAgencyByAccount(String acount);
 }

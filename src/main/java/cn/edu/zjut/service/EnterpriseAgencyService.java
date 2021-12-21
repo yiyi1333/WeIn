@@ -1,7 +1,7 @@
 package cn.edu.zjut.service;
 
+import cn.edu.zjut.annotation.MyLog;
 import cn.edu.zjut.dao.EnterpriseAgencyImpl;
-import cn.edu.zjut.dao.EnterpriseAgencyMapper;
 import cn.edu.zjut.po.EnterpriseAgency;
 
 import java.util.List;
@@ -22,15 +22,14 @@ public class EnterpriseAgencyService {
     public EnterpriseAgency login(EnterpriseAgency enterpriseAgency) {
         System.out.println("execute --login()-- method.");
 
-        List<EnterpriseAgency> agencyList = enterpriseAgencyImpl.getAllEnterpriseAgency();
-        for (EnterpriseAgency agency : agencyList) {
-            if (Objects.equals(agency.getEnterpriseAgencyAccount(), enterpriseAgency.getEnterpriseAgencyAccount()) && Objects.equals(agency.getEnterpriseAgencyPassword(), enterpriseAgency.getEnterpriseAgencyPassword())) {
-                return agency;
-            }
+        EnterpriseAgency agencyList = enterpriseAgencyImpl.getEnterpriseAgencyByAccount(enterpriseAgency.getEnterpriseAgencyAccount());
+        if (Objects.equals(agencyList.getEnterpriseAgencyPassword(), enterpriseAgency.getEnterpriseAgencyPassword())) {
+            return agencyList;
         }
         return null;
     }
 
+    @MyLog
     public void addEnterpriseAgency(EnterpriseAgency enterpriseAgency) {
         List<EnterpriseAgency> agencyList = enterpriseAgencyImpl.getAllEnterpriseAgency();
         boolean ok = false;

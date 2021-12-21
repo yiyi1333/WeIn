@@ -1,10 +1,9 @@
 package cn.edu.zjut.service;
 
 import cn.edu.zjut.dao.ShopManagerImpl;
-import cn.edu.zjut.po.EnterpriseAgency;
 import cn.edu.zjut.po.ShopManager;
 
-import java.util.List;
+import java.util.Objects;
 
 public class ShopManagerService {
     private ShopManagerImpl shopManagerImpl;
@@ -20,12 +19,11 @@ public class ShopManagerService {
     public ShopManager login(ShopManager shopManager) {
         System.out.println("execute --login()-- method.");
 
-        List<ShopManager> managerList = shopManagerImpl.getAllShopManager();
-        for (ShopManager manager : managerList) {
-            if (manager.getShopManagerAccount().equals(shopManager.getShopManagerAccount()) && manager.getShopManagerPassword().equals(shopManager.getShopManagerPassword())) {
-                return manager;
-            }
+        ShopManager managerList = shopManagerImpl.getShopManagerByAccount(shopManager.getShopManagerAccount());
+        if (Objects.equals(shopManager.getShopManagerPassword(), managerList.getShopManagerPassword())) {
+            return managerList;
         }
+
         return null;
     }
 }

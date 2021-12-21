@@ -16,10 +16,17 @@
     <select id="getAllEnterpriseAgency" resultMap="EnterpriseAgencyResultMap">
         select * from enterpriseagency;
     </select>
+
+    <select id="getEnterpriseAgencyByAccount" resultMap="EnterpriseAgencyResultMap">
+        select * from enterpriseagency where enterpriseAgencyAccount = #{0}
+    </select>
     <!--enterpriseAgencyId自增-->
-    <insert id="addEnterpriseAgency" parameterType="cn.edu.zjut.po.EnterpriseAgency" useGeneratedKeys="true" keyProperty="enterpriseAgencyId">
-        insert into enterpriseagency(enterpriseAgencyAccount, enterpriseAgencyPassword, enterpriseAgencyRight, enterpriseAgencyName, idCardNumber, enterpriseId)
-        values (#{enterpriseAgencyAccount}, #{enterpriseAgencyPassword}, #{enterpriseAgencyRight}, #{enterpriseAgencyName}, #{idCardNumber}, #{enterpriseId})
+    <insert id="addEnterpriseAgency" parameterType="cn.edu.zjut.po.EnterpriseAgency" useGeneratedKeys="true"
+            keyProperty="enterpriseAgencyId">
+        insert into enterpriseagency(enterpriseAgencyAccount, enterpriseAgencyPassword, enterpriseAgencyRight,
+        enterpriseAgencyName, idCardNumber, enterpriseId)
+        values (#{enterpriseAgencyAccount}, #{enterpriseAgencyPassword}, #{enterpriseAgencyRight},
+        #{enterpriseAgencyName}, #{idCardNumber}, #{enterpriseId})
     </insert>
 
     <!-- 通过id 删除也用户 -->

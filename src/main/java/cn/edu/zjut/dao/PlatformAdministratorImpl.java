@@ -1,12 +1,11 @@
 package cn.edu.zjut.dao;
 
-import cn.edu.zjut.po.EnterpriseAgency;
 import cn.edu.zjut.po.PlatformAdministrator;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import java.util.List;
 
-public class PlatformAdministratorImpl implements PlatformAdministratorMapper{
+public class PlatformAdministratorImpl implements PlatformAdministratorMapper {
     private SqlSessionTemplate sqlSession;
 
     public SqlSessionTemplate getSqlSession() {
@@ -21,5 +20,10 @@ public class PlatformAdministratorImpl implements PlatformAdministratorMapper{
     public List<PlatformAdministrator> getAllPlatformAdministrator() {
         System.out.println("execute --getAllPlatformAdministrator()-- method.");
         return sqlSession.getMapper(PlatformAdministratorMapper.class).getAllPlatformAdministrator();
+    }
+
+    @Override
+    public PlatformAdministrator getPlatformAdministratorByAccount(String account) {
+        return sqlSession.getMapper(PlatformAdministratorMapper.class).getPlatformAdministratorByAccount(account);
     }
 }

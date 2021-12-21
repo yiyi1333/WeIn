@@ -17,8 +17,13 @@
     </select>
 
     <!--shopManagerId自增-->
-    <insert id="addShopManager" parameterType="cn.edu.zjut.po.ShopManager" useGeneratedKeys="true" keyProperty="shopManagerId">
+    <insert id="addShopManager" parameterType="cn.edu.zjut.po.ShopManager" useGeneratedKeys="true"
+            keyProperty="shopManagerId">
         insert into shopManager(shopManagerId, shopManagerAccount, shopManagerPassword, shopManagerName, idCardNumber)
         values (#{shopManagerId}, #{shopManagerAccount}, #{shopManagerPassword}, #{shopManagerName}, #{idCardNumber})
     </insert>
+
+    <select id="getShopManagerByAccount" resultMap="ShopManagerResultMap">
+        select * from shopmanager where shopManagerAccount=#{0};
+    </select>
 </mapper>
