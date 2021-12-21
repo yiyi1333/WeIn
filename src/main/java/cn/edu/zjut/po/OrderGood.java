@@ -1,7 +1,6 @@
 package cn.edu.zjut.po;
 
 public class OrderGood {
-    int id;
     int goodId;
     int orderId;
     int num;
@@ -17,10 +16,6 @@ public class OrderGood {
         return goodId;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public int getNum() {
         return num;
     }
@@ -31,10 +26,6 @@ public class OrderGood {
 
     public void setGoodId(int goodId) {
         this.goodId = goodId;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setNum(int num) {

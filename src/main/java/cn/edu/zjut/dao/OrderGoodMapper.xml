@@ -5,7 +5,6 @@
     <insert id="addOrderGood" parameterType="cn.edu.zjut.po.OrderGood">
         insert into wein.ordergood
         values(
-        null,
         #{orderId},
         #{goodId},
         #{num}
