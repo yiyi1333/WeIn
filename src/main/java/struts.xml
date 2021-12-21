@@ -62,6 +62,7 @@
         <!--        张宇翔配置区-->
         <action name="login" class="cn.edu.zjut.action.UserAction" method="login">
             <result name="success">/index.jsp</result>
+            <result name="enterpriseagencysuccess" type="chain">showenterpriseuser</result>
             <!--            平台运营人员的主页-->
             <result name="platformAdministratorsuccess">/registerShopmanager.jsp</result>
             <!--            <result name="rightsuccess">/verifyElectronicContracts.jsp</result>-->
@@ -89,7 +90,7 @@
             </result>
         </action>
 
-        <action name="addEnterpriseAgency" class="cn.edu.zjut.action.ConsumerAction" method="addEnterpriseAgency">
+        <action name="addEnterpriseAgency" class="cn.edu.zjut.action.ConsumerAction" method="addConsumer">
             <result name="success">/addConsumer.jsp</result>
         </action>
 
@@ -239,7 +240,7 @@
         <action name="selectWareHouseAddressById" class="cn.edu.zjut.action.WareHouseAddressAction" method="selectWareHouseAddressById">
             <result name="success">/updateWareHouseAddress.jsp</result>
         </action>
-        <action name="updateWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction" method="updateWareHouseAddress                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ">
+        <action name="updateWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction" method="updateWareHouseAddress">
             <result name="success">/wareHouseAddressList.jsp</result>
         </action>
         <action name="selectOrders" class="cn.edu.zjut.action.OrdersAction" method="selectOrders">

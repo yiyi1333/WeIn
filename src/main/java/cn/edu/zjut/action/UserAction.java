@@ -93,7 +93,7 @@ public class UserAction implements SessionAware {
                     return "rightsuccess";
                 }
                 else {
-                    return  "success";
+                    return  "enterpriseagencysuccess";
                 }
             }
         } else if (user.getAuthority() == 2) {

@@ -57,7 +57,7 @@ public class ElectronicContractsService {
 
 
     public List queryElectronicContractsByEnterpriseId(int id) {
-        legitimacyCheck();
+//        legitimacyCheck();
         return electronicContractsimpl.queryElectronicContractsByEnterpriseId(id);
     }
 

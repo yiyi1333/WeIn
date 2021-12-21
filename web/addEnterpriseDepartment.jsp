@@ -24,10 +24,10 @@
 </head>
 <body>
 <div id="wrapper">
-    <jsp:include page="navigation.jsp"/>
+    <jsp:include page="EnterpriseAgencyNavigation.jsp"/>
 
     <div id="page-wrapper" class="gray-bg">
-        <jsp:include page="topSidebar.jsp"/>
+        <jsp:include page="EnterpriseAgencytopSidebar.jsp"/>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
                 <h2>添加企业组织</h2>
