@@ -17,6 +17,26 @@ public class Goods implements Serializable {
     private int warehouseId;
     private double goodsWeight;
 
+
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "goodsId=" + goodsId +
+                ", goodsName='" + goodsName + '\'' +
+                ", goodsPrice=" + goodsPrice +
+                ", goodsRealPrice=" + goodsRealPrice +
+                ", goodsDetails='" + goodsDetails + '\'' +
+                ", goodsStock=" + goodsStock +
+                ", tags='" + tags + '\'' +
+                ", goodsImage='" + goodsImage + '\'' +
+                ", shopId=" + shopId +
+                ", shop=" + shop +
+                ", isGrouding=" + isGrouding +
+                ", warehouseId=" + warehouseId +
+                ", goodsWeight=" + goodsWeight +
+                '}';
+    }
+
     public double getGoodsWeight() {
         return goodsWeight;
     }

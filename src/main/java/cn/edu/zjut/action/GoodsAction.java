@@ -22,8 +22,16 @@ public class GoodsAction implements SessionAware{
     private Goods good;
     private WareHouseAddressService wareHouseAddressService;
     private List wareHouseAddresslist;
-
+    private String customerId;
     private Goods goods;
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
 
     public List getWareHouseAddresslist() {
         return wareHouseAddresslist;
@@ -124,7 +132,8 @@ public class GoodsAction implements SessionAware{
     public String displayGoodsDetail() {
         //将String类型的GoodsId转换为Int;
         int goodid = Integer.parseInt(goodsId);
-        good = goodsService.getGoodById(goodid);
+        good = goodsService.getGoodById(goodid, customerId);
+        System.out.println(good);
         return "success";
     }
 

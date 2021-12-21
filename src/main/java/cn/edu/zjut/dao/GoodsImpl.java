@@ -24,7 +24,7 @@ public class GoodsImpl implements GoodsMapper {
     }
 
     @Override
-    public List searchGoodsByKeyWord(@Param("keyword") String keyword) {
+    public List<Goods> searchGoodsByKeyWord(@Param("keyword") String keyword) {
         System.out.println("execute--getGoodslist--dao");
         return sqlSession.getMapper(GoodsMapper.class).searchGoodsByKeyWord(keyword);
     }

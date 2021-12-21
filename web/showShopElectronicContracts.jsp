@@ -38,7 +38,7 @@
 
 <div id="wrapper">
 
-    <jsp:include page="navigation.jsp"/>
+    <jsp:include page="shopNavigation.jsp"/>
 
     <div id="page-wrapper" class="gray-bg">
         <jsp:include page="EnterpriseAgencytopSidebar.jsp"/>

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface GoodsMapper {
     // 根据商品名模糊查询
-    public List searchGoodsByKeyWord(@Param("keyword") String keyword);
+    public List<Goods> searchGoodsByKeyWord(@Param("keyword") String keyword);
     // 根据商品id查询
     public Goods getGoodById(@Param("goodid") Integer goodid);
     // 查询所有商品

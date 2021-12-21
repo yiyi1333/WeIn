@@ -14,7 +14,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>xxx | 500错误</title>
+    <title>xxx | 错误</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -27,13 +27,9 @@
 
 
 <div class="middle-box text-center animated fadeInDown">
-    <h1>500</h1>
-    <h3 class="font-bold">内部服务器错误</h3>
+    <h1>错误</h1>
+    <h3 class="font-bold"><%=(session.getAttribute("message") == null ? "" : session.getAttribute("message"))%></h3>
 
-    <div class="error-desc">
-        <s:actionerror/><br/>
-        您可以返回主页面: <br/><a href="index.jsp" class="btn btn-primary m-t">Dashboard</a>
-    </div>
 </div>
 
 <!-- Mainly scripts -->
