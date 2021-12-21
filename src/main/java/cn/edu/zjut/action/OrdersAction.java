@@ -285,6 +285,7 @@ public class OrdersAction implements SessionAware {
         orders.setShopId(shopManager.getShopId());
         List<Orders> ordersList = ordersService.selectOrders(orders);
         session.put("ordersList", ordersList);
+        System.out.println(ordersList);
         return "success";
     }
 

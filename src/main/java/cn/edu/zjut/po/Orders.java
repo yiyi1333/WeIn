@@ -2,34 +2,42 @@ package cn.edu.zjut.po;
 
 import java.sql.Time;
 import java.util.Date;
+import java.util.List;
 
-/**
- * @author hydrogen_zyx
- */
 public class Orders {
-    int orderId;    //
-    double actuaLAmountPaid;    //
-    String orderStatus; //
-    String orderPaymentMethod;  //
-    String consumerId;  //
-    Time orderTime; //
-    int shopId; //
-    String logisticsSingle; //
-    double goodTotalPrices; //
-    double discountAmount;  //
-    String warehousePhone;  //
-    String deliveredPhone;  //
-    String warehouseDetailedAddress;    //
-    String deliverProvince; //
-    String deliverCity; //
-    String deliverArea;
-    String deliveredName;   //
-    String deliveredDetailedAddress;
-    String warehouseName;   //
-    String warehouseProvince;   //
-    String warehouseCity;   //
-    String warehouseArea;   //
-    Date orderDate; //
+    private int orderId;
+    private double actuaLAmountPaid;
+    private String orderStatus;
+    private String orderPaymentMethod;
+    private String consumerId;
+    private Time orderTime;
+    private int shopId;
+    private String logisticsSingle;
+    private double goodTotalPrices;
+    private double discountAmount;
+    private String warehousePhone;
+    private String deliveredPhone;
+    private String warehouseDetailedAddress;
+    private String deliverProvince;
+    private String deliverCity;
+    private String deliverArea;
+    private String deliveredName;
+    private String deliveredDetailedAddress;
+    private String warehouseName;
+    private String warehouseProvince;
+    private String warehouseCity;
+    private String warehouseArea;
+    private Date orderDate;
+    private List<OrderGood> orderGoodList;
+
+    public List<OrderGood> getOrderGoodList() {
+        return orderGoodList;
+    }
+
+    public void setOrderGoodList(List<OrderGood> orderGoodList) {
+        this.orderGoodList = orderGoodList;
+    }
+
 
     public Orders(){}
 

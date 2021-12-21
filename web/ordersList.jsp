@@ -70,10 +70,11 @@
                             <div class="form-group">
                                 <label class="col-form-label" for="orderStatus">订单状态</label>
                                 <select id="orderStatus" name="orders.orderStatus"  class="form-control">
-                                    <option>待发货</option>
-                                    <option>已发货</option>
-                                    <option>已收货</option>
-                                    <option>已完成</option>
+                                    <option value="待付款">待付款</option>
+                                    <option value="待发货">待发货</option>
+                                    <option value="待收货">待收货</option>
+                                    <option value="已收货">已收货</option>
+                                    <option value="已完成">已完成</option>
                                 </select>
                             </div>
                         </div>

@@ -10,9 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-/**
- * @author hydrogen_zyx
- */
 public class OrdersService {
     private OrdersMapper ordersDao;
     private GoodsMapper goodsDao;

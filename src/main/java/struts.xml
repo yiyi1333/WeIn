@@ -138,13 +138,6 @@
             <result name="success" type="chain">showenterpriseuser</result>
         </action>
         <!--        余秋霞配置区-->
-        <action name="displayShopOrders" class="cn.edu.zjut.action.OrdersAction" method="displayShopOrders">
-            <result name="displayShopOrdersSuccess">/ordersList.jsp</result>
-        </action>
-        <action name="displayShopWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction"
-                method="displayShopWareHouseAddress">
-            <result name="displayShopWareHouseAddressSuccess">/wareHouseAddressList.jsp</result>
-        </action>
         <action name="registerShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
                 method="registerShopmanager">
             <result name="success">/registerShopmanager.jsp</result>
@@ -268,6 +261,13 @@
         <action name="selectGoodsByWareHouseAddressId" class="cn.edu.zjut.action.WareHouseAddressAction"
                 method="selectGoodsByWareHouseAddressId">
             <result name="success">/productListByWareHouseId.jsp</result>
+        </action>
+        <action name="displayShopOrders" class="cn.edu.zjut.action.OrdersAction" method="displayShopOrders">
+            <result name="displayShopOrdersSuccess">/ordersList.jsp</result>
+        </action>
+        <action name="displayShopWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction"
+                method="displayShopWareHouseAddress">
+            <result name="displayShopWareHouseAddressSuccess">/wareHouseAddressList.jsp</result>
         </action>
 
     </package>

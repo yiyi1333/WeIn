@@ -3,26 +3,37 @@
         "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.zjut.dao.OrdersMapper">
     <resultMap id="OrdersResultMap" type="cn.edu.zjut.po.Orders">
-        <result property="orderId" column="goodsId"/>
+        <id property="orderId" column="orderId"/>
         <result property="orderStatus" column="orderStatus"/>
         <result property="orderPaymentMethod" column="orderPaymentMethod"/>
-        <result property="orderTime" column="orderTime"/>
+        <result property="shopId" column="shopId"/>
         <result property="consumerId" column="consumerId"/>
         <result property="logisticsSingle" column="logisticsSingle"/>
-        <result property="goodsnumber" column="goodsnumber"/>
-        <result property="actualAmountPaid" column="actualAmountPaid"/>
         <result property="goodTotalPrices" column="goodTotalPrices"/>
         <result property="discountAmount" column="discountAmount"/>
+        <result property="warehousePhone" column="warehousePhone"/>
         <result property="deliveredPhone" column="deliveredPhone"/>
-        <result property="deliveredAeraId" column="warehouseAeraId"/>
+        <result property="warehouseDetailedAddress" column="warehouseDetailedAddress"/>
+        <result property="deliverProvince" column="deliverProvince"/>
+        <result property="deliverCity" column="deliverCity"/>
+        <result property="deliverArea" column="deliverArea"/>
         <result property="deliveredName" column="deliveredName"/>
         <result property="deliveredDetailedAddress" column="deliveredDetailedAddress"/>
-        <result property="warehouseDetailedAddress" column="warehouseDetailedAddress"/>
-        <result property="warehouseAeraId" column="warehouseAeraId"/>
-        <result property="warehousePhone" column="warehousePhone"/>
         <result property="warehouseName" column="warehouseName"/>
-        <result property="goodsId" column="goods.goodsId"/>
+        <result property="warehouseProvince" column="warehouseProvince"/>
+        <result property="warehouseCity" column="warehouseCity"/>
+        <result property="warehouseArea" column="warehouseArea"/>
+        <result property="orderDate" column="orderDate"/>
+        <collection property="orderGoodList" javaType="ArrayList"
+                    column="orderId" ofType="cn.edu.zjut.po.OrderGood"
+                    select="cn.edu.zjut.dao.OrderGoodMapper.getGoodsById"
+                    fetchType="lazy">
+            <id property="orderId" column="orderId" />
+            <id property="goodId" column="goodId" />
+            <result property="num" column="num"/>
+        </collection>
     </resultMap>
+
 
     <select id="getAllOrders" resultMap="OrdersResultMap">
        select * from orders;
@@ -35,7 +46,15 @@
     </select>
 
     <select id="selectOrders" resultMap="OrdersResultMap" parameterType="cn.edu.zjut.po.Orders">
-        select * from orders;
+        select o.*,g.*,og.num from orders o,goods g,ordergood og
+        <where>
+            <if test="shopId != null"> and o.orderId = og.orderId AND g.goodId = og.goodId AND o.shopId = #{shopId}</if>
+            <if test="orderStatus != null and orderStatus !=''"> and orderStatus=#{orderStatus}</if>
+            <if test="orderId != null and orderId !=''"> and orderId=#{orderId}</if>
+            <if test="orderDate != null and orderDate !=''"> and orderDate=#{orderDate}</if>
+            <if test="consumerId != null and consumerId !=''"> and consumerId=#{consumerId}</if>
+        </where>
+
     </select>
 
     <insert id="addOrder" useGeneratedKeys="true" keyProperty="orderId" parameterType="cn.edu.zjut.po.Orders">
