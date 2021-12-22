@@ -107,6 +107,8 @@ public class OrdersService {
         return true;
     }
 
+
+
     public boolean createOrder(int customerId, List<Integer> goodList, List<Integer> numList, String address) {
         //传入的都是同一个订单的
         WareHouseAddress wareHouseAddress = wareHouseAddressMapper.selectWareHouseAddressById(goodsService.getGoodsById(goodList.get(0)).getWarehouseId());

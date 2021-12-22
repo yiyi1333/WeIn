@@ -9,7 +9,7 @@
         https://www.springframework.org/schema/aop/spring-aop.xsd
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
-    <aop:aspectj-autoproxy/>
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
     <!--    数据库配置-->
     <!--    数据源-->
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
@@ -71,10 +71,17 @@
 
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
-            <tx:method name="deleteDepartment" propagation="REQUIRED"/>
-            <tx:method name="*" read-only="true"/>
+            <tx:method name="create*" propagation="REQUIRED"/>
+            <tx:method name="update*" propagation="REQUIRED"/>
+            <tx:method name="delete*" propagation="REQUIRED"/>
+            <tx:method name="add*" propagation="REQUIRED"/>
+            <tx:method name="insert*" propagation="REQUIRED"/>
         </tx:attributes>
     </tx:advice>
+    <aop:config proxy-target-class="true">
+        <aop:pointcut id="allServiceMethod" expression="execution(* cn.edu.zjut.*.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="allServiceMethod"/>
+    </aop:config>
     <!--郑展逸配置区-->
     <!--    广告-->
     <bean id="advertisementImpl" class="cn.edu.zjut.dao.AdvertisementImpl">
@@ -217,6 +224,7 @@
 
     <bean id="ordersAction" class="cn.edu.zjut.action.OrdersAction" scope="prototype">
         <property name="ordersService" ref="ordersService"/>
+        <property name="goodsService" ref="goodsService"/>
     </bean>
 
     <bean id="wareHouseAddressImpl" class="cn.edu.zjut.dao.WareHouseAddressImpl">

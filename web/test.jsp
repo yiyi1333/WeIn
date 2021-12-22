@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="createOrder.action">
+<form action="createLegalOrder.action">
     <button type="submit">测试</button>
 </form>
 </body>

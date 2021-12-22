@@ -63,7 +63,17 @@
             </result>
         </action>
 
+
         <!--        张宇翔配置区-->
+        <action name="createLegalOrder" class="cn.edu.zjut.action.OrdersAction" method="createLegalShopOrders">
+            <result name="success" type="json">
+                <param name="root">createOrderSuccess</param>
+            </result>
+
+            <result name="failed" type="json">
+                <param name="root">createOrderSuccess</param>
+            </result>
+        </action>
         <action name="login" class="cn.edu.zjut.action.UserAction" method="login">
             <result name="success">/index.jsp</result>
             <result name="enterpriseagencysuccess" type="chain">showenterpriseuser</result>
