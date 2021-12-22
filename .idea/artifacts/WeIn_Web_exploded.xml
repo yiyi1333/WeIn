@@ -52,6 +52,9 @@
           <element id="library" level="project" name="Maven: com.itextpdf:itext-asian:5.2.0" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.12.2" />
           <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.78" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/ejbserver.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/jboss-client.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/jboss-cli-client.jar" />
         </element>
       </element>
     </root>
