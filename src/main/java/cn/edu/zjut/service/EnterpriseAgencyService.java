@@ -18,7 +18,7 @@ public class EnterpriseAgencyService {
         this.enterpriseAgencyImpl = enterpriseAgencyImpl;
     }
 
-
+    @MyLog
     public EnterpriseAgency login(EnterpriseAgency enterpriseAgency) {
         System.out.println("execute --login()-- method.");
 

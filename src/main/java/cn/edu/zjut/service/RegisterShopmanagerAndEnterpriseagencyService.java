@@ -1,11 +1,11 @@
 package cn.edu.zjut.service;
 
+import cn.edu.zjut.annotation.MyLog;
 import cn.edu.zjut.dao.EnterpriseAgencyImpl;
 import cn.edu.zjut.dao.EnterpriseDepartmentImpl;
 import cn.edu.zjut.dao.ShopManagerImpl;
 import cn.edu.zjut.po.EnterpriseAgency;
 import cn.edu.zjut.po.EnterpriseDepartment;
-import cn.edu.zjut.po.Goods;
 import cn.edu.zjut.po.ShopManager;
 
 import java.util.List;
@@ -13,24 +13,28 @@ import java.util.List;
 public class RegisterShopmanagerAndEnterpriseagencyService {
     ShopManagerImpl shopManagerimpl;
     EnterpriseAgencyImpl enterpriseAgencyimpl;
-    EnterpriseDepartmentImpl enterpriseDepartmentimpl ;
+    EnterpriseDepartmentImpl enterpriseDepartmentimpl;
+
+    @MyLog
     public void registerShopmanager(ShopManager shopManager) {
         shopManagerimpl.addShopManager(shopManager);
     }
 
+    @MyLog
     public void registerEnterpriseagency(EnterpriseAgency enterpriseAgency) {
         enterpriseAgencyimpl.addEnterpriseAgency(enterpriseAgency);
     }
 
-    public List<ShopManager> displayShopmanager(){
+    public List<ShopManager> displayShopmanager() {
         System.out.println("execute --displayShopmanager()-- method.");
         return shopManagerimpl.getAllShopManager();
     }
 
-    public List<EnterpriseAgency> displayenterpriseagency(){
+    public List<EnterpriseAgency> displayenterpriseagency() {
         System.out.println("execute --displayenterpriseAgencr()-- method.");
         return enterpriseAgencyimpl.getAllEnterpriseAgency();
     }
+
     public EnterpriseAgencyImpl getEnterpriseAgencyimpl() {
         return enterpriseAgencyimpl;
     }
@@ -59,6 +63,7 @@ public class RegisterShopmanagerAndEnterpriseagencyService {
         this.enterpriseDepartmentimpl = enterpriseDepartmentimpl;
     }
 
+    @MyLog
     public void deleteEnterpriseagency(int id) {
         enterpriseAgencyimpl.deleteEnterpriseagency(id);
     }

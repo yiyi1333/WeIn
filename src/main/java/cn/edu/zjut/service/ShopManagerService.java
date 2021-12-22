@@ -1,5 +1,6 @@
 package cn.edu.zjut.service;
 
+import cn.edu.zjut.annotation.MyLog;
 import cn.edu.zjut.dao.ShopManagerImpl;
 import cn.edu.zjut.po.ShopManager;
 
@@ -16,6 +17,7 @@ public class ShopManagerService {
         this.shopManagerImpl = shopManagerImpl;
     }
 
+    @MyLog
     public ShopManager login(ShopManager shopManager) {
         System.out.println("execute --login()-- method.");
 

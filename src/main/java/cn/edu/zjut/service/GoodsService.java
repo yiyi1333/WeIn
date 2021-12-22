@@ -1,5 +1,6 @@
 package cn.edu.zjut.service;
 
+import cn.edu.zjut.annotation.MyLog;
 import cn.edu.zjut.dao.ConsumerMapper;
 import cn.edu.zjut.dao.ElectronicContractsMapper;
 import cn.edu.zjut.dao.GoodsMapper;
@@ -66,7 +67,7 @@ public class GoodsService {
         return goods;
     }
 
-
+    @MyLog
     public void updateGoods(Goods goods) {
         goodsDao.updateGoods(goods);
     }
@@ -81,6 +82,7 @@ public class GoodsService {
         return null;
     }
 
+    @MyLog
     public void addGoods(Goods goods) {
         goodsDao.addGoods(goods);
     }
@@ -89,6 +91,7 @@ public class GoodsService {
         return goodsDao.selectGoods(goods);
     }
 
+    @MyLog
     public void deleteGoods(Integer goodid) {
         goodsDao.deleteGoods(goodid);
     }

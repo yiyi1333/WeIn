@@ -1,5 +1,6 @@
 package cn.edu.zjut.service;
 
+import cn.edu.zjut.annotation.MyLog;
 import cn.edu.zjut.dao.PlatformAdministratorImpl;
 import cn.edu.zjut.po.PlatformAdministrator;
 
@@ -16,6 +17,7 @@ public class PlatformAdministratorService {
         this.platformAdministratorImpl = platformAdministratorImpl;
     }
 
+    @MyLog
     public PlatformAdministrator login(PlatformAdministrator platformAdministrator) {
         System.out.println("execute --login()-- method.");
 
