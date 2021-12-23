@@ -2,7 +2,10 @@ package cn.edu.zjut.service;
 
 
 import cn.edu.zjut.dao.*;
-import cn.edu.zjut.po.*;
+import cn.edu.zjut.po.Goods;
+import cn.edu.zjut.po.OrderGood;
+import cn.edu.zjut.po.Orders;
+import cn.edu.zjut.po.WareHouseAddress;
 import com.alibaba.fastjson.JSONObject;
 
 import java.sql.Time;
@@ -108,7 +111,6 @@ public class OrdersService {
     }
 
 
-
     public boolean createOrder(int customerId, List<Integer> goodList, List<Integer> numList, String address) {
         //传入的都是同一个订单的
         WareHouseAddress wareHouseAddress = wareHouseAddressMapper.selectWareHouseAddressById(goodsService.getGoodsById(goodList.get(0)).getWarehouseId());
@@ -165,6 +167,7 @@ public class OrdersService {
             orderGood.setGoodId(goodList.get(i));
             orderGood.setOrderId(orders.getOrderId());
             orderGood.setNum(numList.get(i));
+            orderGood.setSinglePieceActualPrice(goods.getGoodsRealPrice());
             orderGoodMapper.addOrderGood(orderGood);
         }
         return true;

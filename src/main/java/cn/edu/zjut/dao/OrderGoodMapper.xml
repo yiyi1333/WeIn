@@ -7,7 +7,8 @@
         values(
         #{orderId},
         #{goodId},
-        #{num}
+        #{num},
+        #{singlePieceActualPrice}
         );
     </insert>
 </mapper>
