@@ -65,6 +65,17 @@
 
 
         <!--        张宇翔配置区-->
+        <action name="reviewComment" class="cn.edu.zjut.action.ReviewCommentAction" method="displayCommentToReview">
+            <result name="success">/reviewComment.jsp</result>
+        </action>
+
+        <action name="commentJudge" class="cn.edu.zjut.action.ReviewCommentAction" method="commentJudge">
+            <result name="success" type="chain">reviewComment</result>
+        </action>
+        <action name="reviewDetail" class="cn.edu.zjut.action.ReviewCommentAction" method="reviewDetail">
+            <result name="success">/reviewCommentDetail.jsp</result>
+        </action>
+
         <action name="createLegalOrder" class="cn.edu.zjut.action.OrdersAction" method="createLegalShopOrders">
             <result name="success" type="json">
                 <param name="root">createOrderSuccess</param>

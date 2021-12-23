@@ -92,6 +92,9 @@
                     <li><a href="email_template.html">邮件模板</a></li>
                 </ul>
             </li>
+            <li>
+                <a href="reviewComment.action"><i class="fa fa-envelope"></i> <span class="nav-label">审核评论</span></a>
+            </li>
         </ul>
 
     </div>

@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import java.util.List;
 
-public class ConsumerImpl implements ConsumerMapper{
+public class ConsumerImpl implements ConsumerMapper {
     private SqlSessionTemplate sqlSession;
 
     public SqlSessionTemplate getSqlSession() {
@@ -16,6 +16,7 @@ public class ConsumerImpl implements ConsumerMapper{
     public void setSqlSession(SqlSessionTemplate sqlSession) {
         this.sqlSession = sqlSession;
     }
+
     @Override
     public List<Consumer> getAllConsumer() {
         System.out.println("execute--getConsumer--dao");
@@ -46,6 +47,11 @@ public class ConsumerImpl implements ConsumerMapper{
     @Override
     public void updateWxInfo(String phoneNumber, String nickName, String avatarUrl) {
         sqlSession.getMapper(ConsumerMapper.class).updateWxInfo(phoneNumber, nickName, avatarUrl);
+    }
+
+    @Override
+    public Consumer getConsumerById(int id) {
+        return sqlSession.getMapper(ConsumerMapper.class).getConsumerById(id);
     }
 
 

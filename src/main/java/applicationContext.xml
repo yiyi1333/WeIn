@@ -68,6 +68,17 @@
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
 
+    <bean id="commentImpl" class="cn.edu.zjut.dao.CommentImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="commentService" class="cn.edu.zjut.service.CommentService">
+        <property name="commentMapper" ref="commentImpl"/>
+    </bean>
+
+    <bean id="reviewCommentAction" class="cn.edu.zjut.action.ReviewCommentAction">
+        <property name="commentService" ref="commentService"/>
+    </bean>
 
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>

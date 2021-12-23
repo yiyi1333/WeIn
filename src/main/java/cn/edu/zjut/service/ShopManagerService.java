@@ -20,8 +20,8 @@ public class ShopManagerService {
     @MyLog
     public ShopManager login(ShopManager shopManager) {
         System.out.println("execute --login()-- method.");
-
         ShopManager managerList = shopManagerImpl.getShopManagerByAccount(shopManager.getShopManagerAccount());
+        if (managerList == null) return null;
         if (Objects.equals(shopManager.getShopManagerPassword(), managerList.getShopManagerPassword())) {
             return managerList;
         }
