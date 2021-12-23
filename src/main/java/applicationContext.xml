@@ -124,6 +124,30 @@
     <bean id="enterpriseService" class="cn.edu.zjut.service.EnterpriseService">
         <property name="enterpriseImpl" ref="enterpriseImpl"/>
     </bean>
+
+    <bean id="historyImpl" class="cn.edu.zjut.dao.HistoryImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="historyService" class="cn.edu.zjut.service.HistoryService">
+        <property name="histortDao" ref="historyImpl"/>
+    </bean>
+
+    <bean id="historyAction" class="cn.edu.zjut.action.HistoryAction">
+        <property name="historyService" ref="historyService"/>
+    </bean>
+
+    <bean id="collectionImpl" class="cn.edu.zjut.dao.CollectionImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="collectionService" class="cn.edu.zjut.service.CollectionService">
+        <property name="collectionDao" ref="collectionImpl"/>
+    </bean>
+
+    <bean id="collectionAction" class="cn.edu.zjut.action.CollectionAction">
+        <property name="collectionService" ref="collectionService"/>
+     </bean>
     <!--余秋霞配置区-->
 
     <bean id="cartDao" class="cn.edu.zjut.dao.CartImpl">

@@ -4,6 +4,7 @@ import cn.edu.zjut.annotation.MyLog;
 import cn.edu.zjut.dao.CartMapper;
 import cn.edu.zjut.dao.GoodsMapper;
 import cn.edu.zjut.po.Cart;
+import cn.edu.zjut.po.CartGoods;
 import cn.edu.zjut.po.Goods;
 
 import java.util.*;

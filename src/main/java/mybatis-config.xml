@@ -44,5 +44,7 @@
         <mapper resource="cn/edu/zjut/dao/ElectronicContractsMapper.xml"/>
         <mapper resource="cn/edu/zjut/dao/OrderGoodMapper.xml"/>
         <mapper resource="cn/edu/zjut/dao/LogMapper.xml"/>
+        <mapper resource="cn/edu/zjut/dao/HistoryMapper.xml"/>
+        <mapper resource="cn/edu/zjut/dao/CollectionMapper.xml"/>
     </mappers>
 </configuration>

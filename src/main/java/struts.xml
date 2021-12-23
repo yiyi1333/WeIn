@@ -81,6 +81,30 @@
             </result>
         </action>
 
+        <action name="showWaitPayOrder" class="cn.edu.zjut.action.OrdersAction" method="showWaitPayOrder">
+            <result name="success" type="json">
+                <param name="root">orderslist</param>
+            </result>
+        </action>
+
+        <action name="showWaitEvaluateOrder" class="cn.edu.zjut.action.OrdersAction" method="showWaitEvaluateOrder">
+            <result name="success" type="json">
+                <param name="root">orderslist</param>
+            </result>
+        </action>
+
+        <action name="addBrowsingHistory" class="cn.edu.zjut.action.HistoryAction" method="addBrowsingHistory">
+            <result name="success" type="json">
+                <param name="root">status</param>
+            </result>
+        </action>
+
+        <action name="addCollection" class="cn.edu.zjut.action.CollectionAction" method="addCollection">
+            <result name="success" type="json">
+                <param name="root">status</param>
+            </result>
+        </action>
+
         <action name="Upload" class="cn.edu.zjut.action.UploadImageAction" method="Upload">
             <result name="success" type="json">
                 <param name="root">status</param>

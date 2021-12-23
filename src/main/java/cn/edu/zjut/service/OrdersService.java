@@ -187,4 +187,16 @@ public class OrdersService {
         System.out.println(list);
         return list;
     }
+    //查询某用户全部待收款订单
+    public List<OrderShow> showWaitPayOrder(Integer customerId){
+        List<OrderShow> list = ordersDao.showStatusOrder(customerId, "待付款");
+        System.out.println(list);
+        return list;
+    }
+    //查询某用户全部待评价订单
+    public List<OrderShow> showWaitEvaluateOrder(Integer customerId){
+        List<OrderShow> list = ordersDao.showStatusOrder(customerId, "待评价");
+        System.out.println(list);
+        return list;
+    }
 }
