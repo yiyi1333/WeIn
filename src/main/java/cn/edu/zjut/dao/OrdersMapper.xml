@@ -53,7 +53,7 @@
             <result property="shopDescription" column="shopDescription"/>
         </association>
         <collection property="goodsList" javaType="list" ofType="cn.edu.zjut.po.CartGoods">
-            <result property="goodsNum" column="goodsNum"/>
+            <result property="goodsNum" column="num"/>
             <association property="goods" javaType="cn.edu.zjut.po.Goods">
                 <id property="goodsId" column="goodsId"/>
                 <result property="goodsName" column="goodsName"/>
@@ -113,5 +113,17 @@
         select *
         from orders, goods, shop, ordergood
         where orders.consumerId = #{customerId} and orders.orderId = ordergood.orderId and ordergood.goodId = goods.goodsId and orders.shopId = shop.shopId;
+    </select>
+
+    <select id="showOrderDetail" resultMap="OrderShowMap">
+        select *
+        from orders, goods, shop, ordergood
+        where orders.orderId = #{orderId} and orders.orderId = ordergood.orderId and ordergood.goodId = goods.goodsId and orders.shopId = shop.shopId;
+    </select>
+
+    <select id="showStatusOrder" resultMap="OrderShowMap">
+        select *
+        from orders, goods, shop, ordergood
+        where orders.consumerId = #{customerId} and orders.orderStatus = #{status} and orders.orderId = ordergood.orderId and ordergood.goodId = goods.goodsId and orders.shopId = shop.shopId;
     </select>
 </mapper>

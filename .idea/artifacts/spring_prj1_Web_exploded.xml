@@ -1,11 +1,11 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="WeIn:Web exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/WeIn_Web_exploded</output-path>
+  <artifact type="exploded-war" name="spring-prj1:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/spring_prj1_Web_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="WeIn/web/Web" />
+      <element id="javaee-facet-resources" facet="spring-prj1/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="WeIn" />
+          <element id="module-output" name="spring-prj1" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.27" />
@@ -53,8 +53,8 @@
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.12.2" />
           <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.78" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/ejbserver.jar" />
-          <element id="file-copy" path="$PROJECT_DIR$/lib/jboss-client.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/jboss-cli-client.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/jboss-client.jar" />
         </element>
       </element>
     </root>

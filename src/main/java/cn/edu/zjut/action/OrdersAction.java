@@ -494,5 +494,10 @@ public class OrdersAction implements SessionAware {
         order = ordersService.showOrderDetail(Integer.parseInt(orderid));
         return "success";
     }
+    //查询所有待收货订单
+    public String showWaitReceiveOrder(){
+        orderslist = ordersService.showWaitReceiveOrder(Integer.parseInt(consumerId));
+        return "success";
+    }
 
 }

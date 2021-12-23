@@ -75,6 +75,18 @@
             </result>
         </action>
 
+        <action name="showWaitReceiveOrder" class="cn.edu.zjut.action.OrdersAction" method="showWaitReceiveOrder">
+            <result name="success" type="json">
+                <param name="root">orderslist</param>
+            </result>
+        </action>
+
+        <action name="Upload" class="cn.edu.zjut.action.UploadImageAction" method="Upload">
+            <result name="success" type="json">
+                <param name="root">status</param>
+            </result>
+        </action>
+
         <!--        张宇翔配置区-->
         <action name="createLegalOrder" class="cn.edu.zjut.action.OrdersAction" method="createLegalShopOrders">
             <result name="success" type="json">

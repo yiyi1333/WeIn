@@ -50,4 +50,10 @@ public class OrdersImpl implements OrdersMapper{
     public OrderShow showOrderDetail(Integer orderId) {
         return sqlSession.getMapper(OrdersMapper.class).showOrderDetail(orderId);
     }
+
+    @Override
+    public List<OrderShow> showStatusOrder(Integer customerId, String status) {
+        return sqlSession.getMapper(OrdersMapper.class).showStatusOrder(customerId, status);
+    }
+
 }

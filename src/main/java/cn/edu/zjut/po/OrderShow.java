@@ -29,6 +29,15 @@ public class OrderShow {
     String warehouseArea;   //发货人地区
     Date orderDate; //下单日期
     List<CartGoods> goodsList;// 订单中的商品信息
+    Shop shop;
+
+    public Shop getShop() {
+        return shop;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
+    }
 
     public int getOrderId() {
         return orderId;

@@ -169,16 +169,22 @@ public class OrdersService {
         }
         return true;
     }
-
+    //查询某用户全部订单
     public List<OrderShow> showAllOrder(Integer customerId){
         List<OrderShow> list = ordersDao.showAllOrder(customerId);
         System.out.println(list);
         return list;
     }
-
+    //查询某订单
     public OrderShow showOrderDetail(Integer orderId){
         OrderShow orderShow = ordersDao.showOrderDetail(orderId);
         System.out.println(orderShow);
         return orderShow;
+    }
+    //查询某用户全部待收货订单
+    public List<OrderShow> showWaitReceiveOrder(Integer customerId){
+        List<OrderShow> list = ordersDao.showStatusOrder(customerId, "待收货");
+        System.out.println(list);
+        return list;
     }
 }

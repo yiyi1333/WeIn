@@ -14,4 +14,5 @@ public interface OrdersMapper {
     public Integer addOrder(Orders orders);
     public List<OrderShow> showAllOrder(@Param("customerId") Integer customerId);
     public OrderShow showOrderDetail(@Param("orderId") Integer orderId);
+    public List<OrderShow> showStatusOrder(@Param("customerId") Integer customerId, @Param("status") String status);
 }
