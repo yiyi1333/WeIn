@@ -152,7 +152,7 @@ public class OrdersService {
         orders.setDeliverCity(adrs.getString("cityName"));
         orders.setDeliveredName(adrs.getString("userName"));
         orders.setDeliverArea(adrs.getString("countyName"));
-        orders.setDeliveredDetailedAddress("detailInfo");
+        orders.setDeliveredDetailedAddress(adrs.getString("detailInfo"));
 
         ordersMapper.addOrder(orders);
 
