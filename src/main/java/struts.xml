@@ -3,6 +3,8 @@
         "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
+    <constant name="struts.multipart.saveDir" value="E:/Temp" />
+    <constant name="struts.multipart.maxSize" value="1000000" />
     <package name="strutsBean" extends="struts-default,json-default" namespace="/">
         <!--        郑展逸配置区-->
         <action name="advertisement" class="cn.edu.zjut.action.AdvertisementAction" method="getAdvertisementList">
@@ -106,8 +108,15 @@
         </action>
 
         <action name="Upload" class="cn.edu.zjut.action.UploadImageAction" method="Upload">
+            <interceptor-ref name="defaultStack"/>
             <result name="success" type="json">
-                <param name="root">status</param>
+                <param name="root">imagePath</param>
+            </result>
+        </action>
+
+        <action name="applyForRights" class="cn.edu.zjut.action.SafeGuardingRightsAction" method="applyForRights">
+            <result name="success" type="json">
+                <param name="root">statusMes</param>
             </result>
         </action>
 
