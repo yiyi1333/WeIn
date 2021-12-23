@@ -170,4 +170,15 @@ public class OrdersService {
         return true;
     }
 
+    public List<OrderShow> showAllOrder(Integer customerId){
+        List<OrderShow> list = ordersDao.showAllOrder(customerId);
+        System.out.println(list);
+        return list;
+    }
+
+    public OrderShow showOrderDetail(Integer orderId){
+        OrderShow orderShow = ordersDao.showOrderDetail(orderId);
+        System.out.println(orderShow);
+        return orderShow;
+    }
 }

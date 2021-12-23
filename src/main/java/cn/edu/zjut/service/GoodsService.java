@@ -8,6 +8,7 @@ import cn.edu.zjut.po.ElectronicContracts;
 import cn.edu.zjut.po.EnterpriseConsumer;
 import cn.edu.zjut.po.Goods;
 
+import java.util.Date;
 import java.util.List;
 
 public class GoodsService {
@@ -56,12 +57,11 @@ public class GoodsService {
         Goods goods = goodsDao.getGoodById(goodid);
         if (enterpriseConsumer.getEnterpriseDepartment().getEnterpriseDepartmentId() != 0) {
             //查询该商品id的departmentId的记录
-            ElectronicContracts electronicContracts = electronicContractsDao.queryElectronicContractsByGoodsIdAndDepartmentId(goodid, enterpriseConsumer.getEnterpriseDepartment().getEnterpriseDepartmentId());
+            Date date = new Date();
+            ElectronicContracts electronicContracts = electronicContractsDao.queryElectronicContractsByGoodsIdAndDepartmentId(goodid, enterpriseConsumer.getEnterpriseDepartment().getEnterpriseDepartmentId(), date);
             if (electronicContracts != null) {
                 //有折扣
                 goods.setGoodsRealPrice(goods.getGoodsPrice() * electronicContracts.getDiscount());
-            } else {
-                goods.setGoodsRealPrice(goods.getGoodsPrice());
             }
         }
         return goods;

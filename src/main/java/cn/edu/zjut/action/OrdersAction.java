@@ -2,6 +2,7 @@ package cn.edu.zjut.action;
 
 
 import cn.edu.zjut.po.Goods;
+import cn.edu.zjut.po.OrderShow;
 import cn.edu.zjut.po.Orders;
 import cn.edu.zjut.po.ShopManager;
 import cn.edu.zjut.service.GoodsService;
@@ -20,7 +21,25 @@ public class OrdersAction implements SessionAware {
     private String address;
     private String consumerId;
     private String createOrderSuccess;
+    private OrderShow order;
+    private String orderid;
     private GoodsService goodsService;
+
+    public OrderShow getOrder() {
+        return order;
+    }
+
+    public void setOrder(OrderShow order) {
+        this.order = order;
+    }
+
+    public String getOrderid() {
+        return orderid;
+    }
+
+    public void setOrderid(String orderid) {
+        this.orderid = orderid;
+    }
 
     public GoodsService getGoodsService() {
         return goodsService;
@@ -464,4 +483,16 @@ public class OrdersAction implements SessionAware {
         session.put("order", obj);
         return "success";
     }
+    //查询某个用户的全部订单数据
+    public String showAllOrder(){
+        orderslist = ordersService.showAllOrder(Integer.parseInt(consumerId));
+        System.out.println(orderslist);
+        return "success";
+    }
+    //查询某个订单的详情
+    public String showOrderDetail(){
+        order = ordersService.showOrderDetail(Integer.parseInt(orderid));
+        return "success";
+    }
+
 }

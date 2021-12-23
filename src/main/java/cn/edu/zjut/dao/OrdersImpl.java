@@ -1,5 +1,7 @@
 package cn.edu.zjut.dao;
 
+import cn.edu.zjut.po.OrderGood;
+import cn.edu.zjut.po.OrderShow;
 import cn.edu.zjut.po.Orders;
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -37,5 +39,15 @@ public class OrdersImpl implements OrdersMapper{
     @Override
     public Integer addOrder(Orders orders) {
         return sqlSession.getMapper(OrdersMapper.class).addOrder(orders);
+    }
+
+    @Override
+    public List<OrderShow> showAllOrder(Integer customerId) {
+        return sqlSession.getMapper(OrdersMapper.class).showAllOrder(customerId);
+    }
+
+    @Override
+    public OrderShow showOrderDetail(Integer orderId) {
+        return sqlSession.getMapper(OrdersMapper.class).showOrderDetail(orderId);
     }
 }

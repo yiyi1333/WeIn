@@ -3,6 +3,7 @@ package cn.edu.zjut.dao;
 import cn.edu.zjut.po.ElectronicContracts;
 import org.mybatis.spring.SqlSessionTemplate;
 
+import java.util.Date;
 import java.util.List;
 
 public class ElectronicContractsImpl implements ElectronicContractsMapper{
@@ -47,8 +48,8 @@ public class ElectronicContractsImpl implements ElectronicContractsMapper{
     }
 
     @Override
-    public ElectronicContracts queryElectronicContractsByGoodsIdAndDepartmentId(int goodsId, int deparatmentId) {
-        return sqlSession.getMapper(ElectronicContractsMapper.class).queryElectronicContractsByGoodsIdAndDepartmentId(goodsId, deparatmentId);
+    public ElectronicContracts queryElectronicContractsByGoodsIdAndDepartmentId(int goodsId, int deparatmentId, Date now) {
+        return sqlSession.getMapper(ElectronicContractsMapper.class).queryElectronicContractsByGoodsIdAndDepartmentId(goodsId, deparatmentId, now);
     }
 }
 

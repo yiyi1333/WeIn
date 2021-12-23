@@ -1,5 +1,7 @@
 package cn.edu.zjut.dao;
 
+import cn.edu.zjut.po.OrderGood;
+import cn.edu.zjut.po.OrderShow;
 import cn.edu.zjut.po.Orders;
 import org.apache.ibatis.annotations.Param;
 
@@ -10,5 +12,6 @@ public interface OrdersMapper {
     public Orders selectOrdersById(@Param("orderId") Integer orderId);
     public List<Orders> selectOrders(Orders orders);
     public Integer addOrder(Orders orders);
-
+    public List<OrderShow> showAllOrder(@Param("customerId") Integer customerId);
+    public OrderShow showOrderDetail(@Param("orderId") Integer orderId);
 }

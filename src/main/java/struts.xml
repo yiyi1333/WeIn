@@ -63,13 +63,23 @@
             </result>
         </action>
 
+        <action name="showAllOrder" class="cn.edu.zjut.action.OrdersAction" method="showAllOrder">
+            <result name="success" type="json">
+                <param name="root">orderslist</param>
+            </result>
+        </action>
+
+        <action name="showOrderDetail" class="cn.edu.zjut.action.OrdersAction" method="showOrderDetail">
+            <result name="success" type="json">
+                <param name="root">order</param>
+            </result>
+        </action>
 
         <!--        张宇翔配置区-->
         <action name="createLegalOrder" class="cn.edu.zjut.action.OrdersAction" method="createLegalShopOrders">
             <result name="success" type="json">
                 <param name="root">createOrderSuccess</param>
             </result>
-
             <result name="failed" type="json">
                 <param name="root">createOrderSuccess</param>
             </result>
