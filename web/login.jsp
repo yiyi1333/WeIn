@@ -34,7 +34,7 @@
                 <div class="input-group-prepend">
                     <select class="btn btn-white dropdown-toggle" name="user.authority">
                         <option value="0">店铺用户</option>
-                        <option value="1">企业用户</option>
+                        <option value="1">企业管理员</option>
                         <option value="2">平台管理人员</option>
                     </select>
                 </div>

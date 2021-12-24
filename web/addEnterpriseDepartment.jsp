@@ -60,12 +60,6 @@
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                     <i class="fa fa-wrench"></i>
                                 </a>
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li><a href="#" class="dropdown-item">选项 1</a>
-                                    </li>
-                                    <li><a href="#" class="dropdown-item">选项 2</a>
-                                    </li>
-                                </ul>
                                 <a class="close-link">
                                     <i class="fa fa-times"></i>
                                 </a>
@@ -78,11 +72,13 @@
                         %>
                         <div class="ibox-content">
                             <form action="addenterpriseDepartment.action">
-                                <div class="form-group  row"><label class="col-sm-2 col-form-label">部门名称</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control"
+                                <div class="form-group  row" id="enterpriseDepartmentEnterpriseDepartmentNameDiv"><label class="col-sm-2 col-form-label">部门名称</label>
+                                    <div class="col-sm-10" >
+                                        <input type="text" class="form-control" id = "enterpriseDepartmentEnterpriseDepartmentName"
                                                name="enterpriseDepartment.enterpriseDepartmentName">
+
                                     </div>
+                                    <div id="enterpriseDepartmentEnterpriseDepartmentNameResult" style="margin-left: 100px;"></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group row"><label class="col-sm-2 col-form-label">所属企业</label>
@@ -155,6 +151,19 @@
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'iradio_square-green',
         });
+    });
+
+    $('#enterpriseDepartmentEnterpriseDepartmentName').bind('input propertychange', function () {
+        if ((11 - $(this).val().length) >= 4) {
+            document.getElementById("enterpriseDepartmentEnterpriseDepartmentNameDiv").className = "form-group row has-success";
+            $('#enterpriseDepartmentEnterpriseDepartmentNameResult').html('还剩 ' + (20 - $(this).val().length) + ' 字，请放心输入');
+        } else if ((11 - $(this).val().length) >= 0) {
+            document.getElementById("enterpriseDepartmentEnterpriseDepartmentNameDiv").className = "form-group row has-warning";
+            $('#enterpriseDepartmentEnterpriseDepartmentNameResult').html('还剩 ' + (20 - $(this).val().length) + ' 字,请注意');
+        } else {
+            document.getElementById("enterpriseDepartmentEnterpriseDepartmentNameDiv").className = "form-group row has-error";
+            $('#enterpriseDepartmentEnterpriseDepartmentNameResult').html('您已超出 ' + ($(this).val().length - 20) + ' 字');
+        }
     });
 </script>
 </body>
