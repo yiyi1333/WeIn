@@ -55,6 +55,10 @@
           <element id="file-copy" path="$PROJECT_DIR$/lib/ejbserver.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/jboss-cli-client.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/jboss-client.jar" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.2.1" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.2.1" />
+          <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.6" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-util:9.3.7.v20160115" />
         </element>
       </element>
     </root>

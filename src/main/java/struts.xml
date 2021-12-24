@@ -138,6 +138,12 @@
             </result>
         </action>
 
+        <action name="Certification" class="cn.edu.zjut.action.ConsumerAction" method="Certification">
+            <result name="success" type="json">
+                <param name="root">statusMes</param>
+            </result>
+        </action>
+
         <!--        张宇翔配置区-->
         <action name="createLegalOrder" class="cn.edu.zjut.action.OrdersAction" method="createLegalShopOrders">
             <result name="success" type="json">

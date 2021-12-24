@@ -16,4 +16,6 @@ public interface ConsumerMapper {
     //按编号查询企业消费者
     public EnterpriseConsumer searchEnterpriseConsumerById(@Param("consumerId") Integer consumerId);
     public void updateWxInfo(@Param("phoneNumber")String phoneNumber, @Param("nickName") String nickName, @Param("avatarUrl") String avatarUrl);
+    //存储实名信息
+    public Integer modfiyCertificationInfo(@Param("consumerId")Integer consumerId, @Param("realName") String realName, @Param("idNumber") String idNumber);
 }

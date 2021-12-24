@@ -1,8 +1,13 @@
 package cn.edu.zjut.service;
 
+import cn.edu.zjut.Until.HttpUtils;
 import cn.edu.zjut.dao.ConsumerMapper;
 import cn.edu.zjut.po.Consumer;
 import cn.edu.zjut.po.EnterpriseConsumer;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import org.apache.http.HttpResponse;
+import org.apache.http.util.EntityUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -71,7 +76,7 @@ public class ConsumerService {
         return enterpriseConsumer;
     }
     //实名认证服务
-    public boolean Certification(String realName, String idNumber){
+    public String Certification(String realName, String idNumber, Integer consumerId){
         String host = "https://idenauthen.market.alicloudapi.com";
         String path = "/idenAuthentication";
         String method = "POST";
@@ -85,6 +90,7 @@ public class ConsumerService {
         Map<String, String> bodys = new HashMap<String, String>();
         bodys.put("idNo", idNumber);
         bodys.put("name", realName);
+        String respMessage = null;
         try {
             /**
              * 重要提示如下:
@@ -98,9 +104,17 @@ public class ConsumerService {
             HttpResponse response = HttpUtils.doPost(host, path, method, headers, querys, bodys);
             System.out.println(response.toString());
             //获取response的body
-            System.out.println(EntityUtils.toString(response.getEntity()));
+            String result = EntityUtils.toString(response.getEntity());
+            System.out.println(result);
+            JSONObject resObject = JSONObject.parseObject(result);
+            respMessage = resObject.getString("respMessage");
+            System.out.println(respMessage);
+            if(respMessage.equals("身份证信息匹配")){
+                consumerdao.modfiyCertificationInfo(consumerId, realName, idNumber);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return respMessage;
     }
 }

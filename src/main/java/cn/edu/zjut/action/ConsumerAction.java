@@ -19,8 +19,17 @@ public class ConsumerAction implements SessionAware {
     private String nickName;
     private String avatarUrl;
     private String realName;
-    private String IdNumber;
+    private String idNumber;
     private String statusMes;
+    private String consumerId;
+
+    public String getConsumerId() {
+        return consumerId;
+    }
+
+    public void setConsumerId(String consumerId) {
+        this.consumerId = consumerId;
+    }
 
     public String getStatusMes() {
         return statusMes;
@@ -39,11 +48,11 @@ public class ConsumerAction implements SessionAware {
     }
 
     public String getIdNumber() {
-        return IdNumber;
+        return idNumber;
     }
 
     public void setIdNumber(String idNumber) {
-        IdNumber = idNumber;
+        this.idNumber = idNumber;
     }
 
     public String getNickName() {
@@ -160,6 +169,7 @@ public class ConsumerAction implements SessionAware {
 
     //实名认证处理
     public String Certification(){
-
+        statusMes = consumerService.Certification(realName, idNumber, Integer.parseInt(consumerId));
+        return "success";
     }
 }
