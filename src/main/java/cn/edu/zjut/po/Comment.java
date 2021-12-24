@@ -8,6 +8,15 @@ public class Comment {
     int rate;
     String image;
     int state;
+    int orderId;
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
 
     public Comment(){}
 

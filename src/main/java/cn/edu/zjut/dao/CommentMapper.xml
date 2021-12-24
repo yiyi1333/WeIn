@@ -10,6 +10,7 @@
         <result property="rate" column="rate"/>
         <result property="image" column="image"/>
         <result property="state" column="state"/>
+        <result property="orderId" column="orderId"/>
     </resultMap>
 
     <select id="getAllCommentWithoutReview" resultMap="commentResultMap">
