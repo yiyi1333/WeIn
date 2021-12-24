@@ -5,6 +5,6 @@
     <insert id="addSafeGuardingRightsRecord">
         insert into safeguardingrights
         set orderId = #{orderId}, goodId = #{goodsId}, safeGuardingRightsDetails = #{descript}, safeGuardingRightsImage = #{imagePath},
-        safeGuardingRightsType = #{Type}, flag = #{flag}, safeGuardingRightsNum = #{goodsNum}, safeGuardingRightsProgress = #{status};
+        safeGuardingRightsType = #{Type}, safeGuardingRightsNum = #{goodsNum}, safeGuardingRightsProgress = #{status};
     </insert>
 </mapper>

@@ -27,14 +27,14 @@ public class SafeGuardingRightsService {
     //提交维权申请
     public boolean applyForRights(Integer goodsId, Integer goodsNum, String descript, String imagePath, Integer orderId, Integer customerId){
         boolean flag = false;
-        int consumerFlag = 0;
-        //查询该用户类型
-        EnterpriseConsumer enterpriseConsumer = consumerDao.searchEnterpriseConsumerById(customerId);
-        if(enterpriseConsumer.getEnterpriseDepartment().getEnterpriseDepartmentId() != 0){
-            //企业用户
-            consumerFlag = 1;
-        }
-        int line = safeGuardingRightsDao.addSafeGuardingRightsRecord(goodsId, goodsNum, descript, imagePath, orderId, "退款", consumerFlag, "申请中");
+//        int consumerFlag = 0;
+//        //查询该用户类型
+//        EnterpriseConsumer enterpriseConsumer = consumerDao.searchEnterpriseConsumerById(customerId);
+//        if(enterpriseConsumer.getEnterpriseDepartment().getEnterpriseDepartmentId() != 0){
+//            //企业用户
+//            consumerFlag = 1;
+//        }
+        int line = safeGuardingRightsDao.addSafeGuardingRightsRecord(goodsId, goodsNum, descript, imagePath, orderId, "退款",  "申请中");
         if(line != 0) {
             flag = true;
         }

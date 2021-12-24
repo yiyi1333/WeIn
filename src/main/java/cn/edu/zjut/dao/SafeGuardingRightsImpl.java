@@ -15,12 +15,12 @@ public class SafeGuardingRightsImpl implements SafeGuardingRightsMapper{
     }
     @Override
     public Integer addSafeGuardingRightsRecord(Integer goodsId, Integer goodsNum, String descript, String imagePath,
-                                               Integer orderId, String type, Integer flag, String status) {
+                                               Integer orderId, String type, String status) {
         SqlSession session = sqlSession.getSqlSessionFactory().openSession();
         SafeGuardingRightsMapper safeGuardingRightsMapper = sqlSession.getMapper(SafeGuardingRightsMapper.class);
         Integer line = null;
         try {
-            line = safeGuardingRightsMapper.addSafeGuardingRightsRecord(goodsId, goodsNum, descript, imagePath, orderId, type, flag, status);
+            line = safeGuardingRightsMapper.addSafeGuardingRightsRecord(goodsId, goodsNum, descript, imagePath, orderId, type, status);
             System.out.println(line);
             session.commit();
         }
