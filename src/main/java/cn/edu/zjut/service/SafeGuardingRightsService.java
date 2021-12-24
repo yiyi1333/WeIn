@@ -10,7 +10,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-public class safeGuardingRightsService {
+public class SafeGuardingRightsService {
     private SafeGuardingRightsMapper safeGuardingRightsDao;
     private SafeGuardingRightsProgressMapper safeGuardingRightsProgressDao;
 

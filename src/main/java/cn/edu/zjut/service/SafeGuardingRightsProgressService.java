@@ -6,7 +6,7 @@ import cn.edu.zjut.po.SafeGuardingRightsProgress;
 
 import java.util.List;
 
-public class safeGuardingRightsProgressService {
+public class SafeGuardingRightsProgressService {
     private SafeGuardingRightsProgressMapper safeGuardingRightsProgressDao;
 
     public SafeGuardingRightsProgressMapper getSafeGuardingRightsProgressDao() {

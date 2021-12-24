@@ -21,12 +21,12 @@ public class SafeGuardingRightsAction implements SessionAware {
     private String orderId;
     private String statusMes;
     private String type;
-    private safeGuardingRightsService safeGuardingRightsService;
+    private SafeGuardingRightsService safeGuardingRightsService;
     private Map<String, Object> session;
     private OrdersService ordersService;
     private OrderStatusService orderStatusService;
     private GoodsService goodsService;
-    private safeGuardingRightsProgressService safeGuardingRightsProgressService;
+    private SafeGuardingRightsProgressService safeGuardingRightsProgressService;
     private SafeGuardingRights safeGuardingRights;
     private int safeGuardingRightsId;
     private DrawBackService DrawBackService;
@@ -64,11 +64,11 @@ public class SafeGuardingRightsAction implements SessionAware {
         this.goodsService = goodsService;
     }
 
-    public cn.edu.zjut.service.safeGuardingRightsProgressService getSafeGuardingRightsProgressService() {
+    public SafeGuardingRightsProgressService getSafeGuardingRightsProgressService() {
         return safeGuardingRightsProgressService;
     }
 
-    public void setSafeGuardingRightsProgressService(cn.edu.zjut.service.safeGuardingRightsProgressService safeGuardingRightsProgressService) {
+    public void setSafeGuardingRightsProgressService(SafeGuardingRightsProgressService safeGuardingRightsProgressService) {
         this.safeGuardingRightsProgressService = safeGuardingRightsProgressService;
     }
 
@@ -112,11 +112,11 @@ public class SafeGuardingRightsAction implements SessionAware {
         this.statusMes = statusMes;
     }
 
-    public safeGuardingRightsService getSafeGuardingRightsService() {
+    public SafeGuardingRightsService getSafeGuardingRightsService() {
         return safeGuardingRightsService;
     }
 
-    public void setSafeGuardingRightsService(safeGuardingRightsService safeGuardingRightsService) {
+    public void setSafeGuardingRightsService(SafeGuardingRightsService safeGuardingRightsService) {
         this.safeGuardingRightsService = safeGuardingRightsService;
     }
 
