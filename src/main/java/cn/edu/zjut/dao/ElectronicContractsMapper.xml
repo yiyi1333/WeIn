@@ -50,4 +50,8 @@
     <select id="queryElectronicContractsByShopId" resultMap="ElectronicContractsResultMap" >
         select * from electroniccontracts where shopId = #{0} and state = 1;
     </select>
+
+    <select id="queryElectronicContractsByGoodsIdAndDepartmentId" resultMap="ElectronicContractsResultMap" parameterType="int">
+        select * from electroniccontracts where goodsId = #{goodsId} and enterpriseDepartmentId=#{deparatmentId};
+    </select>
 </mapper>

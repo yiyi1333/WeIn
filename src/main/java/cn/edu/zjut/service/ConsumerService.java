@@ -62,4 +62,10 @@ public class ConsumerService {
         EnterpriseConsumer enterpriseConsumer = consumerdao.searchEnterpriseConsumer(phoneName);
         return enterpriseConsumer;
     }
+
+    //查询企业用户
+    public EnterpriseConsumer getEnterprisePrivilege(Integer customerId){
+        EnterpriseConsumer enterpriseConsumer = consumerdao.searchEnterpriseConsumerById(customerId);
+        return enterpriseConsumer;
+    }
 }

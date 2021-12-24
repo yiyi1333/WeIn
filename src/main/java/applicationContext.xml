@@ -80,6 +80,8 @@
 
     <bean id="goodsService" class="cn.edu.zjut.service.GoodsService">
         <property name="goodsDao" ref="goodsImpl"/>
+        <property name="consumerDao" ref="consumerImpl"/>
+        <property name="electronicContractsDao" ref="electronicContractsimpl"/>
     </bean>
 
     <bean id="goodsAction" class="cn.edu.zjut.action.GoodsAction" scope="prototype">
