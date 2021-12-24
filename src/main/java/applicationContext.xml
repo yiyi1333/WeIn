@@ -153,10 +153,10 @@
 
     <bean id="uploadImageAction" class="cn.edu.zjut.action.UploadImageAction"/>
 <!--维权-->
-    <bean id="safeGuardingRightsService" class="cn.edu.zjut.service.safeGuardingRightsService">
+    <bean id="safeGuardingRightsService" class="cn.edu.zjut.service.SafeGuardingRightsService">
         <property name="safeGuardingRightsDao" ref="safeGuardingRightsImpl"/>
     </bean>
-    <bean id="safeGuardingRightsProgressService" class="cn.edu.zjut.service.safeGuardingRightsProgressService">
+    <bean id="safeGuardingRightsProgressService" class="cn.edu.zjut.service.SafeGuardingRightsProgressService">
         <property name="safeGuardingRightsProgressDao" ref="safeGuardingRightsProgressImpl"/>
     </bean>
 
