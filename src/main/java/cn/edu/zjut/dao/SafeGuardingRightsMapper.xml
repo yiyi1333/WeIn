@@ -40,7 +40,16 @@
         <result property="safeGuardingRightsId" column="safeGuardingRightsId"/>
     </resultMap>
 
-
+    <resultMap id="SafeGuardingRightsMap" type="cn.edu.zjut.po.safeGuardingRights">
+        <id property="safeGuardingRightsId" column="safeGuardingRightsId"/>
+        <result property="orderId" column="orderId"/>
+        <result property="goodId" column="goodId"/>
+        <result property="safeGuardingRightsDetails" column="safeGuardingRightsDetails"/>
+        <result property="safeGuardingRightsImage" column="safeGuardingRightsImage"/>
+        <result property="safeGuardingRightsType" column="safeGuardingRightsType"/>
+        <result property="safeGuardingRightsNum" column="safeGuardingRightsNum"/>
+        <result property="safeGuardingRightsProgress" column="safeGuardingRightsProgress"/>
+    </resultMap>
     <select id="getAllsafeGuardingRights" resultMap="safeGuardingRightsResultMap1">
 <!--        select distinct o.*,og.* from safeGuardingRights o,safeGuardingRightsProgress og where og.safeGuardingRightsId=o.safeGuardingRightsId-->
             select * from safeGuardingRights
@@ -72,5 +81,14 @@
     <select id="getsafeGuardingRightsProgressById" resultMap="safeGuardingRightsProgressResult" parameterType="java.lang.Integer">
         select * from WeIn.safeGuardingRightsProgress where safeGuardingRightsId=#{safeGuardingRightsId};
     </select>
-
+    <insert id="addSafeGuardingRightsRecord">
+        insert into safeguardingrights
+        set orderId = #{orderId}, goodId = #{goodsId}, safeGuardingRightsDetails = #{descript}, safeGuardingRightsImage = #{imagePath},
+        safeGuardingRightsType = #{Type}, safeGuardingRightsNum = #{goodsNum}, safeGuardingRightsProgress = #{status};
+    </insert>
+    <select id="selectSafeGuardingRightsByGoodId" resultMap="SafeGuardingRightsMap">
+        select *
+        from safeguardingrights
+        where goodId = #{goodId}
+    </select>
 </mapper>

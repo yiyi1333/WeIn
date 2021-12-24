@@ -1,6 +1,7 @@
 package cn.edu.zjut.service;
 
 import cn.edu.zjut.dao.CommentMapper;
+import cn.edu.zjut.po.Comment;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class CommentService {
             return true;
         }
         return false;
-    }g
+    }
 
     public List<Comment> getAllCommentWithoutReview() {
         return commentMapper.getAllCommentWithoutReview();

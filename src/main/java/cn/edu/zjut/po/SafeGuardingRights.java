@@ -4,14 +4,14 @@ import java.io.Serializable;
 import java.util.List;
 
 public class safeGuardingRights implements Serializable {
-    private int safeGuardingRightsId;
-    private int orderId;
-    private int goodId;
+    private Integer safeGuardingRightsId;
+    private Integer orderId;
+    private Integer goodId;
     private String safeGuardingRightsDetails;
     private String safeGuardingRightsImage;
-    private String safeGuardingRightsProgress;
     private String safeGuardingRightsType;
-    private int safeGuardingRightsNum;
+    private Integer safeGuardingRightsNum;
+    private String safeGuardingRightsProgress;
     private OrderGood orderGood;
     private Goods goods;
     private List<safeGuardingRightsProgress> safeGuardingRightsProgresslist;
@@ -27,14 +27,6 @@ public class safeGuardingRights implements Serializable {
 
     public List<cn.edu.zjut.po.safeGuardingRightsProgress> getSafeGuardingRightsProgresslist() {
         return safeGuardingRightsProgresslist;
-    }
-
-    public String getSafeGuardingRightsProgress() {
-        return safeGuardingRightsProgress;
-    }
-
-    public void setSafeGuardingRightsProgress(String safeGuardingRightsProgress) {
-        this.safeGuardingRightsProgress = safeGuardingRightsProgress;
     }
 
     public void setSafeGuardingRightsProgresslist(List<cn.edu.zjut.po.safeGuardingRightsProgress> safeGuardingRightsProgresslist) {
@@ -57,60 +49,67 @@ public class safeGuardingRights implements Serializable {
         this.orders = orders;
     }
 
-    public int getGoodId() {
-        return goodId;
-    }
-
-    public int getOrderId() {
-        return orderId;
-    }
-
-    public int getSafeGuardingRightsId() {
+    public Integer getSafeGuardingRightsId() {
         return safeGuardingRightsId;
     }
 
-    public int getSafeGuardingRightsNum() {
-        return safeGuardingRightsNum;
+    public void setSafeGuardingRightsId(Integer safeGuardingRightsId) {
+        this.safeGuardingRightsId = safeGuardingRightsId;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
+
+    public Integer getGoodId() {
+        return goodId;
+    }
+
+    public void setGoodId(Integer goodId) {
+        this.goodId = goodId;
     }
 
     public String getSafeGuardingRightsDetails() {
         return safeGuardingRightsDetails;
     }
 
-    public String getSafeGuardingRightsImage() {
-        return safeGuardingRightsImage;
-    }
-
-    public String getSafeGuardingRightsType() {
-        return safeGuardingRightsType;
-    }
-
-    public void setGoodId(int goodId) {
-        this.goodId = goodId;
-    }
-
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
-    }
-
     public void setSafeGuardingRightsDetails(String safeGuardingRightsDetails) {
         this.safeGuardingRightsDetails = safeGuardingRightsDetails;
     }
 
-    public void setSafeGuardingRightsId(int safeGuardingRightsId) {
-        this.safeGuardingRightsId = safeGuardingRightsId;
+    public String getSafeGuardingRightsImage() {
+        return safeGuardingRightsImage;
     }
 
     public void setSafeGuardingRightsImage(String safeGuardingRightsImage) {
         this.safeGuardingRightsImage = safeGuardingRightsImage;
     }
 
-
-    public void setSafeGuardingRightsNum(int safeGuardingRightsNum) {
-        this.safeGuardingRightsNum = safeGuardingRightsNum;
+    public String getSafeGuardingRightsType() {
+        return safeGuardingRightsType;
     }
 
     public void setSafeGuardingRightsType(String safeGuardingRightsType) {
         this.safeGuardingRightsType = safeGuardingRightsType;
+    }
+
+    public Integer getSafeGuardingRightsNum() {
+        return safeGuardingRightsNum;
+    }
+
+    public void setSafeGuardingRightsNum(Integer safeGuardingRightsNum) {
+        this.safeGuardingRightsNum = safeGuardingRightsNum;
+    }
+
+    public String getSafeGuardingRightsProgress() {
+        return safeGuardingRightsProgress;
+    }
+
+    public void setSafeGuardingRightsProgress(String safeGuardingRightsProgress) {
+        this.safeGuardingRightsProgress = safeGuardingRightsProgress;
     }
 }

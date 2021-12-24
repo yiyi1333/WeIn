@@ -33,6 +33,10 @@ public class OrdersAction implements SessionAware {
     private String createOrderSuccess;
     private OrderShow order;
     private String orderid;
+    private List<Orders> ordersList;
+    private GoodsService goodsService;
+    private Orders orders;
+    private Integer orderId;
 
 
     public OrderShow getOrder() {
@@ -50,9 +54,6 @@ public class OrdersAction implements SessionAware {
     public void setOrderid(String orderid) {
         this.orderid = orderid;
     }
-
-    private List<Orders> ordersList;
-    private GoodsService goodsService;
 
     public DrawBackService getDrawBackService() {
         return drawBackService;
@@ -141,10 +142,6 @@ public class OrdersAction implements SessionAware {
     public void setConsumerId(String consumerId) {
         this.consumerId = consumerId;
     }
-
-
-    private Orders orders;
-    private Integer orderId;
 
     public Integer getOrderId() {
         return orderId;

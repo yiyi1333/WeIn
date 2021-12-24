@@ -21,4 +21,11 @@ public interface safeGuardingRightsMapper {
 
     // 根据维权号获得维权详细
     public List<safeGuardingRightsProgress> getsafeGuardingRightsProgressById(@Param("safeGuardingRightsId") Integer safeGuardingRightsId);
+
+    public Integer addSafeGuardingRightsRecord(@Param("goodsId") Integer goodsId, @Param("goodsNum") Integer goodsNum,
+                                               @Param("descript")String descript, @Param("imagePath")String imagePath,
+                                               @Param("orderId") Integer orderId, @Param("Type") String type,
+                                               @Param("status") String status);
+
+    public List<safeGuardingRights> selectSafeGuardingRightsByGoodId(@Param("goodId") Integer goodId);
 }
