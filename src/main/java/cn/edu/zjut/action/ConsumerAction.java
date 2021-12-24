@@ -18,6 +18,33 @@ public class ConsumerAction implements SessionAware {
     private String phoneNumber;
     private String nickName;
     private String avatarUrl;
+    private String realName;
+    private String IdNumber;
+    private String statusMes;
+
+    public String getStatusMes() {
+        return statusMes;
+    }
+
+    public void setStatusMes(String statusMes) {
+        this.statusMes = statusMes;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public String getIdNumber() {
+        return IdNumber;
+    }
+
+    public void setIdNumber(String idNumber) {
+        IdNumber = idNumber;
+    }
 
     public String getNickName() {
         return nickName;
@@ -129,5 +156,10 @@ public class ConsumerAction implements SessionAware {
     public String authorize() {
         enterpriseConsumer = consumerService.updateAuthorizeInfo(nickName, avatarUrl, phoneNumber);
         return "success";
+    }
+
+    //实名认证处理
+    public String Certification(){
+
     }
 }
