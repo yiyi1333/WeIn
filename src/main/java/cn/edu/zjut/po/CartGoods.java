@@ -21,4 +21,12 @@ public class CartGoods implements Serializable {
     public void setGoodsNum(int goodsNum) {
         this.goodsNum = goodsNum;
     }
+
+    @Override
+    public String toString() {
+        return "CartGoods{" +
+                "goods=" + goods +
+                ", goodsNum=" + goodsNum +
+                '}';
+    }
 }

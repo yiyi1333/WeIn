@@ -23,4 +23,12 @@ public class Cart implements Serializable {
     public void setGoodsList(ArrayList<CartGoods> goodsList) {
         this.goodsList = goodsList;
     }
+
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "shop=" + shop +
+                ", goodsList=" + goodsList +
+                '}';
+    }
 }

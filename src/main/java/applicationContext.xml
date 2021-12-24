@@ -190,6 +190,7 @@
         <property name="cartDao" ref="cartDao"/>
         <property name="goodsDao" ref="goodsImpl"/>
         <property name="consumerDao" ref="consumerImpl"/>
+        <property name="electronicContractsDao" ref="electronicContractsimpl"/>
     </bean>
 
     <bean id="cartAction" class="cn.edu.zjut.action.CartAction">

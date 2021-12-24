@@ -59,9 +59,12 @@ public class GoodsService {
             //查询该商品id的departmentId的记录
             Date date = new Date();
             ElectronicContracts electronicContracts = electronicContractsDao.queryElectronicContractsByGoodsIdAndDepartmentId(goodid, enterpriseConsumer.getEnterpriseDepartment().getEnterpriseDepartmentId(), date);
+            System.out.println(electronicContracts);
             if (electronicContracts != null) {
                 //有折扣
-                goods.setGoodsRealPrice(goods.getGoodsPrice() * electronicContracts.getDiscount());
+                double realPrice = goods.getGoodsPrice() * electronicContracts.getDiscount();
+                realPrice = (double) Math.round(realPrice * 100) / 100;
+                goods.setGoodsRealPrice(realPrice);
             }
         }
         return goods;

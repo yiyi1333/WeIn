@@ -54,7 +54,7 @@
     <select id="queryElectronicContractsByGoodsIdAndDepartmentId" resultMap="ElectronicContractsResultMap">
         select *
         from electroniccontracts
-        where goodsId = #{goodsId} and enterpriseDepartmentId= #{deparatmentId} and starttime &lt; #{now} and endtime &gt; #{now}  and discount &lt; any(
+        where goodsId = #{goodsId} and enterpriseDepartmentId= #{deparatmentId} and starttime &lt;= #{now} and endtime &gt;= #{now}  and discount &lt;= any(
         select discount
         from electroniccontracts
         where goodsId = #{goodsId} and enterpriseDepartmentId= #{deparatmentId}
