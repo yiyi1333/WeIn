@@ -195,7 +195,7 @@ public class OrdersService {
     }
     //查询某用户全部待评价订单
     public List<OrderShow> showWaitEvaluateOrder(Integer customerId){
-        List<OrderShow> list = ordersDao.showStatusOrder(customerId, "待评价");
+        List<OrderShow> list = ordersDao.showStatusOrder(customerId, "已收货");
         System.out.println(list);
         return list;
     }
