@@ -10,6 +10,15 @@ public class SafeGuardingRightsAction {
     private String consumerId;
     private String orderId;
     private String statusMes;
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getStatusMes() {
         return statusMes;
@@ -84,7 +93,7 @@ public class SafeGuardingRightsAction {
         System.out.println("imagePath: " + imagePath);
         System.out.println("consumerId: " + consumerId);
         System.out.println("orderId: " + orderId);
-        if(safeGuardingRightsService.applyForRights(Integer.parseInt(goodsId), Integer.parseInt(goodsNum), descript, imagePath, Integer.parseInt(orderId), Integer.parseInt(consumerId))){
+        if(safeGuardingRightsService.applyForRights(Integer.parseInt(goodsId), Integer.parseInt(goodsNum), descript, imagePath, Integer.parseInt(orderId), Integer.parseInt(consumerId), type)){
             statusMes = "申请成功";
         }
         else{

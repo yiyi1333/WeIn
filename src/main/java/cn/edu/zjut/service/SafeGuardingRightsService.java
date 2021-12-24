@@ -25,7 +25,7 @@ public class SafeGuardingRightsService {
         this.safeGuardingRightsDao = safeGuardingRightsDao;
     }
     //提交维权申请
-    public boolean applyForRights(Integer goodsId, Integer goodsNum, String descript, String imagePath, Integer orderId, Integer customerId){
+    public boolean applyForRights(Integer goodsId, Integer goodsNum, String descript, String imagePath, Integer orderId, Integer customerId, String type){
         boolean flag = false;
 //        int consumerFlag = 0;
 //        //查询该用户类型
@@ -34,7 +34,7 @@ public class SafeGuardingRightsService {
 //            //企业用户
 //            consumerFlag = 1;
 //        }
-        int line = safeGuardingRightsDao.addSafeGuardingRightsRecord(goodsId, goodsNum, descript, imagePath, orderId, "退款",  "申请中");
+        int line = safeGuardingRightsDao.addSafeGuardingRightsRecord(goodsId, goodsNum, descript, imagePath, orderId, type,  "申请中");
         if(line != 0) {
             flag = true;
         }

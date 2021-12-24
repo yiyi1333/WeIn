@@ -150,7 +150,7 @@
      </bean>
 
     <bean id="uploadImageAction" class="cn.edu.zjut.action.UploadImageAction"/>
-
+<!--维权-->
     <bean id="safeGuardingRightsImpl" class="cn.edu.zjut.dao.SafeGuardingRightsImpl">
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
@@ -162,6 +162,18 @@
 
     <bean id="safeGuardingRightsAction" class="cn.edu.zjut.action.SafeGuardingRightsAction">
         <property name="safeGuardingRightsService" ref="safeGuardingRightsService"/>
+    </bean>
+<!--    评论-->
+    <bean id="commentImpl" class="cn.edu.zjut.dao.CommentImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="commentService" class="cn.edu.zjut.service.CommentService">
+        <property name="commentDao" ref="commentImpl"/>
+    </bean>
+
+    <bean id="commentAction" class="cn.edu.zjut.action.CommentAction">
+        <property name="commentService" ref="commentService"/>
     </bean>
     <!--余秋霞配置区-->
 
