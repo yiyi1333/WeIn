@@ -2,6 +2,44 @@
 <!DOCTYPE mapper PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.zjut.dao.CommentMapper">
+    <resultMap id="commentResultMap" type="cn.edu.zjut.po.Comment">
+        <id property="commentId" column="commentId"/>
+        <result property="consumerId" column="consumerId"/>
+        <result property="goodsId" column="goodsId"/>
+        <result property="message" column="message"/>
+        <result property="rate" column="rate"/>
+        <result property="image" column="image"/>
+        <result property="state" column="state"/>
+        <result property="orderId" column="orderId"/>
+    </resultMap>
+
+    <select id="getAllCommentWithoutReview" resultMap="commentResultMap">
+        select * from comment
+        where state = 0;
+    </select>
+
+    <select id="getCommentById" resultMap="commentResultMap">
+        select * from comment
+        where commentId = #{0};
+    </select>
+
+    <select id="getCommentByGoodId" resultMap="commentResultMap">
+        select * from comment
+        where goodsId = #{0};
+    </select>
+
+    <update id="commentNotPass">
+        update comment
+        set state = 1
+        where commentId = #{0}
+    </update>
+
+    <update id="commentPass">
+        update comment
+        set state = 2
+        where commentId = #{0}
+    </update>
+
     <insert id="addComment">
         insert into comment
         set consumerId = #{consumerId},

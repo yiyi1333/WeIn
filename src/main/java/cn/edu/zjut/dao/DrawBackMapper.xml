@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zjut.dao.DrawBackMapper">
+    <resultMap id="DrawBackResultMap" type="cn.edu.zjut.po.DrawBack">
+        <id property="goodsId" column="goodsId"/>
+        <id property="orderId" column="orderId"/>
+        <result property="money" column="money"/>
+        <result property="goodsNum" column="goodsNum"/>
+        <result property="type" column="type"/>
+    </resultMap>
+
+    <select id="getDrawBackMoneyById" resultMap="DrawBackResultMap" parameterType="java.lang.Integer">
+        select * from WeIn.drawback where orderId=#{orderId};
+    </select>
+
+    <select id="getDrawBackById" resultMap="DrawBackResultMap" parameterType="cn.edu.zjut.po.DrawBack">
+        select * from WeIn.drawback where orderId=#{orderId} and goodsId=#{goodsId};
+    </select>
+
+    <update id="updateDrawBack" parameterType="cn.edu.zjut.po.DrawBack">
+        update WeIn.drawback
+        set money=#{money},
+        goodsNum=#{goodsNum},
+        type=#{type}
+        where orderId=#{orderId} and goodsId=#{goodsId};
+    </update>
+
+    <insert id="addDrawBack"  parameterType="cn.edu.zjut.po.DrawBack">
+        insert into wein.drawback
+        values(
+        #{orderId},
+        #{goodsId},
+        #{money},
+        #{goodsNum},
+        #{type});
+    </insert>
+
+</mapper>
+

@@ -4,6 +4,7 @@ package cn.edu.zjut.service;
 import cn.edu.zjut.dao.*;
 import cn.edu.zjut.po.*;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.ibatis.annotations.Param;
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
@@ -168,6 +169,36 @@ public class OrdersService {
             orderGoodMapper.addOrderGood(orderGood);
         }
         return true;
+    }
+
+    public void addLogisticsSingleList(Orders orders){
+        System.out.println("execute --addLogisticsSingleList()-- method.");
+        ordersDao.addLogisticsSingleList(orders);
+    }
+
+    public void updateOrder(Orders orders) {
+        System.out.println("execute --updateOrder-- method");
+        ordersDao.updateOrder(orders);
+    }
+
+    public OrderGood selectOrderGood(OrderGood OrderGood) {
+        System.out.println("execute --selectOrderGood-- method");
+        return orderGoodMapper.selectOrderGood(OrderGood);
+    }
+
+    public List<Orders> getAllFundFlow(){
+        System.out.println("execute --getAllFundFlow()-- method.");
+        return ordersDao.getAllFundFlow();
+    }
+
+    public List<Orders> getFundFlowByDate(String date){
+        System.out.println("execute --getFundFlowByDate()-- method.");
+        return ordersDao.getFundFlowByDate(date);
+    }
+
+    public List<OrderGood> getGoodsById(@Param("orderId") Integer orderId){
+        System.out.println("execute --getGoodsById()-- method.");
+        return orderGoodMapper.getGoodsById(orderId);
     }
     //查询某用户全部订单
     public List<OrderShow> showAllOrder(Integer customerId){

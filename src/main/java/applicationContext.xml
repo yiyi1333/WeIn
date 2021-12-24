@@ -115,6 +115,8 @@
 
     <bean id="goodsAction" class="cn.edu.zjut.action.GoodsAction" scope="prototype">
         <property name="goodsService" ref="goodsService"/>
+        <property name="wareHouseAddressService" ref="wareHouseAddressService"/>
+        <property name="commentService" ref="commentService"/>
     </bean>
 
     <bean id="enterpriseImpl" class="cn.edu.zjut.dao.EnterpriseImpl">
@@ -241,13 +243,54 @@
     <bean id="consumerImpl" class="cn.edu.zjut.dao.ConsumerImpl">
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
+    <bean id="safeGuardingRightsImpl" class="cn.edu.zjut.dao.safeGuardingRightsImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+    <bean id="safeGuardingRightsProgressImpl" class="cn.edu.zjut.dao.safeGuardingRightsProgressImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+    <bean id="orderStatusImpl" class="cn.edu.zjut.dao.OrderStatusImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
 
     <bean id="consumerService" class="cn.edu.zjut.service.ConsumerService">
         <property name="consumerdao" ref="consumerImpl"/>
     </bean>
+    <bean id="safeGuardingRightsService" class="cn.edu.zjut.service.safeGuardingRightsService">
+        <property name="safeGuardingRightsDao" ref="safeGuardingRightsImpl"/>
+    </bean>
+    <bean id="safeGuardingRightsProgressService" class="cn.edu.zjut.service.safeGuardingRightsProgressService">
+        <property name="safeGuardingRightsProgressDao" ref="safeGuardingRightsProgressImpl"/>
+    </bean>
+    <bean id="orderStatusService" class="cn.edu.zjut.service.OrderStatusService">
+        <property name="orderStatusDao" ref="orderStatusImpl"/>
+    </bean>
+    <bean id="drawBackImpl" class="cn.edu.zjut.dao.DrawBackImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+    <bean id="commentImpl" class="cn.edu.zjut.dao.CommentImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+    <bean id="commentService" class="cn.edu.zjut.service.CommentService">
+        <property name="commentMapper" ref="commentImpl"/>
+    </bean>
+    <bean id="orderStatusAction" class="cn.edu.zjut.action.OrderStatusAction" scope="prototype">
+        <property name="orderStatusService" ref="orderStatusService"/>
+    </bean>
+    <bean id="drawBackService" class="cn.edu.zjut.service.DrawBackService">
+        <property name="drawBackDao" ref="drawBackImpl"/>
+    </bean>
 
     <bean id="consumerAction" class="cn.edu.zjut.action.ConsumerAction">
         <property name="consumerService" ref="consumerService"/>
+    </bean>
+    <bean id="safeGuardingRightsAction" class="cn.edu.zjut.action.safeGuardingRightsAction">
+        <property name="ordersService" ref="ordersService"/>
+        <property name="safeGuardingRightsService" ref="safeGuardingRightsService"/>
+        <property name="safeGuardingRightsProgressService" ref="safeGuardingRightsProgressService"/>
+        <property name="goodsService" ref="goodsService"/>
+        <property name="orderStatusService" ref="orderStatusService"/>
+        <property name="DrawBackService" ref="drawBackService"/>
     </bean>
 
     <bean id="enterpriseDepartmentImpl" class="cn.edu.zjut.dao.EnterpriseDepartmentImpl">

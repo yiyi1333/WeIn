@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zjut.dao.OrderStatusMapper">
+    <resultMap id="OrderStatusResultMap" type="cn.edu.zjut.po.OrderStatus">
+        <id property="orderStatusId" column="orderStatusId"/>
+        <result property="orderStatusDate" column="orderStatusDate"/>
+        <result property="orderStatusTime" column="orderStatusTime"/>
+        <result property="orderStatusName" column="orderStatusName"/>
+        <result property="orderId" column="orderId"/>
+    </resultMap>
+    <insert id="addOrderStatus" parameterType="cn.edu.zjut.po.OrderGood">
+        insert into wein.orderstatus(orderId,orderStatusName,orderStatusDate,orderStatusTime)
+        values(
+        #{orderId},
+        #{orderStatusName},
+        #{orderStatusDate},
+        #{orderStatusTime});
+    </insert>
+
+    <select id="getOrderStatusById" resultMap="OrderStatusResultMap" parameterType="java.lang.Integer">
+        select * from WeIn.orderstatus where orderId=#{orderId};
+    </select>
+
+    <select id="getOrderStatus" resultMap="OrderStatusResultMap" parameterType="cn.edu.zjut.po.OrderStatus">
+        select * from WeIn.orderstatus where orderId=#{orderId} and orderStatusName=#{orderStatusName}
+        order by orderStatusId desc;
+    </select>
+</mapper>

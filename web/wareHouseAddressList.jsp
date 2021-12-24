@@ -150,9 +150,9 @@
                                     </td>
                                     <td class="text-right">
                                         <div class="btn-group">
-                                            <a href="selectWareHouseAddressById?warehouseId=<%=wareHouseAddressList.get(i).getWarehouseId()%>"><button class="btn-white btn btn-xs">编辑</button></a>
-                                            <a href="deleteWareHouseAddress?warehouseId=<%=wareHouseAddressList.get(i).getWarehouseId()%>"><button class="btn-white btn btn-xs">删除</button></a>
-                                            <a href="selectGoodsByWareHouseAddressId?warehouseId=<%=wareHouseAddressList.get(i).getWarehouseId()%>"><button class="btn-white btn btn-xs">查看所存商品</button></a>
+                                            <a style="color: #999999" href="selectWareHouseAddressById?warehouseId=<%=wareHouseAddressList.get(i).getWarehouseId()%>"><button class="btn-white btn btn-xs">编辑</button></a>
+                                            <button style="color: #999999" class="btn-white btn btn-xs" onclick=" deleteWareHouseAddress<%=i%>()">删除</button></a>
+                                            <a style="color: #999999" href="selectGoodsByWareHouseAddressId?warehouseId=<%=wareHouseAddressList.get(i).getWarehouseId()%>"><button class="btn-white btn btn-xs">查看所存商品</button></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -181,10 +181,10 @@
         </div>
         <div class="footer">
             <div class="float-right">
-                <strong>2.9.2 inspinia</strong>
+                <strong>WeIn</strong>
             </div>
             <div>
-                <strong>Copyright</strong> xxx &copy; 2020
+                <strong>Copyright</strong> WeIn &copy; 2021
             </div>
         </div>
 
@@ -263,6 +263,19 @@
         }
         window.location.href= "deleteWareHouseAddressByIds?tag="+result;
     }
+    <%
+    for (int i = 0; i < wareHouseAddressList.size(); i++) {
+    %>
+    function deleteWareHouseAddress<%=i%>(){
+        var result=<%=wareHouseAddressList.get(i).getWarehouseId()%>;
+        if(!confirm("确定删除这个发货地址?")){
+            return;
+        }
+        window.location.href= "deleteWareHouseAddress?warehouseId="+result;
+    }
+    <%
+      }
+    %>
 </script>
 
 </body>

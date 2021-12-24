@@ -4,6 +4,15 @@ public class OrderGood {
     int goodId;
     int orderId;
     int num;
+    double singlePieceActualPrice;
+
+    public double getSinglePieceActualPrice() {
+        return singlePieceActualPrice;
+    }
+
+    public void setSinglePieceActualPrice(double singlePieceActualPrice) {
+        this.singlePieceActualPrice = singlePieceActualPrice;
+    }
 
     public OrderGood() {
     }

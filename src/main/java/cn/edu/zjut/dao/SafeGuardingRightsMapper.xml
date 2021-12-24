@@ -1,25 +1,76 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.edu.zjut.dao.SafeGuardingRightsMapper">
-    <resultMap id="SafeGuardingRightsMap" type="cn.edu.zjut.po.SafeGuardingRights">
+<mapper namespace="cn.edu.zjut.dao.safeGuardingRightsMapper">
+    <resultMap id="safeGuardingRightsResultMap" type="cn.edu.zjut.po.safeGuardingRights">
         <id property="safeGuardingRightsId" column="safeGuardingRightsId"/>
         <result property="orderId" column="orderId"/>
         <result property="goodId" column="goodId"/>
         <result property="safeGuardingRightsDetails" column="safeGuardingRightsDetails"/>
         <result property="safeGuardingRightsImage" column="safeGuardingRightsImage"/>
+        <result property="safeGuardingRightsProgress" column="safeGuardingRightsProgress"/>
         <result property="safeGuardingRightsType" column="safeGuardingRightsType"/>
         <result property="safeGuardingRightsNum" column="safeGuardingRightsNum"/>
-        <result property="safeGuardingRightsProgress" column="safeGuardingRightsProgress"/>
+        <collection property="safeGuardingRightsProgresslist" javaType="ArrayList"
+                    column="safeGuardingRightsId" ofType="cn.edu.zjut.po.safeGuardingRightsProgress"
+                    select="cn.edu.zjut.dao.safeGuardingRightsProgressMapper.getsafeGuardingRightsProgressById"
+                    fetchType="lazy">
+            <id property="safeGuardingRightsProgressId" column="safeGuardingRightsProgressId"/>
+            <result property="safeGuardingRightsProgressStatus" column="safeGuardingRightsProgressStatus"/>
+            <result property="safeGuardingRightsProgressTime" column="safeGuardingRightsProgressTime"/>
+            <result property="safeGuardingRightsProgressDate" column="safeGuardingRightsProgressDate"/>
+            <result property="safeGuardingRightsId" column="safeGuardingRightsId"/>
+        </collection>
     </resultMap>
-    <insert id="addSafeGuardingRightsRecord">
-        insert into safeguardingrights
-        set orderId = #{orderId}, goodId = #{goodsId}, safeGuardingRightsDetails = #{descript}, safeGuardingRightsImage = #{imagePath},
-        safeGuardingRightsType = #{Type}, safeGuardingRightsNum = #{goodsNum}, safeGuardingRightsProgress = #{status};
-    </insert>
-    <select id="selectSafeGuardingRightsByGoodId" resultMap="SafeGuardingRightsMap">
-        select *
-        from safeguardingrights
-        where goodId = #{goodId}
+    <resultMap id="safeGuardingRightsResultMap1" type="cn.edu.zjut.po.safeGuardingRights">
+        <id property="safeGuardingRightsId" column="safeGuardingRightsId"/>
+        <result property="orderId" column="orderId"/>
+        <result property="goodId" column="goodId"/>
+        <result property="safeGuardingRightsDetails" column="safeGuardingRightsDetails"/>
+        <result property="safeGuardingRightsImage" column="safeGuardingRightsImage"/>
+        <result property="safeGuardingRightsProgress" column="safeGuardingRightsProgress"/>
+        <result property="safeGuardingRightsType" column="safeGuardingRightsType"/>
+        <result property="safeGuardingRightsNum" column="safeGuardingRightsNum"/>
+    </resultMap>
+    <resultMap id="safeGuardingRightsProgressResult" type="cn.edu.zjut.po.safeGuardingRightsProgress">
+        <id property="safeGuardingRightsProgressId" column="safeGuardingRightsProgressId"/>
+        <result property="safeGuardingRightsProgressStatus" column="safeGuardingRightsProgressStatus"/>
+        <result property="safeGuardingRightsProgressTime" column="safeGuardingRightsProgressTime"/>
+        <result property="safeGuardingRightsProgressDate" column="safeGuardingRightsProgressDate"/>
+        <result property="safeGuardingRightsId" column="safeGuardingRightsId"/>
+    </resultMap>
+
+
+    <select id="getAllsafeGuardingRights" resultMap="safeGuardingRightsResultMap1">
+<!--        select distinct o.*,og.* from safeGuardingRights o,safeGuardingRightsProgress og where og.safeGuardingRightsId=o.safeGuardingRightsId-->
+            select * from safeGuardingRights
     </select>
+
+    <select id="selectsafeGuardingRightsById" resultMap="safeGuardingRightsResultMap1" parameterType="java.lang.Integer">
+<!--        select distinct o.*,og.* from safeGuardingRights o,safeGuardingRightsProgress og-->
+<!--        where o.safeGuardingRightsId=#{safeGuardingRightsId} and og.safeGuardingRightsId=o.safeGuardingRightsId-->
+            select * from safeGuardingRights where safeGuardingRightsId=#{safeGuardingRightsId}
+    </select>
+
+    <select id="selectsafeGuardingRights" resultMap="safeGuardingRightsResultMap1" parameterType="cn.edu.zjut.po.safeGuardingRights">
+<!--        select distinct o.*,og.* from safeGuardingRights o,safeGuardingRightsProgress og-->
+        select * from safeGuardingRights
+        <where>
+            <if test="safeGuardingRightsId != null and safeGuardingRightsId !=''"> and safeGuardingRightsId=#{safeGuardingRightsId}</if>
+            <if test="safeGuardingRightsProgress != null and safeGuardingRightsProgress !=''"> and safeGuardingRightsProgress=#{safeGuardingRightsProgress}</if>
+            <if test="orderId != null and orderId !=''"> and orderId=#{orderId}</if>
+            <if test="goodId != null and goodId !=''"> and goodId=#{goodId}</if>
+        </where>
+    </select>
+
+    <update id="updatesafeGuardingRights" parameterType="cn.edu.zjut.po.safeGuardingRights">
+        update WeIn.safeGuardingRights
+        set safeGuardingRightsProgress = #{safeGuardingRightsProgress}
+        where safeGuardingRightsId = #{safeGuardingRightsId};
+    </update>
+
+    <select id="getsafeGuardingRightsProgressById" resultMap="safeGuardingRightsProgressResult" parameterType="java.lang.Integer">
+        select * from WeIn.safeGuardingRightsProgress where safeGuardingRightsId=#{safeGuardingRightsId};
+    </select>
+
 </mapper>

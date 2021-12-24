@@ -2,7 +2,8 @@ package cn.edu.zjut.dao;
 
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
-
+import cn.edu.zjut.po.Comment;
+import java.util.List;
 public class CommentImpl implements CommentMapper{
     private SqlSessionTemplate sqlSession;
 
@@ -30,5 +31,30 @@ public class CommentImpl implements CommentMapper{
             session.close();
         }
         return line;
+    }
+
+    @Override
+    public List<Comment> getAllCommentWithoutReview() {
+        return sqlSession.getMapper(CommentMapper.class).getAllCommentWithoutReview();
+    }
+
+    @Override
+    public void commentNotPass(int id) {
+        sqlSession.getMapper(CommentMapper.class).commentNotPass(id);
+    }
+
+    @Override
+    public void commentPass(int id) {
+        sqlSession.getMapper(CommentMapper.class).commentPass(id);
+    }
+
+    @Override
+    public Comment getCommentById(int id) {
+        return sqlSession.getMapper(CommentMapper.class).getCommentById(id);
+    }
+
+    @Override
+    public List<Comment> getCommentByGoodId(int id) {
+        return sqlSession.getMapper(CommentMapper.class).getCommentByGoodId(id);
     }
 }

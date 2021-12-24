@@ -1,352 +1,823 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<!DOCTYPE html>
 <html>
+
 <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>WeIn商家后台</title>
+    <title>WeIn | 商家后台首页</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+
 </head>
 
 <body>
 <div id="wrapper">
     <jsp:include page="shopNavigation.jsp"/>
-
     <div id="page-wrapper" class="gray-bg">
         <jsp:include page="shopTopSidebar.jsp"/>
-        <div class="wrapper wrapper-content animated fadeIn">
-            <div class="p-w-md m-t-sm">
-                <div class="row">
-
-                    <div class="col-sm-4">
-                        <h1 class="m-b-xs">
-                            26,900
-                        </h1>
-                        <small>
-                            本月销售
-                        </small>
-                        <div id="sparkline1" class="m-b-sm"></div>
-                        <div class="row">
-                            <div class="col-4">
-                                <small class="stats-label">访问页面 / 浏览量</small>
-                                <h4>236 321.80</h4>
-                            </div>
-
-                            <div class="col-4">
-                                <small class="stats-label">% 新访问</small>
-                                <h4>46.11%</h4>
-                            </div>
-                            <div class="col-4">
-                                <small class="stats-label">上个星期</small>
-                                <h4>432.021</h4>
-                            </div>
+        <div class="wrapper wrapper-content">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <span class="label label-success float-right">本月</span>
+                            <h5>收入</h5>
                         </div>
-
-                    </div>
-                    <div class="col-sm-4">
-                        <h1 class="m-b-xs">
-                            98,100
-                        </h1>
-                        <small>
-                            过去24小时销售
-                        </small>
-                        <div id="sparkline2" class="m-b-sm"></div>
-                        <div class="row">
-                            <div class="col-4">
-                                <small class="stats-label">访问页面 / 浏览量</small>
-                                <h4>166 781.80</h4>
-                            </div>
-
-                            <div class="col-4">
-                                <small class="stats-label">% 新访问</small>
-                                <h4>22.45%</h4>
-                            </div>
-                            <div class="col-4">
-                                <small class="stats-label">上个星期</small>
-                                <h4>862.044</h4>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="col-sm-4">
-
-                        <div class="row m-t-xs">
-                            <div class="col-6">
-                                <h5 class="m-b-xs">上个月收入</h5>
-                                <h1 class="no-margins">160,000</h1>
-                                <div class="font-bold text-navy">98% <i class="fa fa-bolt"></i></div>
-                            </div>
-                            <div class="col-6">
-                                <h5 class="m-b-xs">今年收入</h5>
-                                <h1 class="no-margins">42,120</h1>
-                                <div class="font-bold text-navy">98% <i class="fa fa-bolt"></i></div>
-                            </div>
-                        </div>
-
-
-                        <table class="table small m-t-sm">
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <strong>142</strong> 项目
-
-                                </td>
-                                <td>
-                                    <strong>22</strong> 消息
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong>61</strong> 注释
-                                </td>
-                                <td>
-                                    <strong>54</strong> 用品
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong>154</strong> 公司
-                                </td>
-                                <td>
-                                    <strong>32</strong> 客户端
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-
-
-
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="small float-left col-md-3 m-l-lg m-t-md">
-                            <strong>销售</strong> 随时可能有变化
-                        </div>
-                        <div class="small float-right col-md-3 m-t-md text-right">
-                            <strong>通知</strong> 我是通知我是通知
-                        </div>
-                        <div class="flot-chart m-b-xl">
-                            <div class="flot-chart-content" id="flot-dashboard5-chart"></div>
+                        <div class="ibox-content">
+                            <h1 class="no-margins">40 886,200</h1>
+                            <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
+                            <small>总收入</small>
                         </div>
                     </div>
                 </div>
-
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="ibox">
-
-
-
-                            <div class="ibox-content">
-
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label class="col-form-label" for="product_name">项目名</label>
-                                            <input type="text" id="product_name" name="product_name" value="" placeholder="Project Name" class="form-control">
-                                        </div>
+                <div class="col-lg-3">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <span class="label label-info float-right">全年</span>
+                            <h5>订单</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h1 class="no-margins">275,800</h1>
+                            <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
+                            <small>新订单</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <span class="label label-primary float-right">今天</span>
+                            <h5>访客</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h1 class="no-margins">106,120</h1>
+                            <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
+                            <small>新访客</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <span class="label label-danger float-right">最近一个月</span>
+                            <h5>活跃用户</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h1 class="no-margins">80,600</h1>
+                            <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
+                            <small>12月</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <h5>订单</h5>
+                            <div class="float-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-xs btn-white active">天</button>
+                                    <button type="button" class="btn btn-xs btn-white">月</button>
+                                    <button type="button" class="btn btn-xs btn-white">年</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-lg-9">
+                                    <div class="flot-chart">
+                                        <div class="flot-chart-content" id="flot-dashboard-chart"></div>
                                     </div>
-                                    <div class="col-sm-2">
-                                        <div class="form-group">
-                                            <label class="col-form-label" for="price">名称</label>
-                                            <input type="text" id="price" name="price" value="" placeholder="Name" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <div class="form-group">
-                                            <label class="col-form-label" for="quantity">公司</label>
-                                            <input type="text" id="quantity" name="quantity" value="" placeholder="Company" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label class="col-form-label" for="status">状态</label>
-                                            <select name="status" id="status" class="form-control">
-                                                <option value="1" selected="">已完成</option>
-                                                <option value="0">待完成</option>
-                                            </select>
-                                        </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <ul class="stat-list">
+                                        <li>
+                                            <h2 class="no-margins">2,346</h2>
+                                            <small>订单总数</small>
+                                            <div class="stat-percent">48% <i class="fa fa-level-up text-navy"></i></div>
+                                            <div class="progress progress-mini">
+                                                <div style="width: 48%;" class="progress-bar"></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <h2 class="no-margins ">4,422</h2>
+                                            <small>最近一个月订单</small>
+                                            <div class="stat-percent">60% <i class="fa fa-level-down text-navy"></i></div>
+                                            <div class="progress progress-mini">
+                                                <div style="width: 60%;" class="progress-bar"></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <h2 class="no-margins ">9,180</h2>
+                                            <small>最近一个月销售</small>
+                                            <div class="stat-percent">22% <i class="fa fa-bolt text-navy"></i></div>
+                                            <div class="progress progress-mini">
+                                                <div style="width: 22%;" class="progress-bar"></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <h5>消息</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content ibox-heading">
+                            <h3><i class="fa fa-envelope-o"></i> 新消息</h3>
+                            <small><i class="fa fa-tim"></i> 您有22条新消息，16条正在草稿文件夹中。</small>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="feed-activity-list">
+
+                                <div class="feed-element">
+                                    <div>
+                                        <small class="float-right text-navy">1月前</small>
+                                        <strong>小明</strong>
+                                        <div>时间是一切财富中最宝贵的财富 </div>
+                                        <small class="text-muted">2014.10.06 8:48</small>
                                     </div>
                                 </div>
 
-                                <div class="table-responsive">
-                                    <table class="table table-striped">
+                                <div class="feed-element">
+                                    <div>
+                                        <small class="float-right">2月前</small>
+                                        <strong>小明</strong>
+                                        <div>时间是一切财富中最宝贵的财富 </div>
+                                        <small class="text-muted">2014.10.06 8:48</small>
+                                    </div>
+                                </div>
 
+                                <div class="feed-element">
+                                    <div>
+                                        <small class="float-right">5月前</small>
+                                        <strong>小明</strong>
+                                        <div>时间是一切财富中最宝贵的财富 </div>
+                                        <small class="text-muted">2014.10.06 8:48</small>
+                                    </div>
+                                </div>
+
+                                <div class="feed-element">
+                                    <div>
+                                        <small class="float-right">5月前</small>
+                                        <strong>小明</strong>
+                                        <div>时间是一切财富中最宝贵的财富 </div>
+                                        <small class="text-muted">2014.10.06 8:48</small>
+                                    </div>
+                                </div>
+
+
+                                <div class="feed-element">
+                                    <div>
+                                        <small class="float-right">5月前</small>
+                                        <strong>小明</strong>
+                                        <div>时间是一切财富中最宝贵的财富 </div>
+                                        <small class="text-muted">2014.10.06 8:48</small>
+                                    </div>
+                                </div>
+                                <div class="feed-element">
+                                    <div>
+                                        <small class="float-right">5月前</small>
+                                        <strong>小明</strong>
+                                        <div>时间是一切财富中最宝贵的财富 </div>
+                                        <small class="text-muted">2014.10.06 8:48</small>
+                                    </div>
+                                </div>
+                                <div class="feed-element">
+                                    <div>
+                                        <small class="float-right">5月前</small>
+                                        <strong>小明</strong>
+                                        <div>时间是一切财富中最宝贵的财富 </div>
+                                        <small class="text-muted">2014.10.06 8:48</small>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-8">
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="ibox ">
+                                <div class="ibox-title">
+                                    <h5>用户项目列表</h5>
+                                    <div class="ibox-tools">
+                                        <a class="collapse-link">
+                                            <i class="fa fa-chevron-up"></i>
+                                        </a>
+                                        <a class="close-link">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="ibox-content table-responsive">
+                                    <table class="table table-hover no-margins">
+                                        <thead>
+                                        <tr>
+                                            <th>状态</th>
+                                            <th>日期</th>
+                                            <th>用户</th>
+                                            <th>值</th>
+                                        </tr>
+                                        </thead>
                                         <tbody>
                                         <tr>
-                                            <td>1</td>
-                                            <td>王者农药</td>
-                                            <td>天美工作室</td>
-                                            <td>$892,074</td>
-                                            <td>企鹅公司</td>
-                                            <td><strong>20%</strong></td>
-                                            <td>2017.12.12</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
+                                            <td><small>进行中...</small></td>
+                                            <td><i class="fa fa-clock-o"></i> 11:20</td>
+                                            <td>小明</td>
+                                            <td class="text-navy"> <i class="fa fa-level-up"></i> 24% </td>
                                         </tr>
                                         <tr>
-                                            <td>2</td>
-                                            <td>王者农药</td>
-                                            <td>天美工作室</td>
-                                            <td>$963,486</td>
-                                            <td>企鹅公司</td>
-                                            <td><strong>40%</strong></td>
-                                            <td>2017.12.12</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
+                                            <td><span class="label label-warning">已取消</span> </td>
+                                            <td><i class="fa fa-clock-o"></i> 10:40</td>
+                                            <td>小明</td>
+                                            <td class="text-navy"> <i class="fa fa-level-up"></i> 66% </td>
                                         </tr>
                                         <tr>
-                                            <td>3</td>
-                                            <td>王者农药</td>
-                                            <td>天美工作室</td>
-                                            <td>$996,824</td>
-                                            <td>企鹅公司</td>
-                                            <td><strong>75%</strong></td>
-                                            <td>2017.12.12</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
+                                            <td><small>进行中...</small> </td>
+                                            <td><i class="fa fa-clock-o"></i> 01:30</td>
+                                            <td>小明</td>
+                                            <td class="text-navy"> <i class="fa fa-level-up"></i> 54% </td>
                                         </tr>
                                         <tr>
-                                            <td>4</td>
-                                            <td>王者农药</td>
-                                            <td>天美工作室</td>
-                                            <td>$105,192</td>
-                                            <td>企鹅公司</td>
-                                            <td><strong>18%</strong></td>
-                                            <td>2017.12.12</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
+                                            <td><small>进行中...</small> </td>
+                                            <td><i class="fa fa-clock-o"></i> 02:20</td>
+                                            <td>小明</td>
+                                            <td class="text-navy"> <i class="fa fa-level-up"></i> 12% </td>
                                         </tr>
                                         <tr>
-                                            <td>5</td>
-                                            <td>王者农药</td>
-                                            <td>天美工作室</td>
-                                            <td>$674,803</td>
-                                            <td>企鹅公司</td>
-                                            <td><strong>40%</strong></td>
-                                            <td>2017.12.12</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
+                                            <td><small>进行中...</small> </td>
+                                            <td><i class="fa fa-clock-o"></i> 09:40</td>
+                                            <td>小明</td>
+                                            <td class="text-navy"> <i class="fa fa-level-up"></i> 22% </td>
                                         </tr>
                                         <tr>
-                                            <td>6</td>
-                                            <td>王者农药</td>
-                                            <td>天美工作室</td>
-                                            <td>$174,729</td>
-                                            <td>企鹅公司</td>
-                                            <td><strong>20%</strong></td>
-                                            <td>2017.12.12</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
+                                            <td><span class="label label-primary">已完成</span> </td>
+                                            <td><i class="fa fa-clock-o"></i> 04:10</td>
+                                            <td>小明</td>
+                                            <td class="text-navy"> <i class="fa fa-level-up"></i> 66% </td>
                                         </tr>
                                         <tr>
-                                            <td>7</td>
-                                            <td>王者农药</td>
-                                            <td>天美工作室</td>
-                                            <td>$823,198</td>
-                                            <td>企鹅公司</td>
-                                            <td><strong>18%</strong></td>
-                                            <td>2017.12.12</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>8</td>
-                                            <td>王者农药</td>
-                                            <td>天美工作室</td>
-                                            <td>$778,696</td>
-                                            <td>企鹅公司</td>
-                                            <td><strong>20%</strong></td>
-                                            <td>2017.12.12</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>9</td>
-                                            <td>王者农药</td>
-                                            <td>天美工作室</td>
-                                            <td>$861,063</td>
-                                            <td>企鹅公司</td>
-                                            <td><strong>40%</strong></td>
-                                            <td>2017.12.12</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>10</td>
-                                            <td>王者农药</td>
-                                            <td>天美工作室</td>
-                                            <td>$109,125</td>
-                                            <td>企鹅公司</td>
-                                            <td><strong>75%</strong></td>
-                                            <td>2017.12.12</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>11</td>
-                                            <td>王者农药</td>
-                                            <td>天美工作室</td>
-                                            <td>$600,978</td>
-                                            <td>企鹅公司</td>
-                                            <td><strong>18%</strong></td>
-                                            <td>2017.12.12</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>12</td>
-                                            <td>王者农药</td>
-                                            <td>天美工作室</td>
-                                            <td>$150,161</td>
-                                            <td>企鹅公司</td>
-                                            <td><strong>40%</strong></td>
-                                            <td>2017.12.12</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>13</td>
-                                            <td>王者农药</td>
-                                            <td>天美工作室</td>
-                                            <td>$160,586</td>
-                                            <td>企鹅公司</td>
-                                            <td><strong>20%</strong></td>
-                                            <td>2017.12.12</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>14</td>
-                                            <td>王者农药</td>
-                                            <td>天美工作室</td>
-                                            <td>$110,612</td>
-                                            <td>企鹅公司</td>
-                                            <td><strong>18%</strong></td>
-                                            <td>2017.12.12</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
+                                            <td><small>进行中...</small> </td>
+                                            <td><i class="fa fa-clock-o"></i> 12:08</td>
+                                            <td>小明</td>
+                                            <td class="text-navy"> <i class="fa fa-level-up"></i> 23% </td>
                                         </tr>
                                         </tbody>
                                     </table>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="ibox ">
+                                <div class="ibox-title">
+                                    <h5>待办事项</h5>
+                                    <div class="ibox-tools">
+                                        <a class="collapse-link">
+                                            <i class="fa fa-chevron-up"></i>
+                                        </a>
+                                        <a class="close-link">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="ibox-content">
+                                    <ul class="todo-list m-t small-list">
+                                        <li>
+                                            <a href="#" class="check-link"><i class="fa fa-check-square"></i> </a>
+                                            <span class="m-l-xs todo-completed">买光明牛奶</span>
 
+                                        </li>
+                                        <li>
+                                            <a href="#" class="check-link"><i class="fa fa-square-o"></i> </a>
+                                            <span class="m-l-xs">去超市购物</span>
+
+                                        </li>
+                                        <li>
+                                            <a href="#" class="check-link"><i class="fa fa-square-o"></i> </a>
+                                            <span class="m-l-xs">安排推广计划</span>
+                                            <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 分钟</small>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="check-link"><i class="fa fa-square-o"></i> </a>
+                                            <span class="m-l-xs">去找男科医生</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="check-link"><i class="fa fa-check-square"></i> </a>
+                                            <span class="m-l-xs todo-completed">计划假期</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="check-link"><i class="fa fa-square-o"></i> </a>
+                                            <span class="m-l-xs">大街发放传单</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="check-link"><i class="fa fa-square-o"></i> </a>
+                                            <span class="m-l-xs">打电话给小黑</span>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox ">
+                                <div class="ibox-title">
+                                    <h5>全球交易</h5>
+                                    <div class="ibox-tools">
+                                        <a class="collapse-link">
+                                            <i class="fa fa-chevron-up"></i>
+                                        </a>
+                                        <a class="close-link">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="ibox-content">
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <table class="table table-hover margin bottom">
+                                                <thead>
+                                                <tr>
+                                                    <th style="width: 1%" class="text-center">ID</th>
+                                                    <th>物品</th>
+                                                    <th class="text-center">日期</th>
+                                                    <th class="text-center">销售额度</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td class="text-center">1</td>
+                                                    <td> 安全门
+                                                    </td>
+                                                    <td class="text-center small">2017年6月16日</td>
+                                                    <td class="text-center"><span class="label label-primary">$483.00</span></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">2</td>
+                                                    <td> 衣柜
+                                                    </td>
+                                                    <td class="text-center small">2017年6月16日</td>
+                                                    <td class="text-center"><span class="label label-primary">$327.00</span></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">3</td>
+                                                    <td> 一套工具
+                                                    </td>
+                                                    <td class="text-center small">2017年6月16日</td>
+                                                    <td class="text-center"><span class="label label-warning">$125.00</span></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">4</td>
+                                                    <td> 全景照片</td>
+                                                    <td class="text-center small">2017年6月16日</td>
+                                                    <td class="text-center"><span class="label label-primary">$344.00</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">5</td>
+                                                    <td>手机</td>
+                                                    <td class="text-center small">2017年6月16日</td>
+                                                    <td class="text-center"><span class="label label-primary">$235.00</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">6</td>
+                                                    <td>显示器</td>
+                                                    <td class="text-center small">2017年6月16日</td>
+                                                    <td class="text-center"><span class="label label-primary">$100.00</span></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div id="world-map" style="height: 300px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
+
             </div>
-
-
         </div>
-
         <div class="footer">
             <div class="float-right">
-                <strong>2.9.2 inspinia</strong>
+                <strong>WeIn</strong>
             </div>
             <div>
-                <strong>Copyright</strong> xxx &copy; 2020
+                <strong>Copyright</strong> WeIn &copy; 2021
             </div>
         </div>
+    </div>
+    <div id="right-sidebar">
+        <div class="sidebar-container">
+
+            <ul class="nav nav-tabs navs-3">
+                <li>
+                    <a class="nav-link active" data-toggle="tab" href="#tab-1"> 记录 </a>
+                </li>
+                <li>
+                    <a class="nav-link" data-toggle="tab" href="#tab-2"> 项目 </a>
+                </li>
+                <li>
+                    <a class="nav-link" data-toggle="tab" href="#tab-3"> <i class="fa fa-gear"></i> </a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+
+
+                <div id="tab-1" class="tab-pane active">
+
+                    <div class="sidebar-title">
+                        <h3> <i class="fa fa-comments-o"></i> 最新记录</h3>
+                        <small><i class="fa fa-tim"></i> 你有10条新消息。</small>
+                    </div>
+
+                    <div>
+
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="float-left text-center">
+                                    <img alt="image" class="rounded-circle message-avatar" src="img/a1.jpg">
+
+                                    <div class="m-t-xs">
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                    </div>
+                                </div>
+                                <div class="media-body">
+
+                                    Lorem Ipsum的通道有许多变化。
+                                    <br>
+                                    <small class="text-muted">今天 4:21 pm</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="float-left text-center">
+                                    <img alt="image" class="rounded-circle message-avatar" src="img/a2.jpg">
+                                </div>
+                                <div class="media-body">
+                                    使用Lorem Ipsum的观点是它具有或多或少的正常。
+                                    <br>
+                                    <small class="text-muted">Yesterday 2:45 pm</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="float-left text-center">
+                                    <img alt="image" class="rounded-circle message-avatar" src="img/a3.jpg">
+
+                                    <div class="m-t-xs">
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                    </div>
+                                </div>
+                                <div class="media-body">
+                                    这些年来，有时是意外的，有时是有目的的（注入幽默等）。
+                                    <br>
+                                    <small class="text-muted">昨天 1:10 pm</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="float-left text-center">
+                                    <img alt="image" class="rounded-circle message-avatar" src="img/a4.jpg">
+                                </div>
+
+                                <div class="media-body">
+                                    Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+                                    <br>
+                                    <small class="text-muted">星期一 8:37 pm</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="float-left text-center">
+                                    <img alt="image" class="rounded-circle message-avatar" src="img/a8.jpg">
+                                </div>
+                                <div class="media-body">
+
+                                    互联网上的所有Lorem Ipsum发电机往往重复。
+                                    <br>
+                                    <small class="text-muted">今天 4:21 pm</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="float-left text-center">
+                                    <img alt="image" class="rounded-circle message-avatar" src="img/a7.jpg">
+                                </div>
+                                <div class="media-body">
+                                    再生。 Lorem Ipsum的第一行“Lorem ipsum dolor sit amet ..”来自1.10.32节的一行。
+                                    <br>
+                                    <small class="text-muted">昨天 2:45 pm</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="float-left text-center">
+                                    <img alt="image" class="rounded-circle message-avatar" src="img/a3.jpg">
+
+                                    <div class="m-t-xs">
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                    </div>
+                                </div>
+                                <div class="media-body">
+                                    从1500年代以来使用的Lorem Ipsum的标准块转载如下。
+                                    <br>
+                                    <small class="text-muted">昨天 1:10 pm</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="float-left text-center">
+                                    <img alt="image" class="rounded-circle message-avatar" src="img/a4.jpg">
+                                </div>
+                                <div class="media-body">
+                                    揭开许多网站仍处于起步阶段。 各种版本有。
+                                    <br>
+                                    <small class="text-muted">星期一 8:37 pm</small>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="tab-2" class="tab-pane">
+
+                    <div class="sidebar-title">
+                        <h3> <i class="fa fa-cube"></i> 最新项目</h3>
+                        <small><i class="fa fa-tim"></i> 你有14个项目。 10没有完成</small>
+                    </div>
+
+                    <ul class="sidebar-list">
+                        <li>
+                            <a href="#">
+                                <div class="small float-right m-t-xs">9小时前</div>
+                                <h4>业务估值</h4>
+                                一个长期以来的事实是，读者会分心。
+
+                                <div class="small">完成度: 22%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: 22%;" class="progress-bar progress-bar-warning"></div>
+                                </div>
+                                <div class="small text-muted m-t-xs">时间: 4:00 pm - 12.06.2014</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="small float-right m-t-xs">9小时前</div>
+                                <h4>与公司签订合同 </h4>
+                                许多桌面出版包和网页编辑器。
+
+                                <div class="small">完成度: 48%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: 48%;" class="progress-bar"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="small float-right m-t-xs">9小时前</div>
+                                <h4>会议</h4>
+                                通过查看其布局时页面的可读内容。
+
+                                <div class="small">完成度: 14%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: 14%;" class="progress-bar progress-bar-info"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-primary float-right">NEW</span>
+                                <h4>生成的</h4>
+                                Lorem Ipsum的通道有许多变化。
+                                <div class="small">完成度: 22%</div>
+                                <div class="small text-muted m-t-xs">时间: 4:00 pm - 12.06.2014</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="small float-right m-t-xs">9小时前</div>
+                                <h4>业务估值</h4>
+                                一个长期以来的事实是，读者会分心。
+
+                                <div class="small">完成度: 22%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: 22%;" class="progress-bar progress-bar-warning"></div>
+                                </div>
+                                <div class="small text-muted m-t-xs">时间: 4:00 pm - 12.06.2014</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="small float-right m-t-xs">9小时前</div>
+                                <h4>与公司签订合同 </h4>
+                                许多桌面出版包和网页编辑器。
+
+                                <div class="small">完成度: 48%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: 48%;" class="progress-bar"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="small float-right m-t-xs">9小时前</div>
+                                <h4>会议</h4>
+                                通过查看其布局时页面的可读内容。
+
+                                <div class="small">完成度: 14%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: 14%;" class="progress-bar progress-bar-info"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-primary float-right">NEW</span>
+                                <h4>生成的</h4>
+                                <!--<div class="small float-right m-t-xs">9小时前</div>-->
+                                Lorem Ipsum的通道有许多变化。
+                                <div class="small">完成度: 22%</div>
+                                <div class="small text-muted m-t-xs">时间: 4:00 pm - 12.06.2014</div>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <div id="tab-3" class="tab-pane">
+
+                    <div class="sidebar-title">
+                        <h3><i class="fa fa-gears"></i> 设置</h3>
+                        <small><i class="fa fa-tim"></i> 你有14个项目。 10没有完成</small>
+                    </div>
+
+                    <div class="setings-item">
+                    <span>
+                        显示通知
+                    </span>
+                        <div class="switch">
+                            <div class="onoffswitch">
+                                <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example">
+                                <label class="onoffswitch-label" for="example">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setings-item">
+                    <span>
+                        停用聊天
+                    </span>
+                        <div class="switch">
+                            <div class="onoffswitch">
+                                <input type="checkbox" name="collapsemenu" checked class="onoffswitch-checkbox" id="example2">
+                                <label class="onoffswitch-label" for="example2">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setings-item">
+                    <span>
+                        启用历史记录
+                    </span>
+                        <div class="switch">
+                            <div class="onoffswitch">
+                                <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example3">
+                                <label class="onoffswitch-label" for="example3">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setings-item">
+                    <span>
+                        显示图表
+                    </span>
+                        <div class="switch">
+                            <div class="onoffswitch">
+                                <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example4">
+                                <label class="onoffswitch-label" for="example4">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setings-item">
+                    <span>
+                        离线用户
+                    </span>
+                        <div class="switch">
+                            <div class="onoffswitch">
+                                <input type="checkbox" checked name="collapsemenu" class="onoffswitch-checkbox" id="example5">
+                                <label class="onoffswitch-label" for="example5">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setings-item">
+                    <span>
+                        全球搜索
+                    </span>
+                        <div class="switch">
+                            <div class="onoffswitch">
+                                <input type="checkbox" checked name="collapsemenu" class="onoffswitch-checkbox" id="example6">
+                                <label class="onoffswitch-label" for="example6">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setings-item">
+                    <span>
+                        每天更新
+                    </span>
+                        <div class="switch">
+                            <div class="onoffswitch">
+                                <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example7">
+                                <label class="onoffswitch-label" for="example7">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-content">
+                        <h4>设置</h4>
+                        <div class="small">
+                            我相信那个 Lorem Ipsum只是印刷和排版行业的虚拟文字。
+                            排版行业。 Lorem Ipsum自15世纪15年代以来一直是行业的标准虚拟文本。
+                            多年来，有时偶然地，有时是目的（注入幽默等）。
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
     </div>
 </div>
 
@@ -366,100 +837,192 @@
 <script src="js/plugins/flot/jquery.flot.symbol.js"></script>
 <script src="js/plugins/flot/jquery.flot.time.js"></script>
 
+<!-- Peity -->
+<script src="js/plugins/peity/jquery.peity.min.js"></script>
+<script src="js/demo/peity-demo.js"></script>
+
 <!-- Custom and plugin javascript -->
 <script src="js/inspinia.js"></script>
 <script src="js/plugins/pace/pace.min.js"></script>
 
+<!-- jQuery UI -->
+<script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+<!-- Jvectormap -->
+<script src="js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
+<script src="js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+
+<!-- EayPIE -->
+<script src="js/plugins/easypiechart/jquery.easypiechart.js"></script>
+
 <!-- Sparkline -->
 <script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
 
+<!-- Sparkline demo data  -->
+<script src="js/demo/sparkline-demo.js"></script>
 
 <script>
     $(document).ready(function() {
-
-        var sparklineCharts = function(){
-            $("#sparkline1").sparkline([34, 43, 43, 35, 44, 32, 44, 52], {
-                type: 'line',
-                width: '100%',
-                height: '50',
-                lineColor: '#1ab394',
-                fillColor: "transparent"
-            });
-
-            $("#sparkline2").sparkline([32, 11, 25, 37, 41, 32, 34, 42], {
-                type: 'line',
-                width: '100%',
-                height: '50',
-                lineColor: '#1ab394',
-                fillColor: "transparent"
-            });
-
-            $("#sparkline3").sparkline([34, 22, 24, 41, 10, 18, 16,8], {
-                type: 'line',
-                width: '100%',
-                height: '50',
-                lineColor: '#1C84C6',
-                fillColor: "transparent"
-            });
-        };
-
-        var sparkResize;
-
-        $(window).resize(function(e) {
-            clearTimeout(sparkResize);
-            sparkResize = setTimeout(sparklineCharts, 500);
+        $('.chart').easyPieChart({
+            barColor: '#f8ac59',
+//                scaleColor: false,
+            scaleLength: 5,
+            lineWidth: 4,
+            size: 80
         });
 
-        sparklineCharts();
+        $('.chart2').easyPieChart({
+            barColor: '#1c84c6',
+//                scaleColor: false,
+            scaleLength: 5,
+            lineWidth: 4,
+            size: 80
+        });
 
-
-
-
-        var data1 = [
-            [0,4],[1,8],[2,5],[3,10],[4,4],[5,16],[6,5],[7,11],[8,6],[9,11],[10,20],[11,10],[12,13],[13,4],[14,7],[15,8],[16,12]
-        ];
         var data2 = [
-            [0,0],[1,2],[2,7],[3,4],[4,11],[5,4],[6,2],[7,5],[8,11],[9,5],[10,4],[11,1],[12,5],[13,2],[14,5],[15,2],[16,0]
+            [gd(2012, 1, 1), 7], [gd(2012, 1, 2), 6], [gd(2012, 1, 3), 4], [gd(2012, 1, 4), 8],
+            [gd(2012, 1, 5), 9], [gd(2012, 1, 6), 7], [gd(2012, 1, 7), 5], [gd(2012, 1, 8), 4],
+            [gd(2012, 1, 9), 7], [gd(2012, 1, 10), 8], [gd(2012, 1, 11), 9], [gd(2012, 1, 12), 6],
+            [gd(2012, 1, 13), 4], [gd(2012, 1, 14), 5], [gd(2012, 1, 15), 11], [gd(2012, 1, 16), 8],
+            [gd(2012, 1, 17), 8], [gd(2012, 1, 18), 11], [gd(2012, 1, 19), 11], [gd(2012, 1, 20), 6],
+            [gd(2012, 1, 21), 6], [gd(2012, 1, 22), 8], [gd(2012, 1, 23), 11], [gd(2012, 1, 24), 13],
+            [gd(2012, 1, 25), 7], [gd(2012, 1, 26), 9], [gd(2012, 1, 27), 9], [gd(2012, 1, 28), 8],
+            [gd(2012, 1, 29), 5], [gd(2012, 1, 30), 8], [gd(2012, 1, 31), 25]
         ];
-        $("#flot-dashboard5-chart").length && $.plot($("#flot-dashboard5-chart"), [
-                data1,  data2
-            ],
+
+        var data3 = [
+            [gd(2012, 1, 1), 800], [gd(2012, 1, 2), 500], [gd(2012, 1, 3), 600], [gd(2012, 1, 4), 700],
+            [gd(2012, 1, 5), 500], [gd(2012, 1, 6), 456], [gd(2012, 1, 7), 800], [gd(2012, 1, 8), 589],
+            [gd(2012, 1, 9), 467], [gd(2012, 1, 10), 876], [gd(2012, 1, 11), 689], [gd(2012, 1, 12), 700],
+            [gd(2012, 1, 13), 500], [gd(2012, 1, 14), 600], [gd(2012, 1, 15), 700], [gd(2012, 1, 16), 786],
+            [gd(2012, 1, 17), 345], [gd(2012, 1, 18), 888], [gd(2012, 1, 19), 888], [gd(2012, 1, 20), 888],
+            [gd(2012, 1, 21), 987], [gd(2012, 1, 22), 444], [gd(2012, 1, 23), 999], [gd(2012, 1, 24), 567],
+            [gd(2012, 1, 25), 786], [gd(2012, 1, 26), 666], [gd(2012, 1, 27), 888], [gd(2012, 1, 28), 900],
+            [gd(2012, 1, 29), 178], [gd(2012, 1, 30), 555], [gd(2012, 1, 31), 993]
+        ];
+
+
+        var dataset = [
             {
-                series: {
-                    lines: {
-                        show: false,
-                        fill: true
-                    },
-                    splines: {
-                        show: true,
-                        tension: 0.4,
-                        lineWidth: 1,
-                        fill: 0.4
-                    },
-                    points: {
-                        radius: 0,
-                        show: true
-                    },
-                    shadowSize: 2
-                },
-                grid: {
-                    hoverable: true,
-                    clickable: true,
+                label: "Number of orders",
+                data: data3,
+                color: "#1ab394",
+                bars: {
+                    show: true,
+                    align: "center",
+                    barWidth: 24 * 60 * 60 * 600,
+                    lineWidth:0
+                }
 
-                    borderWidth: 2,
-                    color: 'transparent'
+            }, {
+                label: "Payments",
+                data: data2,
+                yaxis: 2,
+                color: "#1C84C6",
+                lines: {
+                    lineWidth:1,
+                    show: true,
+                    fill: true,
+                    fillColor: {
+                        colors: [{
+                            opacity: 0.2
+                        }, {
+                            opacity: 0.4
+                        }]
+                    }
                 },
-                colors: ["#1ab394", "#1C84C6"],
-                xaxis:{
+                splines: {
+                    show: false,
+                    tension: 0.6,
+                    lineWidth: 1,
+                    fill: 0.1
                 },
-                yaxis: {
-                },
-                tooltip: false
             }
-        );
+        ];
 
+
+        var options = {
+            xaxis: {
+                mode: "time",
+                tickSize: [3, "day"],
+                tickLength: 0,
+                axisLabel: "Date",
+                axisLabelUseCanvas: true,
+                axisLabelFontSizePixels: 12,
+                axisLabelFontFamily: 'Arial',
+                axisLabelPadding: 10,
+                color: "#d5d5d5"
+            },
+            yaxes: [{
+                position: "left",
+                max: 1070,
+                color: "#d5d5d5",
+                axisLabelUseCanvas: true,
+                axisLabelFontSizePixels: 12,
+                axisLabelFontFamily: 'Arial',
+                axisLabelPadding: 3
+            }, {
+                position: "right",
+                clolor: "#d5d5d5",
+                axisLabelUseCanvas: true,
+                axisLabelFontSizePixels: 12,
+                axisLabelFontFamily: ' Arial',
+                axisLabelPadding: 67
+            }
+            ],
+            legend: {
+                noColumns: 1,
+                labelBoxBorderColor: "#000000",
+                position: "nw"
+            },
+            grid: {
+                hoverable: false,
+                borderWidth: 0
+            }
+        };
+
+        function gd(year, month, day) {
+            return new Date(year, month - 1, day).getTime();
+        }
+
+        var previousPoint = null, previousLabel = null;
+
+        $.plot($("#flot-dashboard-chart"), dataset, options);
+
+        var mapData = {
+            "US": 298,
+            "SA": 200,
+            "DE": 220,
+            "FR": 540,
+            "CN": 120,
+            "AU": 760,
+            "BR": 550,
+            "IN": 200,
+            "GB": 120,
+        };
+
+        $('#world-map').vectorMap({
+            map: 'world_mill_en',
+            backgroundColor: "transparent",
+            regionStyle: {
+                initial: {
+                    fill: '#e4e4e4',
+                    "fill-opacity": 0.9,
+                    stroke: 'none',
+                    "stroke-width": 0,
+                    "stroke-opacity": 0
+                }
+            },
+
+            series: {
+                regions: [{
+                    values: mapData,
+                    scale: ["#1ab394", "#22d6b1"],
+                    normalizeFunction: 'polynomial'
+                }]
+            },
+        });
     });
 </script>
 </body>
 </html>
-

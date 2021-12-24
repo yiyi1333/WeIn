@@ -1,8 +1,14 @@
 <component name="ArtifactManager">
+<<<<<<< HEAD:.idea/artifacts/spring_prj1_Web_exploded.xml
   <artifact type="exploded-war" name="spring-prj1:Web exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/spring_prj1_Web_exploded</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="spring-prj1/web/Web" />
+=======
+  <artifact type="exploded-war" name="spring-prj1:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/spring_prj1_war_exploded</output-path>
+    <root id="root">
+>>>>>>> wyx:.idea/artifacts/spring_prj1_war_exploded.xml
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="spring-prj1" />
@@ -61,6 +67,7 @@
           <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-util:9.3.7.v20160115" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="spring-prj1/web/Web" />
     </root>
   </artifact>
 </component>
