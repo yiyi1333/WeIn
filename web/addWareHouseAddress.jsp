@@ -193,19 +193,17 @@
             }
         }
     });
-    $('#warehouseDetailedAddress').bind('input propertychange', function() {
-    if((11 - $(this).val().length) >=4 ){
-        document.getElementById("warehouseDetailedAddressDiv").className = "form-group row has-success";
-        $('#warehouseDetailedAddressResult').html('还剩 '+ (20 - $(this).val().length) + ' 字，请放心输入');
-    }
-    else if((11 - $(this).val().length) >= 0){
-        document.getElementById("warehouseDetailedAddressDiv").className = "form-group row has-warning";
-        $('#warehouseDetailedAddressResult').html('还剩 '+ (20 - $(this).val().length) + ' 字,请注意');
-    }
-    else{
-        document.getElementById("warehouseDetailedAddressDiv").className = "form-group row has-error";
-        $('#warehouseDetailedAddressResult').html('您已超出 '+ ($(this).val().length - 20) + ' 字');
-    }
+    $('#warehouseDetailedAddress').bind('input propertychange', function () {
+        if ((11 - $(this).val().length) >= 4) {
+            document.getElementById("warehouseDetailedAddressDiv").className = "form-group row has-success";
+            $('#warehouseDetailedAddressResult').html('还剩 ' + (20 - $(this).val().length) + ' 字，请放心输入');
+        } else if ((11 - $(this).val().length) >= 0) {
+            document.getElementById("warehouseDetailedAddressDiv").className = "form-group row has-warning";
+            $('#warehouseDetailedAddressResult').html('还剩 ' + (20 - $(this).val().length) + ' 字,请注意');
+        } else {
+            document.getElementById("warehouseDetailedAddressDiv").className = "form-group row has-error";
+            $('#warehouseDetailedAddressResult').html('您已超出 ' + ($(this).val().length - 20) + ' 字');
+        }
     });
 </script>
 </body>

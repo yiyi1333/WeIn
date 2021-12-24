@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>xxx | 基础表单</title>
+    <title>添加企业人员</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
@@ -36,7 +36,7 @@
                         <a>管理企业人员</a>
                     </li>
                     <li class="breadcrumb-item active">
-                        <strong>添加企业人员</strong>
+                        <strong>添加企业人员（用于用户认证）</strong>
                     </li>
                 </ol>
             </div>
@@ -57,12 +57,6 @@
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                     <i class="fa fa-wrench"></i>
                                 </a>
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li><a href="#" class="dropdown-item">选项 1</a>
-                                    </li>
-                                    <li><a href="#" class="dropdown-item">选项 2</a>
-                                    </li>
-                                </ul>
                                 <a class="close-link">
                                     <i class="fa fa-times"></i>
                                 </a>
@@ -70,32 +64,52 @@
                         </div>
                         <div class="ibox-content">
                             <form action="addconsumer.action">
-                                <div class="form-group  row"><label class="col-sm-2 col-form-label">姓名</label>
-                                    <div class="col-sm-10"><input type="text" class="form-control" name="consumer.name">
+                                <div class="form-group  row" id="consumerNameDiv">
+                                    <label class="col-sm-1 col-form-label">姓名</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" id="consumerName" class="form-control" name="consumer.name">
                                     </div>
+                                    <div id="consumerNameResult" style="margin-left: 100px;"></div>
                                 </div>
+
                                 <div class="hr-line-dashed"></div>
-                                <div class="form-group  row"><label class="col-sm-2 col-form-label">身份证号</label>
-                                    <div class="col-sm-10"><input type="text" class="form-control"
-                                                                  name="consumer.idCardNumber"></div>
+                                <div class="form-group  row" id="consumerIdCardNumberDiv">
+                                    <label
+                                            class="col-sm-1 col-form-label">身份证号</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="consumerIdCardNumber"
+                                               name="consumer.idCardNumber"></div>
+                                    <div id="consumerIdCardNumberResult" style="margin-left: 100px;"></div>
                                 </div>
+
                                 <div class="hr-line-dashed"></div>
-                                <div class="form-group row"><label class="col-sm-2 col-form-label">密码</label>
+                                <div class="form-group row" id="consumerPasswordDiv"><label
+                                        class="col-sm-1 col-form-label">密码</label>
                                     <div class="col-sm-10"><input name="consumer.password" type="text"
+                                                                  id="consumerPassword"
                                                                   class="form-control"></div>
+                                    <div id="consumerPasswordResult" style="margin-left: 100px;"></div>
                                 </div>
+
                                 <div class="hr-line-dashed"></div>
-                                <div class="form-group  row"><label class="col-sm-2 col-form-label">邮箱地址</label>
-                                    <div class="col-sm-10"><input type="text" class="form-control"
+                                <div class="form-group  row" id="consumerEmailDiv"><label
+                                        class="col-sm-1 col-form-label">邮箱地址</label>
+                                    <div class="col-sm-10"><input type="text" class="form-control" id="consumerEmail"
                                                                   name="consumer.email"></div>
+                                    <div id="consumerEmailResult" style="margin-left: 100px;"></div>
                                 </div>
+
                                 <div class="hr-line-dashed"></div>
-                                <div class="form-group  row"><label class="col-sm-2 col-form-label">手机号</label>
+                                <div class="form-group  row" id="consumerPhoneNumberDiv"><label
+                                        class="col-sm-1 col-form-label">手机号</label>
                                     <div class="col-sm-10"><input type="text" class="form-control"
+                                                                  id="consumerPhoneNumber"
                                                                   name="consumer.phoneNumber"></div>
+                                    <div id="consumerPhoneNumberResult" style="margin-left: 100px;"></div>
                                 </div>
+
                                 <div class="hr-line-dashed"></div>
-                                <div class="form-group row"><label class="col-sm-2 col-form-label">部门编号</label>
+                                <div class="form-group row"><label class="col-sm-1 col-form-label">部门编号</label>
 
                                     <div class="col-sm-10">
                                         <select class="form-control m-b"
@@ -151,12 +165,82 @@
 <!-- iCheck -->
 <script src="js/plugins/iCheck/icheck.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('.i-checks').iCheck({
-            checkboxClass: 'icheckbox_square-green',
-            radioClass: 'iradio_square-green',
-        });
+    // consumerEmail
+    $('#consumerName').bind('input propertychange', function () {
+        var pattern = new RegExp("[\u4E00-\u9FA5]+");
+        if (!pattern.test($(this).val())) {
+            document.getElementById("consumerNameDiv").className = "form-group row has-error";
+            $('#consumerNameResult').html('姓名为中文');
+        } else {
+            if ((11 - $(this).val().length) >= 4) {
+                document.getElementById("consumerNameDiv").className = "form-group row has-success";
+                $('#consumerNameResult').html('还剩 ' + (20 - $(this).val().length) + ' 字，请放心输入');
+            } else if ((11 - $(this).val().length) >= 0) {
+                document.getElementById("consumerNameDiv").className = "form-group row has-warning";
+                $('#consumerNameResult').html('还剩 ' + (20 - $(this).val().length) + ' 字,请注意');
+            } else {
+                document.getElementById("consumerNameDiv").className = "form-group row has-error";
+                $('#consumerNameResult').html('您已超出 ' + ($(this).val().length - 20) + ' 字');
+            }
+        }
     });
+    $('#consumerIdCardNumber').bind('input propertychange', function () {
+        var r = /^\+?[0-9][0-9]*$/;　　//正整数
+        if ($(this).val().length > 0 && !r.test($(this).val())) {
+            document.getElementById("consumerIdCardNumbereDiv").className = "form-group row has-error";
+            $('#consumerIdCardNumberResult').html('电话号码为纯数字');
+        } else {
+            if ((11 - $(this).val().length) !== 0) {
+                document.getElementById("consumerIdCardNumberDiv").className = "form-group row has-error";
+                $('#consumerIdCardNumberResult').html('身份证为18位');
+            } else {
+                document.getElementById("consumerIdCardNumberDiv").className = "form-group row has-success";
+                $('#consumerIdCardNumberResult').html('输入格式正确');
+            }
+        }
+    });
+    $('#consumerPhoneNumber').bind('input propertychange', function () {
+        var r = /^\+?[0-9][0-9]*$/;　　//正整数
+        if ($(this).val().length > 0 && !r.test($(this).val())) {
+            document.getElementById("consumerPhoneNumberDiv").className = "form-group row has-error";
+            $('#consumerPhoneNumberResult').html('电话号码为纯数字');
+        } else {
+            if ((11 - $(this).val().length) !== 0) {
+                document.getElementById("consumerPhoneNumberDiv").className = "form-group row has-error";
+                $('#consumerPhoneNumberResult').html('电话号码为11位');
+            } else {
+                document.getElementById("consumerPhoneNumberDiv").className = "form-group row has-success";
+                $('#consumerPhoneNumberResult').html('输入格式正确');
+            }
+        }
+    });
+
+    $('#consumerPassword').bind('input propertychange', function () {
+        if ((11 - $(this).val().length) >= 4) {
+            document.getElementById("consumerPasswordDiv").className = "form-group row has-success";
+            $('#consumerPasswordResult').html('还剩 ' + (20 - $(this).val().length) + ' 字，请放心输入');
+        } else if ((11 - $(this).val().length) >= 0) {
+            document.getElementById("consumerPasswordDiv").className = "form-group row has-warning";
+            $('#consumerPasswordResult').html('还剩 ' + (20 - $(this).val().length) + ' 字,请注意');
+        } else {
+            document.getElementById("consumerPasswordDiv").className = "form-group row has-error";
+            $('#consumerPasswordResult').html('您已超出 ' + ($(this).val().length - 20) + ' 字');
+        }
+    });
+
+    $('#consumerEmail').bind('input propertychange', function () {
+        var emailPat = /^(.+)@(.+)$/;
+        var matchArray = $(this).val().match(emailPat);
+        if (matchArray == null) {
+            document.getElementById("consumerEmailDiv").className = "form-group row has-success";
+            $('#consumerEmailResult').html('电子邮件地址必须包括 ( @ 和 . )');
+        }
+        else {
+            document.getElementById("consumerEmailDiv").className = "form-group row has-success";
+            $('#consumerEmailResult').html('电子邮件地址格式正确');
+        }
+    });
+
 </script>
 </body>
 
