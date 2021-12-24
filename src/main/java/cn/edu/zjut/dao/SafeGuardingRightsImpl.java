@@ -1,13 +1,13 @@
 package cn.edu.zjut.dao;
 
-import cn.edu.zjut.po.safeGuardingRights;
-import cn.edu.zjut.po.safeGuardingRightsProgress;
+import cn.edu.zjut.po.SafeGuardingRights;
+import cn.edu.zjut.po.SafeGuardingRightsProgress;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import java.util.List;
 
-public class safeGuardingRightsImpl implements safeGuardingRightsMapper{
+public class SafeGuardingRightsImpl implements SafeGuardingRightsMapper {
     SqlSessionTemplate sqlSession;
 
     public SqlSessionTemplate getSqlSession() {
@@ -19,34 +19,34 @@ public class safeGuardingRightsImpl implements safeGuardingRightsMapper{
     }
 
     @Override
-    public List<safeGuardingRights> getAllsafeGuardingRights() {
-        return sqlSession.getMapper(safeGuardingRightsMapper.class).getAllsafeGuardingRights();
+    public List<SafeGuardingRights> getAllsafeGuardingRights() {
+        return sqlSession.getMapper(SafeGuardingRightsMapper.class).getAllsafeGuardingRights();
     }
 
     @Override
-    public safeGuardingRights selectsafeGuardingRightsById(Integer safeGuardingRightsId) {
-        return sqlSession.getMapper(safeGuardingRightsMapper.class).selectsafeGuardingRightsById(safeGuardingRightsId);
+    public SafeGuardingRights selectsafeGuardingRightsById(Integer safeGuardingRightsId) {
+        return sqlSession.getMapper(SafeGuardingRightsMapper.class).selectsafeGuardingRightsById(safeGuardingRightsId);
     }
 
     @Override
-    public List<safeGuardingRights> selectsafeGuardingRights(safeGuardingRights safeGuardingRights) {
-        return sqlSession.getMapper(safeGuardingRightsMapper.class).selectsafeGuardingRights(safeGuardingRights);
+    public List<SafeGuardingRights> selectsafeGuardingRights(SafeGuardingRights safeGuardingRights) {
+        return sqlSession.getMapper(SafeGuardingRightsMapper.class).selectsafeGuardingRights(safeGuardingRights);
     }
 
     @Override
-    public void updatesafeGuardingRights(safeGuardingRights safeGuardingRights) {
-        sqlSession.getMapper(safeGuardingRightsMapper.class).updatesafeGuardingRights(safeGuardingRights);
+    public void updatesafeGuardingRights(SafeGuardingRights safeGuardingRights) {
+        sqlSession.getMapper(SafeGuardingRightsMapper.class).updatesafeGuardingRights(safeGuardingRights);
     }
 
     @Override
-    public List<safeGuardingRightsProgress> getsafeGuardingRightsProgressById(Integer safeGuardingRightsId) {
-        return sqlSession.getMapper(safeGuardingRightsMapper.class).getsafeGuardingRightsProgressById(safeGuardingRightsId);
+    public List<SafeGuardingRightsProgress> getsafeGuardingRightsProgressById(Integer safeGuardingRightsId) {
+        return sqlSession.getMapper(SafeGuardingRightsMapper.class).getsafeGuardingRightsProgressById(safeGuardingRightsId);
     }
     @Override
     public Integer addSafeGuardingRightsRecord(Integer goodsId, Integer goodsNum, String descript, String imagePath,
                                                Integer orderId, String type, String status) {
         SqlSession session = sqlSession.getSqlSessionFactory().openSession();
-        safeGuardingRightsMapper safeGuardingRightsMapper = sqlSession.getMapper(safeGuardingRightsMapper.class);
+        SafeGuardingRightsMapper safeGuardingRightsMapper = sqlSession.getMapper(SafeGuardingRightsMapper.class);
         Integer line = null;
         try {
             line = safeGuardingRightsMapper.addSafeGuardingRightsRecord(goodsId, goodsNum, descript, imagePath, orderId, type, status);
@@ -63,7 +63,7 @@ public class safeGuardingRightsImpl implements safeGuardingRightsMapper{
     }
 
     @Override
-    public List<safeGuardingRights> selectSafeGuardingRightsByGoodId(Integer goodId) {
-        return sqlSession.getMapper(safeGuardingRightsMapper.class).selectSafeGuardingRightsByGoodId(goodId);
+    public SafeGuardingRights selectSafeGuardingRightsByGoodIdAndOrderId(Integer goodId, Integer orderId) {
+        return sqlSession.getMapper(SafeGuardingRightsMapper.class).selectSafeGuardingRightsByGoodIdAndOrderId(goodId, orderId);
     }
 }

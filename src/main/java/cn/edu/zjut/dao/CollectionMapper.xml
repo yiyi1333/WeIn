@@ -35,6 +35,6 @@
     <select id="selectAllCollection" resultMap="CollectionMap">
         select *
         from collection, goods
-        where collection.consumerId = #{customerId} and collection.consumerId = goods.goodsId
+        where collection.consumerId = #{customerId} and collection.goodsId = goods.goodsId
     </select>
 </mapper>

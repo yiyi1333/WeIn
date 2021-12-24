@@ -1,27 +1,27 @@
 package cn.edu.zjut.service;
 
 
-import cn.edu.zjut.dao.safeGuardingRightsProgressMapper;
-import cn.edu.zjut.po.safeGuardingRightsProgress;
+import cn.edu.zjut.dao.SafeGuardingRightsProgressMapper;
+import cn.edu.zjut.po.SafeGuardingRightsProgress;
 
 import java.util.List;
 
 public class safeGuardingRightsProgressService {
-    private safeGuardingRightsProgressMapper safeGuardingRightsProgressDao;
+    private SafeGuardingRightsProgressMapper safeGuardingRightsProgressDao;
 
-    public safeGuardingRightsProgressMapper getSafeGuardingRightsProgressDao() {
+    public SafeGuardingRightsProgressMapper getSafeGuardingRightsProgressDao() {
         return safeGuardingRightsProgressDao;
     }
 
-    public void setSafeGuardingRightsProgressDao(safeGuardingRightsProgressMapper safeGuardingRightsProgressDao) {
+    public void setSafeGuardingRightsProgressDao(SafeGuardingRightsProgressMapper safeGuardingRightsProgressDao) {
         this.safeGuardingRightsProgressDao = safeGuardingRightsProgressDao;
     }
 
-    public List<safeGuardingRightsProgress> getSafeGuardingRightsProgressById(Integer safeGuardingRightsProgressId){
+    public List<SafeGuardingRightsProgress> getSafeGuardingRightsProgressById(Integer safeGuardingRightsProgressId){
         return safeGuardingRightsProgressDao.getsafeGuardingRightsProgressById(safeGuardingRightsProgressId);
     }
 
-    public void addsafeGuardingRightsProgress(safeGuardingRightsProgress safeGuardingRightsProgress){
+    public void addsafeGuardingRightsProgress(SafeGuardingRightsProgress safeGuardingRightsProgress){
         safeGuardingRightsProgressDao.addsafeGuardingRightsProgress(safeGuardingRightsProgress);
     }
 }

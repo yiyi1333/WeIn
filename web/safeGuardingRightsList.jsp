@@ -6,8 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="java.util.List" %>
-<%@ page import="cn.edu.zjut.po.safeGuardingRights" %>
-<%@ page import="cn.edu.zjut.po.safeGuardingRightsProgress" %>
+<%@ page import="cn.edu.zjut.po.SafeGuardingRights" %>
+<%@ page import="cn.edu.zjut.po.SafeGuardingRightsProgress" %>
 <%@ page import="java.util.Date" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -124,7 +124,7 @@
                                 </thead>
                                 <tbody>
                                 <%
-                                    List<safeGuardingRights> safeGuardingRightsList = (List<safeGuardingRights>) session.getAttribute("safeGuardingRightsList");
+                                    List<SafeGuardingRights> safeGuardingRightsList = (List<SafeGuardingRights>) session.getAttribute("safeGuardingRightsList");
                                     int num=0;
                                     int id=0;
                                     Date date = null;
