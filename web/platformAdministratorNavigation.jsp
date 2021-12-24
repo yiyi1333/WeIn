@@ -49,48 +49,13 @@
                 </ul>
             </li>
             <li>
-                <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">企业员工信息管理</span><span
-                        class="fa arrow"></span></a>
-
-                <ul class="nav nav-second-level collapse">
-                    <li><a href="mailbox.html">收件箱</a></li>
-                    <li><a href="mail_detail.html">邮件内容</a></li>
-                    <li><a href="mail_compose.html">撰写邮件</a></li>
-                    <li><a href="email_template.html">邮件模板</a></li>
-                </ul>
+                <a href="reviewComment.action"><i class="fa fa-envelope"></i> <span class="nav-label">流水统计</span></a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">平台管理员</span><span
-                        class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse">
-                    <li><a href="mailbox.html">收件箱</a></li>
-                    <li><a href="mail_detail.html">邮件内容</a></li>
-                    <li><a href="mail_compose.html">撰写邮件</a></li>
-                    <li><a href="email_template.html">邮件模板</a></li>
-                </ul>
-            </li>
-
-            <li>
-                <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">订单相关</span><span
-                        class="fa arrow"></span></a>
-
-                <ul class="nav nav-second-level collapse">
-                    <li><a href="mailbox.html">抽成</a></li>
-                    <li><a href="mail_detail.html">维权</a></li>
-                    <li><a href="mail_compose.html">撰写邮件</a></li>
-                    <li><a href="email_template.html">邮件模板</a></li>
-                </ul>
+                <a href="reviewComment.action"><i class="fa fa-envelope"></i> <span class="nav-label">审核评论</span></a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">流水统计</span><span
-                        class="fa arrow"></span></a>
-
-                <ul class="nav nav-second-level collapse">
-                    <li><a href="mailbox.html">收件箱</a></li>
-                    <li><a href="mail_detail.html">邮件内容</a></li>
-                    <li><a href="mail_compose.html">撰写邮件</a></li>
-                    <li><a href="email_template.html">邮件模板</a></li>
-                </ul>
+                <a href="platformInterventionRights.action"><i class="fa fa-envelope"></i> <span class="nav-label">平台介入维权</span></a>
             </li>
         </ul>
 

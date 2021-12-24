@@ -1,5 +1,6 @@
 package cn.edu.zjut.service;
 
+import cn.edu.zjut.annotation.MyLog;
 import cn.edu.zjut.dao.ElectronicContractsImpl;
 import cn.edu.zjut.dao.EnterpriseDepartmentImpl;
 import cn.edu.zjut.dao.EnterpriseImpl;
@@ -51,6 +52,7 @@ public class ElectronicContractsService {
         return electronicContractsimpl.queryElectronicContracts();
     }
 
+    @MyLog
     public void addElectronicContracts(ElectronicContracts electronicContracts) {
         electronicContractsimpl.addElectronicContracts(electronicContracts);
     }
@@ -76,6 +78,7 @@ public class ElectronicContractsService {
         return contracts;
     }
 
+    @MyLog
     public void changeStateElectronicContracts(int agencyid) {
         electronicContractsimpl.changeStateElectronicContracts(agencyid);
     }

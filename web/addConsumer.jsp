@@ -111,7 +111,8 @@
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group row"><label class="col-sm-1 col-form-label">部门编号</label>
 
-                                    <div class="col-sm-10"><select class="form-control m-b"
+                                    <div class="col-sm-10">
+                                        <select class="form-control m-b"
                                                                    name="consumer.enterpriseDepartmentNumber">
                                         <option value="2">行政部</option>
                                         <option value="3">财务部</option>
@@ -139,10 +140,10 @@
         </div>
         <div class="footer">
             <div class="float-right">
-                <strong>2.9.2 inspinia</strong>
+                <strong>WeIn</strong>
             </div>
             <div>
-                <strong>Copyright</strong> xxx &copy; 2020
+                <strong>Copyright</strong> WeIn &copy; 2021
             </div>
         </div>
 

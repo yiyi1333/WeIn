@@ -45,16 +45,22 @@
         select * from WeIn.consumer;
     </select>
 
+
+    <select id="getConsumerById" resultMap="ConsumerResultMap">
+        select * from WeIn.consumer where consumerId = #{0};
+    </select>
+
     <insert id="addConsumer" parameterType="cn.edu.zjut.po.Consumer">
-        insert into WeIn.consumer(idCardNumber,name,phoneNumber,password,email,enterpriseDepartmentNumber) values(#{idCardNumber},#{name},#{phoneNumber},#{password},#{email},#{enterpriseDepartmentNumber});
+        insert into WeIn.consumer(idCardNumber,name,phoneNumber,password,email,enterpriseDepartmentNumber)
+        values(#{idCardNumber},#{name},#{phoneNumber},#{password},#{email},#{enterpriseDepartmentNumber});
     </insert>
-<!--用户检索-->
+    <!--用户检索-->
     <select id="searchUser" parameterType="java.lang.String" resultMap="ConsumerResultMap">
         select *
         from consumer
         where phoneNumber = #{phoneNumber};
     </select>
-<!--    完整企业用户信息检索-->
+    <!--    完整企业用户信息检索-->
     <select id="searchEnterpriseConsumer" parameterType="java.lang.String" resultMap="EnterpriseConsumer">
         select *
         from consumer, enterprisedepartment, enterprise
@@ -62,13 +68,13 @@
         and enterprisedepartment.enterpriseId = enterprise.enterpriseId
         and consumer.phoneNumber = #{phoneNumber};
     </select>
-<!--    更新授权数据-->
+    <!--    更新授权数据-->
     <update id="updateWxInfo" parameterType="java.lang.String">
         update consumer
         set nickName = #{nickName}, avatarUrl = #{avatarUrl}
         where phoneNumber = #{phoneNumber};
     </update>
-<!--    用id检索企业用户-->
+    <!--    用id检索企业用户-->
     <select id="searchEnterpriseConsumerById" parameterType="java.lang.Integer" resultMap="EnterpriseConsumer">
         select *
         from consumer, enterprisedepartment, enterprise
@@ -76,4 +82,10 @@
         and enterprisedepartment.enterpriseId = enterprise.enterpriseId
         and consumer.consumerId = #{consumerId};
     </select>
+<!--    修改实名数据-->
+    <update id="modfiyCertificationInfo">
+        update consumer
+        set consumer.name = #{realName}, consumer.idCardNumber = #{idNumber}
+        where consumer.consumerId = #{consumerId}
+    </update>
 </mapper>

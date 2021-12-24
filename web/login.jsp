@@ -43,14 +43,12 @@
                 <input type="text" name="user.password" placeholder="密码"
                        class="form-control">
             </div>
-
             <button type="submit" class="btn btn-primary block full-width m-b">登录</button>
-
             <a href="#"><small>忘记密码?</small></a>
             <p class="text-muted text-center"><small>还没有账号?</small></p>
             <a class="btn btn-sm btn-white btn-block" href="register.html">创建一个帐户</a>
         </form>
-        <p class="m-t"><small>Copyright zzyyqxzyxwyxwsm &copy; 2021 </small></p>
+        <p class="m-t"><small>Copyright WeIn &copy; 2021 </small></p>
     </div>
 </div>
 

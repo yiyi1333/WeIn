@@ -14,4 +14,9 @@
     <select id="getAllPlatformAdministrator" resultMap="PlatformAdministratorResultMap">
         select * from WeIn.platformadministrator;
     </select>
+
+
+    <select id="getPlatformAdministratorByAccount" resultMap="PlatformAdministratorResultMap">
+        select * from WeIn.platformadministrator where adminAccount = #{0};
+    </select>
 </mapper>

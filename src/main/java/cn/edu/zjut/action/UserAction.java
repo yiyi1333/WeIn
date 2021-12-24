@@ -1,5 +1,6 @@
 package cn.edu.zjut.action;
 
+import cn.edu.zjut.annotation.MyLog;
 import cn.edu.zjut.po.EnterpriseAgency;
 import cn.edu.zjut.po.PlatformAdministrator;
 import cn.edu.zjut.po.ShopManager;
@@ -89,11 +90,10 @@ public class UserAction implements SessionAware {
                 //存一下企业管理员的编号
                 session.put("loginuserEnterpriseAgencyId", enterpriseAgency.getEnterpriseAgencyId());
                 //有权限审核则主页显示审核
-                if(right == 1) {
+                if (right == 1) {
                     return "rightsuccess";
-                }
-                else {
-                    return  "enterpriseagencysuccess";
+                } else {
+                    return "enterpriseagencysuccess";
                 }
             }
         } else if (user.getAuthority() == 2) {

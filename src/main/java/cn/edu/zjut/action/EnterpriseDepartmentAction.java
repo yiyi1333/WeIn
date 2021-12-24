@@ -107,13 +107,13 @@ public class EnterpriseDepartmentAction extends ActionSupport implements Session
 
     public String addEnterpriseDepartment() {
         if (enterpriseDepartment.getEnterpriseDepartmentName().length() == 0 || enterpriseDepartment.getEnterpriseDepartmentName().length() > 10) {
-            this.addActionError("名称不符合规范!");
+            session.put("message", "名称不符合规范!");
             return "failed";
         }
         List<EnterpriseDepartment> enterpriseDepartments = (List<EnterpriseDepartment>) session.get("displayEnterpriseDepartments");
         for (EnterpriseDepartment ed : enterpriseDepartments) {
             if (Objects.equals(enterpriseDepartment.getEnterpriseDepartmentName(), ed.getEnterpriseDepartmentName())) {
-                this.addActionError("名称不可以重复!");
+                session.put("message", "名称不可以重复!");
                 return "failed";
             }
         }

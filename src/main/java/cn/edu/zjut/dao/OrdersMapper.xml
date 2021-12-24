@@ -3,27 +3,80 @@
         "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.zjut.dao.OrdersMapper">
     <resultMap id="OrdersResultMap" type="cn.edu.zjut.po.Orders">
-        <result property="orderId" column="goodsId"/>
+        <id property="orderId" column="orderId"/>
+        <result property="orderStatus" column="orderStatus"/>
+        <result property="orderPaymentMethod" column="orderPaymentMethod"/>
+        <result property="shopId" column="shopId"/>
+        <result property="consumerId" column="consumerId"/>
+        <result property="orderTime" column="orderTime"/>
+        <result property="logisticsSingle" column="logisticsSingle"/>
+        <result property="goodTotalPrices" column="goodTotalPrices"/>
+        <result property="discountAmount" column="discountAmount"/>
+        <result property="warehousePhone" column="warehousePhone"/>
+        <result property="deliveredPhone" column="deliveredPhone"/>
+        <result property="warehouseDetailedAddress" column="warehouseDetailedAddress"/>
+        <result property="deliverProvince" column="deliverProvince"/>
+        <result property="deliverCity" column="deliverCity"/>
+        <result property="deliverArea" column="deliverArea"/>
+        <result property="deliveredName" column="deliveredName"/>
+        <result property="deliveredDetailedAddress" column="deliveredDetailedAddress"/>
+        <result property="warehouseName" column="warehouseName"/>
+        <result property="warehouseProvince" column="warehouseProvince"/>
+        <result property="warehouseCity" column="warehouseCity"/>
+        <result property="warehouseArea" column="warehouseArea"/>
+        <result property="orderDate" column="orderDate"/>
+        <collection property="orderGoodList" javaType="ArrayList"
+                    column="orderId" ofType="cn.edu.zjut.po.OrderGood"
+                    select="cn.edu.zjut.dao.OrderGoodMapper.getGoodsById"
+                    fetchType="lazy">
+            <id property="orderId" column="orderId" />
+            <id property="goodId" column="goodId" />
+            <result property="num" column="num"/>
+        </collection>
+    </resultMap>
+
+
+    <resultMap id="OrderShowMap" type="cn.edu.zjut.po.OrderShow">
+        <id property="orderId" column="orderId"/>
+        <result property="actuaLAmountPaid" column="actualAmountPaid"/>
         <result property="orderStatus" column="orderStatus"/>
         <result property="orderPaymentMethod" column="orderPaymentMethod"/>
         <result property="orderTime" column="orderTime"/>
-        <result property="consumerId" column="consumerId"/>
         <result property="logisticsSingle" column="logisticsSingle"/>
-        <result property="goodsnumber" column="goodsnumber"/>
-        <result property="actualAmountPaid" column="actualAmountPaid"/>
         <result property="goodTotalPrices" column="goodTotalPrices"/>
         <result property="discountAmount" column="discountAmount"/>
-        <result property="deliveredPhone" column="deliveredPhone"/>
-        <result property="deliveredAeraId" column="warehouseAeraId"/>
-        <result property="deliveredName" column="deliveredName"/>
-        <result property="deliveredDetailedAddress" column="deliveredDetailedAddress"/>
-        <result property="warehouseDetailedAddress" column="warehouseDetailedAddress"/>
-        <result property="warehouseAeraId" column="warehouseAeraId"/>
         <result property="warehousePhone" column="warehousePhone"/>
+        <result property="deliveredPhone" column="deliveredPhone"/>
+        <result property="warehouseDetailedAddress" column="warehouseDetailedAddress"/>
+        <result property="deliverProvince" column="deliverProvince"/>
+        <result property="deliverCity" column="deliverCity"/>
+        <result property="deliverArea" column="deliverArea"/>
+        <result property="deliveredName" column="deliverName"/>
+        <result property="deliveredDetailedAddress" column="deliveredDetailedAddress"/>
         <result property="warehouseName" column="warehouseName"/>
-        <result property="goodsId" column="goods.goodsId"/>
+        <result property="warehouseProvince" column="warehouseProvince"/>
+        <result property="warehouseCity" column="warehouseCity"/>
+        <result property="warehouseArea" column="warehouseArea"/>
+        <result property="orderDate" column="orderDate"/>
+        <association property="shop" javaType="cn.edu.zjut.po.Shop">
+            <result property="shopId" column="shopId"/>
+            <result property="shopName" column="shopName"/>
+            <result property="shopDescription" column="shopDescription"/>
+        </association>
+        <collection property="goodsList" javaType="list" ofType="cn.edu.zjut.po.CartGoods">
+            <result property="goodsNum" column="num"/>
+            <association property="goods" javaType="cn.edu.zjut.po.Goods">
+                <id property="goodsId" column="goodsId"/>
+                <result property="goodsName" column="goodsName"/>
+                <result property="goodsPrice" column="goodPrice"/>
+                <result property="goodsDetails" column="goodsDetails"/>
+                <result property="goodsStock" column="goodsStock"/>
+                <result property="tags" column="tags"/>
+                <result property="goodsImage" column="goodsImage"/>
+                <result property="shopId" column="shopId"/>
+            </association>
+        </collection>
     </resultMap>
-
     <select id="getAllOrders" resultMap="OrdersResultMap">
        select * from orders;
     </select>
@@ -31,10 +84,96 @@
     <select id="selectOrdersById" resultMap="OrdersResultMap" parameterType="java.lang.Integer">
         select orders.*
         from orders
-        where orderId=%${orderId}%;
+        where orderId=#{orderId}
     </select>
 
     <select id="selectOrders" resultMap="OrdersResultMap" parameterType="cn.edu.zjut.po.Orders">
-        select * from orders;
+        select distinct o.*,g.*,og.num from orders o,goods g,ordergood og
+        <where>
+            <if test="shopId != null"> and o.orderId = og.orderId AND g.goodsId = og.goodId AND o.shopId = #{shopId}</if>
+            <if test="orderStatus != null and orderStatus !=''"> and orderStatus=#{orderStatus}</if>
+            <if test="orderId != null and orderId !=''"> and o.orderId=#{orderId}</if>
+            <if test="orderDate != null "> and orderDate=#{orderDate}</if>
+            <if test="consumerId != null and consumerId !=''"> and consumerId=#{consumerId}</if>
+        </where>
+
+    </select>
+
+    <insert id="addOrder" useGeneratedKeys="true" keyProperty="orderId" parameterType="cn.edu.zjut.po.Orders">
+        insert into wein.orders
+        values(
+        null,
+        #{actuaLAmountPaid},
+        #{orderStatus},
+        #{orderPaymentMethod},
+        #{consumerId},
+        #{orderTime},
+        #{shopId},
+        #{logisticsSingle},
+        #{goodTotalPrices},
+        #{discountAmount},
+        #{warehousePhone},
+        #{deliveredPhone},
+        #{warehouseDetailedAddress},
+        #{deliverProvince},
+        #{deliverCity},
+        #{deliverArea},
+        #{deliveredName},
+        #{deliveredDetailedAddress},
+        #{warehouseName},
+        #{warehouseProvince},
+        #{warehouseCity},
+        #{warehouseArea},
+        #{orderDate}
+        );
+    </insert>
+
+    <select id="showAllOrder" resultMap="OrderShowMap">
+        select *
+        from orders, goods, shop, ordergood
+        where orders.consumerId = #{customerId} and orders.orderId = ordergood.orderId and ordergood.goodId = goods.goodsId and orders.shopId = shop.shopId;
+    </select>
+
+    <select id="showOrderDetail" resultMap="OrderShowMap">
+        select *
+        from orders, goods, shop, ordergood
+        where orders.orderId = #{orderId} and orders.orderId = ordergood.orderId and ordergood.goodId = goods.goodsId and orders.shopId = shop.shopId;
+    </select>
+
+    <select id="showStatusOrder" resultMap="OrderShowMap">
+        select *
+        from orders, goods, shop, ordergood
+        where orders.consumerId = #{customerId} and orders.orderStatus = #{status} and orders.orderId = ordergood.orderId and ordergood.goodId = goods.goodsId and orders.shopId = shop.shopId;
+    </select>
+
+    <update id="addLogisticsSingleList" parameterType="cn.edu.zjut.po.Orders">
+        update WeIn.orders
+        set logisticsSingle = #{logisticsSingle},
+        orderStatus="待收货",
+        orderDate = #{orderDate},
+        orderTime = #{orderTime}
+        where orderId = #{orderId};
+    </update>
+
+    <update id="updateOrder" parameterType="cn.edu.zjut.po.Orders">
+        update WeIn.orders set
+        orderStatus= #{orderStatus},
+        orderDate = #{orderDate},
+        orderTime = #{orderTime}
+        where orderId = #{orderId};
+    </update>
+    <select id="getFundFlowByDate" resultMap="OrdersResultMap" parameterType="java.lang.String">
+        select distinct orders.orderId,orders.orderDate,orders.actualAmountPaid,orders.orderStatus from orders,orderstatus
+        where orders.orderId=orderstatus.orderId and orderStatus=orderStatusName
+        and( (orderStatus='已完成' and  orderStatusDate like concat('%', #{date}, '%'))
+        or (orderStatus='仅退款' and  orderStatusDate like concat('%', #{date}, '%'))
+        or (orderStatus='退货退款' and  orderStatusDate like concat('%', #{date}, '%')))
+
+    </select>
+
+    <select id="getAllFundFlow" resultMap="OrdersResultMap">
+        select distinct orders.* from orders,orderstatus
+        where orders.orderId=orderstatus.orderId and orderStatus=orderStatusName
+        and orderStatus='已完成' or orderStatus='仅退款' or orderStatus='退货退款'
     </select>
 </mapper>

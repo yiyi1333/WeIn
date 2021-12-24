@@ -27,7 +27,7 @@ public class EnterpriseFilter implements Filter {
 
         HttpSession session = httpRequest.getSession();
         if (!Objects.equals(session.getAttribute("type"), new String("enterpriseAgency"))) {
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+            request.getRequestDispatcher("/500.jsp").forward(request, response);
         } else {
             chain.doFilter(request, response);
         }

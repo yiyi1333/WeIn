@@ -51,7 +51,13 @@
         select * from electroniccontracts where shopId = #{0} and state = 1;
     </select>
 
-    <select id="queryElectronicContractsByGoodsIdAndDepartmentId" resultMap="ElectronicContractsResultMap" parameterType="int">
-        select * from electroniccontracts where goodsId = #{goodsId} and enterpriseDepartmentId=#{deparatmentId};
+    <select id="queryElectronicContractsByGoodsIdAndDepartmentId" resultMap="ElectronicContractsResultMap">
+        select *
+        from electroniccontracts
+        where goodsId = #{goodsId} and enterpriseDepartmentId= #{deparatmentId} and starttime &lt; #{now} and endtime &gt; #{now}  and discount &lt; any(
+        select discount
+        from electroniccontracts
+        where goodsId = #{goodsId} and enterpriseDepartmentId= #{deparatmentId}
+        )
     </select>
 </mapper>

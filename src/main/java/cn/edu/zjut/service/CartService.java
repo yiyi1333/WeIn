@@ -1,8 +1,10 @@
 package cn.edu.zjut.service;
 
+import cn.edu.zjut.annotation.MyLog;
 import cn.edu.zjut.dao.CartMapper;
 import cn.edu.zjut.dao.GoodsMapper;
 import cn.edu.zjut.po.Cart;
+import cn.edu.zjut.po.CartGoods;
 import cn.edu.zjut.po.Goods;
 
 import java.util.*;
@@ -46,6 +48,7 @@ public class CartService {
         return cart;
     }
 
+    @MyLog
     public int addToCart(int consumerId, int goodsId) {
         //查询现有记录
         Integer num = cartDao.getCartNum(consumerId, goodsId);

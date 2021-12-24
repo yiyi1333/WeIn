@@ -28,4 +28,9 @@ public class ShopManagerImpl implements ShopManagerMapper {
         System.out.println("execute --registerShopmanager()-- method.");
         sqlSession.getMapper(ShopManagerMapper.class).addShopManager(shopManager);
     }
+
+    @Override
+    public ShopManager getShopManagerByAccount(String account) {
+        return sqlSession.getMapper(ShopManagerMapper.class).getShopManagerByAccount(account);
+    }
 }

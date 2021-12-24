@@ -1,10 +1,10 @@
 package cn.edu.zjut.service;
 
+import cn.edu.zjut.annotation.MyLog;
 import cn.edu.zjut.dao.PlatformAdministratorImpl;
-import cn.edu.zjut.po.EnterpriseAgency;
 import cn.edu.zjut.po.PlatformAdministrator;
 
-import java.util.List;
+import java.util.Objects;
 
 public class PlatformAdministratorService {
     private PlatformAdministratorImpl platformAdministratorImpl;
@@ -20,11 +20,9 @@ public class PlatformAdministratorService {
     public PlatformAdministrator login(PlatformAdministrator platformAdministrator) {
         System.out.println("execute --login()-- method.");
 
-        List<PlatformAdministrator> administratorList = platformAdministratorImpl.getAllPlatformAdministrator();
-        for (PlatformAdministrator administrator : administratorList) {
-            if (administrator.getAdminAccount().equals(platformAdministrator.getAdminAccount()) && administrator.getAdminPassword().equals(platformAdministrator.getAdminPassword())) {
-                return administrator;
-            }
+        PlatformAdministrator administratorList = platformAdministratorImpl.getPlatformAdministratorByAccount(platformAdministrator.getAdminAccount());
+        if (Objects.equals(platformAdministrator.getAdminPassword(), administratorList.getAdminPassword())) {
+            return administratorList;
         }
         return null;
     }

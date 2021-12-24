@@ -33,4 +33,9 @@ public class EnterpriseAgencyImpl implements EnterpriseAgencyMapper {
         System.out.println("execute --deleteEnterpriseagency()-- method.");
         sqlSession.getMapper(EnterpriseAgencyMapper.class).deleteEnterpriseagency(id);
     }
+
+    @Override
+    public EnterpriseAgency getEnterpriseAgencyByAccount(String acount) {
+        return sqlSession.getMapper(EnterpriseAgencyMapper.class).getEnterpriseAgencyByAccount(acount);
+    }
 }
