@@ -1,10 +1,12 @@
 package cn.edu.zjut.service;
 
 import cn.edu.zjut.dao.HistoryMapper;
+import cn.edu.zjut.po.History;
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.sql.Date;
+import java.util.List;
 
 public class HistoryService {
     private HistoryMapper histortDao;
@@ -28,5 +30,10 @@ public class HistoryService {
             flag = true;
         }
         return flag;
+    }
+
+    public List<History> selectAllHistory(Integer customerId){
+        List<History> list = histortDao.selectAllHistory(customerId);
+        return list;
     }
 }

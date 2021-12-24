@@ -1,10 +1,12 @@
 package cn.edu.zjut.service;
 
 import cn.edu.zjut.dao.CollectionMapper;
+import cn.edu.zjut.po.Collection;
 
 import java.sql.Date;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class CollectionService {
     private CollectionMapper collectionDao;
@@ -27,5 +29,10 @@ public class CollectionService {
             flag = true;
         }
         return flag;
+    }
+    //查询出用户的全部收藏
+    public List<Collection> selectAllCollection(Integer customerId){
+        List<Collection> list = collectionDao.selectAllCollection(customerId);
+        return list;
     }
 }

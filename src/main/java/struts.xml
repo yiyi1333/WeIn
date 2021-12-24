@@ -101,8 +101,26 @@
             </result>
         </action>
 
+        <action name="selectAllHistory" class="cn.edu.zjut.action.HistoryAction" method="selectAllHistory">
+            <result name="success" type="json">
+                <param name="root">historyList</param>
+            </result>
+            <result name="fail" type="json">
+                <param name="root">status</param>
+            </result>
+        </action>
+
         <action name="addCollection" class="cn.edu.zjut.action.CollectionAction" method="addCollection">
             <result name="success" type="json">
+                <param name="root">status</param>
+            </result>
+        </action>
+
+        <action name="selectAllCollection" class="cn.edu.zjut.action.CollectionAction" method="selectAllCollection">
+            <result name="success" type="json">
+                <param name="root">collectionList</param>
+            </result>
+            <result name="fail" type="json">
                 <param name="root">status</param>
             </result>
         </action>

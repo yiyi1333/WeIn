@@ -1,10 +1,12 @@
 package cn.edu.zjut.dao;
 
+import cn.edu.zjut.po.Collection;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 
 public class CollectionImpl implements CollectionMapper{
     private SqlSessionTemplate sqlSession;
@@ -33,5 +35,10 @@ public class CollectionImpl implements CollectionMapper{
             session.close();
         }
         return line;
+    }
+
+    @Override
+    public List<Collection> selectAllCollection(Integer customerId) {
+        return sqlSession.getMapper(CollectionMapper.class).selectAllCollection(customerId);
     }
 }

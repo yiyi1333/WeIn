@@ -1,10 +1,12 @@
 package cn.edu.zjut.dao;
 
+import cn.edu.zjut.po.History;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import java.sql.Time;
 import java.sql.Date;
+import java.util.List;
 
 public class HistoryImpl implements HistoryMapper{
     private SqlSessionTemplate sqlSession;
@@ -33,5 +35,10 @@ public class HistoryImpl implements HistoryMapper{
             session.close();
         }
         return line;
+    }
+
+    @Override
+    public List<History> selectAllHistory(Integer customerId) {
+        return sqlSession.getMapper(HistoryMapper.class).selectAllHistory(customerId);
     }
 }
