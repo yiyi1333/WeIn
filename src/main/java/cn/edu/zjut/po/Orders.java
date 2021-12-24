@@ -29,6 +29,15 @@ public class Orders {
     private String warehouseArea;
     private Date orderDate;
     private List<OrderGood> orderGoodList;
+    private List<OrderStatus> orderStatusList;
+
+    public List<OrderStatus> getOrderStatusList() {
+        return orderStatusList;
+    }
+
+    public void setOrderStatusList(List<OrderStatus> orderStatusList) {
+        this.orderStatusList = orderStatusList;
+    }
 
     public List<OrderGood> getOrderGoodList() {
         return orderGoodList;

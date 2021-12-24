@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zjut.dao.safeGuardingRightsProgressMapper">
+    <resultMap id="safeGuardingRightsProgressResultMap" type="cn.edu.zjut.po.safeGuardingRightsProgress">
+        <id property="safeGuardingRightsProgressId" column="safeGuardingRightsProgressId"/>
+        <result property="safeGuardingRightsProgressStatus" column="safeGuardingRightsProgressStatus"/>
+        <result property="safeGuardingRightsProgressTime" column="safeGuardingRightsProgressTime"/>
+        <result property="safeGuardingRightsProgressDate" column="safeGuardingRightsProgressDate"/>
+        <result property="safeGuardingRightsId" column="safeGuardingRightsId"/>
+    </resultMap>
+
+
+    <select id="getsafeGuardingRightsProgressById" resultMap="safeGuardingRightsProgressResultMap" parameterType="java.lang.Integer">
+        select * from WeIn.safeGuardingRightsProgress where safeGuardingRightsProgressId=#{safeGuardingRightsProgressId};
+    </select>
+
+    <insert id="addsafeGuardingRightsProgress" parameterType="cn.edu.zjut.po.safeGuardingRightsProgress">
+        insert into WeIn.safeGuardingRightsProgress(safeGuardingRightsProgressStatus,safeGuardingRightsProgressTime,safeGuardingRightsProgressDate,safeGuardingRightsId)
+            values(#{safeGuardingRightsProgressStatus},#{safeGuardingRightsProgressTime},#{safeGuardingRightsProgressDate},#{safeGuardingRightsId});
+    </insert>
+</mapper>

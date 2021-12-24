@@ -10,5 +10,8 @@ public interface OrdersMapper {
     public Orders selectOrdersById(@Param("orderId") Integer orderId);
     public List<Orders> selectOrders(Orders orders);
     public Integer addOrder(Orders orders);
-
+    public void addLogisticsSingleList(Orders orders);
+    public void updateOrder(Orders orders);
+    public List<Orders> getAllFundFlow();//获取店铺所有流水
+    public List<Orders> getFundFlowByDate(String date);
 }

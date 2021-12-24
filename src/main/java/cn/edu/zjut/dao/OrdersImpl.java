@@ -36,6 +36,31 @@ public class OrdersImpl implements OrdersMapper{
 
     @Override
     public Integer addOrder(Orders orders) {
+        System.out.println("execute--addOrder--dao");
         return sqlSession.getMapper(OrdersMapper.class).addOrder(orders);
+    }
+
+    @Override
+    public void addLogisticsSingleList(Orders orders) {
+        System.out.println("execute --addLogisticsSingleList-- dao");
+        sqlSession.getMapper(OrdersMapper.class).addLogisticsSingleList(orders);
+    }
+
+    @Override
+    public void updateOrder(Orders orders) {
+        System.out.println("execute --updateOrder-- dao");
+        sqlSession.getMapper(OrdersMapper.class).updateOrder(orders);
+    }
+
+    @Override
+    public List<Orders> getAllFundFlow() {
+        System.out.println("execute--getAllFundFlow--dao");
+        return sqlSession.getMapper(OrdersMapper.class).getAllFundFlow();
+    }
+
+    @Override
+    public List<Orders> getFundFlowByDate(String date) {
+        System.out.println("execute--getFundFlowByDate--dao");
+        return sqlSession.getMapper(OrdersMapper.class).getFundFlowByDate(date);
     }
 }

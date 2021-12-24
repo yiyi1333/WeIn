@@ -26,4 +26,9 @@ public class OrderGoodImpl implements OrderGoodMapper {
     public List<OrderGood> getGoodsById(Integer orderId) {
         return sqlSession.getMapper(OrderGoodMapper.class).getGoodsById(orderId);
     }
+
+    @Override
+    public OrderGood selectOrderGood(OrderGood orderGood) {
+        return sqlSession.getMapper(OrderGoodMapper.class).selectOrderGood(orderGood);
+    }
 }

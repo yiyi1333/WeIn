@@ -210,8 +210,7 @@
         </action>
 
 
-        <!--        王怡欣配置区-->
-        <!--        王淑媚配置区-->
+        <!--        王怡欣、王淑媚配置区-->
         <action name="addconsumer" class="cn.edu.zjut.action.ConsumerAction" method="addConsumer">
             <result name="success">/addConsumer.jsp</result>
             <result name="failed">/500.jsp</result>
@@ -228,9 +227,6 @@
         <action name="displayAddress" class="cn.edu.zjut.action.GoodsAction" method="displayShopWareHouseAddress">
             <result name="displayShopWareHouseAddressSuccess">/addProduct.jsp</result>
         </action>
-
-
-        <!--        王淑媚配置区-->
         <action name="addWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction"
                 method="addWareHouseAddress">
             <result name="success">/addWareHouseAddress.jsp</result>
@@ -269,7 +265,46 @@
                 method="displayShopWareHouseAddress">
             <result name="displayShopWareHouseAddressSuccess">/wareHouseAddressList.jsp</result>
         </action>
-
+        <action name="getLogisticsSingle" class="cn.edu.zjut.action.OrdersAction" method="getLogisticsSingle">
+            <result name="displayShopOrdersSuccess">/addLogisticsSingle.jsp</result>
+        </action>
+        <action name="addLogisticsSingle" class="cn.edu.zjut.action.OrdersAction" method="addLogisticsSingle">
+            <result name="success">/addLogisticsSingle.jsp</result>
+        </action>
+        <action name="addLogisticsSingleList" class="cn.edu.zjut.action.OrdersAction" method="addLogisticsSingleList">
+            <result name="displayShopOrdersSuccess">/addLogisticsSingle.jsp</result>
+        </action>
+        <action name="selectOrderById" class="cn.edu.zjut.action.OrdersAction" method="selectOrderById">
+            <result name="success">/orderGoodList.jsp</result>
+        </action>
+        <action name="displayShopSafeGuardingRights" class="cn.edu.zjut.action.safeGuardingRightsAction" method="displayShopSafeGuardingRights">
+            <result name="displaySuccess">/safeGuardingRightsList.jsp</result>
+            <result name="displayFailed">/500.jsp</result>
+        </action>
+        <action name="selectShopSafeGuardingRights" class="cn.edu.zjut.action.safeGuardingRightsAction" method="selecthopSafeGuardingRights">
+            <result name="displaySuccess">/safeGuardingRightsList.jsp</result>
+            <result name="displayFailed">/500.jsp</result>
+        </action>
+        <action name="selectShopSafeGuardingRightsById" class="cn.edu.zjut.action.safeGuardingRightsAction" method="selecthopSafeGuardingRightsById">
+            <result name="displaySuccess">/safeGuradingRightDetails.jsp</result>
+            <result name="displayFailed">/500.jsp</result>
+        </action>
+        <action name="changeSafeGuardingRightsProgress" class="cn.edu.zjut.action.safeGuardingRightsAction" method="changeSafeGuardingRightsProgress">
+            <result name="displaySuccess">/safeGuradingRightDetails.jsp</result>
+            <result name="displayFailed">/500.jsp</result>
+        </action>
+        <action name="getAllFundFlow" class="cn.edu.zjut.action.OrdersAction" method="getAllFundFlow">
+            <result name="success">/fundFlow.jsp</result>
+        </action>
+        <action name="getOrderStatusById" class="cn.edu.zjut.action.OrderStatusAction" method="getOrderStatusById">
+            <result name="success">/orderTimeLine.jsp</result>
+        </action>
+        <action name="getFundFlowByDate" class="cn.edu.zjut.action.OrdersAction" method="getFundFlowByDate">
+            <result name="success">/fundFlow.jsp</result>
+        </action>
+        <action name="displayComment" class="cn.edu.zjut.action.GoodsAction" method="displayComment">
+            <result name="displaySuccess">/goodsCommend.jsp</result>
+        </action>
     </package>
 
 </struts>

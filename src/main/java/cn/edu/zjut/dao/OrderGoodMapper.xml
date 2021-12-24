@@ -8,6 +8,12 @@
         <result property="num" column="num"/>
 
     </resultMap>
+    <resultMap id="OrderGoodResultMap1" type="cn.edu.zjut.po.OrderGood">
+        <id property="orderId" column="orderId"/>
+        <id property="goodId" column="goodId"/>
+        <result property="num" column="num"/>
+        <result property="singlePieceActualPrice" column="singlePieceActualPrice"/>
+    </resultMap>
     <insert id="addOrderGood" parameterType="cn.edu.zjut.po.OrderGood">
         insert into wein.ordergood
         values(
@@ -19,5 +25,9 @@
 
     <select id="getGoodsById" resultMap="OrderGoodResultMap" parameterType="java.lang.Integer">
         select * from WeIn.ordergood where orderId=#{orderId};
+    </select>
+
+    <select id="selectOrderGood" resultMap="OrderGoodResultMap1" parameterType="cn.edu.zjut.po.OrderGood">
+        select * from WeIn.ordergood where orderId=#{orderId} and goodId=#{goodId};
     </select>
 </mapper>
