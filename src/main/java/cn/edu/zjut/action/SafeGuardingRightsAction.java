@@ -93,12 +93,7 @@ public class SafeGuardingRightsAction {
         System.out.println("imagePath: " + imagePath);
         System.out.println("consumerId: " + consumerId);
         System.out.println("orderId: " + orderId);
-        if(safeGuardingRightsService.applyForRights(Integer.parseInt(goodsId), Integer.parseInt(goodsNum), descript, imagePath, Integer.parseInt(orderId), Integer.parseInt(consumerId), type)){
-            statusMes = "申请成功";
-        }
-        else{
-            statusMes = "申请提交失败";
-        }
+        statusMes = safeGuardingRightsService.applyForRights(Integer.parseInt(goodsId), Integer.parseInt(goodsNum), descript, imagePath, Integer.parseInt(orderId), Integer.parseInt(consumerId), type);
         return "success";
     }
 }

@@ -1,7 +1,10 @@
 package cn.edu.zjut.dao;
 
+import cn.edu.zjut.po.SafeGuardingRights;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
+
+import java.util.List;
 
 public class SafeGuardingRightsImpl implements SafeGuardingRightsMapper{
     private SqlSessionTemplate sqlSession;
@@ -31,5 +34,10 @@ public class SafeGuardingRightsImpl implements SafeGuardingRightsMapper{
             session.close();
         }
         return line;
+    }
+
+    @Override
+    public List<SafeGuardingRights> selectSafeGuardingRightsByGoodId(Integer goodId) {
+        return sqlSession.getMapper(SafeGuardingRightsMapper.class).selectSafeGuardingRightsByGoodId(goodId);
     }
 }
