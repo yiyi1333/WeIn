@@ -1,15 +1,8 @@
 package cn.edu.zjut.action;
 
 
-import cn.edu.zjut.po.Goods;
-import cn.edu.zjut.po.OrderShow;
-import cn.edu.zjut.po.Orders;
-import cn.edu.zjut.po.ShopManager;
-import cn.edu.zjut.service.GoodsService;
 import cn.edu.zjut.po.*;
-import cn.edu.zjut.service.DrawBackService;
-import cn.edu.zjut.service.OrderStatusService;
-import cn.edu.zjut.service.OrdersService;
+import cn.edu.zjut.service.*;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.struts2.interceptor.SessionAware;
@@ -21,6 +14,7 @@ import java.util.*;
 public class OrdersAction implements SessionAware {
     private Map<String, Object> session;
     private OrdersService ordersService;
+    private ShopManagerService shopManagerService;
     private List orderslist;
     private String shops;
     private String address;
@@ -38,6 +32,13 @@ public class OrdersAction implements SessionAware {
     private Orders orders;
     private Integer orderId;
 
+    public void setShopManagerService(ShopManagerService shopManagerService) {
+        this.shopManagerService = shopManagerService;
+    }
+
+    public ShopManagerService getShopManagerService() {
+        return shopManagerService;
+    }
 
     public OrderShow getOrder() {
         return order;
@@ -530,7 +531,7 @@ public class OrdersAction implements SessionAware {
 
     public String selectOrders() {
         Date date = orders.getOrderDate();
-        if(date!=null){
+        if (date != null) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String stringDate = sdf.format(date);
             java.sql.Date ss = java.sql.Date.valueOf(stringDate);
@@ -550,29 +551,34 @@ public class OrdersAction implements SessionAware {
         session.put("order", obj);
         return "success";
     }
+
     //查询某个用户的全部订单数据
-    public String showAllOrder(){
+    public String showAllOrder() {
         orderslist = ordersService.showAllOrder(Integer.parseInt(consumerId));
         System.out.println(orderslist);
         return "success";
     }
+
     //查询某个订单的详情
-    public String showOrderDetail(){
+    public String showOrderDetail() {
         order = ordersService.showOrderDetail(Integer.parseInt(orderid));
         return "success";
     }
+
     //查询所有待收货订单
-    public String showWaitReceiveOrder(){
+    public String showWaitReceiveOrder() {
         orderslist = ordersService.showWaitReceiveOrder(Integer.parseInt(consumerId));
         return "success";
     }
+
     //查询所以待付款订单
-    public String showWaitPayOrder(){
+    public String showWaitPayOrder() {
         orderslist = ordersService.showWaitPayOrder(Integer.parseInt(consumerId));
         return "success";
     }
+
     //查询所有待评价订单
-    public String showWaitEvaluateOrder(){
+    public String showWaitEvaluateOrder() {
         orderslist = ordersService.showWaitEvaluateOrder(Integer.parseInt(consumerId));
         return "success";
     }
@@ -597,7 +603,7 @@ public class OrdersAction implements SessionAware {
     // 按提交表单获得待发货订单
     public String addLogisticsSingle() {
         Date date = orders.getOrderDate();
-        if(date!=null){
+        if (date != null) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String stringDate = sdf.format(date);
             java.sql.Date ss = java.sql.Date.valueOf(stringDate);
@@ -616,9 +622,9 @@ public class OrdersAction implements SessionAware {
     // 按提交表单填写物流单号
     public String addLogisticsSingleList() {
         // 获取当前时间
-        long  l = System.currentTimeMillis();
+        long l = System.currentTimeMillis();
         Date d = new Date(l);
-        SimpleDateFormat dateFormat =  new  SimpleDateFormat( "yyyy-MM-dd" );
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String dateNowStr = dateFormat.format(d);
         java.sql.Date ss = java.sql.Date.valueOf(dateNowStr);
         Time time = new Time(0);
@@ -626,8 +632,8 @@ public class OrdersAction implements SessionAware {
         OrderStatus orderStatus = new OrderStatus();
 
         // 修改数据库信息
-        for(Orders orders :ordersList){
-            if(orders.getLogisticsSingle().equals("") || orders.getLogisticsSingle()==null || orders.getLogisticsSingle().equals("请输入物流单号")){
+        for (Orders orders : ordersList) {
+            if (orders.getLogisticsSingle().equals("") || orders.getLogisticsSingle() == null || orders.getLogisticsSingle().equals("请输入物流单号")) {
                 continue;
             }
             orderStatus.setOrderId(orders.getOrderId());
@@ -655,125 +661,177 @@ public class OrdersAction implements SessionAware {
         session.put("ordersList", ordersList);
         return "displayShopOrdersSuccess";
     }
-    public String selectOrderById(){
-        Orders obj=ordersService.selectOrderById(orderId);
-        List<OrderGood> orderGoods=obj.getOrderGoodList();
-        List<Goods> goodsList=new ArrayList<Goods>();
-        for(int i=0;i<orderGoods.size();i++){
-            Goods goods=new Goods();
-            goods=goodsService.getGoodsById(orderGoods.get(i).getGoodId());
+
+    public String selectOrderById() {
+        Orders obj = ordersService.selectOrderById(orderId);
+        List<OrderGood> orderGoods = obj.getOrderGoodList();
+        List<Goods> goodsList = new ArrayList<Goods>();
+        for (int i = 0; i < orderGoods.size(); i++) {
+            Goods goods = new Goods();
+            goods = goodsService.getGoodsById(orderGoods.get(i).getGoodId());
             goodsList.add(goods);
         }
-        session.put("goodsList",goodsList);
-        session.put("orderGoods",orderGoods);
+        session.put("goodsList", goodsList);
+        session.put("orderGoods", orderGoods);
         session.put("order", obj);
         return "success";
     }
+
     public String getAllFundFlow() {
-        List<Orders> ordersList=ordersService.getAllFundFlow();
-        List<Double> earningList=new ArrayList<>();
-        List<Integer> goodsNumList=new ArrayList<>();
-        List<String> endTimeList=new ArrayList<>();
-        for(int i=0;i<ordersList.size();i++)
-        {
-            int goodNum=0;
-            OrderStatus orderStatus=new OrderStatus();
+        List<Orders> ordersList = ordersService.getAllFundFlow();
+        List<Double> earningList = new ArrayList<>();
+        List<Integer> goodsNumList = new ArrayList<>();
+        List<String> endTimeList = new ArrayList<>();
+        for (int i = 0; i < ordersList.size(); i++) {
+            int goodNum = 0;
+            OrderStatus orderStatus = new OrderStatus();
             orderStatus.setOrderId(ordersList.get(i).getOrderId());
-            List<OrderGood> orderGoodList=ordersService.getGoodsById(ordersList.get(i).getOrderId());
-            for(int j=0;j<orderGoodList.size();j++)
-            {
-                goodNum+=orderGoodList.get(j).getNum();
+            List<OrderGood> orderGoodList = ordersService.getGoodsById(ordersList.get(i).getOrderId());
+            for (int j = 0; j < orderGoodList.size(); j++) {
+                goodNum += orderGoodList.get(j).getNum();
             }
-            if(ordersList.get(i).getOrderStatus().equals("已完成"))
-            {
+            if (ordersList.get(i).getOrderStatus().equals("已完成")) {
                 earningList.add(ordersList.get(i).getActuaLAmountPaid());
                 goodsNumList.add(goodNum);
                 orderStatus.setOrderStatusName("已完成");
-            }else if(ordersList.get(i).getOrderStatus().equals("仅退款")||ordersList.get(i).getOrderStatus().equals("退货退款")){
-                List<DrawBack> drawBackList=drawBackService.getDrawBackMoneyById(ordersList.get(i).getOrderId());
-                double drawBack=0;
-                int num=0;
-                for(int j=0;j<drawBackList.size();j++)
-                {
-                    drawBack+=drawBackList.get(j).getMoney();
-                    num+=drawBackList.get(j).getGoodsNum();
+            } else if (ordersList.get(i).getOrderStatus().equals("仅退款") || ordersList.get(i).getOrderStatus().equals("退货退款")) {
+                List<DrawBack> drawBackList = drawBackService.getDrawBackMoneyById(ordersList.get(i).getOrderId());
+                double drawBack = 0;
+                int num = 0;
+                for (int j = 0; j < drawBackList.size(); j++) {
+                    drawBack += drawBackList.get(j).getMoney();
+                    num += drawBackList.get(j).getGoodsNum();
                 }
-                earningList.add(ordersList.get(i).getActuaLAmountPaid()-drawBack);
-                goodsNumList.add(goodNum-num);
-                if(ordersList.get(i).getOrderStatus().equals("仅退款"))
-                {
+                earningList.add(ordersList.get(i).getActuaLAmountPaid() - drawBack);
+                goodsNumList.add(goodNum - num);
+                if (ordersList.get(i).getOrderStatus().equals("仅退款")) {
                     orderStatus.setOrderStatusName("仅退款");
-                }else {
+                } else {
                     orderStatus.setOrderStatusName("退货退款");
                 }
             }
-            orderStatus=orderStatusService.getOrderStatus(orderStatus).get(0);
-            endTimeList.add(orderStatus.getOrderStatusDate()+" "+orderStatus.getOrderStatusTime());
+            orderStatus = orderStatusService.getOrderStatus(orderStatus).get(0);
+            endTimeList.add(orderStatus.getOrderStatusDate() + " " + orderStatus.getOrderStatusTime());
         }
-        session.put("endTimeList",endTimeList);
-        session.put("earningList",earningList);
-        session.put("ordersList",ordersList);
-        session.put("goodsNumList",goodsNumList);
+        session.put("endTimeList", endTimeList);
+        session.put("earningList", earningList);
+        session.put("ordersList", ordersList);
+        session.put("goodsNumList", goodsNumList);
         return "success";
     }
-    public String getFundFlowByDate(){
+
+    public String getFundFlowByDate() {
         System.out.println(year);
         System.out.println(month);
         System.out.println(date);
-        List<Orders> ordersList=new ArrayList<>();
-        if(year.equals("全部")&&date.equals("")&&!month.equals("")){
-            ordersList=ordersService.getFundFlowByDate(month);
-        } else if(!year.equals("")&&!year.equals("全部")&&date.equals("")&&month.equals(""))
-        {
-            ordersList=ordersService.getFundFlowByDate(year);
-        }else if(!date.equals("")&&year.equals("全部")&&month.equals("")){
-            ordersList=ordersService.getFundFlowByDate(date);
-        }else{
-            ordersList=ordersService.getAllFundFlow();
+        List<Orders> ordersList = new ArrayList<>();
+        if (year.equals("全部") && date.equals("") && !month.equals("")) {
+            ordersList = ordersService.getFundFlowByDate(month);
+        } else if (!year.equals("") && !year.equals("全部") && date.equals("") && month.equals("")) {
+            ordersList = ordersService.getFundFlowByDate(year);
+        } else if (!date.equals("") && year.equals("全部") && month.equals("")) {
+            ordersList = ordersService.getFundFlowByDate(date);
+        } else {
+            ordersList = ordersService.getAllFundFlow();
         }
-        List<Double> earningList=new ArrayList<>();
-        List<Integer> goodsNumList=new ArrayList<>();
-        List<String> endTimeList=new ArrayList<>();
-        for(int i=0;i<ordersList.size();i++)
-        {
-            int goodNum=0;
-            OrderStatus orderStatus=new OrderStatus();
+        List<Double> earningList = new ArrayList<>();
+        List<Integer> goodsNumList = new ArrayList<>();
+        List<String> endTimeList = new ArrayList<>();
+        for (int i = 0; i < ordersList.size(); i++) {
+            int goodNum = 0;
+            OrderStatus orderStatus = new OrderStatus();
             orderStatus.setOrderId(ordersList.get(i).getOrderId());
-            List<OrderGood> orderGoodList=ordersService.getGoodsById(ordersList.get(i).getOrderId());
-            for(int j=0;j<orderGoodList.size();j++)
-            {
-                goodNum+=orderGoodList.get(j).getNum();
+            List<OrderGood> orderGoodList = ordersService.getGoodsById(ordersList.get(i).getOrderId());
+            for (int j = 0; j < orderGoodList.size(); j++) {
+                goodNum += orderGoodList.get(j).getNum();
             }
-            if(ordersList.get(i).getOrderStatus().equals("已完成"))
-            {
+            if (ordersList.get(i).getOrderStatus().equals("已完成")) {
                 earningList.add(ordersList.get(i).getActuaLAmountPaid());
                 goodsNumList.add(goodNum);
                 orderStatus.setOrderStatusName("已完成");
-            }else if(ordersList.get(i).getOrderStatus().equals("仅退款")||ordersList.get(i).getOrderStatus().equals("退货退款")){
-                List<DrawBack> drawBackList=drawBackService.getDrawBackMoneyById(ordersList.get(i).getOrderId());
-                double drawBack=0;
-                int num=0;
-                for(int j=0;j<drawBackList.size();j++)
-                {
-                    drawBack+=drawBackList.get(j).getMoney();
-                    num+=drawBackList.get(j).getGoodsNum();
+            } else if (ordersList.get(i).getOrderStatus().equals("仅退款") || ordersList.get(i).getOrderStatus().equals("退货退款")) {
+                List<DrawBack> drawBackList = drawBackService.getDrawBackMoneyById(ordersList.get(i).getOrderId());
+                double drawBack = 0;
+                int num = 0;
+                for (int j = 0; j < drawBackList.size(); j++) {
+                    drawBack += drawBackList.get(j).getMoney();
+                    num += drawBackList.get(j).getGoodsNum();
                 }
-                earningList.add(ordersList.get(i).getActuaLAmountPaid()-drawBack);
-                goodsNumList.add(goodNum-num);
-                if(ordersList.get(i).getOrderStatus().equals("仅退款"))
-                {
+                earningList.add(ordersList.get(i).getActuaLAmountPaid() - drawBack);
+                goodsNumList.add(goodNum - num);
+                if (ordersList.get(i).getOrderStatus().equals("仅退款")) {
                     orderStatus.setOrderStatusName("仅退款");
-                }else {
+                } else {
                     orderStatus.setOrderStatusName("退货退款");
                 }
             }
-            orderStatus=orderStatusService.getOrderStatus(orderStatus).get(0);
-            endTimeList.add(orderStatus.getOrderStatusDate()+" "+orderStatus.getOrderStatusTime());
+            orderStatus = orderStatusService.getOrderStatus(orderStatus).get(0);
+            endTimeList.add(orderStatus.getOrderStatusDate() + " " + orderStatus.getOrderStatusTime());
         }
-        session.put("endTimeList",endTimeList);
-        session.put("earningList",earningList);
-        session.put("ordersList",ordersList);
-        session.put("goodsNumList",goodsNumList);
+        session.put("endTimeList", endTimeList);
+        session.put("earningList", earningList);
+        session.put("ordersList", ordersList);
+        session.put("goodsNumList", goodsNumList);
+        return "success";
+    }
+
+    public String platformFinancialStatistics() {
+        List<Orders> tmp = ordersService.getAllOrders();
+        Date today = new Date();
+        List<Double> money = new ArrayList<>();
+        List<Integer> number = new ArrayList<>();
+        for (int i = 0; i < 31; i++) {
+            money.add(0.0);
+            number.add(0);
+        }
+        List<Orders> ordersList = new ArrayList<>();
+        double thisyearmoney = 0.0;
+        double thismonthmoney = 0.0;
+        double thisdaymoney = 0.0;
+        int thismonthorder = 0;
+        int thisdayorder = 0;
+        List<ShopManager> shopManagers = shopManagerService.getShopManagerImpl().getAllShopManager();
+        int shopmanagernumber = shopManagers.size();
+        Map<Integer, Double> mp1 = new HashMap<>();
+        Map<Integer, Integer> mp2 = new HashMap<>();
+        int y = (year == null ? 0 : Integer.parseInt(year));
+        int m = (month == null ? 0 : Integer.parseInt(month));
+        int d = (date == null ? 0 : Integer.parseInt(date));
+        for (Orders ods : tmp) {
+            if ("已完成".equals(ods.getOrderStatus())) {
+                java.util.Date utilDate1 = new java.util.Date(ods.getOrderDate().getTime());
+                if ((utilDate1.getYear() + 1900 == y || y == 0) && (utilDate1.getMonth() + 1 == m || m == 0) && (utilDate1.getDate() == d || d == 0)) {
+                    if (mp1.get(ods.getShopId()) == null) mp1.put(ods.getShopId(), 0.0);
+                    if (mp2.get(ods.getShopId()) == null) mp2.put(ods.getShopId(), 0);
+                    mp1.put(ods.getShopId(), mp1.get(ods.getShopId()) + ods.getActuaLAmountPaid());
+                    mp2.put(ods.getShopId(), mp2.get(ods.getShopId()) + 1);
+                }
+                if (ods.getOrderDate().getYear() == today.getYear()) {
+                    thisyearmoney += ods.getActuaLAmountPaid();
+                    if (ods.getOrderDate().getMonth() == today.getMonth()) {
+                        int day = today.getDay();
+                        money.set(day - 1, money.get(day - 1) + ods.getActuaLAmountPaid());
+                        number.set(day - 1, number.get(day - 1) + 1);
+                        thismonthmoney += ods.getActuaLAmountPaid();
+                        thismonthorder += 1;
+                        if (ods.getOrderDate().getDay() == today.getDay()) {
+                            thisdaymoney += ods.getActuaLAmountPaid();
+                        }
+                    }
+                }
+            }
+        }
+
+        session.put("mp1", mp1);
+        session.put("mp2", mp2);
+        session.put("money", money);
+        session.put("number", number);
+        session.put("thisyearmoney", thisyearmoney);
+        session.put("thismonthmoney", thismonthmoney);
+        session.put("thisdaymoney", thisdaymoney);
+        session.put("thismonthorder", thismonthorder);
+        session.put("shopmanagernumber", shopmanagernumber);
+        session.put("thisdayorder", thisdayorder);
         return "success";
     }
 

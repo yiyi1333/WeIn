@@ -1,6 +1,5 @@
 package cn.edu.zjut.action;
 
-import cn.edu.zjut.annotation.MyLog;
 import cn.edu.zjut.po.EnterpriseAgency;
 import cn.edu.zjut.po.PlatformAdministrator;
 import cn.edu.zjut.po.ShopManager;
@@ -109,6 +108,12 @@ public class UserAction implements SessionAware {
             }
         }
         return "failed";
+    }
+
+
+    public String loginout() {
+        session.clear();
+        return "success";
     }
 
 }

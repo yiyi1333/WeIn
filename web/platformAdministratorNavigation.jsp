@@ -40,16 +40,16 @@
                 <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">商家信息管理</span><span
                         class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                    <li><a href="registerShopmanager.jsp">注册企业用户</a></li>
+                    <li><a href="registerShopmanager.jsp">注册店铺商家</a></li>
                     <li>
                     <a href="./displayShopmanager">查询商家店铺信息</a></li>
-                    <li><a href="dashboard_3.html">查询企业结构</a></li>
-                    <li><a href="dashboard_4_1.html">删除企业</a></li>
-                    <li><a href="graph_flot.html">注册</a></li>
+<%--                    <li><a href="dashboard_3.html">查询企业结构</a></li>--%>
+<%--                    <li><a href="dashboard_4_1.html">删除企业</a></li>--%>
+<%--                    <li><a href="graph_flot.html">注册</a></li>--%>
                 </ul>
             </li>
             <li>
-                <a href="reviewComment.action"><i class="fa fa-envelope"></i> <span class="nav-label">流水统计</span></a>
+                <a href="platformFinancialStatistics.action"><i class="fa fa-envelope"></i> <span class="nav-label">流水统计</span></a>
             </li>
             <li>
                 <a href="reviewComment.action"><i class="fa fa-envelope"></i> <span class="nav-label">审核评论</span></a>

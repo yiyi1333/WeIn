@@ -53,7 +53,7 @@
 
 
             <li>
-                <a href="login.jsp">
+                <a href="loginout.action">
                     <i class="fa fa-sign-out"></i> 退出
                 </a>
             </li>

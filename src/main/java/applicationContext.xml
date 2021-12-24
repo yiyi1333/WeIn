@@ -163,10 +163,10 @@
 
     <bean id="collectionAction" class="cn.edu.zjut.action.CollectionAction">
         <property name="collectionService" ref="collectionService"/>
-     </bean>
+    </bean>
 
     <bean id="uploadImageAction" class="cn.edu.zjut.action.UploadImageAction"/>
-<!--维权-->
+    <!--维权-->
     <bean id="safeGuardingRightsService" class="cn.edu.zjut.service.safeGuardingRightsService">
         <property name="safeGuardingRightsDao" ref="safeGuardingRightsImpl"/>
         <property name="goodsMapper" ref="goodsImpl"/>
@@ -184,7 +184,7 @@
         <property name="ordersService" ref="ordersService"/>
         <property name="safeGuardingRightsProgressService" ref="safeGuardingRightsProgressService"/>
     </bean>
-<!--    评论-->
+    <!--    评论-->
     <!--余秋霞配置区-->
 
     <bean id="cartDao" class="cn.edu.zjut.dao.CartImpl">
@@ -307,6 +307,7 @@
     <bean id="ordersAction" class="cn.edu.zjut.action.OrdersAction" scope="prototype">
         <property name="ordersService" ref="ordersService"/>
         <property name="goodsService" ref="goodsService"/>
+        <property name="shopManagerService" ref="shopManagerService"/>
     </bean>
 
     <bean id="wareHouseAddressImpl" class="cn.edu.zjut.dao.WareHouseAddressImpl">
