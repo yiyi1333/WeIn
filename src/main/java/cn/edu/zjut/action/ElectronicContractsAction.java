@@ -4,6 +4,7 @@ import cn.edu.zjut.po.ElectronicContracts;
 import cn.edu.zjut.po.EnterpriseDepartment;
 import cn.edu.zjut.service.ElectronicContractsService;
 import cn.edu.zjut.service.RegisterShopmanagerAndEnterpriseagencyService;
+import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -13,7 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class ElectronicContractsAction implements SessionAware, ServletRequestAware {
+public class ElectronicContractsAction extends ActionSupport implements SessionAware, ServletRequestAware {
     private ElectronicContractsService electronicContractsService;
     private ElectronicContracts electronicContracts;
     private EnterpriseDepartment enterpriseDepartment;
@@ -67,12 +68,16 @@ public class ElectronicContractsAction implements SessionAware, ServletRequestAw
     //企业管理员起草合同
     public String editElectronicContracts() {
         //对于展示的企业结构
+        boolean ok = true;
+
+        StringBuilder mess = new StringBuilder();
         List<EnterpriseDepartment> EnterpriseDepartmentList = (List<EnterpriseDepartment>) session.get("electronicContractsList");
         Iterator<EnterpriseDepartment> enterpriseDepartmentIterator = EnterpriseDepartmentList.iterator();
 //        //对于展示的折扣
 //        List<Double> dicountList = (List<Double>) session.get("dicountList");
 //        Iterator<Double> doubleIterator = dicountList.iterator();
 
+        List<ElectronicContracts> list = new ArrayList<>();
         while (enterpriseDepartmentIterator.hasNext()) {
             EnterpriseDepartment enterpriseDepartment = enterpriseDepartmentIterator.next();
 //            Double discountnow = doubleIterator.next();
@@ -88,7 +93,16 @@ public class ElectronicContractsAction implements SessionAware, ServletRequestAw
             String discount = httpServletRequest.getParameter("discountthis" + enterpriseDepartment.getEnterpriseDepartmentId());
             double dc = Double.parseDouble(discount);
             electronicContracts1.setDiscount(dc);
+            if (electronicContractsService.getElectronicContractsimpl().queryElectronicContractsByGoodsIdDepartmentId(electronicContracts1.getGoodsId(), electronicContracts1.getEnterpriseDepartmentId()) != null) {
+                ok = false;
+                mess.append(String.valueOf(electronicContracts1.getEnterpriseDepartmentId()));
+            }
+            list.add(electronicContracts1);
             electronicContractsService.addElectronicContracts(electronicContracts1);
+        }
+        if (!ok) {
+            mess.append("号部门已经与该商品存在有效或待审核合同");
+            addActionError(mess.toString());
         }
         return "success";
     }
@@ -114,6 +128,7 @@ public class ElectronicContractsAction implements SessionAware, ServletRequestAw
         session.put("shopContracts", electronicContractsList);
         return "success";
     }
+
     public ElectronicContracts getElectronicContracts() {
         return electronicContracts;
     }

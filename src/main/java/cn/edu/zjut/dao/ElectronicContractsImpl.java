@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import java.util.Date;
 import java.util.List;
 
-public class ElectronicContractsImpl implements ElectronicContractsMapper{
+public class ElectronicContractsImpl implements ElectronicContractsMapper {
     private SqlSessionTemplate sqlSession;
 
     public SqlSessionTemplate getSqlSession() {
@@ -50,6 +50,11 @@ public class ElectronicContractsImpl implements ElectronicContractsMapper{
     @Override
     public ElectronicContracts queryElectronicContractsByGoodsIdAndDepartmentId(int goodsId, int deparatmentId, Date now) {
         return sqlSession.getMapper(ElectronicContractsMapper.class).queryElectronicContractsByGoodsIdAndDepartmentId(goodsId, deparatmentId, now);
+    }
+
+    @Override
+    public ElectronicContracts queryElectronicContractsByGoodsIdDepartmentId(int goodsId, int deparatmentId) {
+        return sqlSession.getMapper(ElectronicContractsMapper.class).queryElectronicContractsByGoodsIdDepartmentId(goodsId, deparatmentId);
     }
 }
 

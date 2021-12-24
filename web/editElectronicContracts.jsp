@@ -16,7 +16,7 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <html>
 <head>
-
+    <s:head/>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -76,7 +76,7 @@
                         </div>
                         <div class="ibox-content">
                             <div class="ibox-content">
-
+                                <s:actionerror/>
                                 <s:form action="editElectronicContracts" method="post">
 
                                     <div class="form-group  row"><label class="col-sm-2 col-form-label">开始时间</label>

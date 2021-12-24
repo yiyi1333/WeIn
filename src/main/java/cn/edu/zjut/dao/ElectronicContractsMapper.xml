@@ -60,4 +60,11 @@
         where goodsId = #{goodsId} and enterpriseDepartmentId= #{deparatmentId}
         )
     </select>
+
+
+    <select id="queryElectronicContractsByGoodsIdDepartmentId" resultMap="ElectronicContractsResultMap">
+        select *
+        from electroniccontracts
+        where goodsId = #{goodsId} and  enterpriseDepartmentId = #{deparatmentId} and state != 2;
+    </select>
 </mapper>
