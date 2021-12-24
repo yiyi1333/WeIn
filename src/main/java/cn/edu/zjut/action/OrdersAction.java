@@ -37,7 +37,16 @@ public class OrdersAction implements SessionAware {
     private GoodsService goodsService;
     private Orders orders;
     private Integer orderId;
+    private String statusMes;
 
+
+    public String getStatusMes() {
+        return statusMes;
+    }
+
+    public void setStatusMes(String statusMes) {
+        this.statusMes = statusMes;
+    }
 
     public OrderShow getOrder() {
         return order;
@@ -777,5 +786,10 @@ public class OrdersAction implements SessionAware {
         return "success";
     }
 
+    //用户确认收货请求
+    public String confirmReceipt(){
+        statusMes = ordersService.confirmReceipt(Integer.parseInt(orderid));
+        return "success";
+    }
 
 }

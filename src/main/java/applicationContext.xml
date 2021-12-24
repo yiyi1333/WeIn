@@ -155,6 +155,7 @@
 <!--维权-->
     <bean id="safeGuardingRightsService" class="cn.edu.zjut.service.SafeGuardingRightsService">
         <property name="safeGuardingRightsDao" ref="safeGuardingRightsImpl"/>
+        <property name="safeGuardingRightsProgressDao" ref="safeGuardingRightsProgressImpl"/>
     </bean>
     <bean id="safeGuardingRightsProgressService" class="cn.edu.zjut.service.SafeGuardingRightsProgressService">
         <property name="safeGuardingRightsProgressDao" ref="safeGuardingRightsProgressImpl"/>
@@ -188,6 +189,7 @@
     <bean id="cartService" class="cn.edu.zjut.service.CartService">
         <property name="cartDao" ref="cartDao"/>
         <property name="goodsDao" ref="goodsImpl"/>
+        <property name="consumerDao" ref="consumerImpl"/>
     </bean>
 
     <bean id="cartAction" class="cn.edu.zjut.action.CartAction">
@@ -295,6 +297,7 @@
         <property name="ordersMapper" ref="ordersImpl"/>
         <property name="orderGoodMapper" ref="orderGoodImpl"/>
         <property name="goodsService" ref="goodsService"/>
+        <property name="orderStatusDao" ref="orderStatusImpl"/>
         <property name="wareHouseAddressMapper" ref="wareHouseAddressImpl"/>
     </bean>
 

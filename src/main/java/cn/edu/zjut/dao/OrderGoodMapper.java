@@ -15,4 +15,5 @@ public interface OrderGoodMapper {
 
     // 根据orderId和goodId获取商品
     public OrderGood selectOrderGood(OrderGood orderGood);
+
 }

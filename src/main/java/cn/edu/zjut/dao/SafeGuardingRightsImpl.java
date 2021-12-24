@@ -2,6 +2,7 @@ package cn.edu.zjut.dao;
 
 import cn.edu.zjut.po.SafeGuardingRights;
 import cn.edu.zjut.po.SafeGuardingRightsProgress;
+import cn.edu.zjut.po.ShowSafeGuardingRights;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -65,5 +66,15 @@ public class SafeGuardingRightsImpl implements SafeGuardingRightsMapper {
     @Override
     public SafeGuardingRights selectSafeGuardingRightsByGoodIdAndOrderId(Integer goodId, Integer orderId) {
         return sqlSession.getMapper(SafeGuardingRightsMapper.class).selectSafeGuardingRightsByGoodIdAndOrderId(goodId, orderId);
+    }
+
+    @Override
+    public List<ShowSafeGuardingRights> selsectAllRightsInfo(Integer consumerId) {
+        return sqlSession.getMapper(SafeGuardingRightsMapper.class).selsectAllRightsInfo(consumerId);
+    }
+
+    @Override
+    public Integer modfiySafeGuardingRightsById(Integer rightsId, String status) {
+        return sqlSession.getMapper(SafeGuardingRightsMapper.class).modfiySafeGuardingRightsById(rightsId, status);
     }
 }

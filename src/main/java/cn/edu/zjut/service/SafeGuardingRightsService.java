@@ -4,6 +4,7 @@ import cn.edu.zjut.dao.SafeGuardingRightsMapper;
 import cn.edu.zjut.dao.SafeGuardingRightsProgressMapper;
 import cn.edu.zjut.po.SafeGuardingRights;
 import cn.edu.zjut.po.SafeGuardingRightsProgress;
+import cn.edu.zjut.po.ShowSafeGuardingRights;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -73,13 +74,40 @@ public class SafeGuardingRightsService {
         if(line != 0) {
             //查询生成的编号，添加维权历史记录
             SafeGuardingRights safe = safeGuardingRightsDao.selectSafeGuardingRightsByGoodIdAndOrderId(goodsId, orderId);
-            SafeGuardingRightsProgress safeProgress = new SafeGuardingRightsProgress();
-            safeProgress.setSafeGuardingRightsId(safe.getSafeGuardingRightsId());
-            safeProgress.setSafeGuardingRightsProgressDate(date);
-            safeProgress.setSafeGuardingRightsProgressTime(time);
-            safeProgress.setSafeGuardingRightsProgressStatus("申请中");
+            safeGuardingRightsProgressDao.addSafeGuardingRightsProgress("申请中", time, date, safe.getSafeGuardingRightsId());
             return "申请成功";
         }
         return "申请失败";
+    }
+
+    //获取所以维权状态的订单
+    public List<ShowSafeGuardingRights> selectAllRightsInfo(Integer consumerId){
+         return safeGuardingRightsDao.selsectAllRightsInfo(consumerId);
+    }
+
+    //接受商家的处理结果
+    public String acceptResult(Integer rightsId){
+        if(safeGuardingRightsDao.modfiySafeGuardingRightsById(rightsId, "已完成") != 0){
+            Date date = new java.sql.Date(System.currentTimeMillis());
+            Time time = new Time(date.getTime());
+            safeGuardingRightsProgressDao.addSafeGuardingRightsProgress("已完成",time, date, rightsId);
+            return "已接受";
+        }
+        else{
+            return "接受失败";
+        }
+    }
+
+    //拒绝商家的处理结果
+    public String refuseResult(Integer rightsId){
+        if(safeGuardingRightsDao.modfiySafeGuardingRightsById(rightsId, "平台处理中") != 0){
+            Date date = new java.sql.Date(System.currentTimeMillis());
+            Time time = new Time(date.getTime());
+            safeGuardingRightsProgressDao.addSafeGuardingRightsProgress("平台处理中",time, date, rightsId);
+            return "已拒绝";
+        }
+        else{
+            return "拒绝失败";
+        }
     }
 }

@@ -50,6 +50,38 @@
         <result property="safeGuardingRightsNum" column="safeGuardingRightsNum"/>
         <result property="safeGuardingRightsProgress" column="safeGuardingRightsProgress"/>
     </resultMap>
+
+    <resultMap id="ShowSafeGuardingRightsMap" type="cn.edu.zjut.po.ShowSafeGuardingRights">
+        <id property="safeGuardingRightsId" column="safeGuardingRightsId"/>
+        <result property="safeGuardingRightsDetails" column="safeGuardingRightsDetails"/>
+        <result property="safeGuardingRightsImage" column="safeGuardingRightsImage"/>
+        <result property="safeGuardingRightsType" column="safeGuardingRightsType"/>
+        <result property="safeGuardingRightsNum" column="safeGuardingRightsNum"/>
+        <result property="safeGuardingRightsProgress" column="safeGuardingRightsProgress"/>
+        <association property="goods"  javaType="cn.edu.zjut.po.Goods">
+            <result property="goodsId" column="goodsId"/>
+            <result property="goodsName" column="goodsName"/>
+            <result property="goodsPrice" column="goodprice"/>
+            <result property="goodsDetails" column="goodsDetails"/>
+            <result property="goodsStock" column="goodsStock"/>
+            <result property="tags" column="tags"/>
+            <result property="goodsImage" column="goodsImage"/>
+            <result property="isGrouding" column="isGrouding"/>
+            <result property="warehouseId" column="warehouseId"/>
+            <result property="goodsWeight" column="goodsWeight"/>
+            <result property="shopId" column="goods.shopId"/>
+            <association property="shop" javaType="cn.edu.zjut.po.Shop">
+                <result property="shopId" column="shop.shopId"/>
+                <result property="shopName" column="shopName"/>
+                <result property="shopDescription" column="shopDescription"/>
+                <association property="enterprise" javaType="cn.edu.zjut.po.Enterprise">
+                    <result property="enterpriseId" column="enterprise.enterpriseId"/>
+                    <result property="enterpriseName" column="enterpriseName"/>
+                </association>
+            </association>
+        </association>
+    </resultMap>
+
     <select id="getAllsafeGuardingRights" resultMap="safeGuardingRightsResultMap1">
 <!--        select distinct o.*,og.* from safeGuardingRights o,safeGuardingRightsProgress og where og.safeGuardingRightsId=o.safeGuardingRightsId-->
             select * from safeGuardingRights
@@ -91,4 +123,17 @@
         from safeguardingrights
         where goodId = #{goodId} and orderId = #{ordersId}
     </select>
+
+    <select id="selsectAllRightsInfo" resultMap="ShowSafeGuardingRightsMap">
+        select *
+        from safeguardingrights, orders, goods, ordergood
+        where Orders.consumerId = 4 and Orders.orderId = ordergood.orderId and ordergood.goodId = safeguardingrights.goodId
+        and Orders.orderId = safeguardingrights.orderId and ordergood.goodId = goods.goodsId;
+    </select>
+
+    <update id="modfiySafeGuardingRightsById">
+        update safeguardingrights
+        set safeGuardingRightsProgress = #{status}
+        where safeGuardingRightsId = #{rightsId}
+    </update>
 </mapper>

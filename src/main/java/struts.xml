@@ -150,6 +150,30 @@
             </result>
         </action>
 
+        <action name="selectAllRightsInfo" class="cn.edu.zjut.action.SafeGuardingRightsAction" method="selectAllRightsInfo">
+            <result name="success" type="json">
+                <param name="root">showSafeGuardingRightsList</param>
+            </result>
+        </action>
+
+        <action name="confirmReceipt" class="cn.edu.zjut.action.OrdersAction" method="confirmReceipt">
+            <result name="success" type="json">
+                <param name="root">statusMes</param>
+            </result>
+        </action>
+
+        <action name="acceptTreatment" class="cn.edu.zjut.action.SafeGuardingRightsAction" method="acceptTreatment">
+            <result name="success" type="json">
+                <param name="root">statusMes</param>
+            </result>
+        </action>
+
+        <action name="refuseTreatment" class="cn.edu.zjut.action.SafeGuardingRightsAction" method="refuseTreatment">
+            <result name="success" type="json">
+                <param name="root">statusMes</param>
+            </result>
+        </action>
+
         <!--        张宇翔配置区-->
         <action name="createLegalOrder" class="cn.edu.zjut.action.OrdersAction" method="createLegalShopOrders">
             <result name="success" type="json">

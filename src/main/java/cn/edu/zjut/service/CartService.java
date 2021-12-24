@@ -2,6 +2,7 @@ package cn.edu.zjut.service;
 
 import cn.edu.zjut.annotation.MyLog;
 import cn.edu.zjut.dao.CartMapper;
+import cn.edu.zjut.dao.ConsumerMapper;
 import cn.edu.zjut.dao.GoodsMapper;
 import cn.edu.zjut.po.Cart;
 import cn.edu.zjut.po.CartGoods;
@@ -12,6 +13,15 @@ import java.util.*;
 public class CartService {
     private CartMapper cartDao;
     private GoodsMapper goodsDao;
+    private ConsumerMapper consumerDao;
+
+    public ConsumerMapper getConsumerDao() {
+        return consumerDao;
+    }
+
+    public void setConsumerDao(ConsumerMapper consumerDao) {
+        this.consumerDao = consumerDao;
+    }
 
     public GoodsMapper getGoodsDao() {
         return goodsDao;

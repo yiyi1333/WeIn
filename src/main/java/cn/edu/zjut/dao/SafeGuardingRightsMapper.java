@@ -2,6 +2,7 @@ package cn.edu.zjut.dao;
 
 import cn.edu.zjut.po.SafeGuardingRights;
 import cn.edu.zjut.po.SafeGuardingRightsProgress;
+import cn.edu.zjut.po.ShowSafeGuardingRights;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -22,12 +23,17 @@ public interface SafeGuardingRightsMapper {
     // 根据维权号获得维权详细
     public List<SafeGuardingRightsProgress> getsafeGuardingRightsProgressById(@Param("safeGuardingRightsId") Integer safeGuardingRightsId);
 
+    // 提交维权申请
     public Integer addSafeGuardingRightsRecord(@Param("goodsId") Integer goodsId, @Param("goodsNum") Integer goodsNum,
                                                @Param("descript")String descript, @Param("imagePath")String imagePath,
                                                @Param("orderId") Integer orderId, @Param("Type") String type,
                                                @Param("status") String status);
-
+    //通过商品号和订单号获取维权信息
     public SafeGuardingRights selectSafeGuardingRightsByGoodIdAndOrderId(@Param("goodId") Integer goodId, @Param("ordersId") Integer orderId);
 
+    //查询出某用户全部正处于维权阶段的信息
+    public List<ShowSafeGuardingRights> selsectAllRightsInfo(@Param("consumerId") Integer consumerId);
 
+    //修改维权单状态
+    public Integer modfiySafeGuardingRightsById(@Param("rightsId") Integer rightsId, @Param("status")String status);
 }
