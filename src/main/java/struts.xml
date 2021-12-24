@@ -3,8 +3,8 @@
         "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-    <constant name="struts.multipart.saveDir" value="E:/Temp" />
-    <constant name="struts.multipart.maxSize" value="1000000" />
+    <constant name="struts.multipart.saveDir" value="E:/Temp"/>
+    <constant name="struts.multipart.maxSize" value="1000000"/>
     <package name="strutsBean" extends="struts-default,json-default" namespace="/">
         <!--        郑展逸配置区-->
         <action name="advertisement" class="cn.edu.zjut.action.AdvertisementAction" method="getAdvertisementList">
@@ -132,7 +132,7 @@
             </result>
         </action>
 
-        <action name="applyForRights" class="cn.edu.zjut.action.SafeGuardingRightsAction" method="applyForRights">
+        <action name="applyForRights" class="cn.edu.zjut.action.safeGuardingRightsAction" method="applyForRights">
             <result name="success" type="json">
                 <param name="root">statusMes</param>
             </result>
@@ -151,6 +151,16 @@
         </action>
 
         <!--        张宇翔配置区-->
+        <action name="platformInterventionRightsDetails" class="cn.edu.zjut.action.safeGuardingRightsAction"
+                method="platformInterventionRightsDetails">
+            <result name="success">/platformInterventionRightsDetails.jsp</result>
+        </action>
+
+        <action name="platformInterventionRights" class="cn.edu.zjut.action.safeGuardingRightsAction"
+                method="platformInterventionRights">
+            <result name="success">/platformInterventionRights.jsp</result>
+        </action>
+
         <action name="reviewComment" class="cn.edu.zjut.action.ReviewCommentAction" method="displayCommentToReview">
             <result name="success">/reviewComment.jsp</result>
         </action>
@@ -383,20 +393,25 @@
         <action name="selectOrderById" class="cn.edu.zjut.action.OrdersAction" method="selectOrderById">
             <result name="success">/orderGoodList.jsp</result>
         </action>
-        <action name="displayShopSafeGuardingRights" class="cn.edu.zjut.action.safeGuardingRightsAction" method="displayShopSafeGuardingRights">
+        <action name="displayShopSafeGuardingRights" class="cn.edu.zjut.action.safeGuardingRightsAction"
+                method="displayShopSafeGuardingRights">
             <result name="displaySuccess">/safeGuardingRightsList.jsp</result>
             <result name="displayFailed">/500.jsp</result>
         </action>
-        <action name="selectShopSafeGuardingRights" class="cn.edu.zjut.action.safeGuardingRightsAction" method="selecthopSafeGuardingRights">
+        <action name="selectShopSafeGuardingRights" class="cn.edu.zjut.action.safeGuardingRightsAction"
+                method="selecthopSafeGuardingRights">
             <result name="displaySuccess">/safeGuardingRightsList.jsp</result>
             <result name="displayFailed">/500.jsp</result>
         </action>
-        <action name="selectShopSafeGuardingRightsById" class="cn.edu.zjut.action.safeGuardingRightsAction" method="selecthopSafeGuardingRightsById">
+        <action name="selectShopSafeGuardingRightsById" class="cn.edu.zjut.action.safeGuardingRightsAction"
+                method="selecthopSafeGuardingRightsById">
             <result name="displaySuccess">/safeGuradingRightDetails.jsp</result>
             <result name="displayFailed">/500.jsp</result>
         </action>
-        <action name="changeSafeGuardingRightsProgress" class="cn.edu.zjut.action.safeGuardingRightsAction" method="changeSafeGuardingRightsProgress">
+        <action name="changeSafeGuardingRightsProgress" class="cn.edu.zjut.action.safeGuardingRightsAction"
+                method="changeSafeGuardingRightsProgress">
             <result name="displaySuccess">/safeGuradingRightDetails.jsp</result>
+            <result name="displaySuccess2">/platformInterventionRightsDetails.jsp</result>
             <result name="displayFailed">/500.jsp</result>
         </action>
         <action name="getAllFundFlow" class="cn.edu.zjut.action.OrdersAction" method="getAllFundFlow">

@@ -49,7 +49,6 @@
         <mapper resource="cn/edu/zjut/dao/safeGuardingRightsMapper.xml"/>
         <mapper resource="cn/edu/zjut/dao/CommentMapper.xml"/>
         <mapper resource="cn/edu/zjut/dao/OrderStatusMapper.xml"/>
-        <mapper resource="cn/edu/zjut/dao/safeGuardingRightsMapper.xml"/>
         <mapper resource="cn/edu/zjut/dao/safeGuardingRightsProgressMapper.xml"/>
         <mapper resource="cn/edu/zjut/dao/DrawBackMapper.xml"/>
         <mapper resource="cn/edu/zjut/dao/CommentMapper.xml"/>

@@ -2,10 +2,7 @@ package cn.edu.zjut.service;
 
 
 import cn.edu.zjut.dao.*;
-import cn.edu.zjut.po.Goods;
-import cn.edu.zjut.po.OrderGood;
-import cn.edu.zjut.po.Orders;
-import cn.edu.zjut.po.WareHouseAddress;
+import cn.edu.zjut.po.*;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.ibatis.annotations.Param;
 

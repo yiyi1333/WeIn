@@ -31,4 +31,5 @@
     <select id="selectOrderGood" resultMap="OrderGoodResultMap1" parameterType="cn.edu.zjut.po.OrderGood">
         select * from WeIn.ordergood where orderId=#{orderId} and goodId=#{goodId};
     </select>
+
 </mapper>

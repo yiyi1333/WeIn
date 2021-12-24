@@ -1,14 +1,44 @@
 package cn.edu.zjut.service;
 
+import cn.edu.zjut.dao.GoodsMapper;
+import cn.edu.zjut.dao.OrderGoodMapper;
+import cn.edu.zjut.dao.OrdersMapper;
 import cn.edu.zjut.dao.safeGuardingRightsMapper;
+import cn.edu.zjut.po.OrderGood;
 import cn.edu.zjut.po.safeGuardingRights;
-import cn.edu.zjut.po.safeGuardingRightsProgress;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class safeGuardingRightsService {
     private safeGuardingRightsMapper safeGuardingRightsDao;
+    private OrderGoodMapper orderGoodMapper;
+    private OrdersMapper ordersMapper;
+    private GoodsMapper goodsMapper;
+
+    public GoodsMapper getGoodsMapper() {
+        return goodsMapper;
+    }
+
+    public void setGoodsMapper(GoodsMapper goodsMapper) {
+        this.goodsMapper = goodsMapper;
+    }
+
+    public void setOrderGoodMapper(OrderGoodMapper orderGoodMapper) {
+        this.orderGoodMapper = orderGoodMapper;
+    }
+
+    public void setOrdersMapper(OrdersMapper ordersMapper) {
+        this.ordersMapper = ordersMapper;
+    }
+
+    public OrderGoodMapper getOrderGoodMapper() {
+        return orderGoodMapper;
+    }
+
+    public OrdersMapper getOrdersMapper() {
+        return ordersMapper;
+    }
 
     public safeGuardingRightsMapper getSafeGuardingRightsDao() {
         return safeGuardingRightsDao;
@@ -39,6 +69,22 @@ public class safeGuardingRightsService {
         List<safeGuardingRights> safeGuardingRightslist1 = new ArrayList<safeGuardingRights>();
         for(safeGuardingRights safeGuardingRights : safeGuardingRightslist){
             safeGuardingRights.setSafeGuardingRightsProgresslist(safeGuardingRightsDao.getsafeGuardingRightsProgressById(safeGuardingRights.getSafeGuardingRightsId()));
+            safeGuardingRightslist1.add(safeGuardingRights);
+        }
+        return safeGuardingRightslist1;
+    }
+
+    public List<safeGuardingRights> selectsafeGuardingRightsByZyx(safeGuardingRights safeGuardingRights1) {
+        List<safeGuardingRights> safeGuardingRightslist = safeGuardingRightsDao.selectsafeGuardingRights(safeGuardingRights1);
+        List<safeGuardingRights> safeGuardingRightslist1 = new ArrayList<safeGuardingRights>();
+        for(safeGuardingRights safeGuardingRights : safeGuardingRightslist){
+            safeGuardingRights.setSafeGuardingRightsProgresslist(safeGuardingRightsDao.getsafeGuardingRightsProgressById(safeGuardingRights.getSafeGuardingRightsId()));
+            safeGuardingRights.setOrders(ordersMapper.selectOrdersById(safeGuardingRights.getOrderId()));
+            safeGuardingRights.setGoods(goodsMapper.getGoodById(safeGuardingRights.getGoodId()));
+            OrderGood orderGood = new OrderGood();
+            orderGood.setGoodId(safeGuardingRights.getGoodId());
+            orderGood.setOrderId(safeGuardingRights.getOrderId());
+            safeGuardingRights.setOrderGood(orderGoodMapper.selectOrderGood(orderGood));
             safeGuardingRightslist1.add(safeGuardingRights);
         }
         return safeGuardingRightslist1;

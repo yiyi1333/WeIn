@@ -74,10 +74,13 @@
 
     <bean id="commentService" class="cn.edu.zjut.service.CommentService">
         <property name="commentMapper" ref="commentImpl"/>
+        <property name="commentDao" ref="commentImpl"/>
+
     </bean>
 
     <bean id="reviewCommentAction" class="cn.edu.zjut.action.ReviewCommentAction">
         <property name="commentService" ref="commentService"/>
+
     </bean>
 
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
@@ -166,12 +169,15 @@
 <!--维权-->
     <bean id="safeGuardingRightsService" class="cn.edu.zjut.service.safeGuardingRightsService">
         <property name="safeGuardingRightsDao" ref="safeGuardingRightsImpl"/>
+        <property name="goodsMapper" ref="goodsImpl"/>
+        <property name="orderGoodMapper" ref="orderGoodImpl"/>
+        <property name="ordersMapper" ref="ordersImpl"/>
     </bean>
     <bean id="safeGuardingRightsProgressService" class="cn.edu.zjut.service.safeGuardingRightsProgressService">
         <property name="safeGuardingRightsProgressDao" ref="safeGuardingRightsProgressImpl"/>
     </bean>
 
-    <bean id="safeGuardingRightsAction" class="cn.edu.zjut.action.SafeGuardingRightsAction">
+    <bean id="safeGuardingRightsAction" class="cn.edu.zjut.action.safeGuardingRightsAction">
         <property name="safeGuardingRightsService" ref="safeGuardingRightsService"/>
         <property name="orderStatusService" ref="orderStatusService"/>
         <property name="goodsService" ref="goodsService"/>
@@ -179,17 +185,6 @@
         <property name="safeGuardingRightsProgressService" ref="safeGuardingRightsProgressService"/>
     </bean>
 <!--    评论-->
-    <bean id="commentImpl" class="cn.edu.zjut.dao.CommentImpl">
-        <property name="sqlSession" ref="sqlSession"/>
-    </bean>
-
-    <bean id="commentService" class="cn.edu.zjut.service.CommentService">
-        <property name="commentDao" ref="commentImpl"/>
-    </bean>
-
-    <bean id="commentAction" class="cn.edu.zjut.action.CommentAction">
-        <property name="commentService" ref="commentService"/>
-    </bean>
     <!--余秋霞配置区-->
 
     <bean id="cartDao" class="cn.edu.zjut.dao.CartImpl">

@@ -3,7 +3,6 @@ package cn.edu.zjut.action;
 import cn.edu.zjut.po.*;
 import cn.edu.zjut.service.*;
 import org.apache.struts2.interceptor.SessionAware;
-import cn.edu.zjut.po.safeGuardingRights;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -12,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class SafeGuardingRightsAction implements SessionAware {
+public class safeGuardingRightsAction implements SessionAware {
     private String goodsId;
     private String goodsNum;
     private String descript;
@@ -174,14 +173,13 @@ public class SafeGuardingRightsAction implements SessionAware {
         if (shopManager == null) {
             return "displayShopOrdersFailed";
         }
-        int id=0;
+        int id = 0;
         List<safeGuardingRights> ans = safeGuardingRightsService.getAllsafeGuardingRights();
         List<safeGuardingRights> safeGuardingRightsList = new ArrayList<>();
         for (safeGuardingRights safeGuardingRights : ans) {
-            if(safeGuardingRights.getSafeGuardingRightsId()!=id){
+            if (safeGuardingRights.getSafeGuardingRightsId() != id) {
                 id = safeGuardingRights.getSafeGuardingRightsId();
-            }
-            else{
+            } else {
                 continue;
             }
             Goods goods = goodsService.getGoodsById(safeGuardingRights.getGoodId());
@@ -202,14 +200,13 @@ public class SafeGuardingRightsAction implements SessionAware {
         if (shopManager == null) {
             return "displayFailed";
         }
-        int id=0;
+        int id = 0;
         List<safeGuardingRights> ans = safeGuardingRightsService.selectsafeGuardingRights(safeGuardingRights);
         List<safeGuardingRights> safeGuardingRightsList = new ArrayList<>();
         for (safeGuardingRights safeGuardingRights : ans) {
-            if(safeGuardingRights.getSafeGuardingRightsId()!=id){
+            if (safeGuardingRights.getSafeGuardingRightsId() != id) {
                 id = safeGuardingRights.getSafeGuardingRightsId();
-            }
-            else{
+            } else {
                 continue;
             }
             Goods goods = goodsService.getGoodsById(safeGuardingRights.getGoodId());
@@ -243,13 +240,14 @@ public class SafeGuardingRightsAction implements SessionAware {
     public String changeSafeGuardingRightsProgress() {
         safeGuardingRights safeGuarding = (safeGuardingRights) session.get("safeGuardingRights");
         ShopManager shopManager = (ShopManager) session.get("shopManager");
-        if (shopManager == null) {
+        PlatformAdministrator platformAdministrator = (PlatformAdministrator) session.get("platformAdministrator");
+        if (shopManager == null && platformAdministrator == null) {
             return "displayFailed";
         }
         //获取当前时间
-        long  l = System.currentTimeMillis();
+        long l = System.currentTimeMillis();
         Date d = new Date(l);
-        SimpleDateFormat dateFormat =  new  SimpleDateFormat( "yyyy-MM-dd" );
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String dateNowStr = dateFormat.format(d);
         java.sql.Date ss = java.sql.Date.valueOf(dateNowStr);
         Time time = new Time(0);
@@ -280,7 +278,7 @@ public class SafeGuardingRightsAction implements SessionAware {
         orderStatus.setOrderStatusName(safeGuardingRights.getSafeGuardingRightsProgress());
         orderStatusService.addOrderStatus(orderStatus);
         // 修改退款表
-        if(safeGuardingRights.getSafeGuardingRightsProgress().equals("仅退款") || safeGuardingRights.getSafeGuardingRightsProgress().equals("退款退货")){
+        if (safeGuardingRights.getSafeGuardingRightsProgress().equals("仅退款") || safeGuardingRights.getSafeGuardingRightsProgress().equals("退款退货")) {
             DrawBack drawBack = new DrawBack();
             drawBack.setOrderId(safeGuarding.getOrderId());
             drawBack.setGoodsId(safeGuarding.getGoodId());
@@ -290,19 +288,17 @@ public class SafeGuardingRightsAction implements SessionAware {
             orderGood.setGoodId(safeGuarding.getGoodId());
             orderGood.setOrderId(safeGuarding.getOrderId());
             orderGood = ordersService.selectOrderGood(orderGood);
-            drawBack.setMoney(orderGood.getSinglePieceActualPrice()*safeGuarding.getSafeGuardingRightsNum());
+            drawBack.setMoney(orderGood.getSinglePieceActualPrice() * safeGuarding.getSafeGuardingRightsNum());
             System.out.println(drawBack.getMoney());
-            if(drawBack.getType().equals("仅退款")){
+            if (drawBack.getType().equals("仅退款")) {
                 drawBack.setGoodsNum(0);
-            }
-            else if(drawBack.getType().equals("退货退款")){
+            } else if (drawBack.getType().equals("退货退款")) {
                 drawBack.setGoodsNum(safeGuarding.getSafeGuardingRightsNum());
             }
             //判断是否已经存在
-            if(DrawBackService.getDrawBackById(drawBack)!=null){
+            if (DrawBackService.getDrawBackById(drawBack) != null) {
                 DrawBackService.updateDrawBack(drawBack);
-            }
-            else{
+            } else {
                 System.out.println(drawBack);
                 DrawBackService.addDrawBack(drawBack);
             }
@@ -314,10 +310,15 @@ public class SafeGuardingRightsAction implements SessionAware {
         safeGuardingRights.setGoods(goods);
         safeGuardingRights.setOrders(order);
         session.put("safeGuardingRights", safeGuardingRights);
-        return "displaySuccess";
+        if (shopManager != null) {
+            return "displaySuccess";
+        } else {
+            return "displaySuccess2";
+        }
     }
 
-    public String applyForRights(){
+
+    public String applyForRights() {
         System.out.println("goodsId: " + goodsId);
         System.out.println("goodsNum: " + goodsNum);
         System.out.println("descript: " + descript);
@@ -325,6 +326,25 @@ public class SafeGuardingRightsAction implements SessionAware {
         System.out.println("consumerId: " + consumerId);
         System.out.println("orderId: " + orderId);
         statusMes = safeGuardingRightsService.applyForRights(Integer.parseInt(goodsId), Integer.parseInt(goodsNum), descript, imagePath, Integer.parseInt(orderId), Integer.parseInt(consumerId), type);
+        return "success";
+    }
+
+    public String platformInterventionRights() {
+        if (safeGuardingRights == null) safeGuardingRights = new safeGuardingRights();
+        safeGuardingRights.setSafeGuardingRightsProgress("平台处理中");
+        List<safeGuardingRights> sgrlist = safeGuardingRightsService.selectsafeGuardingRightsByZyx(safeGuardingRights);
+        session.put("sgrlist", sgrlist);
+
+        return "success";
+    }
+
+    public String platformInterventionRightsDetails() {
+        List<safeGuardingRights> sgrlist = (List<cn.edu.zjut.po.safeGuardingRights>) session.get("sgrlist");
+        for (cn.edu.zjut.po.safeGuardingRights guardingRights : sgrlist) {
+            if (guardingRights.getSafeGuardingRightsId() == safeGuardingRightsId) {
+                session.put("safeGuardingRights", guardingRights);
+            }
+        }
         return "success";
     }
 }
