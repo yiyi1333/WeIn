@@ -129,13 +129,7 @@
                                         <form>
                                             <input type="hidden" name="goods.goodsId"
                                                    value=<%=goodsList.get(j).getGoodsId()%>>
-                                            <%
-                                                if(goodsList.get(j).getIsGrouding()==1){
-                                            %>
-                                            <input type="submit" class="btn btn-xs btn-outline btn-primary" value="上架">
-                                            <%}else{%>
-                                            <input type="submit" class="btn btn-xs btn-outline btn-primary" value="下架">
-                                            <%}%>
+                                            <a href="displayComment?goodsId=<%=goodsList.get(j).getGoodsId()%>" class="btn btn-xs btn-outline btn-primary">详情</a>
                                         </form>
                                     </div>
                                     <div class="col-sm-2">
@@ -162,10 +156,10 @@
         </div>
         <div class="footer">
             <div class="float-right">
-                <strong>2.9.2 inspinia</strong>
+                <strong>WeIn</strong>
             </div>
             <div>
-                <strong>Copyright</strong> xxx &copy; 2020
+                <strong>Copyright</strong> WeIn &copy; 2021
             </div>
         </div>
 

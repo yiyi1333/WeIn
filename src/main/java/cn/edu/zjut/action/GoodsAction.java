@@ -1,9 +1,7 @@
 package cn.edu.zjut.action;
 
-import cn.edu.zjut.po.Goods;
-import cn.edu.zjut.po.ShopManager;
-import cn.edu.zjut.po.User;
-import cn.edu.zjut.po.WareHouseAddress;
+import cn.edu.zjut.po.*;
+import cn.edu.zjut.service.CommentService;
 import cn.edu.zjut.service.GoodsService;
 import cn.edu.zjut.service.WareHouseAddressService;
 import org.apache.struts2.interceptor.SessionAware;
@@ -24,6 +22,15 @@ public class GoodsAction implements SessionAware{
     private List wareHouseAddresslist;
     private String customerId;
     private Goods goods;
+    private CommentService commentService;
+
+    public CommentService getCommentService() {
+        return commentService;
+    }
+
+    public void setCommentService(CommentService commentService) {
+        this.commentService = commentService;
+    }
 
     public String getCustomerId() {
         return customerId;
@@ -226,5 +233,18 @@ public class GoodsAction implements SessionAware{
         }
         session.put("wareHouseAddressList", wareHouseAddressList);
         return "displayShopWareHouseAddressSuccess";
+    }
+
+    public String displayComment() {
+        ShopManager shopManager = (ShopManager) session.get("shopManager");
+        if (shopManager == null) {
+            return "displayShopWareHouseAddressFailed";
+        }
+        Goods goods = goodsService.getGoodsById(Integer.parseInt(goodsId));
+        List<Comment> commentList = commentService.getCommentByGoodId(Integer.parseInt(goodsId));
+
+        session.put("goods", goods);
+        session.put("commentList", commentList);
+        return "displaySuccess";
     }
 }

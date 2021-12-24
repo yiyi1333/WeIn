@@ -2,6 +2,7 @@ package cn.edu.zjut.dao;
 
 import cn.edu.zjut.po.Consumer;
 import cn.edu.zjut.po.EnterpriseConsumer;
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import java.util.List;
@@ -55,4 +56,22 @@ public class ConsumerImpl implements ConsumerMapper {
     }
 
 
+    @Override
+    public Integer modfiyCertificationInfo(Integer consumerId, String realName, String idNumber) {
+        SqlSession session = sqlSession.getSqlSessionFactory().openSession();
+        ConsumerMapper consumerMapper = sqlSession.getMapper(ConsumerMapper.class);
+        Integer line = null;
+        try {
+            line = consumerMapper.modfiyCertificationInfo(consumerId, realName, idNumber);
+            System.out.println(line);
+            session.commit();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        return line;
+    }
 }

@@ -3,6 +3,8 @@
         "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
+    <constant name="struts.multipart.saveDir" value="E:/Temp" />
+    <constant name="struts.multipart.maxSize" value="1000000" />
     <package name="strutsBean" extends="struts-default,json-default" namespace="/">
         <!--        郑展逸配置区-->
         <action name="advertisement" class="cn.edu.zjut.action.AdvertisementAction" method="getAdvertisementList">
@@ -63,6 +65,90 @@
             </result>
         </action>
 
+        <action name="showAllOrder" class="cn.edu.zjut.action.OrdersAction" method="showAllOrder">
+            <result name="success" type="json">
+                <param name="root">orderslist</param>
+            </result>
+        </action>
+
+        <action name="showOrderDetail" class="cn.edu.zjut.action.OrdersAction" method="showOrderDetail">
+            <result name="success" type="json">
+                <param name="root">order</param>
+            </result>
+        </action>
+
+        <action name="showWaitReceiveOrder" class="cn.edu.zjut.action.OrdersAction" method="showWaitReceiveOrder">
+            <result name="success" type="json">
+                <param name="root">orderslist</param>
+            </result>
+        </action>
+
+        <action name="showWaitPayOrder" class="cn.edu.zjut.action.OrdersAction" method="showWaitPayOrder">
+            <result name="success" type="json">
+                <param name="root">orderslist</param>
+            </result>
+        </action>
+
+        <action name="showWaitEvaluateOrder" class="cn.edu.zjut.action.OrdersAction" method="showWaitEvaluateOrder">
+            <result name="success" type="json">
+                <param name="root">orderslist</param>
+            </result>
+        </action>
+
+        <action name="addBrowsingHistory" class="cn.edu.zjut.action.HistoryAction" method="addBrowsingHistory">
+            <result name="success" type="json">
+                <param name="root">status</param>
+            </result>
+        </action>
+
+        <action name="selectAllHistory" class="cn.edu.zjut.action.HistoryAction" method="selectAllHistory">
+            <result name="success" type="json">
+                <param name="root">historyList</param>
+            </result>
+            <result name="fail" type="json">
+                <param name="root">status</param>
+            </result>
+        </action>
+
+        <action name="addCollection" class="cn.edu.zjut.action.CollectionAction" method="addCollection">
+            <result name="success" type="json">
+                <param name="root">status</param>
+            </result>
+        </action>
+
+        <action name="selectAllCollection" class="cn.edu.zjut.action.CollectionAction" method="selectAllCollection">
+            <result name="success" type="json">
+                <param name="root">collectionList</param>
+            </result>
+            <result name="fail" type="json">
+                <param name="root">status</param>
+            </result>
+        </action>
+
+        <action name="Upload" class="cn.edu.zjut.action.UploadImageAction" method="Upload">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="json">
+                <param name="root">imagePath</param>
+            </result>
+        </action>
+
+        <action name="applyForRights" class="cn.edu.zjut.action.SafeGuardingRightsAction" method="applyForRights">
+            <result name="success" type="json">
+                <param name="root">statusMes</param>
+            </result>
+        </action>
+
+        <action name="Certification" class="cn.edu.zjut.action.ConsumerAction" method="Certification">
+            <result name="success" type="json">
+                <param name="root">statusMes</param>
+            </result>
+        </action>
+
+        <action name="submitComment" class="cn.edu.zjut.action.CommentAction" method="submitComment">
+            <result name="success" type="json">
+                <param name="root">statusMes</param>
+            </result>
+        </action>
 
         <!--        张宇翔配置区-->
         <action name="reviewComment" class="cn.edu.zjut.action.ReviewCommentAction" method="displayCommentToReview">
@@ -80,7 +166,6 @@
             <result name="success" type="json">
                 <param name="root">createOrderSuccess</param>
             </result>
-
             <result name="failed" type="json">
                 <param name="root">createOrderSuccess</param>
             </result>
@@ -159,13 +244,6 @@
             <result name="success" type="chain">showenterpriseuser</result>
         </action>
         <!--        余秋霞配置区-->
-        <action name="displayShopOrders" class="cn.edu.zjut.action.OrdersAction" method="displayShopOrders">
-            <result name="displayShopOrdersSuccess">/ordersList.jsp</result>
-        </action>
-        <action name="displayShopWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction"
-                method="displayShopWareHouseAddress">
-            <result name="displayShopWareHouseAddressSuccess">/wareHouseAddressList.jsp</result>
-        </action>
         <action name="registerShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
                 method="registerShopmanager">
             <result name="success">/registerShopmanager.jsp</result>
@@ -238,8 +316,7 @@
         </action>
 
 
-        <!--        王怡欣配置区-->
-        <!--        王淑媚配置区-->
+        <!--        王怡欣、王淑媚配置区-->
         <action name="addconsumer" class="cn.edu.zjut.action.ConsumerAction" method="addConsumer">
             <result name="success">/addConsumer.jsp</result>
             <result name="failed">/500.jsp</result>
@@ -256,9 +333,6 @@
         <action name="displayAddress" class="cn.edu.zjut.action.GoodsAction" method="displayShopWareHouseAddress">
             <result name="displayShopWareHouseAddressSuccess">/addProduct.jsp</result>
         </action>
-
-
-        <!--        王淑媚配置区-->
         <action name="addWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction"
                 method="addWareHouseAddress">
             <result name="success">/addWareHouseAddress.jsp</result>
@@ -290,7 +364,53 @@
                 method="selectGoodsByWareHouseAddressId">
             <result name="success">/productListByWareHouseId.jsp</result>
         </action>
-
+        <action name="displayShopOrders" class="cn.edu.zjut.action.OrdersAction" method="displayShopOrders">
+            <result name="displayShopOrdersSuccess">/ordersList.jsp</result>
+        </action>
+        <action name="displayShopWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction"
+                method="displayShopWareHouseAddress">
+            <result name="displayShopWareHouseAddressSuccess">/wareHouseAddressList.jsp</result>
+        </action>
+        <action name="getLogisticsSingle" class="cn.edu.zjut.action.OrdersAction" method="getLogisticsSingle">
+            <result name="displayShopOrdersSuccess">/addLogisticsSingle.jsp</result>
+        </action>
+        <action name="addLogisticsSingle" class="cn.edu.zjut.action.OrdersAction" method="addLogisticsSingle">
+            <result name="success">/addLogisticsSingle.jsp</result>
+        </action>
+        <action name="addLogisticsSingleList" class="cn.edu.zjut.action.OrdersAction" method="addLogisticsSingleList">
+            <result name="displayShopOrdersSuccess">/addLogisticsSingle.jsp</result>
+        </action>
+        <action name="selectOrderById" class="cn.edu.zjut.action.OrdersAction" method="selectOrderById">
+            <result name="success">/orderGoodList.jsp</result>
+        </action>
+        <action name="displayShopSafeGuardingRights" class="cn.edu.zjut.action.safeGuardingRightsAction" method="displayShopSafeGuardingRights">
+            <result name="displaySuccess">/safeGuardingRightsList.jsp</result>
+            <result name="displayFailed">/500.jsp</result>
+        </action>
+        <action name="selectShopSafeGuardingRights" class="cn.edu.zjut.action.safeGuardingRightsAction" method="selecthopSafeGuardingRights">
+            <result name="displaySuccess">/safeGuardingRightsList.jsp</result>
+            <result name="displayFailed">/500.jsp</result>
+        </action>
+        <action name="selectShopSafeGuardingRightsById" class="cn.edu.zjut.action.safeGuardingRightsAction" method="selecthopSafeGuardingRightsById">
+            <result name="displaySuccess">/safeGuradingRightDetails.jsp</result>
+            <result name="displayFailed">/500.jsp</result>
+        </action>
+        <action name="changeSafeGuardingRightsProgress" class="cn.edu.zjut.action.safeGuardingRightsAction" method="changeSafeGuardingRightsProgress">
+            <result name="displaySuccess">/safeGuradingRightDetails.jsp</result>
+            <result name="displayFailed">/500.jsp</result>
+        </action>
+        <action name="getAllFundFlow" class="cn.edu.zjut.action.OrdersAction" method="getAllFundFlow">
+            <result name="success">/fundFlow.jsp</result>
+        </action>
+        <action name="getOrderStatusById" class="cn.edu.zjut.action.OrderStatusAction" method="getOrderStatusById">
+            <result name="success">/orderTimeLine.jsp</result>
+        </action>
+        <action name="getFundFlowByDate" class="cn.edu.zjut.action.OrdersAction" method="getFundFlowByDate">
+            <result name="success">/fundFlow.jsp</result>
+        </action>
+        <action name="displayComment" class="cn.edu.zjut.action.GoodsAction" method="displayComment">
+            <result name="displaySuccess">/goodsCommend.jsp</result>
+        </action>
     </package>
 
 </struts>

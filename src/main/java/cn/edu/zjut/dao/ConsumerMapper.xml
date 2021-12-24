@@ -82,4 +82,10 @@
         and enterprisedepartment.enterpriseId = enterprise.enterpriseId
         and consumer.consumerId = #{consumerId};
     </select>
+<!--    修改实名数据-->
+    <update id="modfiyCertificationInfo">
+        update consumer
+        set consumer.name = #{realName}, consumer.idCardNumber = #{idNumber}
+        where consumer.consumerId = #{consumerId}
+    </update>
 </mapper>

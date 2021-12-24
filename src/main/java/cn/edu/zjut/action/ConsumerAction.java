@@ -18,6 +18,42 @@ public class ConsumerAction implements SessionAware {
     private String phoneNumber;
     private String nickName;
     private String avatarUrl;
+    private String realName;
+    private String idNumber;
+    private String statusMes;
+    private String consumerId;
+
+    public String getConsumerId() {
+        return consumerId;
+    }
+
+    public void setConsumerId(String consumerId) {
+        this.consumerId = consumerId;
+    }
+
+    public String getStatusMes() {
+        return statusMes;
+    }
+
+    public void setStatusMes(String statusMes) {
+        this.statusMes = statusMes;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public String getIdNumber() {
+        return idNumber;
+    }
+
+    public void setIdNumber(String idNumber) {
+        this.idNumber = idNumber;
+    }
 
     public String getNickName() {
         return nickName;
@@ -128,6 +164,12 @@ public class ConsumerAction implements SessionAware {
     //    响应获取授权数据之后写入数据库
     public String authorize() {
         enterpriseConsumer = consumerService.updateAuthorizeInfo(nickName, avatarUrl, phoneNumber);
+        return "success";
+    }
+
+    //实名认证处理
+    public String Certification(){
+        statusMes = consumerService.Certification(realName, idNumber, Integer.parseInt(consumerId));
         return "success";
     }
 }
