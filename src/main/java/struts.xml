@@ -70,7 +70,7 @@
 
             <result name="failed">/login.jsp</result>
 
-<!--            王怡欣，王淑媚配置区-->
+            <!--            王怡欣，王淑媚配置区-->
             <result name="shopSuccess">/shopIndex.jsp</result>
         </action>
 
@@ -149,12 +149,14 @@
                 method="registerEnterpriseagency">
             <result name="success">/registerEnterpriseagency.jsp</result>
         </action>
-        <action name="displayShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="displayShopmanager">
+        <action name="displayShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
+                method="displayShopmanager">
             <!--            <result name="success" type="json">-->
             <result name="success">/shopmanagerList.jsp</result>
             <!--            </result>-->
         </action>
-        <action name="displayEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction" method="displayenterpriseagency">
+        <action name="displayEnterpriseagency" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
+                method="displayenterpriseagency">
             <!--            <result name="success" type="json">-->
             <result name="success">/enterpriseagencyList.jsp</result>
             <!--            </result>-->
@@ -193,20 +195,48 @@
             <result name="success">/chooseEditElectronicContracts.jsp</result>
         </action>
         <!--具有审核资格的企业管理员接受审核-->
-        <action name="showVerifyElectronicContracts" class="cn.edu.zjut.action.ElectronicContractsAction" method="showVerifyElectronicContracts">
+        <action name="showVerifyElectronicContracts" class="cn.edu.zjut.action.ElectronicContractsAction"
+                method="showVerifyElectronicContracts">
             <result name="success">/verifyElectronicContracts.jsp</result>
         </action>
 
         <!--具有审核资格的企业管理员接受审核-->
-        <action name="verifyElectronicContracts" class="cn.edu.zjut.action.ElectronicContractsAction" method="verifyElectronicContracts">
+        <action name="verifyElectronicContracts" class="cn.edu.zjut.action.ElectronicContractsAction"
+                method="verifyElectronicContracts">
             <result name="success">/verifyElectronicContracts.jsp</result>
         </action>
 
         <!--商家接收合同-->
-        <action name="showShopElectronicContracts" class="cn.edu.zjut.action.ElectronicContractsAction" method="showShopElectronicContracts">
+        <action name="showShopElectronicContracts" class="cn.edu.zjut.action.ElectronicContractsAction"
+                method="showShopElectronicContracts">
             <result name="success">/showShopElectronicContracts.jsp</result>
         </action>
 
+        <!-- 企业管理员管理企业结构-->
+        <!--编辑企业部门-->
+        <action name="selectEnterpriseDepartmentById" class="cn.edu.zjut.action.EnterpriseDepartmentAction"
+                method="selectEnterpriseDepartmentById">
+            <result name="success">/updateEnterpriseDepartment.jsp</result>
+        </action>
+        <!--删除企业部门-->
+        <action name="deleteEnterpriseDepartment" class="cn.edu.zjut.action.EnterpriseDepartmentAction"
+                method="deleteEnterpriseDepartment">
+            <result name="success">/displayAllDepartment.jsp</result>
+        </action>
+        <!--批量删除企业部门-->
+        <action name="deleteEnterpriseDepartmentByIds" class="cn.edu.zjut.action.EnterpriseDepartmentAction"
+                method="deleteEnterpriseDepartmentByIds">
+            <result name="success">/displayAllDepartment.jsp</result>
+        </action>
+        <!--编辑企业部门，编辑成功即立即返回-->
+        <action name="updateEnterpriseDepartment" class="cn.edu.zjut.action.EnterpriseDepartmentAction"
+                method="updateEnterpriseDepartment">
+            <result name="success">/displayAllDepartment.jsp</result>
+        </action>
+        <!-- -->
+        <action name="queryEnterpriseDepartment" class="cn.edu.zjut.action.EnterpriseDepartmentAction" method="queryEnterpriseDepartment">
+            <result name="success">/displayAllDepartment.jsp</result>
+        </action>
 
         <!--        王怡欣配置区-->
         <!--        王淑媚配置区-->
@@ -228,28 +258,35 @@
 
 
         <!--        王淑媚配置区-->
-        <action name="addWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction" method="addWareHouseAddress">
+        <action name="addWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction"
+                method="addWareHouseAddress">
             <result name="success">/addWareHouseAddress.jsp</result>
         </action>
-        <action name="selectWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction" method="selectWareHouseAddress">
+        <action name="selectWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction"
+                method="selectWareHouseAddress">
             <result name="success">/wareHouseAddressList.jsp</result>
         </action>
-        <action name="deleteWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction" method="deleteWareHouseAddress">
+        <action name="deleteWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction"
+                method="deleteWareHouseAddress">
             <result name="success">/wareHouseAddressList.jsp</result>
         </action>
-        <action name="selectWareHouseAddressById" class="cn.edu.zjut.action.WareHouseAddressAction" method="selectWareHouseAddressById">
+        <action name="selectWareHouseAddressById" class="cn.edu.zjut.action.WareHouseAddressAction"
+                method="selectWareHouseAddressById">
             <result name="success">/updateWareHouseAddress.jsp</result>
         </action>
-        <action name="updateWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction" method="updateWareHouseAddress">
+        <action name="updateWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction"
+                method="updateWareHouseAddress">
             <result name="success">/wareHouseAddressList.jsp</result>
         </action>
         <action name="selectOrders" class="cn.edu.zjut.action.OrdersAction" method="selectOrders">
             <result name="success">/ordersList.jsp</result>
         </action>
-        <action name="deleteWareHouseAddressByIds" class="cn.edu.zjut.action.WareHouseAddressAction" method="deleteWareHouseAddressByIds">
+        <action name="deleteWareHouseAddressByIds" class="cn.edu.zjut.action.WareHouseAddressAction"
+                method="deleteWareHouseAddressByIds">
             <result name="success">/wareHouseAddressList.jsp</result>
         </action>
-        <action name="selectGoodsByWareHouseAddressId" class="cn.edu.zjut.action.WareHouseAddressAction" method="selectGoodsByWareHouseAddressId">
+        <action name="selectGoodsByWareHouseAddressId" class="cn.edu.zjut.action.WareHouseAddressAction"
+                method="selectGoodsByWareHouseAddressId">
             <result name="success">/productListByWareHouseId.jsp</result>
         </action>
     </package>

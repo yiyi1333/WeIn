@@ -7,6 +7,15 @@ public class EnterpriseDepartmentDisplay implements Serializable {
     private int enterpriseDepartmentId;
     private String faDepartment;
     private int enterpriseId;
+    private int enterpriseDepartmentpre;
+
+    public int getEnterpriseDepartmentpre() {
+        return enterpriseDepartmentpre;
+    }
+
+    public void setEnterpriseDepartmentpre(int enterpriseDepartmentpre) {
+        this.enterpriseDepartmentpre = enterpriseDepartmentpre;
+    }
 
     public int getEnterpriseDepartmentId() {
         return enterpriseDepartmentId;

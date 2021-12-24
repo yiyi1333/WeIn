@@ -1,7 +1,9 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page import="cn.edu.zjut.po.EnterpriseDepartment" %>
 <%@ page import="java.util.List" %>
-<%@ page import="cn.edu.zjut.po.EnterpriseDepartmentDisplay" %><%--
+<%@ page import="cn.edu.zjut.po.EnterpriseDepartmentDisplay" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="cn.edu.zjut.po.EnterpriseAgency" %><%--
   Created by IntelliJ IDEA.
   User: hydrogen_zyx
   Date: 2021/12/13
@@ -25,7 +27,22 @@
 
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <s:head/>
+    <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
+    <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- FooTable -->
+    <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
+
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+
+
 </head>
 
 <body>
@@ -38,13 +55,13 @@
         <jsp:include page="EnterpriseAgencytopSidebar.jsp"/>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>企业部门</h2>
+                <h2>管理企业部门</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href="index.jsp">主页</a>
                     </li>
                     <li class="breadcrumb-item active">
-                        <strong>企业部门</strong>
+                        <strong>管理企业部门</strong>
                     </li>
                 </ol>
             </div>
@@ -52,102 +69,149 @@
 
             </div>
         </div>
-        <div class="wrapper wrapper-content animated fadeInRight">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="ibox ">
-                        <div class="ibox-title">
-                            <h5>企业组织架构</h5>
 
-                            <div class="ibox-tools">
+        <div class="wrapper wrapper-content animated fadeInRight ecommerce">
 
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="fa fa-wrench"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li><a href="#" class="dropdown-item">选项 1</a>
-                                    </li>
-                                    <li><a href="#" class="dropdown-item">选项 2</a>
-                                    </li>
-                                </ul>
-                                <a class="close-link">
-                                    <i class="fa fa-times"></i>
-                                </a>
+            <%--            //模糊查询--%>
+            <div class="ibox-content m-b-sm border-bottom">
+                <form action="queryEnterpriseDepartment.action">
+                    <div class="row">
+                        <%
+                            EnterpriseAgency enterpriseAgency = (EnterpriseAgency) session.getAttribute("enterpriseAgency");
 
+                        %>
+                        <input type="hidden" name="enterpriseDepartment.enterpriseId" value="<%=enterpriseAgency.getEnterpriseId()%>">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label"
+                                       for="enterpriseDepartment.enterpriseDepartmentId">企业部门编号</label>
+                                <input type="text" id="enterpriseDepartment.enterpriseDepartmentId"
+                                       name="enterpriseDepartment.enterpriseDepartmentId" value="" placeholder="请输入..."
+                                       class="form-control">
                             </div>
                         </div>
-                        <div class="ibox-content">
-
-                            <div class="table-responsive">
-
-                                <table class="table table-striped table-bordered table-hover dataTables-example">
-                                    <thead>
-                                    <tr>
-                                        <th>部门编号</th>
-                                        <th>部门名称</th>
-                                        <th>部门隶属于</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label"
+                                       for="enterpriseDepartment.enterpriseDepartmentName">企业部门名字</label>
+                                <input type="text" id="enterpriseDepartment.enterpriseDepartmentName"
+                                       name="enterpriseDepartment.enterpriseDepartmentName" value=""
+                                       placeholder="请输入..." class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">企业部门隶属于</label>
+                                <select class="form-control m-b"
+                                        name="enterpriseDepartment.enterpriseDepartmentpre">
+                                    <option value="<%=-1%>">
+                                        <%="无限制"%>
+                                    </option>
                                     <%
-                                        List<EnterpriseDepartmentDisplay> departmentList = (List<EnterpriseDepartmentDisplay>) request.getSession().getAttribute("enterpriseDepartments");
-                                        for (int i = 0; i < departmentList.size(); i++) {
+                                        List<EnterpriseDepartment> enterpriseDepartmentList = (List<EnterpriseDepartment>) session.getAttribute("enterpriseDepartmentList");
+                                        if ((List<EnterpriseDepartment>) session.getAttribute("enterpriseDepartmentList") == null) {
+                                            session.putValue("enterpriseDepartmentList", new ArrayList<EnterpriseDepartment>());
+                                        }
+                                        for (EnterpriseDepartment enterpriseDepartment1 : enterpriseDepartmentList) {
+
                                     %>
-                                    <tr class="<%=(i%2==0?"gradeX":"gradeC")%>">
-                                        <td><%=departmentList.get(i).getEnterpriseDepartmentId()%>
-                                        </td>
-                                        <td><%=departmentList.get(i).getEnterpriseDepartmentName()%>
-                                        </td>
-                                        <td><%=departmentList.get(i).getFaDepartment()%>
-                                        </td>
-                                    </tr>
+                                    <option value="<%=enterpriseDepartment1.getEnterpriseDepartmentId()%>">
+                                        <%=enterpriseDepartment1.getEnterpriseDepartmentName()%>
+                                    </option>
                                     <%
                                         }
                                     %>
-                                    </tbody>
-                                    <tfoot>
-                                    <tr>
-                                        <th>部门编号</th>
-                                        <th>部门名称</th>
-                                        <th>部门隶属于</th>
-                                    </tr>
-                                    </tfoot>
-                                </table>
-                                <div class="text-left">
-                                    <a class="btn btn-primary" data-toggle="modal" href="#modal-form">
-                                        删除企业部门
-                                    </a>
-                                    <s:actionerror/>
-                                </div>
 
+                                </select>
                             </div>
                         </div>
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4">
+                            <button type="submit" class="btn btn-w-m btn-primary">查询</button>
+                        </div>
+
                     </div>
-                </div>
+
+
+                </form>
             </div>
 
-        </div>
-        <div class="ibox-tools">
-            <a class="collapse-link">
-                <i class="fa fa-chevron-up"></i>
-            </a>
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-wrench"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-user">
-                <li><a class="dropdown-item" href="#">选项 1</a>
-                </li>
-                <li><a class="dropdown-item" href="#">选项 2</a>
-                </li>
-            </ul>
-            <a class="close-link">
-                <i class="fa fa-times"></i>
-            </a>
-        </div>
 
+            <%--  //展示--%>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-content">
+
+                            <table class="footable table table-stripped toggle-arrow-tiny"
+                                   data-page-size="15">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>部门编号</th>
+                                    <th>部门名称</th>
+                                    <th>部门隶属于</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <%
+
+                                    List<EnterpriseDepartmentDisplay> departmentList = (List<EnterpriseDepartmentDisplay>) request.getSession().getAttribute("enterpriseDepartments");
+                                    if ((List<EnterpriseDepartmentDisplay>) session.getAttribute("enterpriseDepartments") == null) {
+                                        session.putValue("enterpriseDepartments", new ArrayList<EnterpriseDepartmentDisplay>());
+                                    }
+                                    for (int i = 0; i < departmentList.size(); i++) {
+                                %>
+                                <tr>
+
+                                    <td>
+                                        <input type="checkbox" class="i-checks"
+                                               value="<%=departmentList.get(i).getEnterpriseDepartmentId()%>"
+                                               name="input[]">
+                                    </td>
+                                    <td><%=departmentList.get(i).getEnterpriseDepartmentId()%>
+                                    </td>
+                                    <td><%=departmentList.get(i).getEnterpriseDepartmentName()%>
+                                    </td>
+                                    <td><%=departmentList.get(i).getFaDepartment()%>
+                                    </td>
+                                    <td class="text-middle">
+                                        <div class="btn-group">
+                                            <a href="selectEnterpriseDepartmentById?EnterpriseDepartmentId=<%=departmentList.get(i).getEnterpriseDepartmentId()%>">
+                                                <button class="btn-white btn btn-xs">编辑</button>
+                                            </a>
+                                            <a href="deleteEnterpriseDepartment?EnterpriseDepartmentId=<%=departmentList.get(i).getEnterpriseDepartmentId()%>">
+                                                <button class="btn-white btn btn-xs">删除</button>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <%
+                                    }
+                                %>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td>
+                                        <button type="button" class="btn btn-w-m btn-primary"
+                                                onclick="deleteEnterpriseDepartment()">批量删除
+                                        </button>
+                                    </td>
+                                    <td colspan="10">
+                                        <ul class="pagination float-right"></ul>
+                                    </td>
+                                </tr>
+                                <tfoot>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
         <div class="footer">
             <div class="float-right">
                 <strong>2.9.2 inspinia</strong>
@@ -157,42 +221,13 @@
             </div>
         </div>
 
+
     </div>
 
 
 </div>
 
-<div aria-hidden="true" class="modal fade" id="modal-form">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <h3 class="m-t-none m-b">删除部门</h3>
-                <p>删除部门将不可撤销。</p>
 
-                <form role="form" action="deleteDepartment.action">
-                    <div class="form-group"><label>部门名称</label>
-                        <select class="form-control" type="email" name="deleteDepartmentId">
-                            <%
-                                for (EnterpriseDepartmentDisplay enterpriseDepartmentDisplay : departmentList) {
-                                    if (enterpriseDepartmentDisplay.getEnterpriseDepartmentName().equals("企业本身"))
-                                        continue;
-                            %>
-                            <option value="<%=enterpriseDepartmentDisplay.getEnterpriseDepartmentId()%>"><%=enterpriseDepartmentDisplay.getEnterpriseDepartmentName()%>
-                            </option>
-                            <%
-                                }
-                            %>
-                        </select>
-                    </div>
-                    <div>
-                        <button class="btn btn-sm btn-primary float-right m-t-n-xs"
-                                type="submit"><strong>确认删除</strong></button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- Mainly scripts -->
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/popper.min.js"></script>
@@ -200,44 +235,19 @@
 <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
 <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-<script src="js/plugins/dataTables/datatables.min.js"></script>
-<script src="js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
-
 <!-- Custom and plugin javascript -->
 <script src="js/inspinia.js"></script>
 <script src="js/plugins/pace/pace.min.js"></script>
 
-<!-- Page-Level Scripts -->
-<script>
-    $(document).ready(function () {
-        $('.dataTables-example').DataTable({
-            pageLength: 25,
-            responsive: true,
-            dom: '<"html5buttons"B>lTfgitp',
-            buttons: [
-                {extend: 'copy'},
-                {extend: 'csv'},
-                {extend: 'excel', title: 'ExampleFile'},
-                {extend: 'pdf', title: 'ExampleFile'},
+<!-- Data picker -->
+<script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
 
-                {
-                    extend: 'print',
-                    customize: function (win) {
-                        $(win.document.body).addClass('white-bg');
-                        $(win.document.body).css('font-size', '10px');
-                        $(win.document.body).find('table')
-                            .addClass('compact')
-                            .css('font-size', 'inherit');
-                    }
-                }
-            ]
+<!-- FooTable -->
+<script src="js/plugins/footable/footable.all.min.js"></script>
 
-        });
+<%--省市区三级联动--%>
+<script type="text/javascript" src="js/area.js"></script>
 
-    });
-
-</script>
-<script src="js/plugins/iCheck/icheck.min.js"></script>
 <script>
     $(document).ready(function () {
         $('.i-checks').iCheck({
@@ -246,6 +256,56 @@
         });
     });
 </script>
+
+<!-- Page-Level Scripts -->
+<script>
+    $(document).ready(function () {
+
+        $('.footable').footable();
+
+        $('#date_added').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true
+        });
+
+        $('#date_modified').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true
+        });
+
+    });
+
+</script>
+
+<script>
+
+    // 确认删除
+    function deleteEnterpriseDepartment() {
+        var result = "";
+        var count = 0;
+        $(".i-checks").each(function () {
+            if ($(this).is(':checked')) {
+                result += $(this).val() + ",";
+                count++;
+            } else {
+            }
+        });
+        if (!confirm("确定删除这" + count + "企业部门?")) {
+            return;
+        }
+        window.location.href = "deleteEnterpriseDepartmentByIds?tag=" + result;
+    }
+
+
+</script>
+
 </body>
 
 </html>
+

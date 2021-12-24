@@ -7,7 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import java.util.List;
 
-public class EnterpriseDepartmentImpl implements EnterpriseDepartmentMapper{
+public class EnterpriseDepartmentImpl implements EnterpriseDepartmentMapper {
     private SqlSessionTemplate sqlSession;
 
     public SqlSessionTemplate getSqlSession() {
@@ -77,5 +77,25 @@ public class EnterpriseDepartmentImpl implements EnterpriseDepartmentMapper{
     public List<EnterpriseDepartment> getEnterpriseDepartmentByEnterpriseId(int id) {
         System.out.println("execute--getEnterpriseDepartmentById--dao");
         return sqlSession.getMapper(EnterpriseDepartmentMapper.class).getEnterpriseDepartmentByEnterpriseId(id);
+    }
+
+    @Override
+    public void updateEnterpriseDapartment(EnterpriseDepartment enterpriseDepartment) {
+        System.out.println("execute--updateEnterpriseDapartment--dao");
+        sqlSession.getMapper(EnterpriseDepartmentMapper.class).updateEnterpriseDapartment(enterpriseDepartment);
+    }
+
+    //模糊查询
+    @Override
+    public List<EnterpriseDepartmentDisplay> getEnterpriseDepartmentLike(EnterpriseDepartment enterpriseDepartment) {
+        System.out.println("execute--getEnterpriseDepartmentLike--dao");
+        return sqlSession.getMapper(EnterpriseDepartmentMapper.class).getEnterpriseDepartmentLike(enterpriseDepartment);
+    }
+
+    //查找名字
+    @Override
+    public String queryDepartNameByEnterpriseDepartmentId(int id) {
+        System.out.println("execute--queryDepartNameByEnterpriseDepartmentId--dao");
+        return sqlSession.getMapper(EnterpriseDepartmentMapper.class).queryDepartNameByEnterpriseDepartmentId(id);
     }
 }

@@ -25,7 +25,10 @@ public class EnterpriseDepartmentAction extends ActionSupport implements Session
     private ElectronicContractsService electronicContractsService;
     private EnterpriseUser enterpriseUser;
     private Map<String, Object> session;
-    private String deleteDepartmentId;
+    private Integer EnterpriseDepartmentId;
+    private String tag;//批量删除ID号集合
+    List<EnterpriseDepartmentDisplay> enterpriseDepartments;
+
 
     public ElectronicContractsService getElectronicContractsService() {
         return electronicContractsService;
@@ -35,12 +38,29 @@ public class EnterpriseDepartmentAction extends ActionSupport implements Session
         this.electronicContractsService = electronicContractsService;
     }
 
-    public String getDeleteDepartmentId() {
-        return deleteDepartmentId;
+
+    public List<EnterpriseDepartmentDisplay> getEnterpriseDepartments() {
+        return enterpriseDepartments;
     }
 
-    public void setDeleteDepartmentId(String deleteDepartmentId) {
-        this.deleteDepartmentId = deleteDepartmentId;
+    public void setEnterpriseDepartments(List<EnterpriseDepartmentDisplay> enterpriseDepartments) {
+        this.enterpriseDepartments = enterpriseDepartments;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public void setEnterpriseDepartmentId(Integer enterpriseDepartmentId) {
+        EnterpriseDepartmentId = enterpriseDepartmentId;
+    }
+
+    public Integer getEnterpriseDepartmentId() {
+        return EnterpriseDepartmentId;
+    }
+
+    public String getTag() {
+        return tag;
     }
 
     public EnterpriseDepartmentService getEnterpriseDepartmentService() {
@@ -119,8 +139,12 @@ public class EnterpriseDepartmentAction extends ActionSupport implements Session
 
     public String displayAllDepartment() {
         EnterpriseAgency enterpriseAgency = (EnterpriseAgency) session.get("enterpriseAgency");
-        List<EnterpriseDepartmentDisplay> enterpriseDepartments = enterpriseDepartmentService.getAllEnterpriseDepartmentDisplay(enterpriseAgency.getEnterpriseId());
+        enterpriseDepartments = enterpriseDepartmentService.getAllEnterpriseDepartmentDisplay(enterpriseAgency.getEnterpriseId());
         String name = enterpriseDepartmentService.getEnterpriseById(enterpriseAgency.getEnterpriseId()).getEnterpriseName();
+        List<EnterpriseDepartment> enterpriseDepartmentList = enterpriseDepartmentService.getEnterpriseDepartmentByEnterpriseId(enterpriseAgency.getEnterpriseId());
+        //用于查询
+        session.put("enterpriseDepartmentList", enterpriseDepartmentList);
+
         session.put("enterpriseDepartments", enterpriseDepartments);
         session.put("displayEnterpriseName", name);
         session.put("enterpriseId", enterpriseAgency.getEnterpriseId());
@@ -136,7 +160,7 @@ public class EnterpriseDepartmentAction extends ActionSupport implements Session
     }
 
     public String deleteDepartment() throws Exception {
-        enterpriseDepartment = enterpriseDepartmentService.getEnterpriseDepartmentById(Integer.parseInt(deleteDepartmentId));
+        enterpriseDepartment = enterpriseDepartmentService.getEnterpriseDepartmentById(EnterpriseDepartmentId);
         if (enterpriseDepartmentService.deleteDepartment(enterpriseDepartment.getEnterpriseDepartmentId())) {
             electronicContractsService.legitimacyCheck();
 //            throw new Exception();
@@ -154,6 +178,65 @@ public class EnterpriseDepartmentAction extends ActionSupport implements Session
 
     public String deleteConsumer() {
         enterpriseDepartmentService.deleteConsumer(enterpriseUser.getConsumerId());
+        return "success";
+    }
+
+    //删除企业结构
+    public String deleteEnterpriseDepartment() {
+        EnterpriseAgency enterpriseAgency = (EnterpriseAgency) session.get("enterpriseAgency");
+        enterpriseDepartmentService.deleteDepartment(EnterpriseDepartmentId);
+        enterpriseDepartments = enterpriseDepartmentService.getAllEnterpriseDepartmentDisplay(enterpriseAgency.getEnterpriseId());
+        session.put("enterpriseDepartments", enterpriseDepartments);
+        return "success";
+    }
+
+    //批量删除企业结构
+    public String deleteEnterpriseDepartmentByIds() {
+        EnterpriseAgency enterpriseAgency = (EnterpriseAgency) session.get("enterpriseAgency");
+        String[] deletedepartment = tag.split(",");
+        for (int i = 0; i < deletedepartment.length; i++) {
+            enterpriseDepartmentService.deleteDepartment(Integer.parseInt(deletedepartment[i]));
+        }
+        enterpriseDepartments = enterpriseDepartmentService.getAllEnterpriseDepartmentDisplay(enterpriseAgency.getEnterpriseId());
+        session.put("enterpriseDepartments", enterpriseDepartments);
+        return "success";
+    }
+
+    //选择更新企业结构
+    public String selectEnterpriseDepartmentById() {
+        EnterpriseAgency enterpriseAgency = (EnterpriseAgency) session.get("enterpriseAgency");
+        if (enterpriseAgency == null) {
+            return "displayEnterpriseAgencyFailed";
+        }
+        EnterpriseDepartment enterpriseDepartment = enterpriseDepartmentService.getEnterpriseDepartmentById(EnterpriseDepartmentId);
+        List<EnterpriseDepartment> enterpriseDepartmentList = enterpriseDepartmentService.getEnterpriseDepartmentByEnterpriseId(enterpriseAgency.getEnterpriseId());
+        session.put("enterpriseDepartment", enterpriseDepartment);
+        session.put("enterpriseDepartmentList", enterpriseDepartmentList);
+        return "success";
+    }
+
+    //更新企业返回
+    public String updateEnterpriseDepartment() {
+        EnterpriseDepartment enterpriseDepartment1 = (EnterpriseDepartment) session.get("enterpriseDepartment");
+        enterpriseDepartment.setEnterpriseDepartmentId(enterpriseDepartment1.getEnterpriseDepartmentId());
+        enterpriseDepartmentService.updateEnterpriseDapartment(enterpriseDepartment);
+        //并且清除原有的enterpriseDepartments,重置
+        session.remove("enterpriseDepartments");
+        EnterpriseAgency enterpriseAgency = (EnterpriseAgency) session.get("enterpriseAgency");
+        enterpriseDepartments = enterpriseDepartmentService.getAllEnterpriseDepartmentDisplay(enterpriseAgency.getEnterpriseId());
+        session.put("enterpriseDepartments", enterpriseDepartments);
+        return "success";
+    }
+
+    //模糊查询
+    public String queryEnterpriseDepartment() {
+//        enterpriseDepartment.setEnterpriseId(-1);
+        session.remove("enterpriseDepartments");
+        List<EnterpriseDepartmentDisplay> enterpriseDepartmentList = enterpriseDepartmentService.getEnterpriseDepartmentLike(enterpriseDepartment);
+        for(EnterpriseDepartmentDisplay enterpriseDepartmentDisplay: enterpriseDepartmentList) {
+            enterpriseDepartmentDisplay.setFaDepartment(enterpriseDepartmentService.queryDepartNameByEnterpriseDepartmentId(enterpriseDepartmentDisplay.getEnterpriseDepartmentpre()));
+        }
+        session.put("enterpriseDepartments", enterpriseDepartmentList);
         return "success";
     }
 }

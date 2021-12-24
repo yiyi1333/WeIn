@@ -24,4 +24,12 @@ public interface EnterpriseDepartmentMapper {
     public void updateUserDepartment(@Param("id") int id, @Param("departmentId") int departmentId);// 更新用户部门
 
     public void deleteConsumer(int id);// 删除用户
+
+    //更新企业结构
+    public void updateEnterpriseDapartment(EnterpriseDepartment enterpriseDepartment);
+
+    //模糊查询
+    public List<EnterpriseDepartmentDisplay> getEnterpriseDepartmentLike(EnterpriseDepartment enterpriseDepartment);
+
+    public String queryDepartNameByEnterpriseDepartmentId(int id);
 }
