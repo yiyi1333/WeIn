@@ -6,9 +6,9 @@ import cn.edu.zjut.po.*;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.ibatis.annotations.Param;
 
+import java.sql.Date;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -131,6 +131,7 @@ public class OrdersService {
         WareHouseAddress wareHouseAddress = wareHouseAddressMapper.selectWareHouseAddressById(goodsService.getGoodsById(goodList.get(0)).getWarehouseId());
         Orders orders = new Orders();
         orders.setOrderStatus("待发货");
+        orders.setOrderPaymentMethod("微信支付");
         orders.setConsumerId(Integer.toString(customerId));
         orders.setShopId(goodsService.getGoodsById(goodList.get(0)).getShopId());
         orders.setLogisticsSingle(null);
@@ -157,7 +158,7 @@ public class OrdersService {
         orders.setWarehouseArea(wareHouseAddress.getDistrict());
 
         JSONObject adrs = JSONObject.parseObject(address);
-        Date date = new Date();
+        Date date = new Date(System.currentTimeMillis());
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
         System.out.println(dateFormat.format(date));
         orders.setOrderDate(date);
@@ -259,5 +260,17 @@ public class OrdersService {
         List<OrderShow> list = ordersDao.showStatusOrder(customerId, "已收货");
         System.out.println(list);
         return list;
+    }
+    //用户确认收货
+    public String confirmReceipt(Integer orderId){
+        if(ordersDao.modfiyOrderStatus(orderId, "已收货") != 0){
+            Date date = new java.sql.Date(System.currentTimeMillis());
+            Time time = new Time(date.getTime());
+            orderStatusDao.addOrderStatus1(orderId, date, time, "已收货");
+            return "收货成功";
+        }
+        else {
+            return "收货失败";
+        }
     }
 }

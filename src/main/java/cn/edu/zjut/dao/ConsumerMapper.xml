@@ -85,7 +85,7 @@
 <!--    修改实名数据-->
     <update id="modfiyCertificationInfo">
         update consumer
-        set consumer.name = #{realName}, consumer.idCardNumber = #{idNumber}
+        set consumer.name = #{realName}, consumer.idCardNumber = #{idNumber}, consumer.certification = 1
         where consumer.consumerId = #{consumerId}
     </update>
     <!--查询有无电话号码-->

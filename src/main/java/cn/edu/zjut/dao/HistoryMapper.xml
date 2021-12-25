@@ -36,6 +36,6 @@
         select *
         from history, goods
         where history.consumerId = #{customerId} and history.goodsId = goods.goodsId
-        order by history.date decs , history.time decs
+        order by history.date desc, history.time desc
     </select>
 </mapper>

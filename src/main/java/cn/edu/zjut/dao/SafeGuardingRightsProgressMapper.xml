@@ -19,4 +19,12 @@
         insert into WeIn.safeGuardingRightsProgress(safeGuardingRightsProgressStatus,safeGuardingRightsProgressTime,safeGuardingRightsProgressDate,safeGuardingRightsId)
             values(#{safeGuardingRightsProgressStatus},#{safeGuardingRightsProgressTime},#{safeGuardingRightsProgressDate},#{safeGuardingRightsId});
     </insert>
+
+    <insert id="addSafeGuardingRightsProgress">
+        insert into safeguardingrightsprogress
+        set safeGuardingRightsProgressStatus = #{safeGuardingRightsProgressStatus},
+        safeGuardingRightsProgressTime = #{safeGuardingRightsProgressTime},
+        safeGuardingRightsProgressDate = #{safeGuardingRightsProgressDate},
+        safeGuardingRightsId = #{safeGuardingRightsId};
+    </insert>
 </mapper>

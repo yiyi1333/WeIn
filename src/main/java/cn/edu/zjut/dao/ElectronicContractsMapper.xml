@@ -26,8 +26,7 @@
         select * from electroniccontracts where enterpriseId = #{0};
     </select>
 
-    <insert id="addElectronicContracts" parameterType="cn.edu.zjut.po.ElectronicContracts" useGeneratedKeys="true"
-            keyProperty="electronicContractsId">
+    <insert id="addElectronicContracts" parameterType="cn.edu.zjut.po.ElectronicContracts" useGeneratedKeys="true" keyProperty="electronicContractsId">
         insert into electroniccontracts(state, enterpriseId,enterpriseAgencyId,starttime,endtime,goodsId,shopId,
         enterpriseDepartmentId, discount)
         values (#{state} ,#{enterpriseId}
@@ -48,47 +47,50 @@
         update electroniccontracts set state = 1 where enterpriseAgencyId = #{0} and state = 0;
     </update>
 
-    <select id="queryElectronicContractsByShopId" resultMap="ElectronicContractsResultMap">
+    <select id="queryElectronicContractsByShopId" resultMap="ElectronicContractsResultMap" >
         select * from electroniccontracts where shopId = #{0} and state = 1;
     </select>
 
     <select id="queryElectronicContractsByGoodsIdAndDepartmentId" resultMap="ElectronicContractsResultMap">
         select *
         from electroniccontracts
-        where goodsId = #{goodsId} and enterpriseDepartmentId= #{deparatmentId} and starttime &lt; #{now} and endtime
-        &gt; #{now} and discount &lt; any(
+        where goodsId = #{goodsId} and enterpriseDepartmentId= #{deparatmentId} and starttime &lt; #{now} and endtime &gt; #{now}  and discount &lt; any(
         select discount
         from electroniccontracts
         where goodsId = #{goodsId} and enterpriseDepartmentId= #{deparatmentId}
         )
     </select>
 
-    <select id="queryElectronicContractsLike" resultMap="ElectronicContractsResultMap"
-            parameterType="cn.edu.zjut.po.ElectronicContracts">
+    <select id="queryElectronicContractsLike" resultMap="ElectronicContractsResultMap" parameterType="cn.edu.zjut.po.ElectronicContracts">
         select *
         from electroniccontracts
         where electronicContractsId in (
         select electronicContractsId from WeIn.electroniccontracts
         <where>
             <if test="electronicContractsId != null and electronicContractsId != 0 ">or electronicContractsId
-                = #{electronicContractsId}
+                like concat('%', #{electronicContractsId}, '%')
             </if>
             <if test="enterpriseAgencyId != null and enterpriseAgencyId != 0 ">or enterpriseAgencyId
-                =#{enterpriseAgencyId}
+                like concat('%', #{enterpriseAgencyId}, '%')
             </if>
-            <if test="shopmanagerId != null and shopmanagerId != 0 ">or shopmanagerId
-                = #{shopmanagerId}
+            <if test="enterpriseId != null and enterpriseId != 0 ">or enterpriseId
+                like concat('%', #{enterpriseId}, '%')
             </if>
-            <if test="goodsId != null and goodsId != 0 ">or goodsId
-                = #{goodsId}
+            <if test="shopmanagerId != null and shopmanagerId != 0 ">or  shopmanagerId
+                like concat('%', #{shopmanagerId}, '%')
             </if>
-            <if test="enterpriseDepartmentId != null and enterpriseDepartmentId != 0 ">or enterpriseDepartmentId
-                = #{enterpriseDepartmentId}
+            <if test="goodsId != null and goodsId != 0 ">or  goodsId
+                like concat('%', #{goodsId}, '%')
             </if>
-            <if test="discount != null and discount != 0.0">or discount =
-                #{discount}
+            <if test="enterpriseDepartmentId != null and enterpriseDepartmentId != 0 ">or  enterpriseDepartmentId
+                like concat('%', #{enterpriseDepartmentId}, '%')
             </if>
-
+            <if test="discount != null and discount != ''">or discount
+                like concat('%', #{discount}, '%')
+            </if>
+            <if test="state != null and state != '0'">or state
+                like concat('%', #{state}, '%')
+            </if>
         </where>
         )
         and enterpriseId = #{enterpriseId};

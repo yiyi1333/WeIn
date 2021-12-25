@@ -53,7 +53,7 @@ public class CartService {
         ArrayList<Cart> temp = cartDao.getConsumerCart(consumerId);
         Date date = new Date();
         ArrayList<Cart> cartList = new ArrayList<>();
-        if(enterpriseConsumer.getEnterpriseDepartment().getEnterpriseDepartmentId() != 0){
+        if(enterpriseConsumer != null){
             //企业员工
             for(Cart c : temp){
                 ArrayList<CartGoods> cartGoodsList = new ArrayList<>();

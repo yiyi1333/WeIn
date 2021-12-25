@@ -57,6 +57,11 @@ public class OrdersImpl implements OrdersMapper{
         return sqlSession.getMapper(OrdersMapper.class).showStatusOrder(customerId, status);
     }
 
+    @Override
+    public Integer modfiyOrderStatus(Integer orderId, String status) {
+        return sqlSession.getMapper(OrdersMapper.class).modfiyOrderStatus(orderId, status);
+    }
+
 
     @Override
     public void addLogisticsSingleList(Orders orders) {
