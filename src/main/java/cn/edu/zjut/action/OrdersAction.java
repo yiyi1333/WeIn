@@ -204,101 +204,101 @@ public class OrdersAction implements SessionAware {
 
     public String createShopOrders() {
         //这是一些测试数据
-        consumerId = "4";
-        shops = """
-                [
-                    {
-                        "shop": {
-                            "enterprise": null,
-                            "shopDescription": null,
-                            "shopId": 10,
-                            "shopName": "华为比特专卖店"
-                        },
-                        "goodslist": [
-                            {
-                                "goods": {
-                                    "goodsDetails": null,
-                                    "goodsId": 16,
-                                    "goodsImage": "https://img13.360buyimg.com/n7/jfs/t1/220885/31/5968/89111/61a38576E4b4d82d2/bb652689c18ef8aa.jpg",
-                                    "goodsName": "华为笔记本电脑MateBook 13 20/21新款 13英寸超薄本全面屏轻薄商",
-                                    "goodsPrice": 5699,
-                                    "goodsRealPrice": 0,
-                                    "goodsStock": 10,
-                                    "goodsWeight": 0,
-                                    "isGrouding": 0,
-                                    "shop": null,
-                                    "shopId": 10,
-                                    "tags": "电脑、办公",
-                                    "warehouseId": 2
-                                },
-                                "goodsnum": 4,
-                                "checked": true
-                            }
-                        ]
-                    },
-                    {
-                        "shop": {
-                            "enterprise": null,
-                            "shopDescription": null,
-                            "shopId": 11,
-                            "shopName": "华为京东自营官方旗舰店"
-                        },
-                        "goodslist": [
-                            {
-                                "goods": {
-                                    "goodsDetails": null,
-                                    "goodsId": 17,
-                                    "goodsImage": "https://img10.360buyimg.com/n7/jfs/t1/142117/23/25688/101665/617a8ccbE7e72b91b/d78ca0a687a354cb.jpg",
-                                    "goodsName": "华为笔记本电脑 MateBook D 14 2021款 14英寸 11代酷睿 I",
-                                    "goodsPrice": 4999,
-                                    "goodsRealPrice": 0,
-                                    "goodsStock": 10,
-                                    "goodsWeight": 0,
-                                    "isGrouding": 0,
-                                    "shop": null,
-                                    "shopId": 11,
-                                    "tags": "电脑、办公",
-                                    "warehouseId": 3
-                                },
-                                "goodsnum": 2,
-                                "checked": true
-                            },
-                            {
-                                "goods": {
-                                    "goodsDetails": null,
-                                    "goodsId": 18,
-                                    "goodsImage": "https://img14.360buyimg.com/n7/jfs/t1/194675/37/14021/53586/60f7944cEe141f001/89040fffad82661f.jpg",
-                                    "goodsName": "华为笔记本电脑MateBook 14 2021款 14.0英寸 11代酷睿i7 ",
-                                    "goodsPrice": 6999,
-                                    "goodsRealPrice": 0,
-                                    "goodsStock": 10,
-                                    "goodsWeight": 0,
-                                    "isGrouding": 0,
-                                    "shop": null,
-                                    "shopId": 11,
-                                    "tags": "电脑、办公",
-                                    "warehouseId": 3
-                                },
-                                "goodsnum": 3,
-                                "checked": true
-                            }
-                        ]
-                    }
-                ]
-                """;
-        //数据预处理
-        address = """
-                {
-                    "errMsg": "chooseAddress:ok",
-                    "userName": "张三",
-                    "nationalCode": "510000",
-                    "telNumber": "020-81167888",
-                    "postalCode": "510000",
-                    "provinceName": "广东省",
-                    "cityName": "广州市",
-                    "countyName": "海珠区",
-                    "detailInfo": "新港中路397号"
-                }""";
+//        consumerId = "4";
+//        shops = """
+//                [
+//                    {
+//                        "shop": {
+//                            "enterprise": null,
+//                            "shopDescription": null,
+//                            "shopId": 10,
+//                            "shopName": "华为比特专卖店"
+//                        },
+//                        "goodslist": [
+//                            {
+//                                "goods": {
+//                                    "goodsDetails": null,
+//                                    "goodsId": 16,
+//                                    "goodsImage": "https://img13.360buyimg.com/n7/jfs/t1/220885/31/5968/89111/61a38576E4b4d82d2/bb652689c18ef8aa.jpg",
+//                                    "goodsName": "华为笔记本电脑MateBook 13 20/21新款 13英寸超薄本全面屏轻薄商",
+//                                    "goodsPrice": 5699,
+//                                    "goodsRealPrice": 0,
+//                                    "goodsStock": 10,
+//                                    "goodsWeight": 0,
+//                                    "isGrouding": 0,
+//                                    "shop": null,
+//                                    "shopId": 10,
+//                                    "tags": "电脑、办公",
+//                                    "warehouseId": 2
+//                                },
+//                                "goodsnum": 4,
+//                                "checked": true
+//                            }
+//                        ]
+//                    },
+//                    {
+//                        "shop": {
+//                            "enterprise": null,
+//                            "shopDescription": null,
+//                            "shopId": 11,
+//                            "shopName": "华为京东自营官方旗舰店"
+//                        },
+//                        "goodslist": [
+//                            {
+//                                "goods": {
+//                                    "goodsDetails": null,
+//                                    "goodsId": 17,
+//                                    "goodsImage": "https://img10.360buyimg.com/n7/jfs/t1/142117/23/25688/101665/617a8ccbE7e72b91b/d78ca0a687a354cb.jpg",
+//                                    "goodsName": "华为笔记本电脑 MateBook D 14 2021款 14英寸 11代酷睿 I",
+//                                    "goodsPrice": 4999,
+//                                    "goodsRealPrice": 0,
+//                                    "goodsStock": 10,
+//                                    "goodsWeight": 0,
+//                                    "isGrouding": 0,
+//                                    "shop": null,
+//                                    "shopId": 11,
+//                                    "tags": "电脑、办公",
+//                                    "warehouseId": 3
+//                                },
+//                                "goodsnum": 2,
+//                                "checked": true
+//                            },
+//                            {
+//                                "goods": {
+//                                    "goodsDetails": null,
+//                                    "goodsId": 18,
+//                                    "goodsImage": "https://img14.360buyimg.com/n7/jfs/t1/194675/37/14021/53586/60f7944cEe141f001/89040fffad82661f.jpg",
+//                                    "goodsName": "华为笔记本电脑MateBook 14 2021款 14.0英寸 11代酷睿i7 ",
+//                                    "goodsPrice": 6999,
+//                                    "goodsRealPrice": 0,
+//                                    "goodsStock": 10,
+//                                    "goodsWeight": 0,
+//                                    "isGrouding": 0,
+//                                    "shop": null,
+//                                    "shopId": 11,
+//                                    "tags": "电脑、办公",
+//                                    "warehouseId": 3
+//                                },
+//                                "goodsnum": 3,
+//                                "checked": true
+//                            }
+//                        ]
+//                    }
+//                ]
+//                """;
+//        //数据预处理
+//        address = """
+//                {
+//                    "errMsg": "chooseAddress:ok",
+//                    "userName": "张三",
+//                    "nationalCode": "510000",
+//                    "telNumber": "020-81167888",
+//                    "postalCode": "510000",
+//                    "provinceName": "广东省",
+//                    "cityName": "广州市",
+//                    "countyName": "海珠区",
+//                    "detailInfo": "新港中路397号"
+//                }""";
         System.out.println(consumerId);
         System.out.println(shops);
         System.out.println(address);

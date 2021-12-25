@@ -79,8 +79,8 @@ public class UserAction implements SessionAware {
             enterpriseAgency.setEnterpriseAgencyAccount(user.getAccount());
             enterpriseAgency.setEnterpriseAgencyPassword(user.getPassword());
             enterpriseAgency = enterpriseAgencyService.login(enterpriseAgency);
-            int right = enterpriseAgency.getEnterpriseAgencyRight();
             if (enterpriseAgency != null) {
+                int right = enterpriseAgency.getEnterpriseAgencyRight();
                 session.put("type", "enterpriseAgency");
                 session.put("name", enterpriseAgency.getEnterpriseAgencyName());
                 session.put("enterpriseAgency", enterpriseAgency);

@@ -207,8 +207,6 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
                                                         <div class="col-sm-4">
                                                             <div class="form-group">
                                                                 <label class="col-form-label">月份</label>
@@ -230,28 +228,27 @@
                                                             </div>
                                                         </div>
 
-                                                    </div>
-
-                                                    <div class="col-sm-4">
-                                                        <div class="form-group">
-                                                            <label class="col-form-label">日期</label>
-                                                            <select name="date"
-                                                                    class="form-control">
-                                                                <option value="0">全部</option>
-                                                                <%
-                                                                    for (int i = 1; i <= 31; i++) {
-                                                                %>
-                                                                <option value="<%=i%>"><%=i%>日</option>
-                                                                <%
-                                                                    }
-                                                                %>
-                                                            </select>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label class="col-form-label">日期</label>
+                                                                <select name="date"
+                                                                        class="form-control">
+                                                                    <option value="0">全部</option>
+                                                                    <%
+                                                                        for (int i = 1; i <= 31; i++) {
+                                                                    %>
+                                                                    <option value="<%=i%>"><%=i%>日</option>
+                                                                    <%
+                                                                        }
+                                                                    %>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-sm-2">
+                                                                <br><br>
+                                                                <button type="submit" class="btn btn-w-m btn-primary">查询
+                                                                </button>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <br><br>
-                                                        <button type="submit" class="btn btn-w-m btn-primary">查询
-                                                        </button>
                                                     </div>
                                                 </form>
                                             </div>
