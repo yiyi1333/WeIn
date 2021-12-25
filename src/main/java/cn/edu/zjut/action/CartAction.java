@@ -1,7 +1,13 @@
 package cn.edu.zjut.action;
 
+import cn.edu.zjut.po.Cart;
+import cn.edu.zjut.po.CartGoods;
+import cn.edu.zjut.po.Goods;
 import cn.edu.zjut.service.CartService;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartAction {
@@ -10,6 +16,15 @@ public class CartAction {
     private String consumerId;
     private String goodsId;
     private String message;
+    private String shopsList;
+
+    public String getShopsList() {
+        return shopsList;
+    }
+
+    public void setShopsList(String shopsList) {
+        this.shopsList = shopsList;
+    }
 
     public String getMessage() {
         return message;
@@ -68,5 +83,21 @@ public class CartAction {
             cartList = cartService.getConsumerCartById(Integer.parseInt(consumerId));
             return "success";
         }
+    }
+    //更新购物车
+    public String updateCart(){
+        JSONArray jsonArray = JSONArray.parseArray(shopsList);
+        ArrayList<CartGoods> list = new ArrayList<>();
+        for(int i = 0; i < jsonArray.size(); i++){
+            JSONObject object = jsonArray.getJSONObject(i);
+            JSONArray goodslist = object.getJSONArray("goodslist");
+            for(int j = 0; j < goodslist.size(); j++){
+                JSONObject temp = goodslist.getJSONObject(j);
+                CartGoods g = temp.toJavaObject(CartGoods.class);
+                list.add(g);
+            }
+        }
+        cartService.updateCart(list, Integer.parseInt(consumerId));
+        return "success";
     }
 }
