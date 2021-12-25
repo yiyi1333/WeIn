@@ -8,14 +8,27 @@ import java.util.List;
 
 public interface ConsumerMapper {
     public List<Consumer> getAllConsumer();//获得所有员工
+
     public void addConsumer(Consumer consumer);//添加企业员工
+
     //按照手机号查询某消费者
     public Consumer searchUser(@Param("phoneNumber") String phoneNumber);
+
     //按手机号查询某企业消费者
     public EnterpriseConsumer searchEnterpriseConsumer(@Param("phoneNumber") String phoneNumber);
+
     //按编号查询企业消费者
     public EnterpriseConsumer searchEnterpriseConsumerById(@Param("consumerId") Integer consumerId);
-    public void updateWxInfo(@Param("phoneNumber")String phoneNumber, @Param("nickName") String nickName, @Param("avatarUrl") String avatarUrl);
+
+    public void updateWxInfo(@Param("phoneNumber") String phoneNumber, @Param("nickName") String nickName, @Param("avatarUrl") String avatarUrl);
+
+    public Consumer getConsumerById(int id);
     //存储实名信息
     public Integer modfiyCertificationInfo(@Param("consumerId")Integer consumerId, @Param("realName") String realName, @Param("idNumber") String idNumber);
+
+    //找由于电话号码
+    public Consumer findPhoneNumber(String phonebunmber);
+
+    //企业用户认证
+    public void updataConsumer(Consumer consumer);
 }

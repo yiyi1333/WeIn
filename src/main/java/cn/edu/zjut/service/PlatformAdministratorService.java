@@ -17,7 +17,6 @@ public class PlatformAdministratorService {
         this.platformAdministratorImpl = platformAdministratorImpl;
     }
 
-    @MyLog
     public PlatformAdministrator login(PlatformAdministrator platformAdministrator) {
         System.out.println("execute --login()-- method.");
 

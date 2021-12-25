@@ -1,6 +1,5 @@
 package cn.edu.zjut.action;
 
-import cn.edu.zjut.annotation.MyLog;
 import cn.edu.zjut.po.EnterpriseAgency;
 import cn.edu.zjut.po.PlatformAdministrator;
 import cn.edu.zjut.po.ShopManager;
@@ -80,8 +79,8 @@ public class UserAction implements SessionAware {
             enterpriseAgency.setEnterpriseAgencyAccount(user.getAccount());
             enterpriseAgency.setEnterpriseAgencyPassword(user.getPassword());
             enterpriseAgency = enterpriseAgencyService.login(enterpriseAgency);
-            int right = enterpriseAgency.getEnterpriseAgencyRight();
             if (enterpriseAgency != null) {
+                int right = enterpriseAgency.getEnterpriseAgencyRight();
                 session.put("type", "enterpriseAgency");
                 session.put("name", enterpriseAgency.getEnterpriseAgencyName());
                 session.put("enterpriseAgency", enterpriseAgency);
@@ -109,6 +108,12 @@ public class UserAction implements SessionAware {
             }
         }
         return "failed";
+    }
+
+
+    public String loginout() {
+        session.clear();
+        return "success";
     }
 
 }

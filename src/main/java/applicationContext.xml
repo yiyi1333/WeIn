@@ -68,6 +68,20 @@
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
 
+    <bean id="commentImpl" class="cn.edu.zjut.dao.CommentImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="commentService" class="cn.edu.zjut.service.CommentService">
+        <property name="commentMapper" ref="commentImpl"/>
+        <property name="commentDao" ref="commentImpl"/>
+
+    </bean>
+
+    <bean id="reviewCommentAction" class="cn.edu.zjut.action.ReviewCommentAction">
+        <property name="commentService" ref="commentService"/>
+
+    </bean>
 
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
@@ -149,12 +163,15 @@
 
     <bean id="collectionAction" class="cn.edu.zjut.action.CollectionAction">
         <property name="collectionService" ref="collectionService"/>
-     </bean>
+    </bean>
 
     <bean id="uploadImageAction" class="cn.edu.zjut.action.UploadImageAction"/>
 <!--维权-->
     <bean id="safeGuardingRightsService" class="cn.edu.zjut.service.SafeGuardingRightsService">
         <property name="safeGuardingRightsDao" ref="safeGuardingRightsImpl"/>
+        <property name="goodsMapper" ref="goodsImpl"/>
+        <property name="orderGoodMapper" ref="orderGoodImpl"/>
+        <property name="ordersMapper" ref="ordersImpl"/>
     </bean>
     <bean id="safeGuardingRightsProgressService" class="cn.edu.zjut.service.SafeGuardingRightsProgressService">
         <property name="safeGuardingRightsProgressDao" ref="safeGuardingRightsProgressImpl"/>
@@ -241,6 +258,7 @@
         <property name="registerShopmanagerAndEnterpriseagencyService"
                   ref="registerShopmanagerAndEnterpriseagencyService"/>
     </bean>
+
     <!--王怡欣配置区-->
     <bean id="consumerImpl" class="cn.edu.zjut.dao.ConsumerImpl">
         <property name="sqlSession" ref="sqlSession"/>
@@ -273,6 +291,8 @@
 
     <bean id="consumerAction" class="cn.edu.zjut.action.ConsumerAction">
         <property name="consumerService" ref="consumerService"/>
+        <!--企业认证需要-->
+        <property name="enterpriseDepartmentService" ref="enterpriseDepartmentService"/>
     </bean>
 
     <bean id="enterpriseDepartmentImpl" class="cn.edu.zjut.dao.EnterpriseDepartmentImpl">
@@ -296,11 +316,13 @@
         <property name="orderGoodMapper" ref="orderGoodImpl"/>
         <property name="goodsService" ref="goodsService"/>
         <property name="wareHouseAddressMapper" ref="wareHouseAddressImpl"/>
+        <property name="orderStatusMapper" ref="orderStatusImpl"/>
     </bean>
 
     <bean id="ordersAction" class="cn.edu.zjut.action.OrdersAction" scope="prototype">
         <property name="ordersService" ref="ordersService"/>
         <property name="goodsService" ref="goodsService"/>
+        <property name="shopManagerService" ref="shopManagerService"/>
     </bean>
 
     <bean id="wareHouseAddressImpl" class="cn.edu.zjut.dao.WareHouseAddressImpl">

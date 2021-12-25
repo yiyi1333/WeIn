@@ -15,42 +15,43 @@ import java.util.Map;
 
 public class ConsumerService {
     private ConsumerMapper consumerdao;
+
     public ConsumerMapper getconsumerdao() {
         return consumerdao;
     }
+
     public void setConsumerdao(ConsumerMapper consumerdao) {
         this.consumerdao = consumerdao;
     }
 
-    public List<Consumer> getAllConsumer(){
+    public List<Consumer> getAllConsumer() {
         List<Consumer> consumerlist = consumerdao.getAllConsumer();
         return consumerlist;
     }
 
-    public void addConsumer(Consumer consumer){
-        consumerdao.addConsumer(consumer);
+    public void addConsumer(Consumer consumer) {
+        consumerdao .updataConsumer(consumer);
+//        consumerdao.addConsumer(consumer);
     }
 
-    public EnterpriseConsumer loginAndRegister(String phoneNumber){
+    public EnterpriseConsumer loginAndRegister(String phoneNumber) {
         //查询是否已经存在该手机号的用户
         Consumer user = consumerdao.searchUser(phoneNumber);
         EnterpriseConsumer enterpriseConsumer = null;
-        if(user != null){
+        if (user != null) {
             //已经存在的用户
             System.out.println(user);
             //判断用户是否是企业用户
-            if(user.getEnterpriseDepartmentNumber() != null){
+            if (user.getEnterpriseDepartmentNumber() != null) {
                 //企业用户
                 //查询完整的用户信息
                 enterpriseConsumer = consumerdao.searchEnterpriseConsumer(phoneNumber);
-            }
-            else{
+            } else {
                 //普通用户
                 enterpriseConsumer = new EnterpriseConsumer();
                 enterpriseConsumer.setConsumer(user);
             }
-        }
-        else{
+        } else {
             //注册一个普通用户
             Consumer newuser = new Consumer();
             newuser.setPhoneNumber(phoneNumber);
@@ -63,17 +64,21 @@ public class ConsumerService {
         return enterpriseConsumer;
     }
 
-//    更新授权数据
-    public EnterpriseConsumer updateAuthorizeInfo(String nickName, String avatarUrl, String phoneName){
+    //    更新授权数据
+    public EnterpriseConsumer updateAuthorizeInfo(String nickName, String avatarUrl, String phoneName) {
         consumerdao.updateWxInfo(phoneName, nickName, avatarUrl);
         EnterpriseConsumer enterpriseConsumer = consumerdao.searchEnterpriseConsumer(phoneName);
         return enterpriseConsumer;
     }
 
     //查询企业用户
-    public EnterpriseConsumer getEnterprisePrivilege(Integer customerId){
+    public EnterpriseConsumer getEnterprisePrivilege(Integer customerId) {
         EnterpriseConsumer enterpriseConsumer = consumerdao.searchEnterpriseConsumerById(customerId);
         return enterpriseConsumer;
+    }
+
+    public Consumer getConsumerById(int id) {
+        return consumerdao.getConsumerById(id);
     }
     //实名认证服务
     public String Certification(String realName, String idNumber, Integer consumerId){
@@ -116,5 +121,15 @@ public class ConsumerService {
             e.printStackTrace();
         }
         return respMessage;
+    }
+
+    //能不能找到手机号对应的人
+    public Boolean findPhoneNumber(String phonenumber) {
+        if (consumerdao.findPhoneNumber(phonenumber) == null) {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 }

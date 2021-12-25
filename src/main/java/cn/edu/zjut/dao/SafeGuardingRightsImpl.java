@@ -63,6 +63,11 @@ public class SafeGuardingRightsImpl implements SafeGuardingRightsMapper {
     }
 
     @Override
+    public List<SafeGuardingRights> selectSafeGuardingRightsByGoodId(Integer goodId) {
+        return sqlSession.getMapper(SafeGuardingRightsMapper.class).selectSafeGuardingRightsByGoodId(goodId);
+    }
+
+    @Override
     public SafeGuardingRights selectSafeGuardingRightsByGoodIdAndOrderId(Integer goodId, Integer orderId) {
         return sqlSession.getMapper(SafeGuardingRightsMapper.class).selectSafeGuardingRightsByGoodIdAndOrderId(goodId, orderId);
     }

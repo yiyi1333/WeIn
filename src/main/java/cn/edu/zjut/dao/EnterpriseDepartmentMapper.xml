@@ -11,7 +11,8 @@
     </resultMap>
 
     <select id="getAllEnterpriseUser" resultMap="EnterpriseUserResultMap">
-        select enterpriseDepartmentName,enterpriseDepartmentId,name,consumerId from WeIn.consumer,WeIn.enterprisedepartment where enterpriseDepartmentNumber=enterpriseDepartmentId;
+        select enterpriseDepartmentName,enterpriseDepartmentId,name,consumerId from
+        WeIn.consumer,WeIn.enterprisedepartment where enterpriseDepartmentNumber=enterpriseDepartmentId;
     </select>
 
     <resultMap id="EnterpriseDepartmentResultMap" type="cn.edu.zjut.po.EnterpriseDepartment">
@@ -26,6 +27,7 @@
         <result property="enterpriseDepartmentId" column="enterpriseDepartmentId"/>
         <result property="faDepartment" column="faDepartment"/>
         <result property="enterpriseId" column="enterpriseId"/>
+        <result property="enterpriseDepartmentpre" column="enterpriseDepartmentpre"/>
     </resultMap>
 
 
@@ -48,7 +50,8 @@
         values(#{enterpriseDepartmentName},#{enterpriseDepartmentpre},#{enterpriseId});
     </insert>
 
-    <select id="getEnterpriseDepartmentByEnterpriseId" resultType="cn.edu.zjut.po.EnterpriseDepartment" parameterType="int">
+    <select id="getEnterpriseDepartmentByEnterpriseId" resultType="cn.edu.zjut.po.EnterpriseDepartment"
+            parameterType="int">
         select * from WeIn.enterprisedepartment where enterpriseId=#{id}
     </select>
 
@@ -58,12 +61,14 @@
 
 
     <select id="getAllEnterpriseDepartmentDisplay" resultMap="EnterpriseDepartmentDisplayResultMap">
-        select A.enterpriseDepartmentName, A.enterpriseDepartmentId, B.enterpriseDepartmentName faDepartment,
+        select A.enterpriseDepartmentName, A.enterpriseDepartmentId, A.enterpriseDepartmentpre,
+        B.enterpriseDepartmentName faDepartment,
         A.enterpriseId
         from enterprisedepartment A,
         enterprisedepartment B
         where A.enterpriseDepartmentpre = B.enterpriseDepartmentId and A.enterpriseid = #{0};
     </select>
+
 
     <delete id="deleteDepartment">
         delete from WeIn.enterprisedepartment where enterpriseDepartmentId = #{0}
@@ -73,6 +78,46 @@
         select *
         from enterprisedepartment
         where enterpriseDepartmentpre = #{0};
+    </select>
+
+
+    <update id="updateEnterpriseDapartment">
+        update WeIn.enterprisedepartment set enterpriseDepartmentName = #{enterpriseDepartmentName},
+        enterpriseDepartmentpre = #{enterpriseDepartmentpre} where enterpriseDepartmentId = #{enterpriseDepartmentId}
+    </update>
+
+
+
+
+    <select id="getEnterpriseDepartmentLike" resultMap="EnterpriseDepartmentDisplayResultMap"
+            parameterType="cn.edu.zjut.po.EnterpriseDepartment">
+        select *
+        from enterprisedepartment
+        where enterpriseDepartmentId in (
+        select enterpriseDepartmentId from WeIn.enterprisedepartment
+        <where>
+            <!--            <if test="enterpriseId != null">enterpriseId = #{enterpriseId}</if>-->
+
+            <if test="enterpriseDepartmentId != null and enterpriseDepartmentId != 0 ">enterpriseDepartmentId
+                like concat('%', #{enterpriseDepartmentId}, '%')
+
+            </if>
+            <if test="enterpriseDepartmentName != null and enterpriseDepartmentName != ''">or enterpriseDepartmentName
+                 like concat('%', #{enterpriseDepartmentName}, '%')
+            </if>
+            <if test="enterpriseDepartmentpre != null and enterpriseDepartmentpre != '-1'">or enterpriseDepartmentpre
+                like concat('%', #{enterpriseDepartmentpre}, '%')
+            </if>
+        </where>
+        )
+        and enterpriseId = #{enterpriseId};
+
+        <!--        IN( select * from enterprisedepartment-->
+<!--        where enterpriseId = #{enterpriseId})-->
+    </select>
+
+    <select id="queryDepartNameByEnterpriseDepartmentId" resultType="string">
+        select enterpriseDepartmentName from WeIn.enterprisedepartment where enterpriseDepartmentId = #{0}
     </select>
 
 </mapper>

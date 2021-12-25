@@ -104,7 +104,6 @@
         values(
         null,
         #{actuaLAmountPaid},
-        #{orderStatus},
         #{orderPaymentMethod},
         #{consumerId},
         #{orderTime},
@@ -124,7 +123,8 @@
         #{warehouseProvince},
         #{warehouseCity},
         #{warehouseArea},
-        #{orderDate}
+        #{orderDate},
+        #{orderStatus}
         );
     </insert>
 

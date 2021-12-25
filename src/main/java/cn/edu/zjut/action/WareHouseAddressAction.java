@@ -1,19 +1,13 @@
 package cn.edu.zjut.action;
 
 
-import cn.edu.zjut.po.Area;
 import cn.edu.zjut.po.Goods;
 import cn.edu.zjut.po.ShopManager;
-
 import cn.edu.zjut.po.WareHouseAddress;
 import cn.edu.zjut.service.GoodsService;
 import cn.edu.zjut.service.WareHouseAddressService;
-import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -85,7 +79,6 @@ public class WareHouseAddressAction implements SessionAware {
     }
 
 
-
     public String displayShopWareHouseAddress() {
         ShopManager shopManager = (ShopManager) session.get("shopManager");
         if (shopManager == null) {
@@ -111,17 +104,17 @@ public class WareHouseAddressAction implements SessionAware {
         return "success";
     }
 
-    public String selectWareHouseAddress(){
+    public String selectWareHouseAddress() {
         ShopManager shopManager = (ShopManager) session.get("shopManager");
         wareHouseAddress.setShopId(shopManager.getShopId());
         System.out.println(wareHouseAddress.getProvince());
-        List<WareHouseAddress> wareHouseAddressList=wareHouseAddressService.selectWareHouseAddress(wareHouseAddress);
+        List<WareHouseAddress> wareHouseAddressList = wareHouseAddressService.selectWareHouseAddress(wareHouseAddress);
         session.put("wareHouseAddressList", wareHouseAddressList);
         return "success";
     }
 
-    public String updateWareHouseAddress(){
-        WareHouseAddress obj=(WareHouseAddress) session.get("wareHouseAddress");
+    public String updateWareHouseAddress() {
+        WareHouseAddress obj = (WareHouseAddress) session.get("wareHouseAddress");
         wareHouseAddress.setWarehouseId(obj.getWarehouseId());
         wareHouseAddressService.updateWareHouseAddress(wareHouseAddress);
         ShopManager shopManager = (ShopManager) session.get("shopManager");
@@ -138,7 +131,7 @@ public class WareHouseAddressAction implements SessionAware {
         return "success";
     }
 
-    public String deleteWareHouseAddress(){
+    public String deleteWareHouseAddress() {
         ShopManager shopManager = (ShopManager) session.get("shopManager");
         wareHouseAddressService.deleteWareHouseAddressById(warehouseId);
         List<WareHouseAddress> list = wareHouseAddressService.getAllWareHouseAddress();
@@ -154,13 +147,13 @@ public class WareHouseAddressAction implements SessionAware {
         return "success";
     }
 
-    public String selectWareHouseAddressById(){
-        WareHouseAddress obj=wareHouseAddressService.selectWareHouseAddressById(warehouseId);
+    public String selectWareHouseAddressById() {
+        WareHouseAddress obj = wareHouseAddressService.selectWareHouseAddressById(warehouseId);
         session.put("wareHouseAddress", obj);
         return "success";
     }
 
-    public String deleteWareHouseAddressByIds(){
+    public String deleteWareHouseAddressByIds() {
         ShopManager shopManager = (ShopManager) session.get("shopManager");
         String[] strs = tag.split(",");
         for (int i = 0; i < strs.length; i++) {
@@ -182,8 +175,7 @@ public class WareHouseAddressAction implements SessionAware {
         return "success";
     }
 
-    public String selectGoodsByWareHouseAddressId()
-    {
+    public String selectGoodsByWareHouseAddressId() {
         ShopManager shopManager = (ShopManager) session.get("shopManager");
         if (shopManager == null) {
             return "displayShopGoodsFailed";
@@ -191,7 +183,7 @@ public class WareHouseAddressAction implements SessionAware {
         List<Goods> ans = goodsService.selectGoodsByWarehouseId(warehouseId);
         List<Goods> goodsList = new ArrayList<>();
         for (Goods goods : ans) {
-            if (goods.getShopId()== shopManager.getShopId()) {
+            if (goods.getShopId() == shopManager.getShopId()) {
                 goodsList.add(goods);
             }
         }

@@ -22,7 +22,15 @@ public class OrdersService {
     private OrdersMapper ordersMapper;
     private WareHouseAddressMapper wareHouseAddressMapper;
     private GoodsService goodsService;
+    private OrderStatusMapper orderStatusMapper;
 
+    public OrderStatusMapper getOrderStatusMapper() {
+        return orderStatusMapper;
+    }
+
+    public void setOrderStatusMapper(OrderStatusMapper orderStatusMapper) {
+        this.orderStatusMapper = orderStatusMapper;
+    }
 
     public GoodsService getGoodsService() {
         return goodsService;
@@ -109,7 +117,6 @@ public class OrdersService {
     }
 
 
-
     public boolean createOrder(int customerId, List<Integer> goodList, List<Integer> numList, String address) {
         //传入的都是同一个订单的
         WareHouseAddress wareHouseAddress = wareHouseAddressMapper.selectWareHouseAddressById(goodsService.getGoodsById(goodList.get(0)).getWarehouseId());
@@ -154,8 +161,16 @@ public class OrdersService {
         orders.setDeliveredName(adrs.getString("userName"));
         orders.setDeliverArea(adrs.getString("countyName"));
         orders.setDeliveredDetailedAddress(adrs.getString("detailInfo"));
+        orders.setOrderStatus("待发货");
 
         ordersMapper.addOrder(orders);
+
+        OrderStatus orderStatus = new OrderStatus();
+        orderStatus.setOrderId(orders.getOrderId());
+        orderStatus.setOrderStatusName("待发货");
+        orderStatus.setOrderStatusDate(orders.getOrderDate());
+        orderStatus.setOrderStatusTime(orders.getOrderTime());
+        orderStatusMapper.addOrderStatus(orderStatus);
 
         //创建订单的时候就把库存减掉
         for (int i = 0; i < goodList.size(); i++) {
@@ -166,12 +181,13 @@ public class OrdersService {
             orderGood.setGoodId(goodList.get(i));
             orderGood.setOrderId(orders.getOrderId());
             orderGood.setNum(numList.get(i));
+            orderGood.setSinglePieceActualPrice(goods.getGoodsRealPrice());
             orderGoodMapper.addOrderGood(orderGood);
         }
         return true;
     }
 
-    public void addLogisticsSingleList(Orders orders){
+    public void addLogisticsSingleList(Orders orders) {
         System.out.println("execute --addLogisticsSingleList()-- method.");
         ordersDao.addLogisticsSingleList(orders);
     }
@@ -186,46 +202,51 @@ public class OrdersService {
         return orderGoodMapper.selectOrderGood(OrderGood);
     }
 
-    public List<Orders> getAllFundFlow(){
+    public List<Orders> getAllFundFlow() {
         System.out.println("execute --getAllFundFlow()-- method.");
         return ordersDao.getAllFundFlow();
     }
 
-    public List<Orders> getFundFlowByDate(String date){
+    public List<Orders> getFundFlowByDate(String date) {
         System.out.println("execute --getFundFlowByDate()-- method.");
         return ordersDao.getFundFlowByDate(date);
     }
 
-    public List<OrderGood> getGoodsById(@Param("orderId") Integer orderId){
+    public List<OrderGood> getGoodsById(@Param("orderId") Integer orderId) {
         System.out.println("execute --getGoodsById()-- method.");
         return orderGoodMapper.getGoodsById(orderId);
     }
+
     //查询某用户全部订单
-    public List<OrderShow> showAllOrder(Integer customerId){
+    public List<OrderShow> showAllOrder(Integer customerId) {
         List<OrderShow> list = ordersDao.showAllOrder(customerId);
         System.out.println(list);
         return list;
     }
+
     //查询某订单
-    public OrderShow showOrderDetail(Integer orderId){
+    public OrderShow showOrderDetail(Integer orderId) {
         OrderShow orderShow = ordersDao.showOrderDetail(orderId);
         System.out.println(orderShow);
         return orderShow;
     }
+
     //查询某用户全部待收货订单
-    public List<OrderShow> showWaitReceiveOrder(Integer customerId){
+    public List<OrderShow> showWaitReceiveOrder(Integer customerId) {
         List<OrderShow> list = ordersDao.showStatusOrder(customerId, "待收货");
         System.out.println(list);
         return list;
     }
+
     //查询某用户全部待收款订单
-    public List<OrderShow> showWaitPayOrder(Integer customerId){
+    public List<OrderShow> showWaitPayOrder(Integer customerId) {
         List<OrderShow> list = ordersDao.showStatusOrder(customerId, "待付款");
         System.out.println(list);
         return list;
     }
+
     //查询某用户全部待评价订单
-    public List<OrderShow> showWaitEvaluateOrder(Integer customerId){
+    public List<OrderShow> showWaitEvaluateOrder(Integer customerId) {
         List<OrderShow> list = ordersDao.showStatusOrder(customerId, "已收货");
         System.out.println(list);
         return list;

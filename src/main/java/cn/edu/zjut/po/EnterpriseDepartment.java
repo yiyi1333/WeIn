@@ -45,7 +45,7 @@ public class EnterpriseDepartment implements Serializable {
         this.enterpriseDepartmentpre = enterpriseDepartmentpre;
     }
 
-    public void setEnterpriseId(int enterpriseId) {
+    public void setEnterpriseId(Integer enterpriseId) {
         this.enterpriseId = enterpriseId;
     }
     public EnterpriseDepartment(){}

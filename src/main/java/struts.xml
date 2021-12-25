@@ -3,8 +3,8 @@
         "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-    <constant name="struts.multipart.saveDir" value="E:/Temp" />
-    <constant name="struts.multipart.maxSize" value="1000000" />
+    <constant name="struts.multipart.saveDir" value="E:/Temp"/>
+    <constant name="struts.multipart.maxSize" value="1000000"/>
     <package name="strutsBean" extends="struts-default,json-default" namespace="/">
         <!--        郑展逸配置区-->
         <action name="advertisement" class="cn.edu.zjut.action.AdvertisementAction" method="getAdvertisementList">
@@ -151,6 +151,33 @@
         </action>
 
         <!--        张宇翔配置区-->
+        <action name="loginout" class="cn.edu.zjut.action.UserAction" method="loginout">
+            <result name="success">/login.jsp</result>
+        </action>
+        <action name="platformFinancialStatistics" class="cn.edu.zjut.action.OrdersAction" method="platformFinancialStatistics">
+            <result name="success">/platformFinancialStatistics.jsp</result>
+        </action>
+        <action name="platformInterventionRightsDetails" class="cn.edu.zjut.action.SafeGuardingRightsAction"
+                method="platformInterventionRightsDetails">
+            <result name="success">/platformInterventionRightsDetails.jsp</result>
+        </action>
+
+        <action name="platformInterventionRights" class="cn.edu.zjut.action.SafeGuardingRightsAction"
+                method="platformInterventionRights">
+            <result name="success">/platformInterventionRights.jsp</result>
+        </action>
+
+        <action name="reviewComment" class="cn.edu.zjut.action.ReviewCommentAction" method="displayCommentToReview">
+            <result name="success">/reviewComment.jsp</result>
+        </action>
+
+        <action name="commentJudge" class="cn.edu.zjut.action.ReviewCommentAction" method="commentJudge">
+            <result name="success" type="chain">reviewComment</result>
+        </action>
+        <action name="reviewDetail" class="cn.edu.zjut.action.ReviewCommentAction" method="reviewDetail">
+            <result name="success">/reviewCommentDetail.jsp</result>
+        </action>
+
         <action name="createLegalOrder" class="cn.edu.zjut.action.OrdersAction" method="createLegalShopOrders">
             <result name="success" type="json">
                 <param name="root">createOrderSuccess</param>
@@ -163,7 +190,7 @@
             <result name="success">/index.jsp</result>
             <result name="enterpriseagencysuccess" type="chain">showenterpriseuser</result>
             <!--            平台运营人员的主页-->
-            <result name="platformAdministratorsuccess">/registerShopmanager.jsp</result>
+            <result name="platformAdministratorsuccess" type="chain">platformFinancialStatistics</result>
             <!--            <result name="rightsuccess">/verifyElectronicContracts.jsp</result>-->
             <result name="rightsuccess" type="chain">showVerifyElectronicContracts</result>
 
@@ -233,6 +260,13 @@
             <result name="success" type="chain">showenterpriseuser</result>
         </action>
         <!--        余秋霞配置区-->
+        <action name="displayShopOrders" class="cn.edu.zjut.action.OrdersAction" method="displayShopOrders">
+            <result name="displayShopOrdersSuccess">/ordersList.jsp</result>
+        </action>
+        <action name="displayShopWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction"
+                method="displayShopWareHouseAddress">
+            <result name="displayShopWareHouseAddressSuccess">/wareHouseAddressList.jsp</result>
+        </action>
         <action name="registerShopmanager" class="cn.edu.zjut.action.registerShopmanagerAndEnterpriseagencyAction"
                 method="registerShopmanager">
             <result name="success">/registerShopmanager.jsp</result>
@@ -263,7 +297,6 @@
             <result name="success">/deleteEnterpriseagency.jsp</result>
         </action>
         <!--查询已有合同-->
-
         <action name="queryElectronicContractsByEnterpriseId" class="cn.edu.zjut.action.ElectronicContractsAction"
                 method="queryElectronicContractsByEnterpriseId">
             <result name="success">/showallelectronicContracts.jsp</result>
@@ -304,11 +337,46 @@
             <result name="success">/showShopElectronicContracts.jsp</result>
         </action>
 
+        <!-- 企业管理员管理企业结构-->
+        <!--编辑企业部门-->
+        <action name="selectEnterpriseDepartmentById" class="cn.edu.zjut.action.EnterpriseDepartmentAction"
+                method="selectEnterpriseDepartmentById">
+            <result name="success">/updateEnterpriseDepartment.jsp</result>
+        </action>
+        <!--删除企业部门-->
+        <action name="deleteEnterpriseDepartment" class="cn.edu.zjut.action.EnterpriseDepartmentAction"
+                method="deleteEnterpriseDepartment">
+            <result name="success">/displayAllDepartment.jsp</result>
+        </action>
+        <!--批量删除企业部门-->
+        <action name="deleteEnterpriseDepartmentByIds" class="cn.edu.zjut.action.EnterpriseDepartmentAction"
+                method="deleteEnterpriseDepartmentByIds">
+            <result name="success">/displayAllDepartment.jsp</result>
+        </action>
+        <!--编辑企业部门，编辑成功即立即返回-->
+        <action name="updateEnterpriseDepartment" class="cn.edu.zjut.action.EnterpriseDepartmentAction"
+                method="updateEnterpriseDepartment">
+            <result name="success">/displayAllDepartment.jsp</result>
+        </action>
+        <!-- 查询-->
+        <action name="queryEnterpriseDepartment" class="cn.edu.zjut.action.EnterpriseDepartmentAction"
+                method="queryEnterpriseDepartment">
+            <result name="success">/displayAllDepartment.jsp</result>
+        </action>
+
+        <!--展示企业认证-->
+        <action name="displayAddConsumer" class="cn.edu.zjut.action.ConsumerAction" method="displayAddConsumer">
+            <result name="success">/addConsumer.jsp</result>
+        </action>
+
+        <action name="queryElectronicContractsLike" class="cn.edu.zjut.action.ElectronicContractsAction" method="queryElectronicContractsLike">
+            <result name="success">/showallelectronicContracts.jsp</result>
+        </action>
 
         <!--        王怡欣、王淑媚配置区-->
         <action name="addconsumer" class="cn.edu.zjut.action.ConsumerAction" method="addConsumer">
             <result name="success">/addConsumer.jsp</result>
-            <result name="failed">/500.jsp</result>
+            <result name="failed">/addConsumer.jsp</result>
         </action>
         <action name="displayGoods" class="cn.edu.zjut.action.GoodsAction" method="selectGoods">
             <result name="displayShopGoodsSuccess">/productList.jsp</result>
@@ -322,6 +390,9 @@
         <action name="displayAddress" class="cn.edu.zjut.action.GoodsAction" method="displayShopWareHouseAddress">
             <result name="displayShopWareHouseAddressSuccess">/addProduct.jsp</result>
         </action>
+
+
+        <!--        王淑媚配置区-->
         <action name="addWareHouseAddress" class="cn.edu.zjut.action.WareHouseAddressAction"
                 method="addWareHouseAddress">
             <result name="success">/addWareHouseAddress.jsp</result>
@@ -372,20 +443,25 @@
         <action name="selectOrderById" class="cn.edu.zjut.action.OrdersAction" method="selectOrderById">
             <result name="success">/orderGoodList.jsp</result>
         </action>
-        <action name="displayShopSafeGuardingRights" class="cn.edu.zjut.action.safeGuardingRightsAction" method="displayShopSafeGuardingRights">
+        <action name="displayShopSafeGuardingRights" class="cn.edu.zjut.action.SafeGuardingRightsAction"
+                method="displayShopSafeGuardingRights">
             <result name="displaySuccess">/safeGuardingRightsList.jsp</result>
             <result name="displayFailed">/500.jsp</result>
         </action>
-        <action name="selectShopSafeGuardingRights" class="cn.edu.zjut.action.safeGuardingRightsAction" method="selecthopSafeGuardingRights">
+        <action name="selectShopSafeGuardingRights" class="cn.edu.zjut.action.SafeGuardingRightsAction"
+                method="selecthopSafeGuardingRights">
             <result name="displaySuccess">/safeGuardingRightsList.jsp</result>
             <result name="displayFailed">/500.jsp</result>
         </action>
-        <action name="selectShopSafeGuardingRightsById" class="cn.edu.zjut.action.safeGuardingRightsAction" method="selecthopSafeGuardingRightsById">
+        <action name="selectShopSafeGuardingRightsById" class="cn.edu.zjut.action.SafeGuardingRightsAction"
+                method="selecthopSafeGuardingRightsById">
             <result name="displaySuccess">/safeGuradingRightDetails.jsp</result>
             <result name="displayFailed">/500.jsp</result>
         </action>
-        <action name="changeSafeGuardingRightsProgress" class="cn.edu.zjut.action.safeGuardingRightsAction" method="changeSafeGuardingRightsProgress">
+        <action name="changeSafeGuardingRightsProgress" class="cn.edu.zjut.action.SafeGuardingRightsAction"
+                method="changeSafeGuardingRightsProgress">
             <result name="displaySuccess">/safeGuradingRightDetails.jsp</result>
+            <result name="displaySuccess2">/platformInterventionRightsDetails.jsp</result>
             <result name="displayFailed">/500.jsp</result>
         </action>
         <action name="getAllFundFlow" class="cn.edu.zjut.action.OrdersAction" method="getAllFundFlow">

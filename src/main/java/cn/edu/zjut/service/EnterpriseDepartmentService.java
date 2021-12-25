@@ -36,6 +36,9 @@ public class EnterpriseDepartmentService {
     public List<EnterpriseDepartmentDisplay> getAllEnterpriseDepartmentDisplay(int id) {
         return enterpriseDepartmentMapper.getAllEnterpriseDepartmentDisplay(id);
     }
+    public List<EnterpriseDepartment> getEnterpriseDepartmentByEnterpriseId(int id) {
+        return enterpriseDepartmentMapper.getEnterpriseDepartmentByEnterpriseId(id);
+    }
 
     public List<EnterpriseDepartment> displayAddEnterpriseDepartment(EnterpriseAgency enterpriseAgency) {
 
@@ -86,4 +89,20 @@ public class EnterpriseDepartmentService {
     public void deleteConsumer(int id) {
         enterpriseDepartmentMapper.deleteConsumer(id);
     }
+
+    //更新部门
+    public void updateEnterpriseDapartment(EnterpriseDepartment enterpriseDepartment){
+        enterpriseDepartmentMapper.updateEnterpriseDapartment(enterpriseDepartment);
+    }
+
+    //模糊查询
+    public List<EnterpriseDepartmentDisplay> getEnterpriseDepartmentLike(EnterpriseDepartment enterpriseDepartment) {
+        return enterpriseDepartmentMapper.getEnterpriseDepartmentLike(enterpriseDepartment);
+    }
+
+    //通过部门id查找名字（用来显示父部门
+    public String queryDepartNameByEnterpriseDepartmentId(int EnterpriseDepartmentId) {
+        return enterpriseDepartmentMapper.queryDepartNameByEnterpriseDepartmentId(EnterpriseDepartmentId);
+    }
+
 }

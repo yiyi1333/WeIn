@@ -243,13 +243,14 @@ public class SafeGuardingRightsAction implements SessionAware {
     public String changeSafeGuardingRightsProgress() {
         SafeGuardingRights safeGuarding = (SafeGuardingRights) session.get("safeGuardingRights");
         ShopManager shopManager = (ShopManager) session.get("shopManager");
-        if (shopManager == null) {
+        PlatformAdministrator platformAdministrator = (PlatformAdministrator) session.get("platformAdministrator");
+        if (shopManager == null && platformAdministrator == null) {
             return "displayFailed";
         }
         //获取当前时间
-        long  l = System.currentTimeMillis();
+        long l = System.currentTimeMillis();
         Date d = new Date(l);
-        SimpleDateFormat dateFormat =  new  SimpleDateFormat( "yyyy-MM-dd" );
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String dateNowStr = dateFormat.format(d);
         java.sql.Date ss = java.sql.Date.valueOf(dateNowStr);
         Time time = new Time(0);
@@ -280,7 +281,7 @@ public class SafeGuardingRightsAction implements SessionAware {
         orderStatus.setOrderStatusName(safeGuardingRights.getSafeGuardingRightsProgress());
         orderStatusService.addOrderStatus(orderStatus);
         // 修改退款表
-        if(safeGuardingRights.getSafeGuardingRightsProgress().equals("仅退款") || safeGuardingRights.getSafeGuardingRightsProgress().equals("退款退货")){
+        if (safeGuardingRights.getSafeGuardingRightsProgress().equals("仅退款") || safeGuardingRights.getSafeGuardingRightsProgress().equals("退款退货")) {
             DrawBack drawBack = new DrawBack();
             drawBack.setOrderId(safeGuarding.getOrderId());
             drawBack.setGoodsId(safeGuarding.getGoodId());
@@ -290,19 +291,17 @@ public class SafeGuardingRightsAction implements SessionAware {
             orderGood.setGoodId(safeGuarding.getGoodId());
             orderGood.setOrderId(safeGuarding.getOrderId());
             orderGood = ordersService.selectOrderGood(orderGood);
-            drawBack.setMoney(orderGood.getSinglePieceActualPrice()*safeGuarding.getSafeGuardingRightsNum());
+            drawBack.setMoney(orderGood.getSinglePieceActualPrice() * safeGuarding.getSafeGuardingRightsNum());
             System.out.println(drawBack.getMoney());
-            if(drawBack.getType().equals("仅退款")){
+            if (drawBack.getType().equals("仅退款")) {
                 drawBack.setGoodsNum(0);
-            }
-            else if(drawBack.getType().equals("退货退款")){
+            } else if (drawBack.getType().equals("退货退款")) {
                 drawBack.setGoodsNum(safeGuarding.getSafeGuardingRightsNum());
             }
             //判断是否已经存在
-            if(DrawBackService.getDrawBackById(drawBack)!=null){
+            if (DrawBackService.getDrawBackById(drawBack) != null) {
                 DrawBackService.updateDrawBack(drawBack);
-            }
-            else{
+            } else {
                 System.out.println(drawBack);
                 DrawBackService.addDrawBack(drawBack);
             }
@@ -314,10 +313,15 @@ public class SafeGuardingRightsAction implements SessionAware {
         safeGuardingRights.setGoods(goods);
         safeGuardingRights.setOrders(order);
         session.put("safeGuardingRights", safeGuardingRights);
-        return "displaySuccess";
+        if (shopManager != null) {
+            return "displaySuccess";
+        } else {
+            return "displaySuccess2";
+        }
     }
 
-    public String applyForRights(){
+
+    public String applyForRights() {
         System.out.println("goodsId: " + goodsId);
         System.out.println("goodsNum: " + goodsNum);
         System.out.println("descript: " + descript);
@@ -325,6 +329,25 @@ public class SafeGuardingRightsAction implements SessionAware {
         System.out.println("consumerId: " + consumerId);
         System.out.println("orderId: " + orderId);
         statusMes = safeGuardingRightsService.applyForRights(Integer.parseInt(goodsId), Integer.parseInt(goodsNum), descript, imagePath, Integer.parseInt(orderId), Integer.parseInt(consumerId), type);
+        return "success";
+    }
+
+    public String platformInterventionRights() {
+        if (safeGuardingRights == null) safeGuardingRights = new SafeGuardingRights();
+        safeGuardingRights.setSafeGuardingRightsProgress("平台处理中");
+        List<SafeGuardingRights> sgrlist = safeGuardingRightsService.selectsafeGuardingRightsByZyx(safeGuardingRights);
+        session.put("sgrlist", sgrlist);
+
+        return "success";
+    }
+
+    public String platformInterventionRightsDetails() {
+        List<SafeGuardingRights> sgrlist = (List<SafeGuardingRights>) session.get("sgrlist");
+        for (SafeGuardingRights guardingRights : sgrlist) {
+            if (guardingRights.getSafeGuardingRightsId() == safeGuardingRightsId) {
+                session.put("safeGuardingRights", guardingRights);
+            }
+        }
         return "success";
     }
 }

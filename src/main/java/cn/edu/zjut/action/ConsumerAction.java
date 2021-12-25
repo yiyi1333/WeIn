@@ -1,8 +1,11 @@
 package cn.edu.zjut.action;
 
 import cn.edu.zjut.po.Consumer;
+import cn.edu.zjut.po.EnterpriseAgency;
 import cn.edu.zjut.po.EnterpriseConsumer;
+import cn.edu.zjut.po.EnterpriseDepartment;
 import cn.edu.zjut.service.ConsumerService;
+import cn.edu.zjut.service.EnterpriseDepartmentService;
 import org.apache.struts2.interceptor.SessionAware;
 
 import java.util.List;
@@ -22,6 +25,15 @@ public class ConsumerAction implements SessionAware {
     private String idNumber;
     private String statusMes;
     private String consumerId;
+    private EnterpriseDepartmentService enterpriseDepartmentService;
+
+    public EnterpriseDepartmentService getEnterpriseDepartmentService() {
+        return enterpriseDepartmentService;
+    }
+
+    public void setEnterpriseDepartmentService(EnterpriseDepartmentService enterpriseDepartmentService) {
+        this.enterpriseDepartmentService = enterpriseDepartmentService;
+    }
 
     public String getConsumerId() {
         return consumerId;
@@ -118,6 +130,13 @@ public class ConsumerAction implements SessionAware {
         return "success";
     }
 
+    public String displayAddConsumer() {
+        EnterpriseAgency enterpriseAgency = (EnterpriseAgency) session.get("enterpriseAgency");
+        List<EnterpriseDepartment> enterpriseDepartmentlist = enterpriseDepartmentService.getEnterpriseDepartmentByEnterpriseId(enterpriseAgency.getEnterpriseId());
+        session.put("enterpriseDepartmentList", enterpriseDepartmentlist);
+        return "success";
+    }
+
     public String addConsumer() {
         if (Objects.equals(consumer.getName(), "")) {
             session.put("message", "姓名不能为空");
@@ -125,10 +144,6 @@ public class ConsumerAction implements SessionAware {
         }
         if (Objects.equals(consumer.getIdCardNumber(), "")) {
             session.put("message", "证件号不能为空");
-            return "failed";
-        }
-        if (Objects.equals(consumer.getPassword(), "")) {
-            session.put("message", "密码不能为空");
             return "failed";
         }
         if (Objects.equals(consumer.getEmail(), "")) {
@@ -151,6 +166,10 @@ public class ConsumerAction implements SessionAware {
             session.put("message", "证件号格式不正确");
             return "failed";
         }
+        if (consumerService.findPhoneNumber(consumer.getPhoneNumber()) == false) {
+            session.put("message", "找不到手机号对应的用户");
+            return "failed";
+        }
         consumerService.addConsumer(consumer);
         return "success";
     }
@@ -168,7 +187,7 @@ public class ConsumerAction implements SessionAware {
     }
 
     //实名认证处理
-    public String Certification(){
+    public String Certification() {
         statusMes = consumerService.Certification(realName, idNumber, Integer.parseInt(consumerId));
         return "success";
     }

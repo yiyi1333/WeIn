@@ -51,5 +51,6 @@
         <mapper resource="cn/edu/zjut/dao/OrderStatusMapper.xml"/>
         <mapper resource="cn/edu/zjut/dao/SafeGuardingRightsProgressMapper.xml"/>
         <mapper resource="cn/edu/zjut/dao/DrawBackMapper.xml"/>
+        <mapper resource="cn/edu/zjut/dao/CommentMapper.xml"/>
     </mappers>
 </configuration>

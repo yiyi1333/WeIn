@@ -3,8 +3,12 @@ package cn.edu.zjut.dao;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import cn.edu.zjut.po.Comment;
+import cn.edu.zjut.po.Comment;
+import org.mybatis.spring.SqlSessionTemplate;
+
 import java.util.List;
-public class CommentImpl implements CommentMapper{
+
+public class CommentImpl implements CommentMapper {
     private SqlSessionTemplate sqlSession;
 
     public SqlSessionTemplate getSqlSession() {

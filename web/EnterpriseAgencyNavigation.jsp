@@ -16,13 +16,7 @@
                         <span class="block m-t-xs font-bold">${sessionScope.name}</span>
                         <span class="text-muted text-xs block">${sessionScope.type}<b class="caret"></b></span>
                     </a>
-                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                        <li><a class="dropdown-item" href="profile.html">个人信息</a></li>
-                        <li><a class="dropdown-item" href="contacts.html">好友</a></li>
-                        <li><a class="dropdown-item" href="mailbox.html">信箱</a></li>
-                        <li class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="login.html">登出</a></li>
-                    </ul>
+
                 </div>
                 <div class="logo-element">
                     IN+
@@ -30,18 +24,26 @@
             </li>
 
             <li>
-                <a href="addConsumer.jsp"><i class="fa fa-envelope"></i> <span class="nav-label">新增企业用户</span></a>
+                <a href="displayAddConsumer.action"><i class="fa fa-envelope"></i> <span class="fa fa-plus-square">企业用户认证</span></a>
             </li>
-            <li>
-                <a href="displayAddEnterpriseDepartment.action"><i class="fa fa-envelope"></i> <span class="nav-label">新增部门</span></a>
-            </li>
+
             <li>
                 <a href="showenterpriseuser.action"><i class="fa fa-envelope"></i> <span class="nav-label">展示企业人员</span></a>
             </li>
             <li>
-                <a href="displayAllDepartment.action"><i class="fa fa-envelope"></i> <span
-                        class="nav-label">所有企业部门</span></a>
+                <a href="#"><i class="fa fa-sign-out"></i> <span class="nav-label">管理企业部门</span><span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li>
+                        <a href="displayAddEnterpriseDepartment.action"><i class="fa fa-plus-square"></i> <span class="nav-label">增加企业部门</span></a>
+                    </li>
+                    <li>
+                        <a href="displayAllDepartment.action"><i class="fa fa-envelope"></i> <span
+                                class="nav-label">查看企业部门</span></a>
+                    </li>
+                </ul>
             </li>
+
             <li>
             <li>
                 <a href="queryElectronicContractsByEnterpriseId.action"><i class="fa fa-envelope"></i> <span

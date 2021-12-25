@@ -87,4 +87,9 @@ public class ElectronicContractsService {
         List<ElectronicContracts> contracts = electronicContractsimpl.queryElectronicContractsByShopId(shopid);
         return contracts;
     }
+
+    //模糊查询
+    public List queryElectronicContractsLike(ElectronicContracts electronicContracts) {
+        return electronicContractsimpl.queryElectronicContractsLike(electronicContracts);
+    }
 }

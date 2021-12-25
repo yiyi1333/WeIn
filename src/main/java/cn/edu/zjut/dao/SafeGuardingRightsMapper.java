@@ -27,6 +27,8 @@ public interface SafeGuardingRightsMapper {
                                                @Param("orderId") Integer orderId, @Param("Type") String type,
                                                @Param("status") String status);
 
+    public List<SafeGuardingRights> selectSafeGuardingRightsByGoodId(@Param("goodId") Integer goodId);
+
     public SafeGuardingRights selectSafeGuardingRightsByGoodIdAndOrderId(@Param("goodId") Integer goodId, @Param("ordersId") Integer orderId);
 
 
