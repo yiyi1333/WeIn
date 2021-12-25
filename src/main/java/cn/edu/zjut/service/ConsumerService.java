@@ -29,8 +29,9 @@ public class ConsumerService {
         return consumerlist;
     }
 
+
     public void addConsumer(Consumer consumer) {
-        consumerdao .updataConsumer(consumer);
+        consumerdao.updataConsumer(consumer);
 //        consumerdao.addConsumer(consumer);
     }
 

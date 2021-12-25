@@ -101,6 +101,9 @@
             </result>
         </action>
 
+        <action name="loginout" class="cn.edu.zjut.action.UserAction" method="loginout">
+            <result name="success">/login.jsp</result>
+        </action>
         <action name="selectAllHistory" class="cn.edu.zjut.action.HistoryAction" method="selectAllHistory">
             <result name="success" type="json">
                 <param name="root">historyList</param>
@@ -109,13 +112,22 @@
                 <param name="root">status</param>
             </result>
         </action>
-
+        <action name="commentJudge" class="cn.edu.zjut.action.ReviewCommentAction" method="commentJudge">
+            <result name="success" type="chain">reviewComment</result>
+        </action>
         <action name="addCollection" class="cn.edu.zjut.action.CollectionAction" method="addCollection">
             <result name="success" type="json">
                 <param name="root">status</param>
             </result>
         </action>
-
+        <action name="platformInterventionRightsDetails" class="cn.edu.zjut.action.SafeGuardingRightsAction"
+                method="platformInterventionRightsDetails">
+            <result name="success">/platformInterventionRightsDetails.jsp</result>
+        </action>
+        <action name="platformInterventionRights" class="cn.edu.zjut.action.SafeGuardingRightsAction"
+                method="platformInterventionRights">
+            <result name="success">/platformInterventionRights.jsp</result>
+        </action>
         <action name="selectAllCollection" class="cn.edu.zjut.action.CollectionAction" method="selectAllCollection">
             <result name="success" type="json">
                 <param name="root">collectionList</param>
@@ -149,8 +161,11 @@
                 <param name="root">statusMes</param>
             </result>
         </action>
-
-        <action name="selectAllRightsInfo" class="cn.edu.zjut.action.SafeGuardingRightsAction" method="selectAllRightsInfo">
+        <action name="reviewComment" class="cn.edu.zjut.action.ReviewCommentAction" method="displayCommentToReview">
+            <result name="success">/reviewComment.jsp</result>
+        </action>
+        <action name="selectAllRightsInfo" class="cn.edu.zjut.action.SafeGuardingRightsAction"
+                method="selectAllRightsInfo">
             <result name="success" type="json">
                 <param name="root">showSafeGuardingRightsList</param>
             </result>
@@ -187,6 +202,11 @@
             <result name="failed" type="json">
                 <param name="root">createOrderSuccess</param>
             </result>
+        </action>
+
+        <action name="platformFinancialStatistics" class="cn.edu.zjut.action.OrdersAction"
+                method="platformFinancialStatistics">
+            <result name="success">/platformFinancialStatistics.jsp</result>
         </action>
         <action name="login" class="cn.edu.zjut.action.UserAction" method="login">
             <result name="success">/index.jsp</result>
@@ -333,6 +353,13 @@
             <result name="success">/verifyElectronicContracts.jsp</result>
         </action>
 
+
+        <!--具有商家资格的企业管理员接受审核-->
+        <action name="verifyElectronicContracts2" class="cn.edu.zjut.action.ElectronicContractsAction"
+                method="verifyElectronicContracts2">
+            <result name="success">/verifyElectronicContracts2.jsp</result>
+        </action>
+
         <!--商家接收合同-->
         <action name="showShopElectronicContracts" class="cn.edu.zjut.action.ElectronicContractsAction"
                 method="showShopElectronicContracts">
@@ -371,7 +398,8 @@
             <result name="success">/addConsumer.jsp</result>
         </action>
 
-        <action name="queryElectronicContractsLike" class="cn.edu.zjut.action.ElectronicContractsAction" method="queryElectronicContractsLike">
+        <action name="queryElectronicContractsLike" class="cn.edu.zjut.action.ElectronicContractsAction"
+                method="queryElectronicContractsLike">
             <result name="success">/showallelectronicContracts.jsp</result>
         </action>
 
@@ -459,6 +487,9 @@
                 method="selecthopSafeGuardingRightsById">
             <result name="displaySuccess">/safeGuradingRightDetails.jsp</result>
             <result name="displayFailed">/500.jsp</result>
+        </action>
+        <action name="reviewDetail" class="cn.edu.zjut.action.ReviewCommentAction" method="reviewDetail">
+            <result name="success">/reviewCommentDetail.jsp</result>
         </action>
         <action name="changeSafeGuardingRightsProgress" class="cn.edu.zjut.action.SafeGuardingRightsAction"
                 method="changeSafeGuardingRightsProgress">

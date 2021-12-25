@@ -36,6 +36,7 @@ public class EnterpriseAgencyImpl implements EnterpriseAgencyMapper {
 
     @Override
     public EnterpriseAgency getEnterpriseAgencyByAccount(String acount) {
-        return sqlSession.getMapper(EnterpriseAgencyMapper.class).getEnterpriseAgencyByAccount(acount);
+        EnterpriseAgency ans = sqlSession.getMapper(EnterpriseAgencyMapper.class).getEnterpriseAgencyByAccount(acount);
+        return ans;
     }
 }

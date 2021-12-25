@@ -26,4 +26,6 @@ public interface ElectronicContractsMapper {
     public List queryElectronicContractsLike(ElectronicContracts electronicContracts);
 
     public ElectronicContracts queryElectronicContractsByGoodsIdDepartmentId(@Param("goodsId") int goodsId, @Param("deparatmentId") int deparatmentId);
+
+    public void changeStateElectronicContracts2(int agencyid);
 }

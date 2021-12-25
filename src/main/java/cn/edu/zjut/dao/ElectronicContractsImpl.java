@@ -43,6 +43,10 @@ public class ElectronicContractsImpl implements ElectronicContractsMapper {
         sqlSession.getMapper(ElectronicContractsMapper.class).changeStateElectronicContracts(agencyid);
     }
 
+    public void changeStateElectronicContracts2(int agencyid) {
+        sqlSession.getMapper(ElectronicContractsMapper.class).changeStateElectronicContracts2(agencyid);
+    }
+
     public List queryElectronicContractsByShopId(int shopid) {
         return sqlSession.getMapper(ElectronicContractsMapper.class).queryElectronicContractsByShopId(shopid);
     }

@@ -191,7 +191,12 @@ public class ElectronicContractsAction extends ActionSupport implements SessionA
         return "success";
     }
 
-
+//sj
+public String verifyElectronicContracts2() {
+    electronicContractsService.changeStateElectronicContracts2((Integer) session.get("loginusershopId"));
+    session.remove("verifyContracts");
+    return "success";
+}
     //商家接收合同
     public String showShopElectronicContracts() {
         electronicContractsList = electronicContractsService.showShopElectronicContracts((Integer) session.get("loginusershopId"));

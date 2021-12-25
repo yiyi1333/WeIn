@@ -1,12 +1,11 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: rainbow
   Date: 2021/12/18
-  Time: 2:37
+  Time: 0:43
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib prefix="s" uri="/struts-tags" %>
-
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Collections" %>
 <%@ page import="cn.edu.zjut.po.ElectronicContracts" %>
@@ -41,7 +40,7 @@
     <jsp:include page="shopNavigation.jsp"/>
 
     <div id="page-wrapper" class="gray-bg">
-        <jsp:include page="EnterpriseAgencytopSidebar.jsp"/>
+        <jsp:include page="shopTopSidebar.jsp"/>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
                 <h2>数据表格</h2>
@@ -102,10 +101,10 @@
                                     </tr>
                                     </thead>
                                     <%
-                                        if((List<ElectronicContracts>) session.getAttribute("shopContracts") == null) {
+                                        if((List<ElectronicContracts>) session.getAttribute("verifyContracts") == null) {
                                             session.putValue("verifyContracts", new ArrayList<ElectronicContracts>());
                                         }
-                                        List<ElectronicContracts> list = (List<ElectronicContracts>) session.getAttribute("shopContracts");
+                                        List<ElectronicContracts> list = (List<ElectronicContracts>) session.getAttribute("verifyContracts");
                                     %>
                                     <tbody>
                                     <%

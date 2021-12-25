@@ -48,6 +48,9 @@
         update electroniccontracts set state = 1 where enterpriseAgencyId = #{0} and state = 0;
     </update>
 
+    <update id="changeStateElectronicContracts2">
+        update electroniccontracts set state = 10 where shopId = #{0} and state = 1;
+    </update>
     <select id="queryElectronicContractsByShopId" resultMap="ElectronicContractsResultMap">
         select * from electroniccontracts where shopId = #{0} and state = 1;
     </select>

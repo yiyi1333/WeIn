@@ -95,7 +95,6 @@ public class CartService {
         return cart;
     }
 
-    @MyLog
     public int addToCart(int consumerId, int goodsId) {
         //查询现有记录
         Integer num = cartDao.getCartNum(consumerId, goodsId);

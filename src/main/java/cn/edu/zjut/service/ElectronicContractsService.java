@@ -83,6 +83,11 @@ public class ElectronicContractsService {
         electronicContractsimpl.changeStateElectronicContracts(agencyid);
     }
 
+    public void changeStateElectronicContracts2(int agencyid) {
+        electronicContractsimpl.changeStateElectronicContracts2(agencyid);
+    }
+
+
     public List showShopElectronicContracts(int shopid) {
         List<ElectronicContracts> contracts = electronicContractsimpl.queryElectronicContractsByShopId(shopid);
         return contracts;

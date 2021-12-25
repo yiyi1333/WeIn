@@ -157,9 +157,7 @@
 
     <update id="updateOrder" parameterType="cn.edu.zjut.po.Orders">
         update WeIn.orders set
-        orderStatus= #{orderStatus},
-        orderDate = #{orderDate},
-        orderTime = #{orderTime}
+        orderStatus= #{orderStatus}
         where orderId = #{orderId};
     </update>
     <select id="getFundFlowByDate" resultMap="OrdersResultMap" parameterType="java.lang.String">
