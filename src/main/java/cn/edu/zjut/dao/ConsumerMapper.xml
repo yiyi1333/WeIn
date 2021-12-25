@@ -88,4 +88,15 @@
         set consumer.name = #{realName}, consumer.idCardNumber = #{idNumber}
         where consumer.consumerId = #{consumerId}
     </update>
+    <!--查询有无电话号码-->
+    <select id="findPhoneNumber" parameterType="java.lang.String" resultMap="ConsumerResultMap">
+        select * from consumer where phoneNumber = #{phoneNumber};
+    </select>
+
+    <!--更新企业用户认证-->
+    <update id="updataConsumer">
+        update consumer
+        set idCardNumber = #{idCardNumber}, name = #{name}, email = #{email}, enterpriseDepartmentNumber = #{enterpriseDepartmentNumber}
+        where phoneNumber = #{phoneNumber}
+    </update>
 </mapper>

@@ -247,6 +247,7 @@
         <property name="registerShopmanagerAndEnterpriseagencyService"
                   ref="registerShopmanagerAndEnterpriseagencyService"/>
     </bean>
+
     <!--王怡欣配置区-->
     <bean id="consumerImpl" class="cn.edu.zjut.dao.ConsumerImpl">
         <property name="sqlSession" ref="sqlSession"/>
@@ -279,6 +280,8 @@
 
     <bean id="consumerAction" class="cn.edu.zjut.action.ConsumerAction">
         <property name="consumerService" ref="consumerService"/>
+        <!--企业认证需要-->
+        <property name="enterpriseDepartmentService" ref="enterpriseDepartmentService"/>
     </bean>
 
     <bean id="enterpriseDepartmentImpl" class="cn.edu.zjut.dao.EnterpriseDepartmentImpl">

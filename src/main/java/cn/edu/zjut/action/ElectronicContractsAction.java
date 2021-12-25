@@ -23,9 +23,77 @@ public class ElectronicContractsAction extends ActionSupport implements SessionA
     private Map<String, Object> session;
     private HttpServletRequest httpServletRequest;
 
-    private String enterpriseId;
     //获得企业结构用
     private RegisterShopmanagerAndEnterpriseagencyService registerShopmanagerAndEnterpriseagencyService;
+
+    private String state;
+    private String enterpriseId;
+    private String discount;
+    private String enterpriseDepartmentId;
+    private String shopId;
+    private String enterpriseAgencyId;
+    private String electronicContractsId;
+    private String goodsId;
+
+    public void setGoodsId(String goodsId) {
+        this.goodsId = goodsId;
+    }
+
+    public String getGoodsId() {
+        return goodsId;
+    }
+
+    public void setDiscount(String discount) {
+        this.discount = discount;
+    }
+
+    public void setEnterpriseDepartmentId(String enterpriseDepartmentId) {
+        this.enterpriseDepartmentId = enterpriseDepartmentId;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setElectronicContractsId(String electronicContractsId) {
+        this.electronicContractsId = electronicContractsId;
+    }
+
+    public void setEnterpriseAgencyId(String enterpriseAgencyId) {
+        this.enterpriseAgencyId = enterpriseAgencyId;
+    }
+
+    public void setHttpServletRequest(HttpServletRequest httpServletRequest) {
+        this.httpServletRequest = httpServletRequest;
+    }
+
+    public String getDiscount() {
+        return discount;
+    }
+
+    public String getElectronicContractsId() {
+        return electronicContractsId;
+    }
+
+    public String getEnterpriseAgencyId() {
+        return enterpriseAgencyId;
+    }
+
+    public String getEnterpriseDepartmentId() {
+        return enterpriseDepartmentId;
+    }
+
+    public void setShopId(String shopId) {
+        this.shopId = shopId;
+    }
+
+    public String getShopId() {
+        return shopId;
+    }
+
+    public String getState() {
+        return state;
+    }
 
     @Override
     public void setSession(Map<String, Object> session) {
@@ -107,6 +175,15 @@ public class ElectronicContractsAction extends ActionSupport implements SessionA
         return "success";
     }
 
+
+    public void setEnterpriseId(String enterpriseId) {
+        this.enterpriseId = enterpriseId;
+    }
+
+    public String getEnterpriseId() {
+        return enterpriseId;
+    }
+
     //展示要审核的合同条目
     public String showVerifyElectronicContracts() {
         electronicContractsList = electronicContractsService.showVerifyElectronicContracts((Integer) session.get("loginuserEnterpriseAgencyId"));
@@ -186,7 +263,39 @@ public class ElectronicContractsAction extends ActionSupport implements SessionA
     public String queryElectronicContractsByEnterpriseId() {
         Integer id = (Integer) session.get("loginuserEnterpriseId");
         List list = electronicContractsService.queryElectronicContractsByEnterpriseId(id);
-        session.put("contracts", list);
+        session.put("contractList", list);
+        return "success";
+    }
+
+    //模糊查询
+    public String queryElectronicContractsLike() {
+        session.remove("contractList");
+        if (electronicContractsId != "") {
+            electronicContracts.setElectronicContractsId(Integer.parseInt(electronicContractsId));
+        }
+        if (discount != "") {
+            electronicContracts.setDiscount(Double.parseDouble(discount));
+        }
+        if (enterpriseId != "") {
+            electronicContracts.setEnterpriseId(Integer.parseInt(enterpriseId));
+        }
+        if (enterpriseDepartmentId != "") {
+            electronicContracts.setEnterpriseDepartmentId(Integer.parseInt(enterpriseDepartmentId));
+        }
+        if (goodsId != "") {
+            electronicContracts.setGoodsId(Integer.parseInt(goodsId));
+        }
+        if (shopId != "") {
+            electronicContracts.setShopId(Integer.parseInt(shopId));
+        }
+        if (enterpriseAgencyId != "") {
+            electronicContracts.setEnterpriseAgencyId(Integer.parseInt(enterpriseAgencyId));
+        }
+        if (state != "") {
+            electronicContracts.setState(Integer.parseInt(state));
+        }
+        List list = electronicContractsService.queryElectronicContractsLike(electronicContracts);
+        session.put("contractList", list);
         return "success";
     }
 

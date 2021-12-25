@@ -24,7 +24,7 @@
             </li>
 
             <li>
-                <a href="addConsumer.jsp"><i class="fa fa-envelope"></i> <span class="nav-label">新增企业用户</span></a>
+                <a href="displayAddConsumer.action"><i class="fa fa-envelope"></i> <span class="fa fa-plus-square">企业用户认证</span></a>
             </li>
 
             <li>

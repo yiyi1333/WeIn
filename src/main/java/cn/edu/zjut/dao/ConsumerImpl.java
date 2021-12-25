@@ -74,4 +74,14 @@ public class ConsumerImpl implements ConsumerMapper {
         }
         return line;
     }
+
+    @Override
+    public Consumer findPhoneNumber(String phonebunmber) {
+       return sqlSession.getMapper(ConsumerMapper.class).findPhoneNumber(phonebunmber);
+    }
+
+    @Override
+    public void updataConsumer(Consumer consumer) {
+        sqlSession.getMapper(ConsumerMapper.class).updataConsumer(consumer);
+    }
 }

@@ -80,24 +80,29 @@
                             EnterpriseAgency enterpriseAgency = (EnterpriseAgency) session.getAttribute("enterpriseAgency");
 
                         %>
-                        <input type="hidden" name="enterpriseDepartment.enterpriseId" value="<%=enterpriseAgency.getEnterpriseId()%>">
+                        <input type="hidden" name="enterpriseDepartment.enterpriseId"
+                               value="<%=enterpriseAgency.getEnterpriseId()%>">
                         <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="col-form-label"
-                                       for="enterpriseDepartment.enterpriseDepartmentId">企业部门编号</label>
-                                <input type="text" id="enterpriseDepartment.enterpriseDepartmentId"
+                            <div class="form-group" id="enterpriseDepartmentEnterpriseDepartmentIdDiv">
+                                <label class="col-form-label">企业部门编号</label>
+                                <input type="text" id="enterpriseDepartmentEnterpriseDepartmentId"
                                        name="enterpriseDepartment.enterpriseDepartmentId" value="" placeholder="请输入..."
                                        class="form-control">
+
                             </div>
+
                         </div>
                         <div class="col-sm-4">
-                            <div class="form-group">
+                            <div class="form-group" id="enterpriseDepartmentEnterpriseDepartmentNameDiv">
                                 <label class="col-form-label"
-                                       for="enterpriseDepartment.enterpriseDepartmentName">企业部门名字</label>
-                                <input type="text" id="enterpriseDepartment.enterpriseDepartmentName"
-                                       name="enterpriseDepartment.enterpriseDepartmentName" value=""
+                                >企业部门名字</label>
+                                <input type="text"
+                                       name="enterpriseDepartment.enterpriseDepartmentName"
+                                       id="enterpriseDepartmentEnterpriseDepartmentName" value=""
                                        placeholder="请输入..." class="form-control">
+
                             </div>
+
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
@@ -125,8 +130,14 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-4"></div>
-                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4">
+                            <div id="enterpriseDepartmentEnterpriseDepartmentIdResult"
+                                 style="margin-left: 100px;"></div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div id="enterpriseDepartmentEnterpriseDepartmentNameResult"
+                                 style="margin-left: 100px;"></div>
+                        </div>
                         <div class="col-sm-4">
                             <button type="submit" class="btn btn-w-m btn-primary">查询</button>
                         </div>
@@ -164,6 +175,7 @@
                                     }
                                     for (int i = 0; i < departmentList.size(); i++) {
                                 %>
+
                                 <tr>
 
                                     <td>
@@ -302,6 +314,30 @@
         window.location.href = "deleteEnterpriseDepartmentByIds?tag=" + result;
     }
 
+    $('#enterpriseDepartmentEnterpriseDepartmentId').bind('input propertychange', function () {
+        if ((11 - $(this).val().length) >= 4) {
+            document.getElementById("enterpriseDepartmentEnterpriseDepartmentIdDiv").className = "form-group row has-success";
+            $('#enterpriseDepartmentEnterpriseDepartmentIdResult').html('还剩 ' + (20 - $(this).val().length) + ' 字，请放心输入');
+        } else if ((11 - $(this).val().length) >= 0) {
+            document.getElementById("enterpriseDepartmentEnterpriseDepartmentIdDiv").className = "form-group row has-warning";
+            $('#enterpriseDepartmentEnterpriseDepartmentIdResult').html('还剩 ' + (20 - $(this).val().length) + ' 字,请注意');
+        } else {
+            document.getElementById("enterpriseDepartmentEnterpriseDepartmentIdDiv").className = "form-group row has-error";
+            $('#enterpriseDepartmentEnterpriseDepartmentIdResult').html('您已超出 ' + ($(this).val().length - 20) + ' 字');
+        }
+    });
+    $('#enterpriseDepartmentEnterpriseDepartmentName').bind('input propertychange', function () {
+        if ((11 - $(this).val().length) >= 4) {
+            document.getElementById("enterpriseDepartmentEnterpriseDepartmentNameDiv").className = "form-group row has-success";
+            $('#enterpriseDepartmentEnterpriseDepartmentNameResult').html('还剩 ' + (20 - $(this).val().length) + ' 字，请放心输入');
+        } else if ((11 - $(this).val().length) >= 0) {
+            document.getElementById("enterpriseDepartmentEnterpriseDepartmentNameDiv").className = "form-group row has-warning";
+            $('#enterpriseDepartmentEnterpriseDepartmentNameResult').html('还剩 ' + (20 - $(this).val().length) + ' 字,请注意');
+        } else {
+            document.getElementById("enterpriseDepartmentEnterpriseDepartmentNameDiv").className = "form-group row has-error";
+            $('#enterpriseDepartmentEnterpriseDepartmentNameResult').html('您已超出 ' + ($(this).val().length - 20) + ' 字');
+        }
+    });
 
 </script>
 

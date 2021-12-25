@@ -1,4 +1,6 @@
-<%--
+<%@ page import="cn.edu.zjut.po.EnterpriseDepartment" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: lemon
   Date: 2021/12/2
@@ -63,6 +65,16 @@
                             </div>
                         </div>
                         <div class="ibox-content">
+                            <!--addconsumer是添加企业认证-->
+                            <%
+                                String message = (String) session.getAttribute("message");
+                                if(message == null) {}
+                                else {
+                            %>
+                            <div style="margin-left: 100px;color: #c69500 "><%=message%> </div>
+                            <%
+                            }
+                            %>
                             <form action="addconsumer.action">
                                 <div class="form-group  row" id="consumerNameDiv">
                                     <label class="col-sm-1 col-form-label">姓名</label>
@@ -83,13 +95,7 @@
                                 </div>
 
                                 <div class="hr-line-dashed"></div>
-                                <div class="form-group row" id="consumerPasswordDiv"><label
-                                        class="col-sm-1 col-form-label">密码</label>
-                                    <div class="col-sm-10"><input name="consumer.password" type="text"
-                                                                  id="consumerPassword"
-                                                                  class="form-control"></div>
-                                    <div id="consumerPasswordResult" style="margin-left: 100px;"></div>
-                                </div>
+
 
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group  row" id="consumerEmailDiv"><label
@@ -112,19 +118,33 @@
                                 <div class="form-group row"><label class="col-sm-1 col-form-label">部门编号</label>
 
                                     <div class="col-sm-10">
+
                                         <select class="form-control m-b"
-                                                                   name="consumer.enterpriseDepartmentNumber">
-                                        <option value="2">行政部</option>
-                                        <option value="3">财务部</option>
-                                        <option value="4">质量管理部</option>
-                                        <option value="5">营销部</option>
-                                        <option value="6">技术部</option>
-                                        <option value="7">维修部</option>
-                                        <option value="8">人力资源部</option>
-                                        <option value="9">客户服务部</option>
-                                    </select>
+                                                name="consumer.enterpriseDepartmentNumber">
+
+                                            <%
+                                                List<EnterpriseDepartment> enterpriseDepartmentList = (List<EnterpriseDepartment>) session.getAttribute("enterpriseDepartmentList");
+                                                if ((List<EnterpriseDepartment>) session.getAttribute("enterpriseDepartmentList") == null) {
+                                                    session.putValue("enterpriseDepartmentList", new ArrayList<EnterpriseDepartment>());
+                                                }
+                                                for (EnterpriseDepartment enterpriseDepartment1 : enterpriseDepartmentList) {
+
+                                            %>
+                                            <option value="<%=enterpriseDepartment1.getEnterpriseDepartmentId()%>">
+                                                <%=enterpriseDepartment1.getEnterpriseDepartmentName()%>
+                                            </option>
+                                            <%
+                                                }
+                                            %>
+
+                                        </select>
                                     </div>
                                 </div>
+
+
+
+
+
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group row">
                                     <div class="col-sm-4 col-sm-offset-2">
@@ -234,8 +254,7 @@
         if (matchArray == null) {
             document.getElementById("consumerEmailDiv").className = "form-group row has-success";
             $('#consumerEmailResult').html('电子邮件地址必须包括 ( @ 和 . )');
-        }
-        else {
+        } else {
             document.getElementById("consumerEmailDiv").className = "form-group row has-success";
             $('#consumerEmailResult').html('电子邮件地址格式正确');
         }

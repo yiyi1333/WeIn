@@ -30,7 +30,8 @@ public class ConsumerService {
     }
 
     public void addConsumer(Consumer consumer) {
-        consumerdao.addConsumer(consumer);
+        consumerdao .updataConsumer(consumer);
+//        consumerdao.addConsumer(consumer);
     }
 
     public EnterpriseConsumer loginAndRegister(String phoneNumber) {
@@ -120,5 +121,15 @@ public class ConsumerService {
             e.printStackTrace();
         }
         return respMessage;
+    }
+
+    //能不能找到手机号对应的人
+    public Boolean findPhoneNumber(String phonenumber) {
+        if (consumerdao.findPhoneNumber(phonenumber) == null) {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 }
