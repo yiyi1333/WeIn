@@ -24,7 +24,7 @@
             </li>
 
             <li>
-                <a href="displayAddConsumer.action"><i class="fa fa-envelope"></i> <span class="fa fa-plus-square">企业用户认证</span></a>
+                <a href="displayAddConsumer.action"><i class="fa fa-plus-square"></i> <span class="nav-label">企业用户认证</span></a>
             </li>
 
             <li>
@@ -35,7 +35,8 @@
                         class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li>
-                        <a href="displayAddEnterpriseDepartment.action"><i class="fa fa-plus-square"></i> <span class="nav-label">增加企业部门</span></a>
+                        <a href="displayAddEnterpriseDepartment.action"><i class="fa fa-plus-square"></i> <span
+                                class="nav-label">增加企业部门</span></a>
                     </li>
                     <li>
                         <a href="displayAllDepartment.action"><i class="fa fa-envelope"></i> <span
@@ -45,14 +46,21 @@
             </li>
 
             <li>
-            <li>
-                <a href="queryElectronicContractsByEnterpriseId.action"><i class="fa fa-envelope"></i> <span
-                        class="nav-label">展示已有电子合同</span></a>
+                <a href="#"><i class="fa fa-sign-out"></i> <span class="nav-label">管理合同</span><span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li>
+                        <a href="queryElectronicContractsByEnterpriseId.action"><i class="fa fa-envelope"></i> <span
+                                class="nav-label">查询已有电子合同</span></a>
+                    </li>
+                    <li>
+                        <a href="./chooseEditElectronicContracts"><i class="fa fa-envelope"></i> <span
+                                class="nav-label">编辑电子合同</span></a>
+                    </li>
+                </ul>
             </li>
             <li>
-                <a href="./chooseEditElectronicContracts"><i class="fa fa-envelope"></i> <span
-                        class="nav-label">编辑电子合同</span></a>
-            </li>
+
         </ul>
 
     </div>

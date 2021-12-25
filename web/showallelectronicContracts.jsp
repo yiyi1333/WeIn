@@ -99,15 +99,6 @@
 
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label class="col-form-label">企业编号</label>
-                                            <input type="text"
-                                                   name="enterpriseId"
-                                                   value=""
-                                                   placeholder="请输入..." class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
                                             <label class="col-form-label">商家编号</label>
                                             <input type="text"
                                                    name="shopId"
@@ -142,21 +133,7 @@
                                                    placeholder="请输入..." class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label class="col-form-label">合同状态</label>
-                                            <input type="text"
-                                                   name="state"
-                                                   value=""
-                                                   placeholder="请输入..." class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                    </div>
-                                    <div class="col-sm-3">
-                                    </div>
-                                    <div class="col-sm-3">
-                                    </div>
+
                                     <div class="col-sm-3">
                                         <button type="submit" class="btn btn-w-m btn-primary">查询</button>
                                     </div>
