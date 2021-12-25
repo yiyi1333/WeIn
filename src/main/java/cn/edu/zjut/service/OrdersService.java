@@ -131,6 +131,7 @@ public class OrdersService {
         WareHouseAddress wareHouseAddress = wareHouseAddressMapper.selectWareHouseAddressById(goodsService.getGoodsById(goodList.get(0)).getWarehouseId());
         Orders orders = new Orders();
         orders.setOrderStatus("待发货");
+        orders.setOrderPaymentMethod("微信支付");
         orders.setConsumerId(Integer.toString(customerId));
         orders.setShopId(goodsService.getGoodsById(goodList.get(0)).getShopId());
         orders.setLogisticsSingle(null);
