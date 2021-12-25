@@ -22,6 +22,12 @@
             </association>
         </collection>
     </resultMap>
+
+    <resultMap id="CartRecordMap" type="cn.edu.zjut.po.CartRecord">
+        <result property="consumerId" column="consumerId"/>
+        <result property="goodsId" column="goodsId"/>
+        <result property="goodsNum" column="goodsNum"/>
+    </resultMap>
     <select id="getConsumerCart" parameterType="int" resultMap="CartMap">
         select goods.*, cart.*, shop.*
         from goods, shop, cart
@@ -44,4 +50,27 @@
         set goodsNum = goodsNum + 1
         where consumerId = #{consumerID} and goodsId = #{goodsId};
     </update>
+<!--    查询某条记录-->
+    <select id="getRecord" resultMap="CartRecordMap">
+        select *
+        from cart
+        where consumerId = #{consumerId} and goodsId = #{goodsId}
+    </select>
+<!--    删除某条记录-->
+    <delete id="removeRecord">
+        delete from cart
+        where consumerId = #{consumerId} and goodsId = #{goodsId}
+    </delete>
+<!--    修改数量-->
+    <update id="updateRecord">
+        update cart
+        set goodsNum = #{num}
+        where consumerId = #{consumerId} and goodsId = #{goodsId}
+    </update>
+<!--    查询所有记录-->
+    <select id="getRecordAll" resultMap="CartRecordMap">
+        select *
+        from cart
+        where consumerId = #{consumerId}
+    </select>
 </mapper>

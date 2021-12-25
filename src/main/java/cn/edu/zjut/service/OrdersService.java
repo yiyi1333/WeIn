@@ -23,6 +23,15 @@ public class OrdersService {
     private WareHouseAddressMapper wareHouseAddressMapper;
     private GoodsService goodsService;
     private OrderStatusMapper orderStatusMapper;
+    private OrderStatusMapper orderStatusDao;
+
+    public OrderStatusMapper getOrderStatusDao() {
+        return orderStatusDao;
+    }
+
+    public void setOrderStatusDao(OrderStatusMapper orderStatusDao) {
+        this.orderStatusDao = orderStatusDao;
+    }
 
     public OrderStatusMapper getOrderStatusMapper() {
         return orderStatusMapper;

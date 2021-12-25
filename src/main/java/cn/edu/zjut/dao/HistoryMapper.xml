@@ -35,6 +35,7 @@
     <select id="selectAllHistory" resultMap="HistoryMap">
         select *
         from history, goods
-        where history.consumerId = #{customerId} and history.goodsId = goods.goodsId;
+        where history.consumerId = #{customerId} and history.goodsId = goods.goodsId
+        order by history.date decs , history.time decs
     </select>
 </mapper>

@@ -36,5 +36,12 @@
         select *
         from collection, goods
         where collection.consumerId = #{customerId} and collection.goodsId = goods.goodsId
+        order by collection.collectionDate desc, collection.collectionTime desc
+    </select>
+
+    <select id="selectBycustomerIdAndgoodsId" resultMap="CollectionMap">
+        select *
+        from collection, goods
+        where collection.consumerId = #{customerId} and collection.goodsId = #{goodsId} and collection.goodsId = goods.goodsId
     </select>
 </mapper>

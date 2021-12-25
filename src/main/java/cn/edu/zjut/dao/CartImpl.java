@@ -1,5 +1,6 @@
 package cn.edu.zjut.dao;
 
+import cn.edu.zjut.po.CartRecord;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import java.util.ArrayList;
@@ -33,5 +34,25 @@ public class CartImpl implements CartMapper{
     @Override
     public Integer insertCart(int consumerId, int goodsId) {
         return sqlSession.getMapper(CartMapper.class).insertCart(consumerId, goodsId);
+    }
+
+    @Override
+    public CartRecord getRecord(Integer consumerId, Integer goodsId) {
+        return sqlSession.getMapper(CartMapper.class).getRecord(consumerId, goodsId);
+    }
+
+    @Override
+    public Integer removeRecord(Integer consumerId, Integer goodsId) {
+        return sqlSession.getMapper(CartMapper.class).removeRecord(consumerId, goodsId);
+    }
+
+    @Override
+    public Integer updateRecord(Integer consumerId, Integer goodsId, Integer num) {
+        return sqlSession.getMapper(CartMapper.class).updateRecord(consumerId, goodsId, num);
+    }
+
+    @Override
+    public List<CartRecord> getRecordAll(Integer consumerId) {
+        return sqlSession.getMapper(CartMapper.class).getRecordAll(consumerId);
     }
 }
