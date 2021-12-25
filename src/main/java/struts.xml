@@ -150,32 +150,34 @@
             </result>
         </action>
 
-        <!--        张宇翔配置区-->
-        <action name="loginout" class="cn.edu.zjut.action.UserAction" method="loginout">
-            <result name="success">/login.jsp</result>
-        </action>
-        <action name="platformFinancialStatistics" class="cn.edu.zjut.action.OrdersAction" method="platformFinancialStatistics">
-            <result name="success">/platformFinancialStatistics.jsp</result>
-        </action>
-        <action name="platformInterventionRightsDetails" class="cn.edu.zjut.action.SafeGuardingRightsAction"
-                method="platformInterventionRightsDetails">
-            <result name="success">/platformInterventionRightsDetails.jsp</result>
+        <action name="selectAllRightsInfo" class="cn.edu.zjut.action.SafeGuardingRightsAction" method="selectAllRightsInfo">
+            <result name="success" type="json">
+                <param name="root">showSafeGuardingRightsList</param>
+            </result>
         </action>
 
-        <action name="platformInterventionRights" class="cn.edu.zjut.action.SafeGuardingRightsAction"
-                method="platformInterventionRights">
-            <result name="success">/platformInterventionRights.jsp</result>
+        <action name="confirmReceipt" class="cn.edu.zjut.action.OrdersAction" method="confirmReceipt">
+            <result name="success" type="json">
+                <param name="root">statusMes</param>
+            </result>
         </action>
 
-        <action name="reviewComment" class="cn.edu.zjut.action.ReviewCommentAction" method="displayCommentToReview">
-            <result name="success">/reviewComment.jsp</result>
+        <action name="acceptTreatment" class="cn.edu.zjut.action.SafeGuardingRightsAction" method="acceptTreatment">
+            <result name="success" type="json">
+                <param name="root">statusMes</param>
+            </result>
         </action>
 
-        <action name="commentJudge" class="cn.edu.zjut.action.ReviewCommentAction" method="commentJudge">
-            <result name="success" type="chain">reviewComment</result>
+        <action name="refuseTreatment" class="cn.edu.zjut.action.SafeGuardingRightsAction" method="refuseTreatment">
+            <result name="success" type="json">
+                <param name="root">statusMes</param>
+            </result>
         </action>
-        <action name="reviewDetail" class="cn.edu.zjut.action.ReviewCommentAction" method="reviewDetail">
-            <result name="success">/reviewCommentDetail.jsp</result>
+
+        <action name="updateCart" class="cn.edu.zjut.action.CartAction" method="updateCart">
+            <result name="success" type="json">
+                <param name="root">message</param>
+            </result>
         </action>
 
         <action name="createLegalOrder" class="cn.edu.zjut.action.OrdersAction" method="createLegalShopOrders">

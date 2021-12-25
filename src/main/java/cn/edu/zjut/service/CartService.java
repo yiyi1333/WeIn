@@ -2,16 +2,34 @@ package cn.edu.zjut.service;
 
 import cn.edu.zjut.annotation.MyLog;
 import cn.edu.zjut.dao.CartMapper;
+import cn.edu.zjut.dao.ConsumerMapper;
+import cn.edu.zjut.dao.ElectronicContractsMapper;
 import cn.edu.zjut.dao.GoodsMapper;
-import cn.edu.zjut.po.Cart;
-import cn.edu.zjut.po.CartGoods;
-import cn.edu.zjut.po.Goods;
+import cn.edu.zjut.po.*;
 
 import java.util.*;
 
 public class CartService {
     private CartMapper cartDao;
     private GoodsMapper goodsDao;
+    private ConsumerMapper consumerDao;
+    private ElectronicContractsMapper electronicContractsDao;
+
+    public ElectronicContractsMapper getElectronicContractsDao() {
+        return electronicContractsDao;
+    }
+
+    public void setElectronicContractsDao(ElectronicContractsMapper electronicContractsDao) {
+        this.electronicContractsDao = electronicContractsDao;
+    }
+
+    public ConsumerMapper getConsumerDao() {
+        return consumerDao;
+    }
+
+    public void setConsumerDao(ConsumerMapper consumerDao) {
+        this.consumerDao = consumerDao;
+    }
 
     public GoodsMapper getGoodsDao() {
         return goodsDao;
@@ -30,7 +48,36 @@ public class CartService {
     }
 
     public List getConsumerCartById(int consumerId) {
+        //查询是否是企业员工
+        EnterpriseConsumer enterpriseConsumer = consumerDao.searchEnterpriseConsumerById(consumerId);
         ArrayList<Cart> temp = cartDao.getConsumerCart(consumerId);
+        Date date = new Date();
+        ArrayList<Cart> cartList = new ArrayList<>();
+        if(enterpriseConsumer.getEnterpriseDepartment().getEnterpriseDepartmentId() != 0){
+            //企业员工
+            for(Cart c : temp){
+                ArrayList<CartGoods> cartGoodsList = new ArrayList<>();
+                for(CartGoods g : c.getGoodsList()){
+                    ElectronicContracts electronicContracts = electronicContractsDao.queryElectronicContractsByGoodsIdAndDepartmentId(g.getGoods().getGoodsId(),
+                            enterpriseConsumer.getEnterpriseDepartment().getEnterpriseDepartmentId(), date);
+                    if(electronicContracts != null){
+                        //有折扣
+                        Double realPrice = g.getGoods().getGoodsPrice() * electronicContracts.getDiscount();
+                        realPrice = (double) Math.round(realPrice * 100) / 100;
+                        Goods t = g.getGoods();
+                        t.setGoodsRealPrice(realPrice);
+                        g.setGoods(t);
+//                        System.out.println(g);
+                    }
+                    cartGoodsList.add(g);
+                }
+//                System.out.println(cartGoodsList);
+                c.setGoodsList(cartGoodsList);
+                cartList.add(c);
+            }
+//            System.out.println(cartList);
+            temp = (ArrayList<Cart>) cartList.clone();
+        }
         ArrayList<Cart> cart = new ArrayList<>();
         Map<Integer, Cart> mp = new HashMap<>();
         for (Cart t : temp) {
@@ -67,6 +114,28 @@ public class CartService {
             } else {
                 int line = cartDao.addOneToCart(consumerId, goodsId);
                 return line != 0 ? 1 : 0;
+            }
+        }
+    }
+
+    public void updateCart(ArrayList<CartGoods> list, Integer consumerId){
+        List<CartRecord> cartRecordList = cartDao.getRecordAll(consumerId);
+        for(CartRecord cr : cartRecordList){
+            //查询该条记录
+            boolean flag = false;
+            for(CartGoods g : list){
+                if(g.getGoods().getGoodsId() == cr.getGoodsId()){
+                    if(g.getGoodsNum() != cr.getGoodsNum()){
+                        //更新数量
+                        cartDao.updateRecord(consumerId, g.getGoods().getGoodsId(), g.getGoodsNum());
+                    }
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag){
+                //删除
+                cartDao.removeRecord(consumerId, cr.getGoodsId());
             }
         }
     }

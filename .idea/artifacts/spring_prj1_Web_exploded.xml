@@ -1,21 +1,16 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="WeIn:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/WeIn_war_exploded</output-path>
+  <artifact type="exploded-war" name="spring-prj1:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/spring_prj1_Web_exploded</output-path>
     <root id="root">
+      <element id="javaee-facet-resources" facet="spring-prj1/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="WeIn" />
+          <element id="module-output" name="spring-prj1" />
         </element>
         <element id="directory" name="lib">
           <element id="file-copy" path="$PROJECT_DIR$/lib/ejbserver.jar" />
-          <element id="file-copy" path="$PROJECT_DIR$/lib/javax.ejb.jar" />
-          <element id="file-copy" path="$PROJECT_DIR$/lib/javax.jms.jar" />
-          <element id="file-copy" path="$PROJECT_DIR$/lib/jboss-client.jar" />
-          <element id="file-copy" path="$PROJECT_DIR$/lib/javax.resource.jar" />
-          <element id="file-copy" path="$PROJECT_DIR$/lib/javax.annotation.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/jboss-cli-client.jar" />
-          <element id="file-copy" path="$PROJECT_DIR$/lib/javax.persistence.jar" />
-          <element id="file-copy" path="$PROJECT_DIR$/lib/javax.transaction.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/jboss-client.jar" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.27" />
           <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.11.4" />
           <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />
@@ -66,7 +61,6 @@
           <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-util:9.3.7.v20160115" />
         </element>
       </element>
-      <element id="javaee-facet-resources" facet="WeIn/web/Web" />
     </root>
   </artifact>
 </component>

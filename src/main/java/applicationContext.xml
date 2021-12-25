@@ -125,6 +125,7 @@
         <property name="goodsDao" ref="goodsImpl"/>
         <property name="consumerDao" ref="consumerImpl"/>
         <property name="electronicContractsDao" ref="electronicContractsimpl"/>
+        <property name="collectionDao" ref="collectionImpl"/>
     </bean>
 
     <bean id="goodsAction" class="cn.edu.zjut.action.GoodsAction" scope="prototype">
@@ -185,13 +186,6 @@
         <property name="safeGuardingRightsProgressService" ref="safeGuardingRightsProgressService"/>
     </bean>
 <!--    评论-->
-    <bean id="commentImpl" class="cn.edu.zjut.dao.CommentImpl">
-        <property name="sqlSession" ref="sqlSession"/>
-    </bean>
-
-    <bean id="commentService" class="cn.edu.zjut.service.CommentService">
-        <property name="commentDao" ref="commentImpl"/>
-    </bean>
 
     <bean id="commentAction" class="cn.edu.zjut.action.CommentAction">
         <property name="commentService" ref="commentService"/>
@@ -205,6 +199,8 @@
     <bean id="cartService" class="cn.edu.zjut.service.CartService">
         <property name="cartDao" ref="cartDao"/>
         <property name="goodsDao" ref="goodsImpl"/>
+        <property name="consumerDao" ref="consumerImpl"/>
+        <property name="electronicContractsDao" ref="electronicContractsimpl"/>
     </bean>
 
     <bean id="cartAction" class="cn.edu.zjut.action.CartAction">
@@ -315,6 +311,7 @@
         <property name="ordersMapper" ref="ordersImpl"/>
         <property name="orderGoodMapper" ref="orderGoodImpl"/>
         <property name="goodsService" ref="goodsService"/>
+        <property name="orderStatusDao" ref="orderStatusImpl"/>
         <property name="wareHouseAddressMapper" ref="wareHouseAddressImpl"/>
         <property name="orderStatusMapper" ref="orderStatusImpl"/>
     </bean>
