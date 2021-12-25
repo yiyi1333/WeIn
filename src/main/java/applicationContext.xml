@@ -302,6 +302,7 @@
         <property name="orderGoodMapper" ref="orderGoodImpl"/>
         <property name="goodsService" ref="goodsService"/>
         <property name="wareHouseAddressMapper" ref="wareHouseAddressImpl"/>
+        <property name="orderStatusMapper" ref="orderStatusImpl"/>
     </bean>
 
     <bean id="ordersAction" class="cn.edu.zjut.action.OrdersAction" scope="prototype">
