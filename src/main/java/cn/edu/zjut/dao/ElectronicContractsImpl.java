@@ -51,5 +51,10 @@ public class ElectronicContractsImpl implements ElectronicContractsMapper{
     public ElectronicContracts queryElectronicContractsByGoodsIdAndDepartmentId(int goodsId, int deparatmentId, Date now) {
         return sqlSession.getMapper(ElectronicContractsMapper.class).queryElectronicContractsByGoodsIdAndDepartmentId(goodsId, deparatmentId, now);
     }
+
+    @Override
+    public List queryElectronicContractsLike(ElectronicContracts electronicContracts) {
+        return sqlSession.getMapper(ElectronicContractsMapper.class).queryElectronicContractsLike(electronicContracts);
+    }
 }
 

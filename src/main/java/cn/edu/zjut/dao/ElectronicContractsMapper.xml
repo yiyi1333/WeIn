@@ -60,4 +60,39 @@
         where goodsId = #{goodsId} and enterpriseDepartmentId= #{deparatmentId}
         )
     </select>
+
+    <select id="queryElectronicContractsLike" resultMap="ElectronicContractsResultMap" parameterType="cn.edu.zjut.po.ElectronicContracts">
+        select *
+        from electroniccontracts
+        where electronicContractsId in (
+        select electronicContractsId from WeIn.electroniccontracts
+        <where>
+            <if test="electronicContractsId != null and electronicContractsId != 0 ">or electronicContractsId
+                like concat('%', #{electronicContractsId}, '%')
+            </if>
+            <if test="enterpriseAgencyId != null and enterpriseAgencyId != 0 ">or enterpriseAgencyId
+                like concat('%', #{enterpriseAgencyId}, '%')
+            </if>
+            <if test="enterpriseId != null and enterpriseId != 0 ">or enterpriseId
+                like concat('%', #{enterpriseId}, '%')
+            </if>
+            <if test="shopmanagerId != null and shopmanagerId != 0 ">or  shopmanagerId
+                like concat('%', #{shopmanagerId}, '%')
+            </if>
+            <if test="goodsId != null and goodsId != 0 ">or  goodsId
+                like concat('%', #{goodsId}, '%')
+            </if>
+            <if test="enterpriseDepartmentId != null and enterpriseDepartmentId != 0 ">or  enterpriseDepartmentId
+                like concat('%', #{enterpriseDepartmentId}, '%')
+            </if>
+            <if test="discount != null and discount != ''">or discount
+                like concat('%', #{discount}, '%')
+            </if>
+            <if test="state != null and state != '0'">or state
+                like concat('%', #{state}, '%')
+            </if>
+        </where>
+        )
+        and enterpriseId = #{enterpriseId};
+    </select>
 </mapper>

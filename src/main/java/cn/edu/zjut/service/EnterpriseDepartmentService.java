@@ -104,4 +104,5 @@ public class EnterpriseDepartmentService {
     public String queryDepartNameByEnterpriseDepartmentId(int EnterpriseDepartmentId) {
         return enterpriseDepartmentMapper.queryDepartNameByEnterpriseDepartmentId(EnterpriseDepartmentId);
     }
+
 }

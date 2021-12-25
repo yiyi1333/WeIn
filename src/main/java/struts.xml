@@ -297,7 +297,6 @@
             <result name="success">/deleteEnterpriseagency.jsp</result>
         </action>
         <!--查询已有合同-->
-
         <action name="queryElectronicContractsByEnterpriseId" class="cn.edu.zjut.action.ElectronicContractsAction"
                 method="queryElectronicContractsByEnterpriseId">
             <result name="success">/showallelectronicContracts.jsp</result>
@@ -359,15 +358,25 @@
                 method="updateEnterpriseDepartment">
             <result name="success">/displayAllDepartment.jsp</result>
         </action>
-        <!-- -->
+        <!-- 查询-->
         <action name="queryEnterpriseDepartment" class="cn.edu.zjut.action.EnterpriseDepartmentAction"
                 method="queryEnterpriseDepartment">
             <result name="success">/displayAllDepartment.jsp</result>
         </action>
 
+        <!--展示企业认证-->
+        <action name="displayAddConsumer" class="cn.edu.zjut.action.ConsumerAction" method="displayAddConsumer">
+            <result name="success">/addConsumer.jsp</result>
+        </action>
+
+        <action name="queryElectronicContractsLike" class="cn.edu.zjut.action.ElectronicContractsAction" method="queryElectronicContractsLike">
+            <result name="success">/showallelectronicContracts.jsp</result>
+        </action>
+
         <!--        王怡欣、王淑媚配置区-->
         <action name="addconsumer" class="cn.edu.zjut.action.ConsumerAction" method="addConsumer">
             <result name="success">/addConsumer.jsp</result>
+            <result name="failed">/addConsumer.jsp</result>
         </action>
         <action name="displayGoods" class="cn.edu.zjut.action.GoodsAction" method="selectGoods">
             <result name="displayShopGoodsSuccess">/productList.jsp</result>

@@ -25,4 +25,10 @@ public interface ConsumerMapper {
     public Consumer getConsumerById(int id);
     //存储实名信息
     public Integer modfiyCertificationInfo(@Param("consumerId")Integer consumerId, @Param("realName") String realName, @Param("idNumber") String idNumber);
+
+    //找由于电话号码
+    public Consumer findPhoneNumber(String phonebunmber);
+
+    //企业用户认证
+    public void updataConsumer(Consumer consumer);
 }
