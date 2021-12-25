@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class safeGuardingRightsAction implements SessionAware {
+public class SafeGuardingRightsAction implements SessionAware {
     private String goodsId;
     private String goodsNum;
     private String descript;
@@ -20,13 +20,13 @@ public class safeGuardingRightsAction implements SessionAware {
     private String orderId;
     private String statusMes;
     private String type;
-    private safeGuardingRightsService safeGuardingRightsService;
+    private SafeGuardingRightsService safeGuardingRightsService;
     private Map<String, Object> session;
     private OrdersService ordersService;
     private OrderStatusService orderStatusService;
     private GoodsService goodsService;
-    private safeGuardingRightsProgressService safeGuardingRightsProgressService;
-    private safeGuardingRights safeGuardingRights;
+    private SafeGuardingRightsProgressService safeGuardingRightsProgressService;
+    private SafeGuardingRights safeGuardingRights;
     private int safeGuardingRightsId;
     private DrawBackService DrawBackService;
 
@@ -63,19 +63,19 @@ public class safeGuardingRightsAction implements SessionAware {
         this.goodsService = goodsService;
     }
 
-    public cn.edu.zjut.service.safeGuardingRightsProgressService getSafeGuardingRightsProgressService() {
+    public SafeGuardingRightsProgressService getSafeGuardingRightsProgressService() {
         return safeGuardingRightsProgressService;
     }
 
-    public void setSafeGuardingRightsProgressService(cn.edu.zjut.service.safeGuardingRightsProgressService safeGuardingRightsProgressService) {
+    public void setSafeGuardingRightsProgressService(SafeGuardingRightsProgressService safeGuardingRightsProgressService) {
         this.safeGuardingRightsProgressService = safeGuardingRightsProgressService;
     }
 
-    public cn.edu.zjut.po.safeGuardingRights getSafeGuardingRights() {
+    public SafeGuardingRights getSafeGuardingRights() {
         return safeGuardingRights;
     }
 
-    public void setSafeGuardingRights(cn.edu.zjut.po.safeGuardingRights safeGuardingRights) {
+    public void setSafeGuardingRights(SafeGuardingRights safeGuardingRights) {
         this.safeGuardingRights = safeGuardingRights;
     }
 
@@ -111,11 +111,11 @@ public class safeGuardingRightsAction implements SessionAware {
         this.statusMes = statusMes;
     }
 
-    public safeGuardingRightsService getSafeGuardingRightsService() {
+    public SafeGuardingRightsService getSafeGuardingRightsService() {
         return safeGuardingRightsService;
     }
 
-    public void setSafeGuardingRightsService(safeGuardingRightsService safeGuardingRightsService) {
+    public void setSafeGuardingRightsService(SafeGuardingRightsService safeGuardingRightsService) {
         this.safeGuardingRightsService = safeGuardingRightsService;
     }
 
@@ -174,9 +174,9 @@ public class safeGuardingRightsAction implements SessionAware {
             return "displayShopOrdersFailed";
         }
         int id = 0;
-        List<safeGuardingRights> ans = safeGuardingRightsService.getAllsafeGuardingRights();
-        List<safeGuardingRights> safeGuardingRightsList = new ArrayList<>();
-        for (safeGuardingRights safeGuardingRights : ans) {
+        List<SafeGuardingRights> ans = safeGuardingRightsService.getAllsafeGuardingRights();
+        List<SafeGuardingRights> safeGuardingRightsList = new ArrayList<>();
+        for (SafeGuardingRights safeGuardingRights : ans) {
             if (safeGuardingRights.getSafeGuardingRightsId() != id) {
                 id = safeGuardingRights.getSafeGuardingRightsId();
             } else {
@@ -201,9 +201,9 @@ public class safeGuardingRightsAction implements SessionAware {
             return "displayFailed";
         }
         int id = 0;
-        List<safeGuardingRights> ans = safeGuardingRightsService.selectsafeGuardingRights(safeGuardingRights);
-        List<safeGuardingRights> safeGuardingRightsList = new ArrayList<>();
-        for (safeGuardingRights safeGuardingRights : ans) {
+        List<SafeGuardingRights> ans = safeGuardingRightsService.selectsafeGuardingRights(safeGuardingRights);
+        List<SafeGuardingRights> safeGuardingRightsList = new ArrayList<>();
+        for (SafeGuardingRights safeGuardingRights : ans) {
             if (safeGuardingRights.getSafeGuardingRightsId() != id) {
                 id = safeGuardingRights.getSafeGuardingRightsId();
             } else {
@@ -227,7 +227,7 @@ public class safeGuardingRightsAction implements SessionAware {
         if (shopManager == null) {
             return "displayFailed";
         }
-        safeGuardingRights safeGuardingRights = safeGuardingRightsService.selectsafeGuardingRightsById(safeGuardingRightsId);
+        SafeGuardingRights safeGuardingRights = safeGuardingRightsService.selectsafeGuardingRightsById(safeGuardingRightsId);
         Goods goods = goodsService.getGoodsById(safeGuardingRights.getGoodId());
         Orders orders = ordersService.selectOrderById(safeGuardingRights.getOrderId());
         safeGuardingRights.setGoods(goods);
@@ -238,7 +238,7 @@ public class safeGuardingRightsAction implements SessionAware {
 
     //修改维权信息
     public String changeSafeGuardingRightsProgress() {
-        safeGuardingRights safeGuarding = (safeGuardingRights) session.get("safeGuardingRights");
+        SafeGuardingRights safeGuarding = (SafeGuardingRights) session.get("safeGuardingRights");
         ShopManager shopManager = (ShopManager) session.get("shopManager");
         PlatformAdministrator platformAdministrator = (PlatformAdministrator) session.get("platformAdministrator");
         if (shopManager == null && platformAdministrator == null) {
@@ -257,7 +257,7 @@ public class safeGuardingRightsAction implements SessionAware {
         safeGuardingRights.setSafeGuardingRightsId(safeGuarding.getSafeGuardingRightsId());
         safeGuardingRightsService.updatesafeGuardingRights(safeGuardingRights);
         //修改维权进度表
-        safeGuardingRightsProgress safeGuardingRightsProgress = new safeGuardingRightsProgress();
+        SafeGuardingRightsProgress safeGuardingRightsProgress = new SafeGuardingRightsProgress();
         safeGuardingRightsProgress.setSafeGuardingRightsId(safeGuarding.getSafeGuardingRightsId());
         safeGuardingRightsProgress.setSafeGuardingRightsProgressDate(ss);
         safeGuardingRightsProgress.setSafeGuardingRightsProgressTime(time);
@@ -304,7 +304,7 @@ public class safeGuardingRightsAction implements SessionAware {
             }
         }
 
-        safeGuardingRights safeGuardingRights = safeGuardingRightsService.selectsafeGuardingRightsById(safeGuarding.getSafeGuardingRightsId());
+        SafeGuardingRights safeGuardingRights = safeGuardingRightsService.selectsafeGuardingRightsById(safeGuarding.getSafeGuardingRightsId());
         Goods goods = goodsService.getGoodsById(safeGuardingRights.getGoodId());
         Orders order = ordersService.selectOrderById(safeGuardingRights.getOrderId());
         safeGuardingRights.setGoods(goods);
@@ -330,17 +330,17 @@ public class safeGuardingRightsAction implements SessionAware {
     }
 
     public String platformInterventionRights() {
-        if (safeGuardingRights == null) safeGuardingRights = new safeGuardingRights();
+        if (safeGuardingRights == null) safeGuardingRights = new SafeGuardingRights();
         safeGuardingRights.setSafeGuardingRightsProgress("平台处理中");
-        List<safeGuardingRights> sgrlist = safeGuardingRightsService.selectsafeGuardingRightsByZyx(safeGuardingRights);
+        List<SafeGuardingRights> sgrlist = safeGuardingRightsService.selectsafeGuardingRightsByZyx(safeGuardingRights);
         session.put("sgrlist", sgrlist);
 
         return "success";
     }
 
     public String platformInterventionRightsDetails() {
-        List<safeGuardingRights> sgrlist = (List<cn.edu.zjut.po.safeGuardingRights>) session.get("sgrlist");
-        for (cn.edu.zjut.po.safeGuardingRights guardingRights : sgrlist) {
+        List<SafeGuardingRights> sgrlist = (List<SafeGuardingRights>) session.get("sgrlist");
+        for (SafeGuardingRights guardingRights : sgrlist) {
             if (guardingRights.getSafeGuardingRightsId() == safeGuardingRightsId) {
                 session.put("safeGuardingRights", guardingRights);
             }

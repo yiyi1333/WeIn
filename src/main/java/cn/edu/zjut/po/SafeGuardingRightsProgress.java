@@ -3,7 +3,7 @@ package cn.edu.zjut.po;
 import java.sql.Time;
 import java.util.Date;
 
-public class safeGuardingRightsProgress {
+public class SafeGuardingRightsProgress {
     private int safeGuardingRightsProgressId;
     private String safeGuardingRightsProgressStatus;
     private Time safeGuardingRightsProgressTime;

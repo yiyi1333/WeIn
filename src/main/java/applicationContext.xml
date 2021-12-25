@@ -167,17 +167,17 @@
 
     <bean id="uploadImageAction" class="cn.edu.zjut.action.UploadImageAction"/>
     <!--维权-->
-    <bean id="safeGuardingRightsService" class="cn.edu.zjut.service.safeGuardingRightsService">
+    <bean id="safeGuardingRightsService" class="cn.edu.zjut.service.SafeGuardingRightsService">
         <property name="safeGuardingRightsDao" ref="safeGuardingRightsImpl"/>
         <property name="goodsMapper" ref="goodsImpl"/>
         <property name="orderGoodMapper" ref="orderGoodImpl"/>
         <property name="ordersMapper" ref="ordersImpl"/>
     </bean>
-    <bean id="safeGuardingRightsProgressService" class="cn.edu.zjut.service.safeGuardingRightsProgressService">
+    <bean id="safeGuardingRightsProgressService" class="cn.edu.zjut.service.SafeGuardingRightsProgressService">
         <property name="safeGuardingRightsProgressDao" ref="safeGuardingRightsProgressImpl"/>
     </bean>
 
-    <bean id="safeGuardingRightsAction" class="cn.edu.zjut.action.safeGuardingRightsAction">
+    <bean id="safeGuardingRightsAction" class="cn.edu.zjut.action.SafeGuardingRightsAction">
         <property name="safeGuardingRightsService" ref="safeGuardingRightsService"/>
         <property name="orderStatusService" ref="orderStatusService"/>
         <property name="goodsService" ref="goodsService"/>
@@ -252,10 +252,10 @@
     <bean id="consumerImpl" class="cn.edu.zjut.dao.ConsumerImpl">
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
-    <bean id="safeGuardingRightsImpl" class="cn.edu.zjut.dao.safeGuardingRightsImpl">
+    <bean id="safeGuardingRightsImpl" class="cn.edu.zjut.dao.SafeGuardingRightsImpl">
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
-    <bean id="safeGuardingRightsProgressImpl" class="cn.edu.zjut.dao.safeGuardingRightsProgressImpl">
+    <bean id="safeGuardingRightsProgressImpl" class="cn.edu.zjut.dao.SafeGuardingRightsProgressImpl">
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
     <bean id="orderStatusImpl" class="cn.edu.zjut.dao.OrderStatusImpl">

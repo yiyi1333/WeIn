@@ -68,10 +68,10 @@
             <div class="ibox-content m-b-sm border-bottom">
                 <form action="changeSafeGuardingRightsProgress.action">
                     <%
-                        safeGuardingRights safeGuardingRights=(safeGuardingRights) session.getAttribute("safeGuardingRights");
+                        SafeGuardingRights safeGuardingRights=(SafeGuardingRights) session.getAttribute("safeGuardingRights");
                         Orders orders = safeGuardingRights.getOrders();
                         Goods goods = safeGuardingRights.getGoods();
-                        List<safeGuardingRightsProgress> safeGuardingRightsProgressList = safeGuardingRights.getSafeGuardingRightsProgresslist();
+                        List<SafeGuardingRightsProgress> safeGuardingRightsProgressList = safeGuardingRights.getSafeGuardingRightsProgresslist();
                     %>
                     <span>维权号为<%=safeGuardingRights.getSafeGuardingRightsId()%>的维权的详细信息:</span>
                     <div class="row">
@@ -176,7 +176,7 @@
                         <div class="ibox-content" id="ibox-content">
                             <div id="vertical-timeline" class="vertical-container dark-timeline center-orientation">
                                 <%
-                                    for(safeGuardingRightsProgress safeGuardingRightsProgress:safeGuardingRightsProgressList){
+                                    for(SafeGuardingRightsProgress safeGuardingRightsProgress:safeGuardingRightsProgressList){
                                         if(safeGuardingRightsProgress.getSafeGuardingRightsProgressStatus().equals("申请中")){
                                 %>
                                 <div class="vertical-timeline-block">

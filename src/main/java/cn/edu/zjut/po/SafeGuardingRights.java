@@ -3,7 +3,7 @@ package cn.edu.zjut.po;
 import java.io.Serializable;
 import java.util.List;
 
-public class safeGuardingRights implements Serializable {
+public class SafeGuardingRights implements Serializable {
     private Integer safeGuardingRightsId;
     private Integer orderId;
     private Integer goodId;
@@ -14,7 +14,7 @@ public class safeGuardingRights implements Serializable {
     private String safeGuardingRightsProgress;
     private OrderGood orderGood;
     private Goods goods;
-    private List<safeGuardingRightsProgress> safeGuardingRightsProgresslist;
+    private List<SafeGuardingRightsProgress> safeGuardingRightsProgresslist;
     private Orders orders;
 
     public Goods getGoods() {
@@ -25,11 +25,11 @@ public class safeGuardingRights implements Serializable {
         this.goods = goods;
     }
 
-    public List<cn.edu.zjut.po.safeGuardingRightsProgress> getSafeGuardingRightsProgresslist() {
+    public List<SafeGuardingRightsProgress> getSafeGuardingRightsProgresslist() {
         return safeGuardingRightsProgresslist;
     }
 
-    public void setSafeGuardingRightsProgresslist(List<cn.edu.zjut.po.safeGuardingRightsProgress> safeGuardingRightsProgresslist) {
+    public void setSafeGuardingRightsProgresslist(List<SafeGuardingRightsProgress> safeGuardingRightsProgresslist) {
         this.safeGuardingRightsProgresslist = safeGuardingRightsProgresslist;
     }
 
