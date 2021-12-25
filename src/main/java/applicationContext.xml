@@ -170,6 +170,7 @@
 <!--维权-->
     <bean id="safeGuardingRightsService" class="cn.edu.zjut.service.SafeGuardingRightsService">
         <property name="safeGuardingRightsDao" ref="safeGuardingRightsImpl"/>
+        <property name="safeGuardingRightsProgressDao" ref="safeGuardingRightsProgressImpl"/>
         <property name="goodsMapper" ref="goodsImpl"/>
         <property name="orderGoodMapper" ref="orderGoodImpl"/>
         <property name="ordersMapper" ref="ordersImpl"/>

@@ -70,7 +70,10 @@ public class GoodsService {
         if(collection != null){
             goods.setCollected(1);
         }
-        if (enterpriseConsumer.getEnterpriseDepartment().getEnterpriseDepartmentId() != 0) {
+        else{
+            goods.setCollected(0);
+        }
+        if (enterpriseConsumer != null) {
             //查询该商品id的departmentId的记录
             Date date = new Date();
             ElectronicContracts electronicContracts = electronicContractsDao.queryElectronicContractsByGoodsIdAndDepartmentId(goodid, enterpriseConsumer.getEnterpriseDepartment().getEnterpriseDepartmentId(), date);
@@ -81,7 +84,11 @@ public class GoodsService {
                 realPrice = (double) Math.round(realPrice * 100) / 100;
                 goods.setGoodsRealPrice(realPrice);
                 System.out.println("readlPrice" + realPrice);
+            }else {
+                goods.setGoodsRealPrice(goods.getGoodsPrice());
             }
+        }else {
+            goods.setGoodsRealPrice(goods.getGoodsPrice());
         }
         return goods;
     }

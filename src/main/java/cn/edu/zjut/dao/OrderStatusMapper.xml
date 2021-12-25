@@ -26,4 +26,12 @@
         select * from WeIn.orderstatus where orderId=#{orderId} and orderStatusName=#{orderStatusName}
         order by orderStatusId desc;
     </select>
+
+    <insert id="addOrderStatus1">
+        insert into orderstatus
+        set orderStatusDate = #{date},
+        orderStatusTime = #{time},
+        orderStatusName = #{status},
+        orderId = #{orderId}
+    </insert>
 </mapper>

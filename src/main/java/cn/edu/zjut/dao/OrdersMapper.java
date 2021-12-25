@@ -19,4 +19,6 @@ public interface OrdersMapper {
     public List<OrderShow> showAllOrder(@Param("customerId") Integer customerId);
     public OrderShow showOrderDetail(@Param("orderId") Integer orderId);
     public List<OrderShow> showStatusOrder(@Param("customerId") Integer customerId, @Param("status") String status);
+    // 修改订单状态
+    public  Integer modfiyOrderStatus(@Param("orderId") Integer orderId, @Param("stauts") String status);
 }

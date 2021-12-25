@@ -2,13 +2,11 @@ package cn.edu.zjut.service;
 
 import cn.edu.zjut.dao.SafeGuardingRightsMapper;
 import cn.edu.zjut.dao.SafeGuardingRightsProgressMapper;
-import cn.edu.zjut.po.SafeGuardingRights;
-import cn.edu.zjut.po.SafeGuardingRightsProgress;
+import cn.edu.zjut.po.*;
 import cn.edu.zjut.dao.GoodsMapper;
 import cn.edu.zjut.dao.OrderGoodMapper;
 import cn.edu.zjut.dao.OrdersMapper;
 import cn.edu.zjut.dao.SafeGuardingRightsMapper;
-import cn.edu.zjut.po.OrderGood;
 import cn.edu.zjut.po.SafeGuardingRights;
 
 import java.sql.Date;
@@ -46,6 +44,7 @@ public class SafeGuardingRightsService {
     public OrdersMapper getOrdersMapper() {
         return ordersMapper;
     }
+
     public SafeGuardingRightsProgressMapper getSafeGuardingRightsProgressDao() {
         return safeGuardingRightsProgressDao;
     }
@@ -129,5 +128,37 @@ public class SafeGuardingRightsService {
             return "申请成功";
         }
         return "申请失败";
+    }
+
+
+    //获取所以维权状态的订单
+    public List<ShowSafeGuardingRights> selectAllRightsInfo(Integer consumerId){
+        return safeGuardingRightsDao.selsectAllRightsInfo(consumerId);
+    }
+
+    //接受商家的处理结果
+    public String acceptResult(Integer rightsId){
+        if(safeGuardingRightsDao.modfiySafeGuardingRightsById(rightsId, "已完成") != 0){
+            Date date = new java.sql.Date(System.currentTimeMillis());
+            Time time = new Time(date.getTime());
+            safeGuardingRightsProgressDao.addSafeGuardingRightsProgress("已完成",time, date, rightsId);
+            return "已接受";
+        }
+        else{
+            return "接受失败";
+        }
+    }
+
+    //拒绝商家的处理结果
+    public String refuseResult(Integer rightsId){
+        if(safeGuardingRightsDao.modfiySafeGuardingRightsById(rightsId, "平台处理中") != 0){
+            Date date = new java.sql.Date(System.currentTimeMillis());
+            Time time = new Time(date.getTime());
+            safeGuardingRightsProgressDao.addSafeGuardingRightsProgress("平台处理中",time, date, rightsId);
+            return "已拒绝";
+        }
+        else{
+            return "拒绝失败";
+        }
     }
 }
