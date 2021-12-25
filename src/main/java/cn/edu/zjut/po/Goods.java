@@ -16,7 +16,7 @@ public class Goods implements Serializable {
     private int isGrouding;
     private int warehouseId;
     private double goodsWeight;
-
+    private Integer collected;
 
     @Override
     public String toString() {
@@ -35,6 +35,14 @@ public class Goods implements Serializable {
                 ", warehouseId=" + warehouseId +
                 ", goodsWeight=" + goodsWeight +
                 '}';
+    }
+
+    public Integer getCollected() {
+        return collected;
+    }
+
+    public void setCollected(Integer collected) {
+        this.collected = collected;
     }
 
     public double getGoodsWeight() {
@@ -64,10 +72,11 @@ public class Goods implements Serializable {
     public Goods() {
     }
 
-    public Goods(int goodsId, String goodsName, double goodsPrice, String goodsDetails, int goodsStock, String tags, String goodsImage, int shopId, Shop shop, int isGrouding, int warehouseId) {
+    public Goods(int goodsId, String goodsName, double goodsPrice, double goodsRealPrice, String goodsDetails, int goodsStock, String tags, String goodsImage, int shopId, Shop shop, int isGrouding, int warehouseId, double goodsWeight, Integer collected) {
         this.goodsId = goodsId;
         this.goodsName = goodsName;
         this.goodsPrice = goodsPrice;
+        this.goodsRealPrice = goodsRealPrice;
         this.goodsDetails = goodsDetails;
         this.goodsStock = goodsStock;
         this.tags = tags;
@@ -76,6 +85,8 @@ public class Goods implements Serializable {
         this.shop = shop;
         this.isGrouding = isGrouding;
         this.warehouseId = warehouseId;
+        this.goodsWeight = goodsWeight;
+        this.collected = collected;
     }
 
     public int getIsGrouding() { return isGrouding; }

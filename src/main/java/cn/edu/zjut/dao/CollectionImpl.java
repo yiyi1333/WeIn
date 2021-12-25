@@ -41,4 +41,9 @@ public class CollectionImpl implements CollectionMapper{
     public List<Collection> selectAllCollection(Integer customerId) {
         return sqlSession.getMapper(CollectionMapper.class).selectAllCollection(customerId);
     }
+
+    @Override
+    public Collection selectBycustomerIdAndgoodsId(Integer customerId, Integer goodsId) {
+        return sqlSession.getMapper(CollectionMapper.class).selectBycustomerIdAndgoodsId(customerId, goodsId);
+    }
 }

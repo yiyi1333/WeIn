@@ -1,9 +1,11 @@
 package cn.edu.zjut.service;
 
 import cn.edu.zjut.annotation.MyLog;
+import cn.edu.zjut.dao.CollectionMapper;
 import cn.edu.zjut.dao.ConsumerMapper;
 import cn.edu.zjut.dao.ElectronicContractsMapper;
 import cn.edu.zjut.dao.GoodsMapper;
+import cn.edu.zjut.po.Collection;
 import cn.edu.zjut.po.ElectronicContracts;
 import cn.edu.zjut.po.EnterpriseConsumer;
 import cn.edu.zjut.po.Goods;
@@ -15,9 +17,17 @@ public class GoodsService {
     private ConsumerMapper consumerDao;
     private GoodsMapper goodsDao;
     private ElectronicContractsMapper electronicContractsDao;
-
+    private CollectionMapper collectionDao;
     public ElectronicContractsMapper getElectronicContractsDao() {
         return electronicContractsDao;
+    }
+
+    public CollectionMapper getCollectionDao() {
+        return collectionDao;
+    }
+
+    public void setCollectionDao(CollectionMapper collectionDao) {
+        this.collectionDao = collectionDao;
     }
 
     public void setElectronicContractsDao(ElectronicContractsMapper electronicContractsDao) {
@@ -55,6 +65,11 @@ public class GoodsService {
         //查询企业员工权限
         EnterpriseConsumer enterpriseConsumer = consumerDao.searchEnterpriseConsumerById(Integer.parseInt(customerId));
         Goods goods = goodsDao.getGoodById(goodid);
+        //查询是否收藏
+        Collection collection = collectionDao.selectBycustomerIdAndgoodsId(Integer.parseInt(customerId), goodid);
+        if(collection != null){
+            goods.setCollected(1);
+        }
         if (enterpriseConsumer.getEnterpriseDepartment().getEnterpriseDepartmentId() != 0) {
             //查询该商品id的departmentId的记录
             Date date = new Date();

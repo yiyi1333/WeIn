@@ -111,6 +111,7 @@
         <property name="goodsDao" ref="goodsImpl"/>
         <property name="consumerDao" ref="consumerImpl"/>
         <property name="electronicContractsDao" ref="electronicContractsimpl"/>
+        <property name="collectionDao" ref="collectionImpl"/>
     </bean>
 
     <bean id="goodsAction" class="cn.edu.zjut.action.GoodsAction" scope="prototype">
