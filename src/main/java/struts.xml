@@ -339,7 +339,8 @@
         <!--编辑合同_制定合同-->
         <action name="editElectronicContracts" class="cn.edu.zjut.action.ElectronicContractsAction"
                 method="editElectronicContracts">
-            <result name="success">/editElectronicContracts.jsp</result>
+            <result name="success">/electronicContractsPrint.jsp</result>
+            <result name="failed">/editElectronicContracts.jsp</result>
         </action>
 
         <!--选择可选企业-->

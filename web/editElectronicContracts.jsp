@@ -40,16 +40,16 @@
         <jsp:include page="EnterpriseAgencytopSidebar.jsp"/>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>企业人员</h2>
+                <h2>电子合同</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href="showenterpriseuser.action">主页</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a>管理企业人员</a>
+                        <a>管理电子合同</a>
                     </li>
                     <li class="breadcrumb-item active">
-                        <strong>企业人员</strong>
+                        <strong>编辑电子合同</strong>
                     </li>
                 </ol>
             </div>

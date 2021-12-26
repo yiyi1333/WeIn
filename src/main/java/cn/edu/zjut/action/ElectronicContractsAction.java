@@ -189,16 +189,24 @@ public class ElectronicContractsAction extends ActionSupport implements SessionA
             String discount = httpServletRequest.getParameter("discountthis" + enterpriseDepartment.getEnterpriseDepartmentId());
             double dc = Double.parseDouble(discount);
             electronicContracts1.setDiscount(dc);
-            if (electronicContractsService.getElectronicContractsimpl().queryElectronicContractsByGoodsIdDepartmentId(electronicContracts1.getGoodsId(), electronicContracts1.getEnterpriseDepartmentId()) != null) {
-                ok = false;
-                mess.append(String.valueOf(electronicContracts1.getEnterpriseDepartmentId()));
+            List<ElectronicContracts> ec = electronicContractsService.getElectronicContractsimpl().queryElectronicContractsListByGoodsIdDepartmentId(electronicContracts1.getGoodsId(), electronicContracts1.getEnterpriseDepartmentId());
+            for (ElectronicContracts ecec : ec) {
+                if (ecec.getState() != 2 && ecec.getState() != 4) {
+                    ok = false;
+                    mess.append(String.valueOf(electronicContracts1.getEnterpriseDepartmentId()));
+                    break;
+                }
             }
             list.add(electronicContracts1);
-            electronicContractsService.addElectronicContracts(electronicContracts1);
         }
+        session.put("printlist", list);
         if (!ok) {
             mess.append("号部门已经与该商品存在有效或待审核合同");
             addActionError(mess.toString());
+            return "failed";
+        }
+        for (ElectronicContracts ec : list) {
+            electronicContractsService.addElectronicContracts(ec);
         }
         return "success";
     }
@@ -300,6 +308,7 @@ public class ElectronicContractsAction extends ActionSupport implements SessionA
         session.put("contractList", list);
         return "success";
     }
+
     // 商家管理员查看企业的所有合同
     public String queryElectronicContractsByshopId() {
         Integer id = (Integer) session.get("loginusershopId");
@@ -307,6 +316,7 @@ public class ElectronicContractsAction extends ActionSupport implements SessionA
         session.put("contractList", list);
         return "success";
     }
+
     //模糊查询
     public String queryElectronicContractsLike() {
 
