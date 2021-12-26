@@ -120,11 +120,7 @@ public class SafeGuardingRightsService {
         if(line != 0) {
             //查询生成的编号，添加维权历史记录
             SafeGuardingRights safe = safeGuardingRightsDao.selectSafeGuardingRightsByGoodIdAndOrderId(goodsId, orderId);
-            SafeGuardingRightsProgress safeProgress = new SafeGuardingRightsProgress();
-            safeProgress.setSafeGuardingRightsId(safe.getSafeGuardingRightsId());
-            safeProgress.setSafeGuardingRightsProgressDate(date);
-            safeProgress.setSafeGuardingRightsProgressTime(time);
-            safeProgress.setSafeGuardingRightsProgressStatus("申请中");
+            safeGuardingRightsProgressDao.addSafeGuardingRightsProgress("申请中", time, date, safe.getSafeGuardingRightsId());
             return "申请成功";
         }
         return "申请失败";
