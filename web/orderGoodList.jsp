@@ -56,7 +56,7 @@
             </div>
             <div class="col-lg-12">
                 <div class="title-action">
-                    <a href="orders_print.jsp" target="_blank" class="btn btn-primary"><i class="fa fa-print"></i> 打印发票 </a>
+                    <a href="orders_print.jsp" target="_blank" class="btn btn-primary"><i class="fa fa-print"></i> 打印订单详情 </a>
                 </div>
             </div>
         </div>
@@ -91,7 +91,7 @@
                                     <abbr title="Phone">电话:</abbr> <%=orders.getDeliveredPhone()%>
                                 </address>
                                 <p>
-                                    <span><strong>下单时间:</strong><%=orders.getOrderDate()%>&nbsp;<%=orders.getOrderTime()%></span><br />
+                                    <span><strong>下单时间:</strong><%=orders.getOrderDate().toInstant().plusSeconds(28800).toString().split("T")[0]%>&nbsp;<%=orders.getOrderTime()%></span><br />
                                     <span><strong>物流单号:</strong>
                                         <%=orders.getLogisticsSingle() == null ? "暂无" : orders.getLogisticsSingle()%>
                                     </span>

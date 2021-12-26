@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>xxx | 电子商务产品编辑</title>
+    <title>WeIn | 编辑商品</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -35,7 +35,7 @@
         <jsp:include page="shopTopSidebar.jsp"/>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>电子商务产品编辑</h2>
+                <h2>编辑商品</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href="shopIndex.jsp">主页</a>

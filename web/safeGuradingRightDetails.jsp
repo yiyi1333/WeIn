@@ -149,8 +149,13 @@
                                     <option value="商家处理中">商家处理中</option>
                                     <option value="退换货">退换货</option>
                                     <option value="仅退款">仅退款</option>
-                                    <%}else{%>
+                                    <%}else if(safeGuardingRights.getSafeGuardingRightsProgress().equals("申请中")){%>
                                     <option value="商家处理中">商家处理中</option>
+                                    <option value="退换货">退换货</option>
+                                    <option value="仅退款">仅退款</option>
+                                    <option value="退货退款">退货退款</option>
+                                    <%}else{%>
+                                    <option value="已完成提交平台">已完成提交平台</option>
                                     <%}%>
                                 </select>
                             </div>
@@ -209,7 +214,7 @@
                                         <h2>商家</h2>
                                         <p>处理协商中</p>
                                         <span class="vertical-date">
-                                            <%=safeGuardingRightsProgress.getSafeGuardingRightsProgressDate()%> <br/>
+                                            <%=safeGuardingRightsProgress.getSafeGuardingRightsProgressDate().toInstant().plusSeconds(28800).toString().split("T")[0]%> <br/>
                                             <small><%=safeGuardingRightsProgress.getSafeGuardingRightsProgressTime()%></small>
                                         </span>
                                     </div>
@@ -223,7 +228,7 @@
                                         <h2>商家</h2>
                                         <p>同意退款</p>
                                         <span class="vertical-date">
-                                            <%=safeGuardingRightsProgress.getSafeGuardingRightsProgressDate()%> <br/>
+                                            <%=safeGuardingRightsProgress.getSafeGuardingRightsProgressDate().toInstant().plusSeconds(28800).toString().split("T")[0]%> <br/>
                                             <small><%=safeGuardingRightsProgress.getSafeGuardingRightsProgressTime()%></small>
                                         </span>
                                     </div>
@@ -237,7 +242,35 @@
                                         <h2>商家</h2>
                                         <p>同意退货</p>
                                         <span class="vertical-date">
-                                            <%=safeGuardingRightsProgress.getSafeGuardingRightsProgressDate()%> <br/>
+                                            <%=safeGuardingRightsProgress.getSafeGuardingRightsProgressDate().toInstant().plusSeconds(28800).toString().split("T")[0]%> <br/>
+                                            <small><%=safeGuardingRightsProgress.getSafeGuardingRightsProgressTime()%></small>
+                                        </span>
+                                    </div>
+                                </div>
+                                <%}else if(safeGuardingRightsProgress.getSafeGuardingRightsProgressStatus().equals("退货退款")){%>
+                                <div class="vertical-timeline-block">
+                                    <div class="vertical-timeline-icon navy-bg">
+                                        <i class="fa fa-briefcase"></i>
+                                    </div>
+                                    <div class="vertical-timeline-content">
+                                        <h2>商家</h2>
+                                        <p>同意退货退款</p>
+                                        <span class="vertical-date">
+                                            <%=safeGuardingRightsProgress.getSafeGuardingRightsProgressDate().toInstant().plusSeconds(28800).toString().split("T")[0]%> <br/>
+                                            <small><%=safeGuardingRightsProgress.getSafeGuardingRightsProgressTime()%></small>
+                                        </span>
+                                    </div>
+                                </div>
+                                <%}else if(safeGuardingRightsProgress.getSafeGuardingRightsProgressStatus().equals("已完成")){%>
+                                <div class="vertical-timeline-block">
+                                    <div class="vertical-timeline-icon navy-bg">
+                                        <i class="fa fa-briefcase"></i>
+                                    </div>
+                                    <div class="vertical-timeline-content">
+                                        <h2>平台</h2>
+                                        <p>已完成</p>
+                                        <span class="vertical-date">
+                                            <%=safeGuardingRightsProgress.getSafeGuardingRightsProgressDate().toInstant().plusSeconds(28800).toString().split("T")[0]%> <br/>
                                             <small><%=safeGuardingRightsProgress.getSafeGuardingRightsProgressTime()%></small>
                                         </span>
                                     </div>
@@ -248,10 +281,10 @@
                                         <i class="fa fa-briefcase"></i>
                                     </div>
                                     <div class="vertical-timeline-content">
-                                        <h2>商家</h2>
-                                        <p>同意退货退款</p>
+                                        <h2>平台</h2>
+                                        <p>申请平台处理</p>
                                         <span class="vertical-date">
-                                            <%=safeGuardingRightsProgress.getSafeGuardingRightsProgressDate()%> <br/>
+                                            <%=safeGuardingRightsProgress.getSafeGuardingRightsProgressDate().toInstant().plusSeconds(28800).toString().split("T")[0]%> <br/>
                                             <small><%=safeGuardingRightsProgress.getSafeGuardingRightsProgressTime()%></small>
                                         </span>
                                     </div>

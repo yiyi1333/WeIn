@@ -84,7 +84,7 @@
                                         <i class="fa fa-phone"></i>
                                     </div>
                                     <%
-                                    }else if(orderStatusList.get(i).getOrderStatusName().equals("仅退款")||orderStatusList.get(i).getOrderStatusName().equals("退货退款")){
+                                    }else{
                                     %>
                                     <div class="vertical-timeline-icon lazur-bg">
                                         <i class="fa fa-user-md"></i>
@@ -101,7 +101,7 @@
                                             }
                                         %>
                                         <span class="vertical-date">
-                                        <%=orderStatusList.get(i).getOrderStatusDate()%> <br/>
+                                        <%=orderStatusList.get(i).getOrderStatusDate().toInstant().plusSeconds(28800).toString().split("T")[0]%> <br/>
                                         <small><%=orderStatusList.get(i).getOrderStatusTime()%></small>
                                     </span>
                                     </div>

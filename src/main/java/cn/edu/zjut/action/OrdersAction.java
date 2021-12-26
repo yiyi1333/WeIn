@@ -46,6 +46,7 @@ public class OrdersAction implements SessionAware {
         this.statusMes = statusMes;
     }
 
+
     public void setShopManagerService(ShopManagerService shopManagerService) {
         this.shopManagerService = shopManagerService;
     }
@@ -629,7 +630,7 @@ public class OrdersAction implements SessionAware {
                 }
             }
             orderStatus = orderStatusService.getOrderStatus(orderStatus).get(0);
-            endTimeList.add(orderStatus.getOrderStatusDate() + " " + orderStatus.getOrderStatusTime());
+            endTimeList.add(orderStatus.getOrderStatusDate().toInstant().plusSeconds(28800).toString().split("T")[0]+" "+orderStatus.getOrderStatusTime());
         }
         session.put("endTimeList", endTimeList);
         session.put("earningList", earningList);
@@ -684,7 +685,7 @@ public class OrdersAction implements SessionAware {
                 }
             }
             orderStatus = orderStatusService.getOrderStatus(orderStatus).get(0);
-            endTimeList.add(orderStatus.getOrderStatusDate() + " " + orderStatus.getOrderStatusTime());
+            endTimeList.add(orderStatus.getOrderStatusDate().toInstant().plusSeconds(28800).toString().split("T")[0]+" "+orderStatus.getOrderStatusTime());
         }
         session.put("endTimeList", endTimeList);
         session.put("earningList", earningList);
@@ -716,24 +717,43 @@ public class OrdersAction implements SessionAware {
         int m = (month == null ? 0 : Integer.parseInt(month));
         int d = (date == null ? 0 : Integer.parseInt(date));
         for (Orders ods : tmp) {
-            if ("已完成".equals(ods.getOrderStatus())) {
+
+
+            if ("已完成".equals(ods.getOrderStatus()) || "仅退款".equals(ods.getOrderStatus()) || "退货退款".equals(ods.getOrderStatus()) || "退换货".equals(ods.getOrderStatus())) {
+                List<OrderStatus> os = orderStatusService.getOrderStatusById(ods.getOrderId());
+
+                double now = ods.getActuaLAmountPaid();
+                for (OrderStatus osos : os) {
+                    if (osos.getOrderStatusDate().getTime() > ods.getOrderDate().getTime()) {
+                        ods.setOrderDate(osos.getOrderStatusDate());
+                    }
+                }
+                List<OrderGood> og = ordersService.getOrderGoodMapper().getGoodsById(ods.getOrderId());
+                for (OrderGood ogog : og) {
+                    DrawBack tp = new DrawBack();
+                    tp.setOrderId(ods.getOrderId());
+                    tp.setGoodsId(ogog.getGoodId());
+                    DrawBack db = drawBackService.getDrawBackById(tp);
+                    if (db == null) continue;
+                    now -= db.getMoney();
+                }
                 java.util.Date utilDate1 = new java.util.Date(ods.getOrderDate().getTime());
                 if ((utilDate1.getYear() + 1900 == y || y == 0) && (utilDate1.getMonth() + 1 == m || m == 0) && (utilDate1.getDate() == d || d == 0)) {
                     if (mp1.get(ods.getShopId()) == null) mp1.put(ods.getShopId(), 0.0);
                     if (mp2.get(ods.getShopId()) == null) mp2.put(ods.getShopId(), 0);
-                    mp1.put(ods.getShopId(), mp1.get(ods.getShopId()) + ods.getActuaLAmountPaid());
+                    mp1.put(ods.getShopId(), mp1.get(ods.getShopId()) + now);
                     mp2.put(ods.getShopId(), mp2.get(ods.getShopId()) + 1);
                 }
                 if (ods.getOrderDate().getYear() == today.getYear()) {
-                    thisyearmoney += ods.getActuaLAmountPaid();
+                    thisyearmoney += now;
                     if (ods.getOrderDate().getMonth() == today.getMonth()) {
                         int day = ods.getOrderDate().getDate();
-                        money.set(day - 1, money.get(day - 1) + ods.getActuaLAmountPaid());
+                        money.set(day - 1, money.get(day - 1) + now);
                         number.set(day - 1, number.get(day - 1) + 1);
-                        thismonthmoney += ods.getActuaLAmountPaid();
+                        thismonthmoney += now;
                         thismonthorder += 1;
                         if (ods.getOrderDate().getDate() == today.getDate()) {
-                            thisdaymoney += ods.getActuaLAmountPaid();
+                            thisdaymoney += now;
                         }
                     }
                 }

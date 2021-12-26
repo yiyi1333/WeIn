@@ -63,6 +63,12 @@ public class ElectronicContractsService {
         return electronicContractsimpl.queryElectronicContractsByEnterpriseId(id);
     }
 
+    public List queryElectronicContractsByshopId(int id) {
+//        legitimacyCheck();
+        return electronicContractsimpl.queryElectronicContractsByShopId(id);
+    }
+
+
     // 将部门或企业或商品已经不存在的合同标记为失效
     public void legitimacyCheck() {
         List<ElectronicContracts> contracts = electronicContractsimpl.queryElectronicContracts();
@@ -87,9 +93,9 @@ public class ElectronicContractsService {
         electronicContractsimpl.changeStateElectronicContracts2(shopid, electronicContractsid, state);
     }
 
-    public void changeStateElectronicContracts2(int agencyid) {
-        electronicContractsimpl.changeStateElectronicContracts2(agencyid);
-    }
+//    public void changeStateElectronicContracts2(int agencyid) {
+//        electronicContractsimpl.changeStateElectronicContracts2(agencyid);
+//    }
 
 
     public List showShopElectronicContracts(int shopid) {

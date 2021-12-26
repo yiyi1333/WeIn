@@ -16,7 +16,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>xxx | 电子支付订单</title>
+    <title>xxx | 订单详情</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -72,10 +72,13 @@
                                 <label class="col-form-label" for="orderStatus">订单状态</label>
                                 <select id="orderStatus" name="orders.orderStatus"  class="form-control">
                                     <option value="">全部</option>
-                                    <option value="待付款">待付款</option>
                                     <option value="待发货">待发货</option>
                                     <option value="待收货">待收货</option>
                                     <option value="已收货">已收货</option>
+                                    <option value="商家处理中">商家处理中</option>
+                                    <option value="已收货">仅退款</option>
+                                    <option value="已收货">退换货</option>
+                                    <option value="退货退款">退货退款</option>
                                     <option value="已完成">已完成</option>
                                 </select>
                             </div>
@@ -151,7 +154,7 @@
                                         <%=ordersList.get(i).getConsumerId()%>
                                     </td>
                                     <td>
-                                        <%=ordersList.get(i).getOrderDate()%>&nbsp;<%=ordersList.get(i).getOrderTime()%>
+                                        <%=ordersList.get(i).getOrderDate().toInstant().plusSeconds(28800).toString().split("T")[0]%>&nbsp;<%=ordersList.get(i).getOrderTime()%>
                                     </td>
                                     <td>
                                         <%=ordersList.get(i).getActuaLAmountPaid()%>元
@@ -188,11 +191,11 @@
                                         <%
                                         }else if(ordersList.get(i).getOrderStatus().equals("待付款")){
                                         %>
-                                        <span class="label label-danger">ordersList.get(i).getOrderStatus()</span>
+                                        <span class="label label-danger"><%=ordersList.get(i).getOrderStatus()%></span>
                                         <%
-                                            }else{
+                                        }else{
                                         %>
-                                        <span class="label label-danger">ordersList.get(i).getOrderStatus()</span>
+                                        <span class="label label-danger"><%=ordersList.get(i).getOrderStatus()%></span>
                                         <%}%>
                                     </td>
                                     <td class="text-right">

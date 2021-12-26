@@ -54,11 +54,12 @@
         update electroniccontracts set state = #{state} where shopId = #{shopId} and state = 1 and electronicContractsid = #{electronicContractsid} ;
     </update>
 
-    <update id="changeStateElectronicContracts2">
-        update electroniccontracts set state = 10 where shopId = #{0} and state = 1;
-    </update>
+<!--    <update id="changeStateElectronicContracts2">-->
+<!--        update electroniccontracts set state = 10 where shopId = #{0} and state = 1;-->
+<!--    </update>-->
+
     <select id="queryElectronicContractsByShopId" resultMap="ElectronicContractsResultMap">
-        select * from electroniccontracts where shopId = #{0} and state = 1;
+        select * from electroniccontracts where shopId = #{0} and state = 10;
     </select>
 
     <select id="queryElectronicContractsByGoodsIdAndDepartmentId" resultMap="ElectronicContractsResultMap">

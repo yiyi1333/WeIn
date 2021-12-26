@@ -18,7 +18,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>xxx | 电子支付订单</title>
+    <title>xxx | 维权详情</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -90,9 +90,11 @@
                                     <option value="">全部</option>
                                     <option value="申请中">申请中</option>
                                     <option value="商家处理中">商家处理中</option>
-                                    <option value="仅退货">仅退货</option>
+                                    <option value="退换货">退换货</option>
                                     <option value="仅退款">仅退款</option>
                                     <option value="退货退款">退货退款</option>
+                                    <option value="平台处理中">平台处理中</option>
+                                    <option value="已完成">已完成</option>
                                 </select>
                             </div>
                         </div>
@@ -165,11 +167,11 @@
                                         %>
                                         <span class="label label-primary"><%=safeGuardingRightsList.get(i).getSafeGuardingRightsProgress()%></span>
                                         <%
-                                        }else if(safeGuardingRightsList.get(i).getSafeGuardingRightsProgress().equals("仅退款") || safeGuardingRightsList.get(i).getSafeGuardingRightsProgress().equals("仅退货")){
+                                        }else if(safeGuardingRightsList.get(i).getSafeGuardingRightsProgress().equals("仅退款") || safeGuardingRightsList.get(i).getSafeGuardingRightsProgress().equals("退换货")){
                                         %>
                                         <span class="label label-success"><%=safeGuardingRightsList.get(i).getSafeGuardingRightsProgress()%></span>
                                         <%
-                                        }else if(safeGuardingRightsList.get(i).getSafeGuardingRightsProgress().equals("商家处理中")){
+                                        }else if(safeGuardingRightsList.get(i).getSafeGuardingRightsProgress().equals("商家处理中") || safeGuardingRightsList.get(i).getSafeGuardingRightsProgress().equals("申请中")){
                                         %>
                                         <span class="label label-warning"><%=safeGuardingRightsList.get(i).getSafeGuardingRightsProgress()%></span>
                                         <%

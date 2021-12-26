@@ -300,7 +300,13 @@ public class ElectronicContractsAction extends ActionSupport implements SessionA
         session.put("contractList", list);
         return "success";
     }
-
+    // 商家管理员查看企业的所有合同
+    public String queryElectronicContractsByshopId() {
+        Integer id = (Integer) session.get("loginusershopId");
+        List list = electronicContractsService.queryElectronicContractsByshopId(id);
+        session.put("contractList", list);
+        return "success";
+    }
     //模糊查询
     public String queryElectronicContractsLike() {
 

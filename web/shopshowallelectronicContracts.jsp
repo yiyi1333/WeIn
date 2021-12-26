@@ -1,15 +1,8 @@
-<%@ taglib prefix="s" uri="/struts-tags" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: rainbow
-  Date: 2021/12/18
-  Time: 0:43
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Collections" %>
 <%@ page import="cn.edu.zjut.po.ElectronicContracts" %>
-<%@ page import="cn.edu.zjut.po.EnterpriseDepartment" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.sql.Date" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -65,7 +58,7 @@
                 <div class="col-lg-12">
                     <div class="ibox ">
                         <div class="ibox-title">
-                            <h5>基本数据表示例与响应插件</h5>
+                            <h5>查看合同</h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
@@ -73,24 +66,94 @@
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                     <i class="fa fa-wrench"></i>
                                 </a>
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li><a href="#" class="dropdown-item">选项 1</a>
-                                    </li>
-                                    <li><a href="#" class="dropdown-item">选项 2</a>
-                                    </li>
-                                </ul>
+
                                 <a class="close-link">
                                     <i class="fa fa-times"></i>
                                 </a>
                             </div>
                         </div>
+
+                        <%--            //模糊查询--%>
+                        <div class="ibox-content m-b-sm border-bottom">
+                            <form action="queryElectronicContractsLike.action">
+                                <div class="row">
+
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="col-form-label">合同编号</label>
+                                            <input type="text"
+                                                   name="electronicContractsId" value=""
+                                                   placeholder="请输入..."
+                                                   class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="col-form-label">企业方负责人编号</label>
+                                            <input type="text"
+                                                   name="enterpriseAgencyId"
+                                                   value=""
+                                                   placeholder="请输入..." class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="col-form-label">商家编号</label>
+                                            <input type="text"
+                                                   name="shopId"
+                                                   value=""
+                                                   placeholder="请输入..." class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="col-form-label">商品编号</label>
+                                            <input type="text"
+                                                   name="goodsId"
+                                                   value=""
+                                                   placeholder="请输入..." class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="col-form-label">企业部门编号</label>
+                                            <input type="text"
+                                                   name="enterpriseDepartmentId"
+                                                   value=""
+                                                   placeholder="请输入..." class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="col-form-label">折扣</label>
+                                            <input type="text"
+                                                   name="discount"
+                                                   value=""
+                                                   placeholder="请输入..." class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <button type="submit" class="btn btn-w-m btn-primary">查询</button>
+                                    </div>
+
+                                </div>
+
+
+                            </form>
+                        </div>
+
+
                         <div class="ibox-content">
+
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover dataTables-example">
+                                <table class="footable table table-stripped toggle-arrow-tiny"
+                                       data-page-size="15">
                                     <thead>
                                     <tr>
-                                        <th></th>
                                         <th>合同编号</th>
+                                        <th>企业方负责人编号</th>
                                         <th>企业编号</th>
                                         <th>商家编号</th>
                                         <th>开始时间</th>
@@ -102,10 +165,7 @@
                                     </tr>
                                     </thead>
                                     <%
-                                        if((List<ElectronicContracts>) session.getAttribute("verifyContracts") == null) {
-                                            session.putValue("verifyContracts", new ArrayList<ElectronicContracts>());
-                                        }
-                                        List<ElectronicContracts> list = (List<ElectronicContracts>) session.getAttribute("verifyContracts");
+                                        List<ElectronicContracts> list = (List<ElectronicContracts>) session.getAttribute("contractList");
                                     %>
                                     <tbody>
                                     <%
@@ -113,10 +173,7 @@
                                     %>
 
                                     <tr class="<%=(i%2==0?"gradeX":"gradeC")%>">
-                                        <td>
-                                            <input type="checkbox" class="i-checks"
-                                                   value="<%=list.get(i).getElectronicContractsId()%>"
-                                                   name="input[]">
+                                        <td><%=list.get(i).getElectronicContractsId()%>
                                         </td>
                                         <td><%=list.get(i).getEnterpriseAgencyId()%>
                                         </td>
@@ -134,28 +191,31 @@
                                         </td>
                                         <td><%=list.get(i).getDiscount()%>
                                         </td>
-                                        <td> <%
-                                            int stateshow = list.get(i).getState();
-                                            String ansshow;
-                                            if(stateshow == 0) {
-                                                ansshow = "待企业管理员审核";
-                                            }
-                                            else if(stateshow == 1) {
-                                                ansshow = "待商家店铺审核";
-                                            }
-                                            else if(stateshow == 2) {
-                                                ansshow = "企业管理员驳回";
-                                            }
-                                            else if(stateshow == 4) {
-                                                ansshow = "商家驳回";
-                                            }
-                                            else if(stateshow == 10) {
-                                                ansshow = "有效合同";
-                                            }
-                                            else {
-                                                ansshow = "无效合同";
-                                            }
-                                        %>
+                                        <td><%=(list.get(i).getState() == 0 ? "待审核" : (list.get(i).getState() == 1 ? "生效中" : "已失效"))%>
+                                        </td>
+                                        <td>
+                                            <%
+                                                int stateshow = list.get(i).getState();
+                                                String ansshow;
+                                                if(stateshow == 0) {
+                                                    ansshow = "待企业管理员审核";
+                                                }
+                                                else if(stateshow == 1) {
+                                                    ansshow = "待商家店铺审核";
+                                                }
+                                                else if(stateshow == 2) {
+                                                    ansshow = "企业管理员驳回";
+                                                }
+                                                else if(stateshow == 4) {
+                                                    ansshow = "商家驳回";
+                                                }
+                                                else if(stateshow == 10) {
+                                                    ansshow = "有效合同";
+                                                }
+                                                else {
+                                                    ansshow = "无效合同";
+                                                }
+                                            %>
                                             <%=ansshow%>
                                         </td>
                                     </tr>
@@ -164,21 +224,8 @@
                                     %>
                                     </tbody>
                                     <tfoot>
-                                    <tr>
-                                        <td>
-                                            <button type="button" class="btn btn-w-m btn-primary"
-                                                    onclick="verifyElectrobicContracts()">批量审核通过
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-w-m btn-primary"
-                                                    onclick="denyElectrobicContracts()">批量审核拒绝
-                                            </button>
-                                        </td>
 
-                                    </tr>
                                     </tfoot>
-
                                 </table>
                             </div>
 
@@ -214,48 +261,7 @@
 <script src="js/inspinia.js"></script>
 <script src="js/plugins/pace/pace.min.js"></script>
 
-<script>
-    $(document).ready(function () {
-        $('.i-checks').iCheck({
-            checkboxClass: 'icheckbox_square-green',
-            radioClass: 'iradio_square-green',
-        });
-    });
-</script>
-
-<script>
-    // 确认多选
-    function verifyElectrobicContracts() {
-        var result = "";
-        var count = 0;
-        $(".i-checks").each(function () {
-            if ($(this).is(':checked')) {
-                result += $(this).val() + ",";
-                count++;
-            } else {
-            }
-        });
-        if (!confirm("确定审核通过这" + count + "合同?")) {
-            return;
-        }
-        window.location.href = "manyVerifyElectrobicContractsById?tag=" + result;
-    }
-    function denyElectrobicContracts() {
-        var result = "";
-        var count = 0;
-        $(".i-checks").each(function () {
-            if ($(this).is(':checked')) {
-                result += $(this).val() + ",";
-                count++;
-            } else {
-            }
-        });
-        if (!confirm("确定审核拒绝这" + count + "合同?")) {
-            return;
-        }
-        window.location.href = "manyDenyElectroContractsById?tag=" + result;
-    }
-</script>
+<!-- Page-Level Scripts -->
 <script>
     $(document).ready(function () {
         $('.dataTables-example').DataTable({

@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>xxx | 登录</title>
+    <title>WeIn | 登录</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="input-group m-b">
-                <input type="text" name="user.password" placeholder="密码"
+                <input type="password" name="user.password" placeholder="密码"
                        class="form-control">
             </div>
             <button type="submit" class="btn btn-primary block full-width m-b">登录</button>

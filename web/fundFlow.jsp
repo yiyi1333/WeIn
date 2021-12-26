@@ -184,7 +184,7 @@
                         %>
                         <tr class="gradeX">
                             <td><%=ordersList.get(i).getOrderId()%></td>
-                            <td><%=ordersList.get(i).getOrderDate()%>&nbsp;<%=ordersList.get(i).getOrderTime()%></td>
+                            <td><%=ordersList.get(i).getOrderDate().toInstant().plusSeconds(28800).toString().split("T")[0]%>&nbsp;<%=ordersList.get(i).getOrderTime()%></td>
                             <td><%=endTimeList.get(i)%></td>
                             <td class="center"><%=goodsNumList.get(i)%></td>
                             <td class="center">+<%=earningList.get(i)%>元</td>

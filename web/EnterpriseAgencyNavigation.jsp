@@ -50,11 +50,11 @@
                         class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li>
-                        <a href="queryElectronicContractsByEnterpriseId.action"><i class="fa fa-envelope"></i> <span
+                        <a href="queryElectronicContractsByEnterpriseId.action"><i class="fa fa-newspaper-o"></i> <span
                                 class="nav-label">查询已有电子合同</span></a>
                     </li>
                     <li>
-                        <a href="./chooseEditElectronicContracts"><i class="fa fa-envelope"></i> <span
+                        <a href="./chooseEditElectronicContracts"><i class="fa fa-newspaper-o"></i> <span
                                 class="nav-label">编辑电子合同</span></a>
                     </li>
                 </ul>

@@ -167,7 +167,7 @@
     </bean>
 
     <bean id="uploadImageAction" class="cn.edu.zjut.action.UploadImageAction"/>
-<!--维权-->
+    <!--维权-->
     <bean id="safeGuardingRightsService" class="cn.edu.zjut.service.SafeGuardingRightsService">
         <property name="safeGuardingRightsDao" ref="safeGuardingRightsImpl"/>
         <property name="safeGuardingRightsProgressDao" ref="safeGuardingRightsProgressImpl"/>
@@ -186,7 +186,7 @@
         <property name="ordersService" ref="ordersService"/>
         <property name="safeGuardingRightsProgressService" ref="safeGuardingRightsProgressService"/>
     </bean>
-<!--    评论-->
+    <!--    评论-->
 
     <bean id="commentAction" class="cn.edu.zjut.action.CommentAction">
         <property name="commentService" ref="commentService"/>
@@ -318,10 +318,11 @@
         <property name="orderStatusMapper" ref="orderStatusImpl"/>
     </bean>
 
-    <bean id="ordersAction" class="cn.edu.zjut.action.OrdersAction" scope="prototype">
+    <bean id="ordersAction" class="cn.edu.zjut.action.OrdersAction">
         <property name="ordersService" ref="ordersService"/>
         <property name="goodsService" ref="goodsService"/>
         <property name="shopManagerService" ref="shopManagerService"/>
+        <property name="orderStatusService" ref="orderStatusService"/>
     </bean>
 
     <bean id="wareHouseAddressImpl" class="cn.edu.zjut.dao.WareHouseAddressImpl">

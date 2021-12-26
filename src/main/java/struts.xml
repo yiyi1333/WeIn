@@ -324,6 +324,12 @@
             <result name="success">/showallelectronicContracts.jsp</result>
         </action>
 
+        <!--商家查询已有合同-->
+        <action name="queryElectronicContractsByshopId" class="cn.edu.zjut.action.ElectronicContractsAction"
+                method="queryElectronicContractsByshopId">
+            <result name="success">/shopshowallelectronicContracts.jsp</result>
+        </action>
+
         <!--编辑合同_选择本企业结构-->
         <action name="chooseEditElectronicContracts" class="cn.edu.zjut.action.ElectronicContractsAction"
                 method="getEnterpriseDepartmentById">

@@ -133,7 +133,7 @@
                                             <input style="width: 50px;" readonly = "readonly" value="<%=ordersList.get(i).getOrderId()%>" name="ordersList[<%=i%>].orderId"/>
                                         </td>
                                         <td>
-                                            <%=ordersList.get(i).getOrderDate()%>&nbsp;<%=ordersList.get(i).getOrderTime()%>
+                                            <%=ordersList.get(i).getOrderDate().toInstant().plusSeconds(28800).toString().split("T")[0]%>&nbsp;<%=ordersList.get(i).getOrderTime()%>
                                         </td>
                                         <td>
                                             <%
@@ -226,13 +226,13 @@
         %>
         $('#logisticsSingle<%=ordersList.get(i).getOrderId()%>').bind('input propertychange', function() {
             var r=/^\+?[1-9][0-9]*$/;
-            if(r.test($(this).val()) && ((19 - $(this).val().length) ==0 )){
+            if(r.test($(this).val()) && ((14 - $(this).val().length) ==0 )){
                 document.getElementById("logisticsSingle<%=ordersList.get(i).getOrderId()%>Div").className = "form-group has-success";
                 $('#logisticsSingle<%=ordersList.get(i).getOrderId()%>Result').html('输入正确');
             }
             else{
                 document.getElementById("logisticsSingle<%=ordersList.get(i).getOrderId()%>Div").className = "form-group has-error";
-                $('#logisticsSingle<%=ordersList.get(i).getOrderId()%>Result').html('请输入19位数字');
+                $('#logisticsSingle<%=ordersList.get(i).getOrderId()%>Result').html('请输入14位数字');
             }
         });
         <%}%>

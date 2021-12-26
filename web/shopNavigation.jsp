@@ -52,6 +52,10 @@
             <li>
                 <a href="showShopElectronicContracts.action"><i class="fa fa-newspaper-o"></i> <span class="nav-label">合同</span></a>
             </li>
+            <li>
+                <a href="queryElectronicContractsByshopId.action"><i class="fa fa-newspaper-o"></i> <span
+                        class="nav-label">查询生效电子合同</span></a>
+            </li>
         </ul>
 
     </div>
