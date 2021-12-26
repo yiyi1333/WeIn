@@ -316,6 +316,8 @@
         <property name="goodsService" ref="goodsService"/>
         <property name="wareHouseAddressMapper" ref="wareHouseAddressImpl"/>
         <property name="orderStatusMapper" ref="orderStatusImpl"/>
+        <property name="orderStatusDao" ref="orderStatusImpl"/>
+        <property name="consumerDao" ref="consumerImpl"/>
     </bean>
 
     <bean id="ordersAction" class="cn.edu.zjut.action.OrdersAction">
@@ -323,6 +325,8 @@
         <property name="goodsService" ref="goodsService"/>
         <property name="shopManagerService" ref="shopManagerService"/>
         <property name="orderStatusService" ref="orderStatusService"/>
+        <property name="drawBackService" ref="drawBackService"/>
+
     </bean>
 
     <bean id="wareHouseAddressImpl" class="cn.edu.zjut.dao.WareHouseAddressImpl">
@@ -335,5 +339,6 @@
 
     <bean id="wareHouseAddressAction" class="cn.edu.zjut.action.WareHouseAddressAction" scope="prototype">
         <property name="wareHouseAddressService" ref="wareHouseAddressService"/>
+        <property name="goodsService" ref="goodsService"/>
     </bean>
 </beans>
