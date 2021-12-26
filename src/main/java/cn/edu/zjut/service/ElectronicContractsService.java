@@ -79,8 +79,12 @@ public class ElectronicContractsService {
     }
 
     @MyLog
-    public void changeStateElectronicContracts(int agencyid) {
-        electronicContractsimpl.changeStateElectronicContracts(agencyid);
+    public void changeStateElectronicContracts(int agencyid, int electronicContractsid, int state) {
+        electronicContractsimpl.changeStateElectronicContracts(agencyid, electronicContractsid, state);
+    }
+
+    public void changeStateElectronicContracts2(int shopid, int electronicContractsid, int state) {
+        electronicContractsimpl.changeStateElectronicContracts2(shopid, electronicContractsid, state);
     }
 
     public void changeStateElectronicContracts2(int agencyid) {
@@ -92,6 +96,7 @@ public class ElectronicContractsService {
         List<ElectronicContracts> contracts = electronicContractsimpl.queryElectronicContractsByShopId(shopid);
         return contracts;
     }
+
 
     //模糊查询
     public List queryElectronicContractsLike(ElectronicContracts electronicContracts) {

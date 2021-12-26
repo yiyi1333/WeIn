@@ -34,7 +34,7 @@
     <jsp:include page="EnterpriseAgencyNavigation.jsp"/>
 
     <div id="page-wrapper" class="gray-bg">
-       <jsp:include page="EnterpriseAgencytopSidebar.jsp"/>
+        <jsp:include page="EnterpriseAgencytopSidebar.jsp"/>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
                 <h2>企业人员</h2>
@@ -82,6 +82,7 @@
                             <table class="table table-striped table-bordered table-hover dataTables-example">
                                 <thead>
                                 <tr>
+                                    <th></th>
                                     <th>部门编号</th>
                                     <th>部门名称</th>
                                     <th>部门是否写入合同内</th>
@@ -94,6 +95,11 @@
                                     for (EnterpriseDepartment enterpriseDepartment : enterpriseDepartmentList) {
                                 %>
                                 <tr>
+                                    <td>
+                                        <input type="checkbox" class="i-checks"
+                                               value="<%=enterpriseDepartment.getEnterpriseDepartmentId()%>"
+                                               name="input[]">
+                                    </td>
                                     <td><%=enterpriseDepartment.getEnterpriseDepartmentId()%>
                                     </td>
                                     <td><%=enterpriseDepartment.getEnterpriseDepartmentName()%>
@@ -141,27 +147,35 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group row">
-                            <a href="editElectronicContracts.jsp">
-                            <div class="col-sm-4 col-sm-offset-2">
-                                <button class="btn btn-primary btn-sm" type="submit">开始编辑合同</button>
-                            </div>
-                            </a>
+                            <td class="text-middle">
+                                <div class="btn-group">
+                                    <a href="editElectronicContracts.jsp">
+                                        <div class="col-sm-4 col-sm-offset-2">
+                                            <button class="btn btn-white btn-sm" type="submit">开始编辑合同</button>
+                                        </div>
+                                    </a>
+                                    <button type="button" class="btn btn-sm btn-primary"
+                                            onclick="selectEnterpriseDepartmentById()">批量选择
+                                    </button>
+                                </div>
+                            </td>
                         </div>
                     </div>
+                </div>
 
-                </div>
             </div>
-            <div class="footer">
-                <div class="float-right">
-                    <strong>2.9.2 inspinia</strong>
-                </div>
-                <div>
-                    <strong>Copyright</strong> xxx &copy; 2020
-                </div>
-            </div>
-
         </div>
+        <div class="footer">
+            <div class="float-right">
+                <strong>2.9.2 inspinia</strong>
+            </div>
+            <div>
+                <strong>Copyright</strong> xxx &copy; 2020
+            </div>
+        </div>
+
     </div>
+</div>
 </div>
 
 <!-- Mainly scripts -->
@@ -178,36 +192,32 @@
 <script src="js/inspinia.js"></script>
 <script src="js/plugins/pace/pace.min.js"></script>
 
-<!-- Page-Level Scripts -->
-<%--    <script>--%>
-<%--        $(document).ready(function () {--%>
-<%--            $('.dataTables-example').DataTable({--%>
-<%--                pageLength: 25,--%>
-<%--                responsive: true,--%>
-<%--                dom: '<"html5buttons"B>lTfgitp',--%>
-<%--                buttons: [--%>
-<%--                    {extend: 'copy'},--%>
-<%--                    {extend: 'csv'},--%>
-<%--                    {extend: 'excel', title: 'ExampleFile'},--%>
-<%--                    {extend: 'pdf', title: 'ExampleFile'},--%>
+<script>
+    $(document).ready(function () {
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+    });
+</script>
 
-<%--                    {--%>
-<%--                        extend: 'print',--%>
-<%--                        customize: function (win) {--%>
-<%--                            $(win.document.body).addClass('white-bg');--%>
-<%--                            $(win.document.body).css('font-size', '10px');--%>
-
-<%--                            $(win.document.body).find('table')--%>
-<%--                                .addClass('compact')--%>
-<%--                                .css('font-size', 'inherit');--%>
-<%--                        }--%>
-<%--                    }--%>
-<%--                ]--%>
-
-<%--            });--%>
-
-<%--        });--%>
-
-<%--    </script>--%>
+<script>
+    // 确认多选
+    function selectEnterpriseDepartmentById() {
+        var result = "";
+        var count = 0;
+        $(".i-checks").each(function () {
+            if ($(this).is(':checked')) {
+                result += $(this).val() + ",";
+                count++;
+            } else {
+            }
+        });
+        if (!confirm("确定选择这" + count + "企业部门?")) {
+            return;
+        }
+        window.location.href = "chooseDepartmentToElectronicContractsById?tag=" + result;
+    }
+</script>
 </body>
 </html>

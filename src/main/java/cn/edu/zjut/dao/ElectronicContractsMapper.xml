@@ -40,12 +40,18 @@
         update electroniccontracts set state = 2 where electronicContractsId = #{0};
     </update>
 
-    <select id="queryElectronicContractsByEnterpriseAgencyId" resultMap="ElectronicContractsResultMap">
+    <select id="queryElectronicContractsByEnterpriseAgencyId" resultMap="ElectronicContractsResultMap" >
         select * from electroniccontracts where enterpriseAgencyId = #{0} and state = 0;
     </select>
 
-    <update id="changeStateElectronicContracts">
-        update electroniccontracts set state = 1 where enterpriseAgencyId = #{0} and state = 0;
+<!--    <update id="changeStateElectronicContracts">-->
+<!--        update electroniccontracts set state = 1 where enterpriseAgencyId = #{0} and state = 0;-->
+<!--    </update>-->
+    <update id="changeStateElectronicContracts" >
+        update electroniccontracts set state = #{state} where enterpriseAgencyId = #{agencyid} and state = 0 and electronicContractsid = #{electronicContractsid} ;
+    </update>
+    <update id="changeStateElectronicContracts2">
+        update electroniccontracts set state = #{state} where shopId = #{shopId} and state = 1 and electronicContractsid = #{electronicContractsid} ;
     </update>
 
     <update id="changeStateElectronicContracts2">

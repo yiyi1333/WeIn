@@ -30,6 +30,25 @@ public class SafeGuardingRightsAction implements SessionAware {
     private SafeGuardingRights safeGuardingRights;
     private int safeGuardingRightsId;
     private DrawBackService DrawBackService;
+    private List<ShowSafeGuardingRights> showSafeGuardingRightsList;
+    private String safeRightsId;
+
+
+    public String getSafeRightsId() {
+        return safeRightsId;
+    }
+
+    public void setSafeRightsId(String safeRightsId) {
+        this.safeRightsId = safeRightsId;
+    }
+
+    public List<ShowSafeGuardingRights> getShowSafeGuardingRightsList() {
+        return showSafeGuardingRightsList;
+    }
+
+    public void setShowSafeGuardingRightsList(List<ShowSafeGuardingRights> showSafeGuardingRightsList) {
+        this.showSafeGuardingRightsList = showSafeGuardingRightsList;
+    }
 
     public Map<String, Object> getSession() {
         return session;
@@ -348,6 +367,22 @@ public class SafeGuardingRightsAction implements SessionAware {
                 session.put("safeGuardingRights", guardingRights);
             }
         }
+        return "success";
+    }
+
+    //请求获取所以维权订单列表
+    public String selectAllRightsInfo(){
+        showSafeGuardingRightsList = safeGuardingRightsService.selectAllRightsInfo(Integer.parseInt(consumerId));
+        return "success";
+    }
+    //接受处理结果
+    public String acceptTreatment(){
+        statusMes = safeGuardingRightsService.acceptResult(Integer.parseInt(safeRightsId));
+        return "success";
+    }
+    //拒绝处理结果
+    public String refuseTreatment(){
+        statusMes = safeGuardingRightsService.refuseResult(Integer.parseInt(safeRightsId));
         return "success";
     }
 }

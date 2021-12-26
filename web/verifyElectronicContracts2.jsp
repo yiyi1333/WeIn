@@ -89,6 +89,7 @@
                                 <table class="table table-striped table-bordered table-hover dataTables-example">
                                     <thead>
                                     <tr>
+                                        <th></th>
                                         <th>合同编号</th>
                                         <th>企业编号</th>
                                         <th>商家编号</th>
@@ -112,16 +113,20 @@
                                     %>
 
                                     <tr class="<%=(i%2==0?"gradeX":"gradeC")%>">
-
+                                        <td>
+                                            <input type="checkbox" class="i-checks"
+                                                   value="<%=list.get(i).getElectronicContractsId()%>"
+                                                   name="input[]">
+                                        </td>
                                         <td><%=list.get(i).getEnterpriseAgencyId()%>
                                         </td>
                                         <td><%=list.get(i).getEnterpriseId()%>
                                         </td>
                                         <td><%=list.get(i).getShopId()%>
                                         </td>
-                                        <td><%=list.get(i).getStarttime()%>
+                                        <td><%=list.get(i).getStarttime().toInstant().plusSeconds(28800).toString().split("T")[0]%>
                                         </td>
-                                        <td><%=list.get(i).getEndtime()%>
+                                        <td><%=list.get(i).getEndtime().toInstant().plusSeconds(28800).toString().split("T")[0]%>
                                         </td>
                                         <td><%=list.get(i).getGoodsId()%>
                                         </td>
@@ -137,18 +142,24 @@
                                     %>
                                     </tbody>
                                     <tfoot>
+                                    <tr>
+                                        <td>
+                                            <button type="button" class="btn btn-w-m btn-primary"
+                                                    onclick="verifyElectrobicContracts()">批量审核通过
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-w-m btn-primary"
+                                                    onclick="denyElectrobicContracts()">批量审核拒绝
+                                            </button>
+                                        </td>
 
+                                    </tr>
                                     </tfoot>
 
                                 </table>
                             </div>
-                            <s:form action="verifyElectronicContracts2" method="post">
-                                <div class="form-group row">
-                                    <div class="col-sm-4 col-sm-offset-2">
-                                        <button class="btn btn-primary btn-sm" type="submit">审核通过</button>
-                                    </div>
-                                </div>
-                            </s:form>
+
                         </div>
                     </div>
                 </div>
@@ -181,7 +192,48 @@
 <script src="js/inspinia.js"></script>
 <script src="js/plugins/pace/pace.min.js"></script>
 
-<!-- Page-Level Scripts -->
+<script>
+    $(document).ready(function () {
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+    });
+</script>
+
+<script>
+    // 确认多选
+    function verifyElectrobicContracts() {
+        var result = "";
+        var count = 0;
+        $(".i-checks").each(function () {
+            if ($(this).is(':checked')) {
+                result += $(this).val() + ",";
+                count++;
+            } else {
+            }
+        });
+        if (!confirm("确定审核通过这" + count + "合同?")) {
+            return;
+        }
+        window.location.href = "shopmanyVerifyElectrobicContractsById?tag=" + result;
+    }
+    function denyElectrobicContracts() {
+        var result = "";
+        var count = 0;
+        $(".i-checks").each(function () {
+            if ($(this).is(':checked')) {
+                result += $(this).val() + ",";
+                count++;
+            } else {
+            }
+        });
+        if (!confirm("确定审核拒绝这" + count + "合同?")) {
+            return;
+        }
+        window.location.href = "shopmanyDenyElectroContractsById?tag=" + result;
+    }
+</script>
 <script>
     $(document).ready(function () {
         $('.dataTables-example').DataTable({

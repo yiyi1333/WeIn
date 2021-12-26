@@ -341,10 +341,39 @@
                 method="chooseDepartmentToElectronicContracts">
             <result name="success">/chooseEditElectronicContracts.jsp</result>
         </action>
+        <!--批量可选企业-->
+        <action name="chooseDepartmentToElectronicContractsById" class="cn.edu.zjut.action.ElectronicContractsAction"
+                method="chooseDepartmentToElectronicContractsById">
+            <result name="success">/chooseEditElectronicContracts.jsp</result>
+        </action>
+
         <!--具有审核资格的企业管理员接受审核-->
         <action name="showVerifyElectronicContracts" class="cn.edu.zjut.action.ElectronicContractsAction"
                 method="showVerifyElectronicContracts">
             <result name="success">/verifyElectronicContracts.jsp</result>
+        </action>
+        <!--批量接收审核具有审核资格的企业管理员接受审核-->
+        <action name="manyVerifyElectrobicContractsById" class="cn.edu.zjut.action.ElectronicContractsAction"
+                method="manyVerifyElectrobicContractsById">
+            <result name="success">/verifyElectronicContracts.jsp</result>
+        </action>
+
+        <!--批量拒绝审核具有审核资格的企业管理员接受审核-->
+        <action name="manyDenyElectroContractsById" class="cn.edu.zjut.action.ElectronicContractsAction"
+                method="manyDenyElectroContractsById">
+            <result name="success">/verifyElectronicContracts.jsp</result>
+        </action>
+
+        <!--商家批量通过合同-->
+        <action name="shopmanyVerifyElectrobicContractsById" class="cn.edu.zjut.action.ElectronicContractsAction"
+                method="shopmanyVerifyElectrobicContractsById">
+            <result name="success">/showShopElectronicContracts.jsp</result>
+        </action>
+
+        <!--商家拒绝通过合同-->
+        <action name="shopmanyDenyElectroContractsById" class="cn.edu.zjut.action.ElectronicContractsAction"
+                method="shopmanyDenyElectroContractsById">
+            <result name="success">/showShopElectronicContracts.jsp</result>
         </action>
 
         <!--具有审核资格的企业管理员接受审核-->
@@ -366,6 +395,12 @@
             <result name="success">/showShopElectronicContracts.jsp</result>
         </action>
 
+        <!--商家合同通过-->
+        <!--        <action name="verifyElectronicContracts2" class="cn.edu.zjut.action.ElectronicContractsAction"-->
+        <!--                method="verifyElectronicContracts2">-->
+        <!--            <result name="success">/verifyElectronicContracts2.jsp</result>-->
+        <!--        </action>-->
+
         <!-- 企业管理员管理企业结构-->
         <!--编辑企业部门-->
         <action name="selectEnterpriseDepartmentById" class="cn.edu.zjut.action.EnterpriseDepartmentAction"
@@ -382,6 +417,7 @@
                 method="deleteEnterpriseDepartmentByIds">
             <result name="success">/displayAllDepartment.jsp</result>
         </action>
+
         <!--编辑企业部门，编辑成功即立即返回-->
         <action name="updateEnterpriseDepartment" class="cn.edu.zjut.action.EnterpriseDepartmentAction"
                 method="updateEnterpriseDepartment">

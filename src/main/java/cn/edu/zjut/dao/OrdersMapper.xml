@@ -51,7 +51,7 @@
         <result property="deliverProvince" column="deliverProvince"/>
         <result property="deliverCity" column="deliverCity"/>
         <result property="deliverArea" column="deliverArea"/>
-        <result property="deliveredName" column="deliverName"/>
+        <result property="deliveredName" column="deliveredName"/>
         <result property="deliveredDetailedAddress" column="deliveredDetailedAddress"/>
         <result property="warehouseName" column="warehouseName"/>
         <result property="warehouseProvince" column="warehouseProvince"/>
@@ -174,4 +174,10 @@
         where orders.orderId=orderstatus.orderId and orderStatus=orderStatusName
         and orderStatus='已完成' or orderStatus='仅退款' or orderStatus='退货退款'
     </select>
+
+    <update id="modfiyOrderStatus">
+        update orders
+        set orders.orderStatus = #{stauts}
+        where orders.orderId = #{orderId}
+    </update>
 </mapper>
