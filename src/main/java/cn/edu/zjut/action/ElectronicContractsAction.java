@@ -4,6 +4,7 @@ import cn.edu.zjut.po.ElectronicContracts;
 import cn.edu.zjut.po.EnterpriseAgency;
 import cn.edu.zjut.po.EnterpriseDepartment;
 import cn.edu.zjut.service.ElectronicContractsService;
+import cn.edu.zjut.service.EnterpriseDepartmentService;
 import cn.edu.zjut.service.RegisterShopmanagerAndEnterpriseagencyService;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.ServletRequestAware;
@@ -23,10 +24,11 @@ public class ElectronicContractsAction extends ActionSupport implements SessionA
     private List electronicContractsList;
     private Map<String, Object> session;
     private HttpServletRequest httpServletRequest;
+    private String tag;//批量选择ID号集合
 
     //获得企业结构用
     private RegisterShopmanagerAndEnterpriseagencyService registerShopmanagerAndEnterpriseagencyService;
-
+    private EnterpriseDepartmentService enterpriseDepartmentService;
     private String enterpriseId;
     private String discount;
     private String enterpriseDepartmentId;
@@ -34,6 +36,14 @@ public class ElectronicContractsAction extends ActionSupport implements SessionA
     private String enterpriseAgencyId;
     private String electronicContractsId;
     private String goodsId;
+
+    public void setEnterpriseDepartmentService(EnterpriseDepartmentService enterpriseDepartmentService) {
+        this.enterpriseDepartmentService = enterpriseDepartmentService;
+    }
+
+    public EnterpriseDepartmentService getEnterpriseDepartmentService() {
+        return enterpriseDepartmentService;
+    }
 
     public void setGoodsId(String goodsId) {
         this.goodsId = goodsId;
@@ -88,6 +98,14 @@ public class ElectronicContractsAction extends ActionSupport implements SessionA
         return shopId;
     }
 
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
     @Override
     public void setSession(Map<String, Object> session) {
         this.session = session;
@@ -126,11 +144,27 @@ public class ElectronicContractsAction extends ActionSupport implements SessionA
         return "success";
     }
 
+    //批量获得编辑的企业结构
+    public String chooseDepartmentToElectronicContractsById() {
+        String[] selectdepartmentId = tag.split(",");
+        if (session.get("electronicContractsList") == null) {//第一次
+            session.put("electronicContractsList", new ArrayList<EnterpriseDepartment>());
+        }
+        List<EnterpriseDepartment> electronicContractsList = (List<EnterpriseDepartment>) session.get("electronicContractsList");
+        for (int i = 0; i < selectdepartmentId.length; i++) {
+            String keykey = "haveEnterpriseId";
+            keykey = keykey + selectdepartmentId[i];
+            session.put(keykey, selectdepartmentId[i]);
+            enterpriseDepartment = enterpriseDepartmentService.getEnterpriseDepartmentById(Integer.parseInt(selectdepartmentId[i]));
+            electronicContractsList.add(enterpriseDepartment);
+        }
+        return "success";
+    }
+
     //企业管理员起草合同
     public String editElectronicContracts() {
         //对于展示的企业结构
         boolean ok = true;
-
         StringBuilder mess = new StringBuilder();
         List<EnterpriseDepartment> EnterpriseDepartmentList = (List<EnterpriseDepartment>) session.get("electronicContractsList");
         Iterator<EnterpriseDepartment> enterpriseDepartmentIterator = EnterpriseDepartmentList.iterator();
@@ -184,13 +218,19 @@ public class ElectronicContractsAction extends ActionSupport implements SessionA
         return "success";
     }
 
-    //提交审核通过
-    public String verifyElectronicContracts() {
-        electronicContractsService.changeStateElectronicContracts((Integer) session.get("loginuserEnterpriseAgencyId"));
-        session.remove("verifyContracts");
-        return "success";
-    }
-
+//    //提交审核通过
+//    public String verifyElectronicContracts() {
+//        electronicContractsService.changeStateElectronicContracts((Integer) session.get("loginuserEnterpriseAgencyId"));
+//        session.remove("verifyContracts");
+//        return "success";
+//    }
+//
+//    //商家提交审核通过
+//    public String verifyElectronicContracts2() {
+//        electronicContractsService.changeStateElectronicContracts2((Integer) session.get("loginusershopId"));
+//        session.remove("verifyContracts");
+//        return "success";
+//    }
 
     //商家接收合同
     public String showShopElectronicContracts() {
@@ -291,6 +331,55 @@ public class ElectronicContractsAction extends ActionSupport implements SessionA
     }
 
 
+    public String manyVerifyElectrobicContractsById() {
+        String[] selectId = tag.split(",");
+        //System.out.println(tag);
+        for (int i = 0; i < selectId.length; i++) {
+            electronicContractsService.changeStateElectronicContracts((Integer) session.get("loginuserEnterpriseAgencyId"), Integer.parseInt(selectId[i]), 1);
+        }
+        session.remove("verifyContracts");
+        electronicContractsList = electronicContractsService.showVerifyElectronicContracts((Integer) session.get("loginuserEnterpriseAgencyId"));
+        session.put("verifyContracts", electronicContractsList);
+        return "success";
+    }
+
+    public String manyDenyElectroContractsById() {
+
+        String[] selectId = tag.split(",");
+
+        for (int i = 0; i < selectId.length; i++) {
+            electronicContractsService.changeStateElectronicContracts((Integer) session.get("loginuserEnterpriseAgencyId"), Integer.parseInt(selectId[i]), 2);
+        }
+        session.remove("verifyContracts");
+        electronicContractsList = electronicContractsService.showVerifyElectronicContracts((Integer) session.get("loginuserEnterpriseAgencyId"));
+        session.put("verifyContracts", electronicContractsList);
+        return "success";
+    }
+
+
+    public String shopmanyVerifyElectrobicContractsById() {
+        String[] selectId = tag.split(",");
+        //System.out.println(tag);
+        for (int i = 0; i < selectId.length; i++) {
+            electronicContractsService.changeStateElectronicContracts2((Integer) session.get("loginusershopId"), Integer.parseInt(selectId[i]), 10);
+        }
+        session.remove("shopContracts");
+        electronicContractsList = electronicContractsService.showShopElectronicContracts((Integer) session.get("loginusershopId"));
+        session.put("shopContracts", electronicContractsList);
+        return "success";
+    }
+
+    public String shopmanyDenyElectroContractsById() {
+
+        String[] selectId = tag.split(",");
+        for (int i = 0; i < selectId.length; i++) {
+            electronicContractsService.changeStateElectronicContracts2((Integer) session.get("loginusershopId"), Integer.parseInt(selectId[i]), 4);
+        }
+        session.remove("shopContracts");
+        electronicContractsList = electronicContractsService.showShopElectronicContracts((Integer) session.get("loginusershopId"));
+        session.put("shopContracts", electronicContractsList);
+        return "success";
+    }
 }
 
 

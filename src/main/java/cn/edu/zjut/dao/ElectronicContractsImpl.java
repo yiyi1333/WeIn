@@ -13,6 +13,7 @@ public class ElectronicContractsImpl implements ElectronicContractsMapper {
         return sqlSession;
     }
 
+    @Override
     public List<ElectronicContracts> queryElectronicContracts() {
         System.out.println("execute --queryElectronicContracts()-- method.");
         return sqlSession.getMapper(ElectronicContractsMapper.class).queryElectronicContracts();
@@ -22,27 +23,38 @@ public class ElectronicContractsImpl implements ElectronicContractsMapper {
         this.sqlSession = sqlSession;
     }
 
+    @Override
     public void addElectronicContracts(ElectronicContracts electronicContracts) {
         System.out.println("execute --addElectronicContracts()-- method.");
         sqlSession.getMapper(ElectronicContractsMapper.class).addElectronicContracts(electronicContracts);
     }
 
+    @Override
     public List queryElectronicContractsByEnterpriseId(int id) {
         return sqlSession.getMapper(ElectronicContractsMapper.class).queryElectronicContractsByEnterpriseId(id);
     }
 
+    @Override
     public void disableContracts(int id) {
         sqlSession.getMapper(ElectronicContractsMapper.class).disableContracts(id);
     }
 
+    @Override
     public List queryElectronicContractsByEnterpriseAgencyId(int agencyid) {
         return sqlSession.getMapper(ElectronicContractsMapper.class).queryElectronicContractsByEnterpriseAgencyId(agencyid);
     }
 
-    public void changeStateElectronicContracts(int agencyid) {
-        sqlSession.getMapper(ElectronicContractsMapper.class).changeStateElectronicContracts(agencyid);
+    @Override
+    public void changeStateElectronicContracts(int agencyid, int electronicContractsid, int state) {
+        sqlSession.getMapper(ElectronicContractsMapper.class).changeStateElectronicContracts(agencyid,electronicContractsid,state);
     }
 
+    @Override
+    public void changeStateElectronicContracts2(int shopid, int electronicContractsid, int state) {
+        sqlSession.getMapper(ElectronicContractsMapper.class).changeStateElectronicContracts2(shopid,electronicContractsid,state);
+    }
+
+    @Override
     public List queryElectronicContractsByShopId(int shopid) {
         return sqlSession.getMapper(ElectronicContractsMapper.class).queryElectronicContractsByShopId(shopid);
     }

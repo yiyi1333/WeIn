@@ -254,6 +254,8 @@
         <!--先查询到本企业结构-->
         <property name="registerShopmanagerAndEnterpriseagencyService"
                   ref="registerShopmanagerAndEnterpriseagencyService"/>
+        <!--根据企业结构编号查到本企业结构-->
+        <property name="enterpriseDepartmentService" ref="enterpriseDepartmentService"/>
     </bean>
 
     <!--王怡欣配置区-->
@@ -312,7 +314,6 @@
         <property name="ordersMapper" ref="ordersImpl"/>
         <property name="orderGoodMapper" ref="orderGoodImpl"/>
         <property name="goodsService" ref="goodsService"/>
-        <property name="orderStatusDao" ref="orderStatusImpl"/>
         <property name="wareHouseAddressMapper" ref="wareHouseAddressImpl"/>
         <property name="orderStatusMapper" ref="orderStatusImpl"/>
     </bean>

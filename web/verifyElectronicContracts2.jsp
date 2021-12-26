@@ -134,29 +134,7 @@
                                         </td>
                                         <td><%=list.get(i).getDiscount()%>
                                         </td>
-                                        <td> <%
-                                            int stateshow = list.get(i).getState();
-                                            String ansshow;
-                                            if(stateshow == 0) {
-                                                ansshow = "待企业管理员审核";
-                                            }
-                                            else if(stateshow == 1) {
-                                                ansshow = "待商家店铺审核";
-                                            }
-                                            else if(stateshow == 2) {
-                                                ansshow = "企业管理员驳回";
-                                            }
-                                            else if(stateshow == 4) {
-                                                ansshow = "商家驳回";
-                                            }
-                                            else if(stateshow == 10) {
-                                                ansshow = "有效合同";
-                                            }
-                                            else {
-                                                ansshow = "无效合同";
-                                            }
-                                        %>
-                                            <%=ansshow%>
+                                        <td><%=(list.get(i).getState() == 0 ? "待审核" : (list.get(i).getState() == 1 ? "生效中" : "已失效"))%>
                                         </td>
                                     </tr>
                                     <%

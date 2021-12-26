@@ -17,7 +17,7 @@ public interface ElectronicContractsMapper {
 
     public List queryElectronicContractsByEnterpriseAgencyId(int agencyid);
 
-    public void changeStateElectronicContracts(int agencyid);
+    public void changeStateElectronicContracts(@Param("agencyid") int agencyid, @Param("electronicContractsid") int electronicContractsid, @Param("state") int state);
 
     public List queryElectronicContractsByShopId(int shopid);
 
@@ -26,4 +26,6 @@ public interface ElectronicContractsMapper {
     public List queryElectronicContractsLike(ElectronicContracts electronicContracts);
 
     public ElectronicContracts queryElectronicContractsByGoodsIdDepartmentId(@Param("goodsId") int goodsId, @Param("deparatmentId") int deparatmentId);
+
+    public void changeStateElectronicContracts2(@Param("shopId") int shopid, @Param("electronicContractsid") int electronicContractsid, @Param("state") int state);
 }
