@@ -21,7 +21,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>xxx | 数据表格</title>
+    <title>合同审核</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -43,16 +43,13 @@
         <jsp:include page="shopTopSidebar.jsp"/>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>数据表格</h2>
+                <h2>合同审核</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href="index.html">主页</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a>表格</a>
-                    </li>
-                    <li class="breadcrumb-item active">
-                        <strong>数据表格</strong>
+                        <a>合同审核</a>
                     </li>
                 </ol>
             </div>

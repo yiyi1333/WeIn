@@ -50,11 +50,11 @@
                 <a href="displayShopSafeGuardingRights.action"><i class="fa fa-envelope"></i> <span class="nav-label">维权处理</span></a>
             </li>
             <li>
-                <a href="showShopElectronicContracts.action"><i class="fa fa-newspaper-o"></i> <span class="nav-label">合同</span></a>
+                <a href="showShopElectronicContracts.action"><i class="fa fa-newspaper-o"></i> <span class="nav-label">合同审核</span></a>
             </li>
             <li>
                 <a href="queryElectronicContractsByshopId.action"><i class="fa fa-newspaper-o"></i> <span
-                        class="nav-label">查询生效电子合同</span></a>
+                        class="nav-label">已生效合同</span></a>
             </li>
         </ul>
 
