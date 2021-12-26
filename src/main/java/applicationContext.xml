@@ -37,17 +37,20 @@
 
     <bean id="enterpriseAgencyService" class="cn.edu.zjut.service.EnterpriseAgencyService">
         <property name="enterpriseAgencyImpl" ref="enterpriseAgencyImpl"/>
+
     </bean>
 
     <bean id="userAction" class="cn.edu.zjut.action.UserAction" scope="prototype">
         <property name="enterpriseAgencyService" ref="enterpriseAgencyService"/>
         <property name="platformAdministratorService" ref="platformAdministratorService"/>
         <property name="shopManagerService" ref="shopManagerService"/>
+
     </bean>
 
     <bean id="enterpriseDepartmentAction" class="cn.edu.zjut.action.EnterpriseDepartmentAction" scope="prototype">
         <property name="enterpriseDepartmentService" ref="enterpriseDepartmentService"/>
         <property name="electronicContractsService" ref="electronicContractsService"/>
+        <property name="enterpriseService" ref="enterpriseService"/>
     </bean>
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -59,6 +62,7 @@
     </bean>
     <bean id="logService" class="cn.edu.zjut.service.LogService">
         <property name="logMapper" ref="logMapper"/>
+
     </bean>
     <bean id="logAspect" class="cn.edu.zjut.aspect.LogAspect">
         <property name="logService" ref="logService"/>
@@ -76,11 +80,14 @@
         <property name="commentMapper" ref="commentImpl"/>
         <property name="commentDao" ref="commentImpl"/>
 
+
+
     </bean>
 
     <bean id="reviewCommentAction" class="cn.edu.zjut.action.ReviewCommentAction">
         <property name="commentService" ref="commentService"/>
-
+        <property name="goodsService" ref="goodsService"/>
+        <property name="consumerService" ref="consumerService"/>
     </bean>
 
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
@@ -104,16 +111,19 @@
 
     <bean id="advertisementService" class="cn.edu.zjut.service.AdvertisementService">
         <property name="advertisementdao" ref="advertisementImpl"/>
+
     </bean>
 
     <bean id="advertisemnetAction" class="cn.edu.zjut.action.AdvertisementAction">
         <property name="advertisementService" ref="advertisementService"/>
+
     </bean>
 
     <bean id="wechatDecryptDataService" class="cn.edu.zjut.service.WechatDecryptDataService"/>
 
     <bean id="decodeAction" class="cn.edu.zjut.action.DecodeAction">
         <property name="wechatDecryptDataService" ref="wechatDecryptDataService"/>
+
     </bean>
     <!--    商品-->
     <!--    商品-->
@@ -122,6 +132,7 @@
     </bean>
 
     <bean id="goodsService" class="cn.edu.zjut.service.GoodsService">
+
         <property name="goodsDao" ref="goodsImpl"/>
         <property name="consumerDao" ref="consumerImpl"/>
         <property name="electronicContractsDao" ref="electronicContractsimpl"/>
@@ -132,6 +143,7 @@
         <property name="goodsService" ref="goodsService"/>
         <property name="wareHouseAddressService" ref="wareHouseAddressService"/>
         <property name="commentService" ref="commentService"/>
+
     </bean>
 
     <bean id="enterpriseImpl" class="cn.edu.zjut.dao.EnterpriseImpl">
@@ -174,15 +186,18 @@
         <property name="goodsMapper" ref="goodsImpl"/>
         <property name="orderGoodMapper" ref="orderGoodImpl"/>
         <property name="ordersMapper" ref="ordersImpl"/>
+
     </bean>
     <bean id="safeGuardingRightsProgressService" class="cn.edu.zjut.service.SafeGuardingRightsProgressService">
         <property name="safeGuardingRightsProgressDao" ref="safeGuardingRightsProgressImpl"/>
+
     </bean>
 
     <bean id="safeGuardingRightsAction" class="cn.edu.zjut.action.SafeGuardingRightsAction">
         <property name="safeGuardingRightsService" ref="safeGuardingRightsService"/>
         <property name="orderStatusService" ref="orderStatusService"/>
         <property name="goodsService" ref="goodsService"/>
+        <property name="drawBackService" ref="drawBackService"/>
         <property name="ordersService" ref="ordersService"/>
         <property name="safeGuardingRightsProgressService" ref="safeGuardingRightsProgressService"/>
     </bean>
